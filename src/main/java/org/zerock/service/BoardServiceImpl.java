@@ -22,13 +22,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> list() {
+	public List<BoardVO> pageList() {
 		// TODO Auto-generated method stub
 		return mapper.list();
 	}
 
 	@Override
-	public int insert(BoardVO vo) {
+	public int write(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return mapper.insert(vo);
 	}
@@ -36,11 +36,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int modify(BoardVO vo) {
 		// TODO Auto-generated method stub
-		return mapper.modify(vo);
+		return mapper.update(vo);
 	}
 
 	@Override
-	public int delete(int bno) {
+	public int remove(int bno) {
 		// TODO Auto-generated method stub
 		return mapper.delete(bno);
 	}

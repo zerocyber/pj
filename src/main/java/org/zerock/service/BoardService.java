@@ -8,13 +8,13 @@ public interface BoardService {
 	
 	public BoardVO read(int bno);
 	
-	public List<BoardVO> list();
+	public List<BoardVO> pageList();
 		
-	public int insert(BoardVO vo);
+	public int write(BoardVO vo);
 	
 	public int modify(BoardVO vo);
 	
-	public int delete(int bno);
+	public int remove(int bno);
 	
 	public int count();
 }
