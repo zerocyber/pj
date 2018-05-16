@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import org.zerock.mapper.TimeMapper;
 
 import lombok.Setter;
@@ -18,9 +19,12 @@ public class TimeMapperTests {
 	@Setter(onMethod_= {@Autowired})
 	private TimeMapper mapper;
 	
+
+	
 	@Test
 	public void testTime() {
 		log.info(mapper.getTime());
 	}
+	
 }
 
