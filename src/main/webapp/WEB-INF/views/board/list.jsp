@@ -24,7 +24,7 @@ ${BoardVO}
 </c:if>
 						
 <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
-<li><a href="list?page=${idx}&perPageNum=${pm.cri.perPageNum}">${idx}</a></li>
+<li><a href="{um}">${um}</a></li>
 </c:forEach>
 
 <c:if test="${pm.next}">

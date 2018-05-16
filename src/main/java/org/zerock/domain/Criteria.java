@@ -1,7 +1,8 @@
 package org.zerock.domain;
 
+import org.zerock.utils.URIMaker;
+
 import lombok.Data;
-import lombok.Getter;
 
 
 @Data
@@ -12,7 +13,7 @@ public class Criteria {
 	
 	private String type;
 	private String keyword;
-	
+	private URIMaker um;
 	
 	
 	public Criteria() {
