@@ -49,6 +49,16 @@ public class Criteria {
 		this.keyword = keyword;
 	}
 	
+	public String[] getArr() {
+		if(type == null) {
+			return null;
+		}
+		
+		return this.type.split("");
+		
+	}
+	
+	
 	public int getPageStart() {
 		return (this.page-1) * perPageNum;
 				

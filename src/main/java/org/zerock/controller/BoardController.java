@@ -30,10 +30,10 @@ public class BoardController {
 		
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
-		pm.setTotal(service.count());
-		model.addAttribute("BoardVO", service.pageList(cri));
+		pm.setTotal(service.count(cri));
+//		model.addAttribute("BoardVO", service.pageList(cri));
 		model.addAttribute("pm", pm);
-		
+		model.addAttribute("BoardVO", service.searchList(cri));
 		
 	}
 	

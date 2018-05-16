@@ -47,10 +47,18 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int count() {
+	public int count(Criteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.count();
+		return mapper.count(cri);
 	}
+
+	@Override
+	public List<BoardVO> searchList(Criteria cri) {
+
+		return mapper.searchList(cri);
+	}
+	
+
 	
 	
 }
