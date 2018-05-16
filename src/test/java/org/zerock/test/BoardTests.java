@@ -22,7 +22,7 @@ public class BoardTests {
 
 	@Test
 	public void testList() {
-		log.info(mapper.list());
+		
 	}
 	
 	@Test

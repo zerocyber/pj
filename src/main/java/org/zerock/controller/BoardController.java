@@ -1,12 +1,15 @@
 package org.zerock.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.domain.BoardVO;
-import org.zerock.mapper.BoardMapper;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
 
 import lombok.Setter;
@@ -21,15 +24,21 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list() {
+	public void list(Criteria cri, Model model) {
 		log.info("list..............");
-		service.pageList();
+		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotal(service.count());
+		model.addAttribute("BoardVO", service.pageList(cri));
+		model.addAttribute("pm", pm);
+		
 	}
 	
 	@GetMapping("/read")
-	public void read(BoardVO vo) {
+	public void read(BoardVO vo, Model model, @Param("bno")int bno) {
 		log.info("read.............");
-		service.read(vo.getBno());
+		model.addAttribute("BoardVO", service.read(bno));
 	}
 	
 	@GetMapping("/write")

@@ -3,12 +3,13 @@ package org.zerock.service;
 import java.util.List;
 
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 public interface BoardService {
 	
 	public BoardVO read(int bno);
 	
-	public List<BoardVO> pageList();
+	public List<BoardVO> pageList(Criteria cri);
 		
 	public int write(BoardVO vo);
 	
