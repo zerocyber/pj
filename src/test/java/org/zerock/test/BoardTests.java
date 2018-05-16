@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.BoardVO;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -17,10 +18,47 @@ public class BoardTests {
 
 	
 	@Setter(onMethod_= {@Autowired})
-	private BoardMapper dao;
+	private BoardMapper mapper;
 
 	@Test
 	public void testList() {
-		log.info(dao.list());
+		log.info(mapper.list());
 	}
+	
+	@Test
+	public void testRead() {
+
+		log.info(mapper.read(100));
+	}
+	
+	@Test
+	public void testInsert() {
+		BoardVO vo = new BoardVO();
+		vo.setTitle("제목추가");
+		vo.setContent("내용추가");
+		vo.setMid("user11");
+		vo.setCno(100);
+		vo.setKno(10);
+		log.info(mapper.insert(vo));
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardVO vo = new BoardVO();
+		vo.setTitle("제목수정");
+		vo.setContent("내용수정");
+		vo.setBno(96);
+		log.info(mapper.update(vo));
+	}
+	
+	@Test
+	public void testDelete() {
+		log.info(mapper.delete(99));
+	}
+	
+	@Test
+	public void testCount() {
+		log.info(mapper.count());
+	}
+	
 }

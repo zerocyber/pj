@@ -10,11 +10,11 @@ public interface BoardMapper {
 
 	public List<BoardVO> list();
 	
-	public void read(int bno);
+	public BoardVO read(int bno);
 	
 	public int insert(BoardVO vo);
 	
-	public int momdify(BoardVO vo);
+	public int update(BoardVO vo);
 	
 	public int delete(int bno);
 	
