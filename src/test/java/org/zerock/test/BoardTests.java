@@ -23,4 +23,9 @@ public class BoardTests {
 	public void testList() {
 		log.info(dao.list());
 	}
+	
+	@Test
+	public void testRead() {
+		log.info(dao.read(99));
+	}
 }
