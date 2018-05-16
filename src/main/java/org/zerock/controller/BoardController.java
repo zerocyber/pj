@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.log4j.lf5.util.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,12 +34,14 @@ public class BoardController {
 		model.addAttribute("BoardVO", service.pageList(cri));
 		model.addAttribute("pm", pm);
 		
+		
 	}
 	
 	@GetMapping("/read")
-	public void read(BoardVO vo, Model model, @Param("bno")int bno) {
+	public void read(BoardVO vo, Model model, @Param("bno")int bno, Criteria cri) {
 		log.info("read.............");
 		model.addAttribute("BoardVO", service.read(bno));
+		model.addAttribute("cri",cri);
 	}
 	
 	@GetMapping("/write")
@@ -49,27 +52,34 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writePost(BoardVO vo){
 		log.info("write post.......");
+		log.info(vo);
+		
+		log.info(vo);
 		service.write(vo);
-		return "list";
+		return "redirect:/board/list";
 	}
 	
 	@GetMapping("/modify")
-	public void modify(BoardVO vo) {
+	public void modify(BoardVO vo, Model model, Criteria cri) {
 		log.info("modify get.........");
+		model.addAttribute("boardVO", service.read(vo.getBno()));
+		model.addAttribute("cri", cri);
+		
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPost(BoardVO vo) {
+	public String modifyPost(BoardVO vo, Criteria cri) {
 		log.info("modify post...........");
 		service.modify(vo);
-		return "redirect:/board/read";
+		return "redirect:/board/read?page="+ cri.getPage() + "&perPageNum="+cri.getPerPageNum()+"&bno="+vo.getBno();
+		
 	}
 	
 	@PostMapping("/delete")
 	public String delete(int bno) {
 		log.info("delete........");
 		service.remove(bno);
-		return "list";
+		return "redirect:/board/list";
 	}
 	
 	
