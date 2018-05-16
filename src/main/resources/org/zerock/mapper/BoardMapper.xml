@@ -6,33 +6,14 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
 <select id="list" resultType="org.zerock.domain.BoardVO">
+
 select * from t_board
 order by bno desc
-limit #{pageStart},#{perPageNum};
+limit 0,10;
+
 </select>
 
-<select id="read" resultType="org.zerock.domain.BoardVO">
-select * from t_board where bno=#{bno};
-</select>
 
-<insert id="insert">
-insert into t_board(title, content, mid, cno, kno)
-values(#{title}, #{content},#{mid}, #{cno}, #{kno});
-</insert>
-
-<update id="update">
-update t_board set title = #{title}, content=#{content}, updatedate = now() where bno=#{bno};
-</update>
-
-<delete id="delete">
-delete from t_board where bno=#{bno};
-</delete>
-
-<select id="count" resultType="int">
-select count(*) from t_board;
-</select>
 
 
 </mapper>
-
-
