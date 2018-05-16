@@ -10,7 +10,13 @@
 <body>
 
 ${pm}
+${cri}
 ${BoardVO}
+
+<li><a href="read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${BoardVO[0].bno}">${BoardVO[0].title}</a></li>
+
+
+
 			
 						
 <c:if test="${pm.prev}">
