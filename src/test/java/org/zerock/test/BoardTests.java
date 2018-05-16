@@ -27,6 +27,7 @@ public class BoardTests {
 	
 	@Test
 	public void testRead() {
+
 		log.info(mapper.read(100));
 	}
 	
@@ -59,8 +60,5 @@ public class BoardTests {
 	public void testCount() {
 		log.info(mapper.count());
 	}
-	
-	
-	
 	
 }
