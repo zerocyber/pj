@@ -8,7 +8,7 @@
 <select id="list" resultType="org.zerock.domain.BoardVO">
 select * from t_board
 order by bno desc
-limit 0,10;
+limit #{pageStart},#{perPageNum};
 </select>
 
 <select id="read" resultType="org.zerock.domain.BoardVO">
@@ -31,6 +31,8 @@ delete from t_board where bno=#{bno};
 <select id="count" resultType="int">
 select count(*) from t_board;
 </select>
+
+
 </mapper>
 
 
