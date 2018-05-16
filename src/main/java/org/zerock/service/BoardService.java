@@ -1,17 +1,15 @@
-package org.zerock.mapper;
+package org.zerock.service;
 
 import java.util.List;
 
-
 import org.zerock.domain.BoardVO;
 
-
-public interface BoardMapper {
-
-	public List<BoardVO> list();
+public interface BoardService {
 	
 	public BoardVO read(int bno);
 	
+	public List<BoardVO> list();
+		
 	public int insert(BoardVO vo);
 	
 	public int modify(BoardVO vo);
