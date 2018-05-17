@@ -121,7 +121,7 @@ $(document).ready(function() {
 			var str = "";
 			console.log
 			$.each(data, function(i){
-				str += "<li id='coment' data-rno="+this.rno+" data-content="+this.content+" data-mid="+this.mid+">"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
+				str += "<li id='coment' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"'>"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
 				console.log(data[i]);
 			});
 			$(".replyUL").html(str);
