@@ -64,6 +64,11 @@ th {
       <td>${BoardVO.mid}</td>
     </tr>
   </table>
+  	<br>
+  	<button id="back">뒤로가기</button>
+	<button id="modify">수정</button>
+	<button id="remove">삭제</button>
+  
 </section>
 
 <div class="replyBox">
@@ -86,10 +91,6 @@ th {
 
 
 
-	<a href="/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
-	<a href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
-	<button id="remove">삭제</button>
-	
 	
 	<div class="wrapper">
 	<textarea class="replyContent" name="content" cols="92" rows="3">
@@ -101,7 +102,15 @@ th {
 $(document).ready(function() {
 	
 	var formObj = $("#inform");
+	$("#back").on("click", function(e) {
+		self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 
+	});
+	
+	$("#modify").on("click", function(e) {
+		self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
+
+	});
 	$("#remove").on("click", function(e) {
 		formObj.attr("action", "/board/delete");
 		formObj.submit();
@@ -113,11 +122,12 @@ $(document).ready(function() {
 			var str = "";		
 			$(data).each(function() {
 				str += "<li>"+ this.rno+ ":" + this.content + "</li>";
-			});
 			$(".replyUL").html(str);
 		});
 	}
-	pageList();	
+	pageList();
+	
+	
 });
 	</script>
 
