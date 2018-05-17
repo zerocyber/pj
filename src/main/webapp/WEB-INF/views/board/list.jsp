@@ -1,4 +1,3 @@
-
 <%@ include file="header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -103,4 +102,19 @@
 </ul>
 </div>
 
-	<%@ include file="footer.jsp"%>
+<form method="get">
+<select name="type" id="selectType">
+    <option value="">----</option>
+    <option value="t">제목</option>
+    <option value="c">내용</option>
+    <option value="m">작성자</option>
+    <option value="tc">제목+내용</option>
+    <option value="tm">제목+작성자</option>
+    <option value="tcm">제목+내용+작성자</option>
+</select>
+	<input type="text" class="">
+    <button id="btn_search" class="btn btn-default">검색</button>
+
+</form>
+
+<%@ include file="footer.jsp"%>

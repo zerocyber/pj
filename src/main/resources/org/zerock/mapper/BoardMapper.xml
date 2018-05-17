@@ -35,7 +35,7 @@
 
 	<sql id="criteria">
 
-		<if test="type !=null and keyword !=null">
+		<if test="type !='' and keyword !=''">
 			<where>
 
 				<foreach collection="arr" separator="OR" item="type"
