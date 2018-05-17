@@ -1,9 +1,9 @@
 package org.zerock.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.annotations.Param;
-import org.apache.log4j.lf5.util.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.core.userdetails.ReactiveUserDetailsServiceResourceFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +13,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
+import org.zerock.utils.URIMaker;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,8 +27,11 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model) {
+	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
 		log.info("list..............");
+		
+		String uri = request.getRequestURI().split("/")[2].toString();
+		log.info(uri);
 		
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
@@ -35,6 +39,7 @@ public class BoardController {
 //		model.addAttribute("BoardVO", service.pageList(cri));
 		model.addAttribute("pm", pm);
 		model.addAttribute("BoardVO", service.searchList(cri));
+
 		
 	}
 	
@@ -53,9 +58,6 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writePost(BoardVO vo){
 		log.info("write post.......");
-		log.info(vo);
-		
-		log.info(vo);
 		service.write(vo);
 		return "redirect:/board/list";
 	}
