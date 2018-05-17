@@ -90,14 +90,15 @@ th {
 	</form>
 
 
-
 	
 	<div class="wrapper">
 	<textarea class="replyContent" name="content" cols="92" rows="3">
 	</textarea>
+	<input class="replyWriter" type="text" name="replyWriter" value="none">
 	<button id="replyBtn">Apply</button>
 	</div>
-
+	
+	
 <script>
 $(document).ready(function() {
 	
@@ -121,7 +122,7 @@ $(document).ready(function() {
 			console.log(data.length);
 			var str = "";		
 			$(data).each(function() {
-				str += "<li>"+ this.rno+ ":" + this.content + "<button>Modify</button>X</li>";
+				str += "<li>"+ this.rno+ ":" + this.content + this.writer+ "<button>Modify</button>X</li>";
 			});
 			$(".replyUL").html(str);
 		});
@@ -129,6 +130,29 @@ $(document).ready(function() {
 	pageList();
 	/* 댓글 페이지 로딩 */
 	
+	/* 댓글 추가 */
+	$("#replyBtn").on("click", function(e){
+
+		var content = $(".replyContent").val();
+		var writer = $(".replyWriter").val();
+		var UL = $(".replyUL");
+		
+		console.log(content);
+		console.log(writer);
+		
+ 		$.ajax({
+			type: "post",
+			url : "/replies/new",
+			data : {content : content,
+					writer : writer},
+			success : function(data) {
+				cosole.log(data);
+			}	
+		});
+		
+		
+	});
+	/* 댓글 추가 */
 	
 });
 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,8 +30,8 @@ public class ReplyController {
 	private ReplyService service;
 	
 	
-	
-	@PostMapping("/new")
+	@ResponseBody
+	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public void register() {
 		
 	}
@@ -47,7 +46,6 @@ public class ReplyController {
 		
 		map.put("bno", bno);
 		map.put("cri", cri);
-		
 		
 		ResponseEntity<List<ReplyVO>> entity = null;
 		try {
