@@ -78,11 +78,8 @@ th {
 			type="hidden" name="keyword" value="${cri.keyword}">
 	</form>
 
-
-
 	<a href="/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
-	<a
-		href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
+	<a href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
 	<button id="remove">삭제</button>
 
 	<script>
