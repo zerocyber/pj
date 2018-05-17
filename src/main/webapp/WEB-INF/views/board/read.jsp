@@ -64,6 +64,11 @@ th {
       <td>${BoardVO.mid}</td>
     </tr>
   </table>
+  	<br>
+  	<button id="back">뒤로가기</button>
+	<button id="modify">수정</button>
+	<button id="remove">삭제</button>
+  
 </section>
 
 
@@ -79,16 +84,21 @@ th {
 	</form>
 
 
-
-	<a href="/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
-	<a
-		href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
-	<button id="remove">삭제</button>
-
 	<script>
+		
+	
 		$(document).ready(function() {
 			var formObj = $("#inform");
+			
+			$("#back").on("click", function(e) {
+				self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 
+			});
+			
+			$("#modify").on("click", function(e) {
+				self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
+
+			});
 			$("#remove").on("click", function(e) {
 				formObj.attr("action", "/board/delete");
 				formObj.submit();

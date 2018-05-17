@@ -32,8 +32,8 @@
 									</td>
 									<td class="ask-title-cell-value"><input id="title"
 										name="title" type="text" maxlength="300" tabindex="100"
-										placeholder="${boardVO.title}" class="js-ask-title"
-										data-min-length="15" data-max-length="150"></td>
+										class="js-ask-title"
+										data-min-length="15" data-max-length="150" value = "${boardVO.title}"></td>
 								</tr>
 							</table>
 
@@ -74,8 +74,8 @@
 									</td>
 									<td class="ask-title-cell-value"><input id="user"
 										name="mid" type="text" maxlength="300" tabindex="100"
-										class="js-ask-title" data-min-length="15" placeholder="${boardVO.mid}"
-										data-max-length="150"></td>
+										class="js-ask-title" data-min-length="15"
+										data-max-length="150" value = "${boardVO.mid}"></td>
 								</tr>
 							</table>
 
