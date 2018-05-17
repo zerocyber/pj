@@ -66,6 +66,12 @@ th {
   </table>
 </section>
 
+<div class="replyBox">
+<ul class="replyUL">
+</ul>
+</div>
+
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -81,19 +87,38 @@ th {
 
 
 	<a href="/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
-	<a
-		href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
+	<a href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
 	<button id="remove">삭제</button>
+	
+	
+	<div class="wrapper">
+	<textarea class="replyContent" name="content" cols="92" rows="3">
+	</textarea>
+	<button id="replyBtn">Apply</button>
+	</div>
 
-	<script>
-		$(document).ready(function() {
-			var formObj = $("#inform");
+<script>
+$(document).ready(function() {
+	
+	var formObj = $("#inform");
 
-			$("#remove").on("click", function(e) {
-				formObj.attr("action", "/board/delete");
-				formObj.submit();
+	$("#remove").on("click", function(e) {
+		formObj.attr("action", "/board/delete");
+		formObj.submit();
+	});
+
+	function pageList() {
+		$.getJSON("/replies/"+${param.bno}+"/"+${cri.page}, function(data){
+			console.log(data.length);
+			var str = "";		
+			$(data).each(function() {
+				str += "<li>"+ this.rno+ ":" + this.content + "</li>";
 			});
+			$(".replyUL").html(str);
 		});
+	}
+	pageList();	
+});
 	</script>
 
 
