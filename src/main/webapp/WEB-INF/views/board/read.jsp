@@ -109,26 +109,33 @@ $(document).ready(function() {
 	
 	$("#modify").on("click", function(e) {
 		self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
-
 	});
+	
 	$("#remove").on("click", function(e) {
 		formObj.attr("action", "/board/delete");
 		formObj.submit();
 	});
-
+	/* 댓글 페이지 로딩 */
 	function pageList() {
 		$.getJSON("/replies/"+${param.bno}+"/"+${cri.page}, function(data){
 			console.log(data.length);
 			var str = "";		
 			$(data).each(function() {
-				str += "<li>"+ this.rno+ ":" + this.content + "</li>";
+				str += "<li>"+ this.rno+ ":" + this.content + "<button>Modify</button>X</li>";
+			});
 			$(".replyUL").html(str);
 		});
 	}
 	pageList();
+	/* 댓글 페이지 로딩 */
 	
 	
 });
+
+	
+	
+	
+
 	</script>
 
 
