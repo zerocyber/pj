@@ -1,5 +1,7 @@
 
 <%@ include file="header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <meta charset="utf-8">
@@ -54,7 +56,8 @@
 							<div class="post-image">
 								<div class="post-heading">
 									<h3>
-										<a href="#">${board.title}</a>
+										<a href="/board/read/?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">
+										${board.title}</a>
 									</h3>
 								</div>
 								<!--<img src="img/dummies/blog/img1.jpg" alt="" />-->
@@ -62,7 +65,7 @@
 							<p class="ellip"></p>
 							<div class="bottom-article">
 								<ul class="meta-post">
-									<li><i class="icon-folder-open"></i><a href="#">${board.bno }</a></li>
+									<li><i class="icon-folder-open"></i><a href="#">${board.bno}</a></li>
 
 									<li><i class="icon-user"></i><a href="#">${board.mid}</a></li>
 									<li><i class="icon-calendar"></i><a href="#">${board.regdate}</a></li>
@@ -101,6 +104,10 @@
 </li>
 </c:if>
 </ul>
+<ul class="pagination" >
+<a class="btn btn-secondary" href="/board/write">등록</a>
+</ul>
 </div>
+
 
 	<%@ include file="footer.jsp"%>

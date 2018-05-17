@@ -23,8 +23,8 @@
 
 ${BoardVO}
 
-<a href="list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
-<a href="modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
+<a href="/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
+<a href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
 <button id="remove">삭제</button>
 
 <script>
