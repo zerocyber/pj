@@ -89,19 +89,7 @@ th {
 			type="hidden" name="keyword" value="${cri.keyword}">
 	</form>
 
-<<<<<<< HEAD
-	<a href="/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
-	<a href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
-	<button id="remove">삭제</button>
 
-	<script>
-		$(document).ready(function() {
-			var formObj = $("#inform");
-
-			$("#remove").on("click", function(e) {
-				formObj.attr("action", "/board/delete");
-				formObj.submit();
-=======
 
 	
 	<div class="wrapper">
@@ -136,7 +124,6 @@ $(document).ready(function() {
 			var str = "";		
 			$(data).each(function() {
 				str += "<li>"+ this.rno+ ":" + this.content + this.writer+ "<button>Modify</button>X</li>";
->>>>>>> 8e25185e82a3e9b2a662d918c38990d0a3c1983e
 			});
 			$(".replyUL").html(str);
 		});
@@ -170,11 +157,8 @@ $(document).ready(function() {
 	
 });
 
-	
-	
-	
 
-	</script>
+</script>
 
 
 <%@ include file="footer.jsp"%>

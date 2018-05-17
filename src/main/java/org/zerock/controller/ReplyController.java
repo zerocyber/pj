@@ -32,7 +32,9 @@ public class ReplyController {
 	
 	@ResponseBody
 	@RequestMapping(value="/new", method=RequestMethod.POST)
-	public void register() {
+	public void register(ReplyVO vo) {
+		
+		service.register(vo);
 		
 	}
 	
