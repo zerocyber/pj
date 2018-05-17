@@ -109,7 +109,7 @@
 							<option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
 							<option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
 							<option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
-						</select> <input type="text" name="keyword" value="${pm.cri.keyword}" size="70">
+						</select> <input type="text" id="keyword" name="keyword" value="${pm.cri.keyword}" size="70">
 						<button id="btn_search" class="btn btn-primary">SEARCH</button>
 
 					</form>
@@ -129,13 +129,17 @@
 	var btn = $("#btn_search")
 	var selectType = $("#selectType")
 	var write = $("#write")
+	var keyword = $("#keyword")
 
 	btn.on("click", function(e) {
 		console.log("click........................")
 		if (selectType.val() == "") {
 			alert("검색조건을 선택해주세요");
 			e.preventDefault();
-
+		}
+		if(keyword.val() ==""){
+			alert("검색어를 입력해주세요")
+			e.preventDefault();
 		}
 	});
 	
