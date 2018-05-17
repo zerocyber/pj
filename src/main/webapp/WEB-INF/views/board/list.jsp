@@ -1,7 +1,8 @@
 <%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <meta charset="utf-8">
@@ -29,9 +30,6 @@
 </style>
 
 
-
-
-
 <div id="wrapper">
 
 	<section id="inner-headline">
@@ -56,8 +54,9 @@
 							<div class="post-image">
 								<div class="post-heading">
 									<h3>
-										<a href="/board/read/?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">
-										${board.title}</a>
+										<a
+											href="/board/read/?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">
+											${board.title}</a>
 									</h3>
 								</div>
 								<!--<img src="img/dummies/blog/img1.jpg" alt="" />-->
@@ -68,14 +67,51 @@
 									<li><i class="icon-folder-open"></i><a href="#">${board.bno}</a></li>
 
 									<li><i class="icon-user"></i><a href="#">${board.mid}</a></li>
-									<li><i class="icon-calendar"></i><a href="#">${board.regdate}</a></li>
+									<li><i class="icon-calendar"></i><fmt:formatDate value="${board.regdate}" pattern="yyyy.MM.dd hh:mm:ss" /></li>
 									<li><i class="icon-comments"></i><a href="#">${board.views}</a></li>
 								</ul>
 
 							</div>
 						</article>
 					</c:forEach>
+					<div id="pagination">
+						<span class="all">Page ${pm.cri.page} of ${pm.total}</span>
+						<ul class="pagination">
+							<c:if test="${pm.prev}">
+								<li><a class="btn btn-info"
+									href="list?page=${pm.startPage - 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a>
+								</li>
+							</c:if>
 
+							<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
+								<li><a class="btn btn-secondary"
+									href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pm.next}">
+								<li><a class="btn btn-info"
+									href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a>
+								</li>
+							</c:if>
+						
+							<li><button id="write" class="btn btn-info">등록</button></li>
+						</ul>
+
+					</div>
+
+					<form method="get">
+						<select name="type" id="selectType">
+							<option value="">----</option>
+							<option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
+							<option value="c" ${pm.cri.type eq 'c'? "selected": '' }>CONTENT</option>
+							<option value="m" ${pm.cri.type eq 'm'? "selected": '' }>WRITER</option>
+							<option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
+							<option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
+							<option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
+						</select> <input type="text" name="keyword" value="${pm.cri.keyword}">
+						<button id="btn_search" class="btn btn-default">SEARCH</button>
+
+					</form>
 
 				</div>
 
@@ -83,70 +119,28 @@
 		</div>
 	</section>
 </div>
-	
 
-
-<div id="pagination">
-<span class="all">Page 1 of 3</span>
-<ul class="pagination" >
-<c:if test="${pm.prev}">
-<li> 
-<a class="btn btn-info" href="list?page=${pm.startPage - 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a>
-</li>
-</c:if>
-
-<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx" >
-<li><a class="btn btn-secondary" href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
-</c:forEach>
-
-<c:if test="${pm.next}">
-<li>
-<a class="btn btn-info" href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a>
-</li>
-</c:if>
-</ul>
-<ul class="pagination" >
-<a class="btn btn-secondary" href="/board/write">등록</a>
-</ul>
-</div>
-
-
-
-	
-
-<form method="get">
-<select name="type" id="selectType">
-    <option value="">----</option>
-    <option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
-    <option value="c" ${pm.cri.type eq 'c'? "selected": '' }>CONTENT</option>
-    <option value="m" ${pm.cri.type eq 'm'? "selected": '' }>WRITER</option>
-    <option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
-    <option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
-    <option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
-</select>
-	<input type="text" name="keyword" value="${pm.cri.keyword}">
-    <button id="btn_search" class="btn btn-default">SEARCH</button>
-
-</form>
-
-<script
-       src="https://code.jquery.com/jquery-3.3.1.min.js"
-       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-       crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 
 <script>
-var btn = $("#btn_search")
-var selectType = $("#selectType")
+	var btn = $("#btn_search")
+	var selectType = $("#selectType")
+	var write = $("#write")
 
-btn.on("click",function(e){
-	console.log("click........................")
-	if(selectType.val() == ""){
-		alert("검색조건을 선택해주세요");
-		e.preventDefault(); 
-		
-	}
-});
+	btn.on("click", function(e) {
+		console.log("click........................")
+		if (selectType.val() == "") {
+			alert("검색조건을 선택해주세요");
+			e.preventDefault();
 
+		}
+	});
+	
+	write.on("click", function(e){
+		location.href="/board/write"
+	});
 </script>
 
 <%@ include file="footer.jsp"%>
