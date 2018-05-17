@@ -55,8 +55,7 @@
 							<div class="post-image">
 								<div class="post-heading">
 									<h3>
-										<a
-											href="/board/read/?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">
+										<a href="/board/read/?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">
 											${board.title}</a>
 									</h3>
 								</div>
@@ -79,20 +78,40 @@
 						<span class="all">Page ${pm.cri.page} of ${pm.total}</span>
 						<ul class="pagination">
 							<c:if test="${pm.prev}">
-								<li><a class="btn btn-info"
-									href="list?page=${pm.startPage - 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a>
+								<c:choose>
+								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+								<li><a class="btn btn-info" href="list?page=${pm.startPage -1}">prev</a></li>
+								</c:when>
+								<c:otherwise>
+								<li><a class="btn btn-info" href="list?page=${pm.startPage -1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a>
 								</li>
+								</c:otherwise>
+								</c:choose>
 							</c:if>
 
 							<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
-								<li><a class="btn btn-secondary"
-									href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
+								<c:choose>
+								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }" >
+								<li ><a id="pageLink" class="btn btn-secondary"
+								href="/board/list?page=${idx}">${idx}</a></li>
+								</c:when>
+							
+								<c:otherwise>
+								<li ><a id="pageLink" class="btn btn-secondary"
+								href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
+								</c:otherwise>
+								</c:choose>
 							</c:forEach>
 
 							<c:if test="${pm.next}">
-								<li><a class="btn btn-info"
-									href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a>
-								</li>
+								<c:choose>
+								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+								<li><a class="btn btn-info" href="list?page=${pm.endPage + 1}">next</a>
+								</li></c:when>
+								<c:otherwise>
+								<li><a class="btn btn-info" href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a></li>
+								</c:otherwise>
+								</c:choose>
 							</c:if>
 						
 							<li><button id="write" class="btn btn-info">등록</button></li>
@@ -101,6 +120,7 @@
 					</div>
 
 					<form method="get">
+
 						<select name="type" id="selectType" class="custom-select" style="width: 170px;">
 							<option value="">----</option>
 							<option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
@@ -121,6 +141,8 @@
 	</section>
 </div>
 
+<h1><a id="test" href="http://naver.com">테스트</a></h1>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
@@ -130,6 +152,7 @@
 	var selectType = $("#selectType")
 	var write = $("#write")
 	var keyword = $("#keyword")
+	var pageLink = $("#pageLink")
 
 	btn.on("click", function(e) {
 		console.log("click........................")

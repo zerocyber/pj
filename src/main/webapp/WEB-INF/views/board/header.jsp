@@ -48,7 +48,8 @@
         <span class="w3-tag">Open from 6am to 5pm</span>
     </div>
     <div class="w3-display-middle w3-center">
-        <span class="w3-text-white" style="font-size:90px">Leaf<br>Village</span>
+        <span class="w3-text-white" style="font-size:90px">
+        Leaf<br>Village</span>
     </div>
     <div class="w3-display-bottomright w3-center w3-padding-large">
         <span class="w3-text-white">15 Adr street, 5015</span>

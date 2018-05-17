@@ -90,6 +90,11 @@ th {
 	</form>
 
 
+
+
+
+			
+
 	
 	<div class="wrapper">
 	<textarea class="replyContent" name="content" cols="92" rows="10">
@@ -127,10 +132,15 @@ $(document).ready(function() {
 				console.log(data[i]);
 				
 				
+			console.log(data.length);
+			var str = "";		
+			$(data).each(function() {
+				str += "<li>"+ this.rno+ ":" + this.content + this.writer+ "<button>Modify</button>X</li>";
 			});
 			$(".replyUL").html(str);
 			
 		});
+	});
 	}
 	pageList();
 	/* 댓글 페이지 로딩 */
@@ -179,17 +189,12 @@ $(document).ready(function() {
 		var replyText = $(e.target.parentElement);
 		console.log(replyText);
 		 
-		
-		
 	$(".replyContent")[0].value = replyText.data('content');
 		
-		
-		
-		
-	
 	});
 	/* 댓글 수정 */
 });
+
 
 	
 	
