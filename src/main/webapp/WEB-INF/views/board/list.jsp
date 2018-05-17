@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <meta charset="utf-8">
 <title>Moderna - Bootstrap 3 flat corporate template</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
