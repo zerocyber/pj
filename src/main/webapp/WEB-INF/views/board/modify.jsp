@@ -11,15 +11,16 @@
 			<form id="post-form" class="post-form" method="post">
 
 				<select name="kno">
-					<option value="" selected="selected">게시판 분류</option>
-					<option value="10">후기</option>
-					<option value="20">일반</option>
-					<option value="30">질문</option>
-				</select> <select name="cno">
-					<option value="" selected="selected">과정선택</option>
-					<option value="100">JAVA</option>
-					<option value="200">C</option>
-					<option value="300">C#</option>
+					<option value="">게시판 분류</option>
+					<option value="10" ${boardVO.kno eq "10"?"selected":''}>후기</option>
+					<option value="20" ${boardVO.kno eq "20"?"selected":''}>일반</option>
+					<option value="30" ${boardVO.kno eq "30"?"selected":''}>질문</option>
+				</select> 
+				<select name="cno">
+					<option value="">과정선택</option>
+					<option value="100" ${boardVO.cno eq "100"?"selected":''}>JAVA</option>
+					<option value="200" ${boardVO.cno eq "200"?"selected":''}>C</option>
+					<option value="300" ${boardVO.cno eq "300"?"selected":''}>C#</option>
 				</select>
 
 				<div id="question-form">
@@ -94,5 +95,6 @@
 		</div>
 	</div>
 </div>
+
 
 	<%@ include file="footer.jsp"%>
