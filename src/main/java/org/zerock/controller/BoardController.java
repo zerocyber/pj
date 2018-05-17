@@ -59,9 +59,6 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writePost(BoardVO vo){
 		log.info("write post.......");
-		log.info(vo);
-		
-		log.info(vo);
 		service.write(vo);
 		return "redirect:/board/list";
 	}
