@@ -64,7 +64,18 @@ th {
       <td>${BoardVO.mid}</td>
     </tr>
   </table>
+  	<br>
+  	<button id="back">뒤로가기</button>
+	<button id="modify">수정</button>
+	<button id="remove">삭제</button>
+  
 </section>
+
+<div class="replyBox">
+<ul class="replyUL">
+</ul>
+</div>
+
 
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -78,6 +89,7 @@ th {
 			type="hidden" name="keyword" value="${cri.keyword}">
 	</form>
 
+<<<<<<< HEAD
 	<a href="/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}">뒤로가기</a>
 	<a href="/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}">수정</a>
 	<button id="remove">삭제</button>
@@ -89,8 +101,79 @@ th {
 			$("#remove").on("click", function(e) {
 				formObj.attr("action", "/board/delete");
 				formObj.submit();
+=======
+
+	
+	<div class="wrapper">
+	<textarea class="replyContent" name="content" cols="92" rows="3">
+	</textarea>
+	<input class="replyWriter" type="text" name="replyWriter" value="none">
+	<button id="replyBtn">Apply</button>
+	</div>
+	
+	
+<script>
+$(document).ready(function() {
+	
+	var formObj = $("#inform");
+	$("#back").on("click", function(e) {
+		self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+
+	});
+	
+	$("#modify").on("click", function(e) {
+		self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
+	});
+	
+	$("#remove").on("click", function(e) {
+		formObj.attr("action", "/board/delete");
+		formObj.submit();
+	});
+	/* 댓글 페이지 로딩 */
+	function pageList() {
+		$.getJSON("/replies/"+${param.bno}+"/"+${cri.page}, function(data){
+			console.log(data.length);
+			var str = "";		
+			$(data).each(function() {
+				str += "<li>"+ this.rno+ ":" + this.content + this.writer+ "<button>Modify</button>X</li>";
+>>>>>>> 8e25185e82a3e9b2a662d918c38990d0a3c1983e
 			});
+			$(".replyUL").html(str);
 		});
+	}
+	pageList();
+	/* 댓글 페이지 로딩 */
+	
+	/* 댓글 추가 */
+	$("#replyBtn").on("click", function(e){
+
+		var content = $(".replyContent").val();
+		var writer = $(".replyWriter").val();
+		var UL = $(".replyUL");
+		
+		console.log(content);
+		console.log(writer);
+		
+ 		$.ajax({
+			type: "post",
+			url : "/replies/new",
+			data : {content : content,
+					writer : writer},
+			success : function(data) {
+				cosole.log(data);
+			}	
+		});
+		
+		
+	});
+	/* 댓글 추가 */
+	
+});
+
+	
+	
+	
+
 	</script>
 
 
