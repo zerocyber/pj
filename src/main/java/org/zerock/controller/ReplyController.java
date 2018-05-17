@@ -29,7 +29,9 @@ public class ReplyController {
 	@Setter(onMethod_= {@Autowired})
 	private ReplyService service;
 	
-
+	
+	
+	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		System.out.println("..............................====================================");
 		ResponseEntity<String> entity = null;

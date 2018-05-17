@@ -123,17 +123,9 @@ $(document).ready(function() {
 			$.each(data, function(i){
 				str += "<li id='coment' data-rno="+this.rno+" data-content="+this.content+" data-mid="+this.mid+">"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
 				console.log(data[i]);
-				
-				
-			console.log(data.length);
-			var str = "";		
-			$(data).each(function() {
-				str += "<li>"+ this.rno+ ":" + this.content + this.writer+ "<button>Modify</button>X</li>";
 			});
 			$(".replyUL").html(str);
-			
 		});
-	});
 	};
 	pageList();
 	/* 댓글 페이지 로딩 */
