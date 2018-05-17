@@ -19,5 +19,7 @@ public interface BoardMapper {
 	
 	public int delete(int bno);
 	
-	public int count();
+	public int count(Criteria cri);
+	
+	public List<BoardVO> searchList(Criteria cri);
 }

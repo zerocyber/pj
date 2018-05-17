@@ -17,5 +17,7 @@ public interface BoardService {
 	
 	public int remove(int bno);
 	
-	public int count();
+	public int count(Criteria cri);
+	
+	public List<BoardVO> searchList(Criteria cri);
 }
