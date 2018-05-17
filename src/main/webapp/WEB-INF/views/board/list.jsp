@@ -22,6 +22,7 @@
 
 <style type="text/css">
 .ellip {
+
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -99,7 +100,7 @@
 					</div>
 
 					<form method="get">
-						<select name="type" id="selectType">
+						<select name="type" id="selectType" class="custom-select" style="width: 170px;">
 							<option value="">----</option>
 							<option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
 							<option value="c" ${pm.cri.type eq 'c'? "selected": '' }>CONTENT</option>
@@ -107,8 +108,8 @@
 							<option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
 							<option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
 							<option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
-						</select> <input type="text" name="keyword" value="${pm.cri.keyword}">
-						<button id="btn_search" class="btn btn-default">SEARCH</button>
+						</select> <input type="text" name="keyword" value="${pm.cri.keyword}" size="70">
+						<button id="btn_search" class="btn btn-primary">SEARCH</button>
 
 					</form>
 
