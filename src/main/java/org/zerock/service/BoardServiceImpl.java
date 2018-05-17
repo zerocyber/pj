@@ -29,9 +29,17 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int write(BoardVO vo) {
+	public void write(BoardVO vo) {
 		// TODO Auto-generated method stub
-		return mapper.insert(vo);
+		mapper.insert(vo);
+		
+		String[] files = vo.getFiles();
+		
+		if(files ==null) {return;}
+		
+		for(String file : files) {
+			mapper.addFile(file);
+		}
 	}
 
 	@Override
@@ -57,8 +65,17 @@ public class BoardServiceImpl implements BoardService{
 
 		return mapper.searchList(cri);
 	}
-	
 
+	@Override
+	public int addFile(String fno) {
+		
+		return mapper.addFile(fno);
+		
+	}
+
+	
+	
+	
 	
 	
 }

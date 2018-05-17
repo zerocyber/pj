@@ -8,7 +8,7 @@
 
 		<div id="mainbar" class="ask-mainbar">
 
-			<form id="post-form" class="post-form" method="post">
+			<form id="post-form" class="post-form" name = "post-form" method="post" enctype="multipart/form-data">
 
 				<select name="kno">
 					<option value="">게시판 분류</option>
@@ -83,7 +83,12 @@
 					</div>
 				</div>
 				<br>
+<div>
+<input type="file" name="file">
 
+
+</div>
+<br>
 
 				<div id="question-only-section">
 					<div class="form-submit cbt">
