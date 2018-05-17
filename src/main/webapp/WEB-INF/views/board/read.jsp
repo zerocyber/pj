@@ -89,15 +89,14 @@ th {
 			type="hidden" name="keyword" value="${cri.keyword}">
 	</form>
 
-
-
-	
 	<div class="wrapper">
-	<textarea class="replyContent" name="content" cols="92" rows="3">
+	<textarea class="replyContent" name="content" cols="92" rows="10">
 	</textarea>
+	<input class="replyWriter" type="text" name="replyWriter" value="none">
 	<button id="replyBtn">Apply</button>
 	</div>
-
+	
+	
 <script>
 $(document).ready(function() {
 	
@@ -118,25 +117,70 @@ $(document).ready(function() {
 	/* 댓글 페이지 로딩 */
 	function pageList() {
 		$.getJSON("/replies/"+${param.bno}+"/"+${cri.page}, function(data){
-			console.log(data.length);
-			var str = "";		
-			$(data).each(function() {
-				str += "<li>"+ this.rno+ ":" + this.content + "<button>Modify</button>X</li>";
+			console.log(data[5]);
+			var str = "";
+			console.log
+			$.each(data, function(i){
+				str += "<li id='coment' data-rno="+this.rno+" data-content="+this.content+" data-mid="+this.mid+">"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
+				console.log(data[i]);
 			});
 			$(".replyUL").html(str);
 		});
-	}
+	};
 	pageList();
 	/* 댓글 페이지 로딩 */
 	
+	/* 댓글 추가 */
+	$("#replyBtn").on("click", function(e){
+
+		var content = $(".replyContent").val();
+		var writer = $(".replyWriter").val();
+		var bno = '${param.bno}'
+		var UL = $(".replyUL");
+		console.log(bno);
+		console.log(content);
+		console.log(writer);
+		
+ 		$.ajax({
+			type: "post",
+			url : "/replies/new",
+			dataType : "text",
+			headers : {
+				"content-type" : "application/json",
+				"x-http-method-override" : "post"
+			},
+			data : JSON.stringify({
+				content : content,
+				mid : writer,
+				bno : bno
+			}),
+			success : function(result) {
+				alert(result);
+				pageList();
+			}	
+		});
+		
+		
+	});
+	/* 댓글 추가 */
 	
+	/* 댓글 수정 */
+	$(".replyBox").on("click","ul li button",function(e){
+		var random = $(this).parent();
+		var rno = random.data('rno');
+		var text = random.data('content');
+		console.log(rno);
+		console.log(text);
+		var replyText = $(e.target.parentElement);
+		console.log(replyText);
+		 
+	$(".replyContent")[0].value = replyText.data('content');
+		
+	});
+	/* 댓글 수정 */
 });
 
-	
-	
-	
-
-	</script>
+</script>
 
 
 <%@ include file="footer.jsp"%>
