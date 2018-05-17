@@ -5,7 +5,7 @@
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../resources/css1.css">
+<link rel="stylesheet" href="/resources/css1.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 <style>
@@ -16,7 +16,7 @@
     .bgimg {
         background-position: center;
         background-size: cover;
-        background-image: url("http://cfile215.uf.daum.net/image/253EB3495383527C1E8436");
+        background-image: url("https://pre00.deviantart.net/c03b/th/pre/f/2014/338/a/0/hidden_leaf_village__landscape__the_best__by_iennidesign-d88ors4.png");
         min-height: 70%;
     }
     .menu {
@@ -48,7 +48,7 @@
         <span class="w3-tag">Open from 6am to 5pm</span>
     </div>
     <div class="w3-display-middle w3-center">
-        <span class="w3-text-white" style="font-size:90px">the<br>Cafe</span>
+        <span class="w3-text-white" style="font-size:90px">Leaf<br>Village</span>
     </div>
     <div class="w3-display-bottomright w3-center w3-padding-large">
         <span class="w3-text-white">15 Adr street, 5015</span>

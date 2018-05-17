@@ -1,31 +1,98 @@
+<%@ include file ="header.jsp" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-<form method="post">
-<select name="cno">
-    <option value=""  selected="selected">과정선택</option>
-    <option value="100">JAVA</option>
-    <option value="200">C</option>
-    <option value="300">C#</option>
-</select>
-<input type="text" name="title">
-<input type="text" name="content">
-<input type="text" name="mid">
-<select name="kno">
+<div class="container">
+    <div id="content" class="snippet-hidden">
+
+        <div id="mainbar" class="ask-mainbar">
+
+            <form id="post-form" class="post-form" method="post">
+
+ <select name="kno">
     <option value=""  selected="selected">게시판 분류</option>
     <option value="10">후기</option>
     <option value="20">일반</option>
     <option value="30">질문</option>
 </select>
-<button>등록</button>
-</form>
 
-</body>
-</html>
+<select name="cno">
+    <option value=""  selected="selected">과정선택</option>
+    <option value="100">JAVA</option>
+    <option value="200">C</option>
+    <option value="300">C#</option>
+</select>               
+
+                <div id="question-form">
+                    <div style="position: relative;">
+                        <div class="form-item ask-title">
+
+                            <table class="ask-title-table">
+                                <tr>
+                                    <td class="ask-title-cell-key">
+                                        <label for="title">제목</label>
+                                    </td>
+                                    <td class="ask-title-cell-value">
+                                        <input id="title" name="title" type="text" maxlength="300" tabindex="100" placeholder="제목을 입력하세요" class="js-ask-title" data-min-length="15" data-max-length="150">
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                    <div id="post-editor" class="post-editor js-post-editor">
+
+                        <div style="position: relative;">
+                            <div class="wmd-container">
+                                <label>내용</label>
+                                <br>
+                                <textarea id="wmd-input" class="wmd-input" name="content" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+                        <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+                        <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+                    </div>
+
+                <div id="question-form">
+                    <div style="position: relative;">
+                        <div class="form-item ask-title">
+
+                            <table class="ask-title-table">
+                                <tr>
+                                    <td class="ask-title-cell-key">
+                                        <label for="title">작성자</label>
+                                    </td>
+                                    <td class="ask-title-cell-value">
+                                        <input id="user" name="mid" type="text" maxlength="300" tabindex="100" class="js-ask-title" data-min-length="15" data-max-length="150">
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+<br>
+
+
+                    <div id="question-only-section">
+                        <div class="form-submit cbt">
+                            <button>
+                                등록
+                            </button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+		
+<%@ include file="footer.jsp" %>
