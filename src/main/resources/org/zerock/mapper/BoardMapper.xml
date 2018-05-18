@@ -7,12 +7,14 @@
 
 	<select id="list" resultType="org.zerock.domain.BoardVO">
 		select * from t_board
-		order by bno desc
+		order by bno
+		desc
 		limit #{pageStart},#{perPageNum}
 	</select>
 
 	<select id="read" resultType="org.zerock.domain.BoardVO">
-		select * from t_board where bno=#{bno}
+		select * from t_board where
+		bno=#{bno}
 	</select>
 
 	<insert id="insert">
@@ -21,7 +23,8 @@
 	</insert>
 
 	<update id="update">
-		update t_board set title = #{title}, content=#{content}, updatedate = now()
+		update t_board set title = #{title},
+		content=#{content}, updatedate = now()
 		where bno=#{bno}
 	</update>
 
@@ -69,9 +72,16 @@
 		limit #{pageStart},#{perPageNum}
 
 	</select>
-	
+
 	<insert id="addFile">
-	insert into t_file(fname, bno) values (#{fname}, LAST_INSERT_ID());
+
+		<selectKey order="BEFORE" keyProperty="bno" resultType="int">
+			select max(bno) from t_board
+		</selectKey>
+		
+		insert into t_file(fullname, bno)
+		values (#{fullname}, #{bno})
+
 	</insert>
 
 
