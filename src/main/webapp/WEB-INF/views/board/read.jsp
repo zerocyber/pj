@@ -71,16 +71,10 @@ th {
   
 </section>
 
-<div class="replyBox">
-<ul class="replyUL">
-</ul>
-</div>
+	<div class="replyBox">
+	<ul class="replyUL"></ul>
+	</div>
 
-
-
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-		crossorigin="anonymous"></script>
 
 	<form id="inform" method="post">
 		<input type="hidden" name="page" value="${cri.page}"> <input
@@ -90,13 +84,15 @@ th {
 	</form>
 
 	<div class="wrapper">
-	<textarea class="replyContent" name="content" cols="92" rows="10">
-	</textarea>
+	<textarea class="replyContent" name="content" cols="92" rows="10"></textarea>
 	<input class="replyWriter" type="text" name="replyWriter" value="none">
 	<button id="replyBtn">Apply</button>
 	</div>
 	
 	
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>	
 <script>
 $(document).ready(function() {
 	
@@ -114,16 +110,13 @@ $(document).ready(function() {
 		formObj.attr("action", "/board/delete");
 		formObj.submit();
 	});
+	
 	/* 댓글 페이지 로딩 */
 	function pageList() {
-		$.getJSON("/replies/"+${param.bno}+"/"+${cri.page}, function(data){
-			console.log(data[5]);
+		$.getJSON("/replies/"+${param.bno}+"/"+1, function(data){
 			var str = "";
-			
 			$.each(data, function(i){
-
-				str += "<li id='coment' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"'>"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
-				console.log(data[i]);
+				str += "<li id='coment' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event=regist>"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
 			});
 			$(".replyUL").html(str);
 		});
@@ -133,14 +126,14 @@ $(document).ready(function() {
 	
 	/* 댓글 추가 */
 	$("#replyBtn").on("click", function(e){
-
+		
+		if( $("#replyBtn").attr('event') !== 'modify') {
+			
 		var content = $(".replyContent").val();
 		var writer = $(".replyWriter").val();
 		var bno = '${param.bno}'
 		var UL = $(".replyUL");
-		console.log(bno);
-		console.log(content);
-		console.log(writer);
+
 		
  		$.ajax({
 			type: "post",
@@ -158,24 +151,72 @@ $(document).ready(function() {
 			success : function(result) {
 				alert(result);
 				pageList();
+				$(".replyContent").val("");
 			}	
 		});
-		
+		}else{
+			
+			var content = $(".replyContent")[0].value;
+			console.log(content);
+			var rno = $("#replyBtn").attr('rno');
+			console.log(rno);
+			var mid = $("#replyBtn").attr('mid');
+			console.log(mid);
+			
+			$.ajax({
+				type: "PUT",
+				url : "/replies/"+${param.bno}+"/"+ 1,
+				dataType : "text",
+				headers : {
+					"content-type" : "application/json",
+					"x-http-method-override" : "PUT"
+				},
+				data : JSON.stringify({
+					content : content,
+					rno : rno,
+					mid : mid
+				}),
+				success : function(result) {
+						alert(result);	
+						$("#replyBtn")[0].innerText = "Apply";
+						$("#replyBtn").attr('event', 'regist');
+						$(".replyContent").val("");
+						pageList();
+					
+				}	
+			});
+		}
 		
 	});
 	/* 댓글 추가 */
 	
 	/* 댓글 수정 */
-	$(".replyBox").on("click",function(e){
-
-		var replyText = $(e.target.parentElement);
+	$(".replyBox").on("click","ul li #reModiBtn",function(e){
 		
-		 
-	$(".replyContent")[0].value = replyText.data('content');
+		var applyBtn = $("#replyBtn");
+		applyBtn[0].innerText = "Modify";
+		
+		var replyText = $(e.target.parentElement);
+		var rno = replyText.data('rno');
+		var mid = replyText.data('mid');
+		var content = replyText.data('content');
+		
+		$(".replyContent")[0].value = content;
+		$(".replyWriter")[0].value = mid;
+		
+		applyBtn.attr("rno", rno);
+		applyBtn.attr("content", content);
+		applyBtn.attr("mid", mid);
+		applyBtn.attr("event", "modify");
+		
+		console.log(applyBtn.attr('event'));
+		
 		
 	});
+	
+		
 	/* 댓글 수정 */
-})
+});
 
 </script>
 
