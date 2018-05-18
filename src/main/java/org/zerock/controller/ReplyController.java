@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,22 +29,23 @@ public class ReplyController {
 	
 	@Setter(onMethod_= {@Autowired})
 	private ReplyService service;
-	
-	
+
 	//댓글 등록
+
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		System.out.println("..............................====================================");
 		ResponseEntity<String> entity = null;
 		 try {
 			 service.register(vo);
-			 entity = new ResponseEntity<String>("등록되었습니다",HttpStatus.OK);
+			 entity = new ResponseEntity<String>("okkkkk",HttpStatus.OK);
 		 }catch(Exception e) {
 			 e.getMessage();
 		 }
 		 return entity;
 
 	}
+
 	//댓글 리스트
 
 	@RequestMapping(value="/{bno}/{page}", method=RequestMethod.GET)
@@ -84,9 +84,21 @@ public class ReplyController {
 		return entity;
 	}
 	
-	@PutMapping("/{bno}/{rno}")
-	public void updateReplies() {
+	@RequestMapping(value="/{bno}/{rno}", method=RequestMethod.PUT)
+	public ResponseEntity<String> updateReplies(@PathVariable("bno") int bno, 
+			@PathVariable("rno")int rno,@RequestBody ReplyVO vo) {
 		
+		System.out.println("=======================================puuuuuuuuuuuuuuuuuuuuuuuuuuuuuut.........");
+		ResponseEntity<String> entity = null;
+		
+		try {
+			service.modify(vo);
+			entity = new ResponseEntity<String>("Modify", HttpStatus.OK);
+			
+		}catch(Exception e) {
+			e.getMessage();
+		}
+		return entity;
 	}
 	
 	@RequestMapping(value = "/{bno}/{rno}" , method = RequestMethod.DELETE)

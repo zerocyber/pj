@@ -3,6 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<style>
+
+.fileDrop {
+    width: 600px;
+    height: 70px;
+    border: gray;
+    background-color: #FAF6F6;
+}
+</style>
+
 <div class="container">
 	<div id="content" class="snippet-hidden">
 
@@ -83,11 +93,15 @@
 					</div>
 				</div>
 				<br>
+
 <div>
-<input type="file" name="file">
+    첨부파일 등록
 
+    <div class="fileDrop"></div>
 
+    <div id="uploadList"></div>
 </div>
+
 <br>
 
 				<div id="question-only-section">
@@ -100,5 +114,19 @@
 	</div>
 </div>
 
+<script>
+$(document).ready(function() {
+	
+	$(".fileDrop").on("drop", function(e){
+		e.preventDefault();
+		
+		var files = event.originalEvent.dataTransfer.files;
+		var file = files[0];
+		
+		console.log(file);
+	});
+	
+});
+</script>
 
 <%@ include file="footer.jsp"%>

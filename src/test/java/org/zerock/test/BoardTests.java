@@ -23,4 +23,9 @@ public class BoardTests {
 	public void testList() {
 
 	}
+	
+	@Test
+	public void addFile() {
+		log.info(mapper.addFile("test5.jpg"));
+	}
 }
