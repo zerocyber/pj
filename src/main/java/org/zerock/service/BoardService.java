@@ -11,7 +11,7 @@ public interface BoardService {
 	
 	public List<BoardVO> pageList(Criteria cri);
 		
-	public int write(BoardVO vo);
+	public void write(BoardVO vo);
 	
 	public int modify(BoardVO vo);
 	
@@ -20,4 +20,6 @@ public interface BoardService {
 	public int count(Criteria cri);
 	
 	public List<BoardVO> searchList(Criteria cri);
+	
+	public int addFile(String fno);
 }

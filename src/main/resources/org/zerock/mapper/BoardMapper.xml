@@ -69,6 +69,10 @@
 		limit #{pageStart},#{perPageNum}
 
 	</select>
+	
+	<insert id="addFile">
+	insert into t_file(fname, bno) values (#{fname}, LAST_INSERT_ID());
+	</insert>
 
 
 </mapper>
