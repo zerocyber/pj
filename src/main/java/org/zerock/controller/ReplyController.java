@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,13 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @RestController
 @RequestMapping("/replies")
+@Log4j
 public class ReplyController {
 
 	
@@ -30,7 +32,7 @@ public class ReplyController {
 	private ReplyService service;
 	
 	
-	
+	//댓글 등록
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		System.out.println("..............................====================================");
@@ -44,27 +46,42 @@ public class ReplyController {
 		 return entity;
 
 	}
-	
-	@ResponseBody
+	//댓글 리스트
+
 	@RequestMapping(value="/{bno}/{page}", method=RequestMethod.GET)
-	public ResponseEntity<List<ReplyVO>> listReplies(@PathVariable("bno")int bno,
-			@PathVariable("page")int page) {
-		Criteria cri = new Criteria();
-		System.out.println("list Reply come in....................................");
-		Map<String,Object> map = new HashMap<>();
+	public ResponseEntity<Map<String, Object>> listReplies(
+			@PathVariable("bno") int bno,
+			@PathVariable("page")int page){
 		
-		map.put("bno", bno);
-		map.put("cri", cri);
+		log.info("reply list get...................................");
+		log.info("bno : " + bno);
+		ResponseEntity<Map<String, Object>> entity = null;
 		
-		ResponseEntity<List<ReplyVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<ReplyVO>>(service.listReplies(map), HttpStatus.OK);
-			System.out.println("=================================="+service.listReplies(map));
-		}catch(Exception e) {
-			e.getMessage();
+			Criteria cri = new Criteria();
+			cri.setPage(page);
+			
+			PageMaker pm = new PageMaker();
+			pm.setCri(cri);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<ReplyVO> list = service.listReplyPage(bno, cri);
+			
+			map.put("list", list);
+			
+			int count = service.count(bno);
+			pm.setTotal(count);
+			
+			map.put("pm", pm);
+			
+			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+
 		return entity;
-		
 	}
 	
 	@PutMapping("/{bno}/{rno}")
@@ -72,8 +89,20 @@ public class ReplyController {
 		
 	}
 	
-	@DeleteMapping("/{bno}/{rno}")
-	public void removeReplies() {
+	@RequestMapping(value = "/{bno}/{rno}" , method = RequestMethod.DELETE)
+	public ResponseEntity<String> removeReplies(@PathVariable("rno")int rno) {
+		ResponseEntity<String> entity = null;
+		System.out.println("removing..........................");
+		try {
+			service.remove(rno);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+		
 		
 	}
 }

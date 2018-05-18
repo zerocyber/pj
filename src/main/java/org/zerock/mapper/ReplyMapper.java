@@ -1,8 +1,8 @@
 package org.zerock.mapper;
 
 import java.util.List;
-import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
 
@@ -10,7 +10,9 @@ public interface ReplyMapper {
 	
 	public void insert(ReplyVO vo);
 	
-	public List<ReplyVO> list(Map<String,Object> map);
+	public List<ReplyVO> list(int bno);
+	
+	public List<ReplyVO> listPage(@Param("bno")int bno, @Param("cri")Criteria cri);
 	
 	public void update(ReplyVO vo);
 	

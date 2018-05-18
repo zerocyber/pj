@@ -2,6 +2,21 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+<!-- css -->
+<link href="../resources/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../resources/css/fancybox/jquery.fancybox.css"
+	rel="stylesheet">
+<link href="../resources/css/jcarousel.css" rel="stylesheet" />
+<link href="../resources/css/flexslider.css" rel="stylesheet" />
+<link href="../resources/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../resources/boot.css">
+
+<!-- Theme skin -->
+<link href="../resources/skins/default.css" rel="stylesheet" />
+
+
 <style>
 /*====================*/
 /* reset.css */
@@ -73,7 +88,9 @@ th {
 
 <div class="replyBox">
 <ul class="replyUL">
+
 </ul>
+<div class="empty"></div>
 </div>
 
 
@@ -115,23 +132,39 @@ $(document).ready(function() {
 		formObj.submit();
 	});
 	/* 댓글 페이지 로딩 */
-	function pageList() {
-		$.getJSON("/replies/"+${param.bno}+"/"+${cri.page}, function(data){
-			console.log(data[5]);
+	
+	
+	(function pageList() {
+		
+		console.log("page loading.....................	");
+		console.log("asdasdsadsad");
+		
+
+		$.getJSON("/replies/"+ ${param.bno}+"/1", function(data){
+			
+			console.log(data.list.length);
+			
 			var str = "";
-			console.log
-			$.each(data, function(i){
-				str += "<li id='coment' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"'>"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
-				console.log(data[i]);
+			console.log(data.list);
+			console.log(data.pm);
+			console.log(data.list[0]);
+			$(data.list).each(function(){
+				console.log(this);
+				console.log(this.rno);
+				console.log(this.content);
+/* 				str += "<li data-rno='"+this.rno+"' class='comment'>"+this.rno+" : "+this.content + this.mid
+				       +"<button id='reModiBtn'>Modify</button><button id='redeleteBtn'>Delete</button></li>"; */
+				str += "<li>"+this.rno+"</li>";
 			});
 			$(".replyUL").html(str);
+			
+			replyPaging(data.pm);
 		});
-	};
-	pageList();
+	})();
 	/* 댓글 페이지 로딩 */
 	
 	/* 댓글 추가 */
-	$("#replyBtn").on("click", function(e){
+	$("#replyBtn").on("click", function(e){		
 
 		var content = $(".replyContent").val();
 		var writer = $(".replyWriter").val();
@@ -164,8 +197,8 @@ $(document).ready(function() {
 	});
 	/* 댓글 추가 */
 	
-	/* 댓글 수정 */
-	$(".replyBox").on("click","ul li button",function(e){
+	/* 댓글 수정  시작*/
+	$(".replyBox").on("click","ul li #reModiBtn",function(e){
 		var random = $(this).parent();
 		var rno = random.data('rno');
 		var text = random.data('content');
@@ -177,10 +210,72 @@ $(document).ready(function() {
 	$(".replyContent")[0].value = replyText.data('content');
 		
 	});
-	/* 댓글 수정 */
-})
+	/* 댓글 수정  여기까지*/
+	
+	/* 댓글 삭제 시작*/
+	$(".replyBox").on("click","ul li #redeleteBtn",function(e){
+		
+		var random = $(this).parent();
+		var bno = '${param.bno}'
+		var rno = random.data('rno');
+
+		console.log(rno);
+		
+		$.ajax({
+			
+		type : 'delete',
+		url : '/replies/'+bno+"/" + rno,
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "DELETE"
+		},	
+		dataType : 'text',
+		success : function(result){
+			console.log("result: " + result)
+			if(result == 'SUCCESS'){
+				alert("댓글이 삭제되었습니다");
+				pageList();
+			}
+		  }
+		}		
+		
+	   )// delete ajax
+	});
+	/* 댓글 삭제  여기까지*/
+	
+	function replyPaging(pm){
+		
+		console.log(pm.endPage);
+			
+		var ddd = "";
+		
+		if(pm.prev){
+			
+			ddd += "<li><a href = '"+(pm.startPage -1)+"'> >> </a></li>";
+		}
+		
+		for(var i = pm.startPage, len = pm.endPage; i< len; i++){
+			
+			var strClass = pm.cri.page == i?'class=active':'';
+			ddd += "<li class='btn btn-secondary'"+ strClass +"><a href='"+i+"'>"+i+"</a></li>";
+		}
+		
+		if(pm.next){
+			
+			ddd += "<li><a href = '"+(pm.endpage +1)+"'> >> </a></li>";
+		}
+		$('.empty').html(ddd);
+		
+	};
+	
+});
+	
+
+
 
 </script>
+
+
 
 
 <%@ include file="footer.jsp"%>
