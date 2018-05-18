@@ -119,8 +119,9 @@ $(document).ready(function() {
 		$.getJSON("/replies/"+${param.bno}+"/"+${cri.page}, function(data){
 			console.log(data[5]);
 			var str = "";
-			console.log
+			
 			$.each(data, function(i){
+
 				str += "<li id='coment' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"'>"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
 				console.log(data[i]);
 			});
@@ -165,20 +166,16 @@ $(document).ready(function() {
 	/* 댓글 추가 */
 	
 	/* 댓글 수정 */
-	$(".replyBox").on("click","ul li button",function(e){
-		var random = $(this).parent();
-		var rno = random.data('rno');
-		var text = random.data('content');
-		console.log(rno);
-		console.log(text);
+	$(".replyBox").on("click",function(e){
+
 		var replyText = $(e.target.parentElement);
-		console.log(replyText);
+		
 		 
 	$(".replyContent")[0].value = replyText.data('content');
 		
 	});
 	/* 댓글 수정 */
-});
+})
 
 </script>
 
