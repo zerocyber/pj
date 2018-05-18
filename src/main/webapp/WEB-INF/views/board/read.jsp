@@ -121,21 +121,13 @@ $(document).ready(function() {
 			var str = "";
 			
 			$.each(data, function(i){
-<<<<<<< HEAD
-				str += "<li id='coment' data-rno="+this.rno+"data-content='"+this.content+"'"+"data-mid="+this.mid+">"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
-						
-			});
-			$(".replyUL").html(str);
-		});
-	}
-=======
+
 				str += "<li id='coment' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"'>"+ this.rno+ ":" + this.content + this.mid+ "<button id='reModiBtn'>Modify</button>X</li>";
 				console.log(data[i]);
 			});
 			$(".replyUL").html(str);
 		});
 	};
->>>>>>> fb6d002b7f2194bb5fac1cb0f2e653502e365e3a
 	pageList();
 	/* 댓글 페이지 로딩 */
 	
