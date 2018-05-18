@@ -178,7 +178,7 @@ $(document).ready(function() {
 		
 	});
 	/* 댓글 수정 */
-});
+})
 
 </script>
 
