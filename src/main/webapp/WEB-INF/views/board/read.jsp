@@ -155,7 +155,6 @@ $(document).ready(function() {
 			}	
 		});
 		}else{
-			
 			var content = $(".replyContent")[0].value;
 			console.log(content);
 			var rno = $("#replyBtn").attr('rno');
@@ -182,7 +181,6 @@ $(document).ready(function() {
 						$("#replyBtn").attr('event', 'regist');
 						$(".replyContent").val("");
 						pageList();
-					
 				}	
 			});
 		}
@@ -210,11 +208,7 @@ $(document).ready(function() {
 		applyBtn.attr("event", "modify");
 		
 		console.log(applyBtn.attr('event'));
-		
-		
 	});
-	
-		
 	/* 댓글 수정 */
 });
 
