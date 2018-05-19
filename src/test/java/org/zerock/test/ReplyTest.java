@@ -1,8 +1,5 @@
 package org.zerock.test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +23,18 @@ public class ReplyTest {
 	// 댓글리스트 테스트 
 	@Test
 	public void listTest() {
-		Map<String,Object> map = new HashMap<>();
-		Criteria cri = new Criteria();
-		map.put("bno", 4);
-		map.put("cri", cri);
+		log.info(mapper.list(4));
 		
-		log.info(mapper.list(map));
 	}
-	// 업데이트 테스
+	
+	@Test
+	public void listPaginTest() {
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		log.info(mapper.listPage(4, cri));
+	}
+	
+	// 업데이트 테스트
 	@Test
 	public void updateTest() {
 		ReplyVO vo = new ReplyVO();
