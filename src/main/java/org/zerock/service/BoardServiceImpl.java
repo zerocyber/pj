@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
@@ -16,9 +17,11 @@ public class BoardServiceImpl implements BoardService{
 	@Setter(onMethod_= {@Autowired})
 	private BoardMapper mapper;
 
+	
+
 	@Override
 	public BoardVO read(int bno) {
-		// TODO Auto-generated method stub
+
 		return mapper.read(bno);
 	}
 
@@ -32,13 +35,8 @@ public class BoardServiceImpl implements BoardService{
 	public void write(BoardVO vo) {
 		// TODO Auto-generated method stub
 		mapper.insert(vo);
-		
-		String[] files = vo.getFiles();
-		
-		if(files ==null) {return;}
-		
-		for(String file : files) {
-			mapper.addFile(file);
+		if(!vo.getFiles().isEmpty()) {
+			mapper.addFile(vo);	
 		}
 	}
 
@@ -67,11 +65,20 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int addFile(String fno) {
+	public int addFile(BoardVO vo) {
 		
-		return mapper.addFile(fno);
+		return mapper.addFile(vo);
 		
 	}
+
+	@Override
+	public int viewCnt(int bno) {
+		
+		return mapper.addViews(bno);
+		
+	}
+	
+	
 
 	
 	

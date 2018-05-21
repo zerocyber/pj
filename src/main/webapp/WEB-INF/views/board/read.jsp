@@ -159,13 +159,12 @@ $(document).ready(function() {
 	/* 댓글 페이지 로딩 */
 	
 	function pageList(page) {
-		console.log(page);
 		if(typeof page == "undefined"){
 			var page = 1;
 		}
 		console.log("page loading.....................	");
 
-		$.getJSON("/replies/"+ ${param.bno}+"/"+page, function(data){
+		$.getJSON("/replies/${param.bno}/"+page, function(data){
 
 			var str = "";
 
@@ -173,7 +172,6 @@ $(document).ready(function() {
 
 			str += "<li data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid = '"+this.mid+"' data-event = regist>"+this.rno+" : "+this.content + this.mid
 				       +"<button id='reModiBtn'>Modify</button><button id='redeleteBtn'>Delete</button></li>";
-				str += "<li>"+this.rno+"</li>";
 
 			});
 			$(".replyUL").html(str);
@@ -190,13 +188,11 @@ $(document).ready(function() {
 		
 		if( $("#replyBtn").attr('event') !== 'modify') {
 			
-
 		var content = $(".replyContent").val();
 		var writer = $(".replyWriter").val();
 		var bno = '${param.bno}'
 		var UL = $(".replyUL");
 
-		
  		$.ajax({
 			type: "post",
 			url : "/replies/new",
@@ -218,7 +214,6 @@ $(document).ready(function() {
 			}	
 		});
 		}else{
-			
 			var content = $(".replyContent")[0].value;
 
 			var rno = $("#replyBtn").attr('rno');
@@ -227,7 +222,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				type: "PUT",
-				url : "/replies/"+${param.bno}+"/"+ 1,
+				url : "/replies/${param.bno}/1",
 				dataType : "text",
 				headers : {
 					"content-type" : "application/json",
@@ -244,7 +239,6 @@ $(document).ready(function() {
 						$("#replyBtn").attr('event', 'regist');
 						$(".replyContent").val("");
 						pageList();
-					
 				}	
 			});
 		}
@@ -255,6 +249,7 @@ $(document).ready(function() {
 
 	/* 댓글 수정 */
 	$(".replyBox").on("click","ul li #reModiBtn",function(e){
+		
 		
 		var applyBtn = $("#replyBtn");
 		applyBtn[0].innerText = "Modify";
@@ -271,24 +266,23 @@ $(document).ready(function() {
 		applyBtn.attr("content", content);
 		applyBtn.attr("mid", mid);
 		applyBtn.attr("event", "modify");
-
 	});
 
 	/* 댓글 수정  */
 	
 	/* 댓글 삭제 시작*/
 	$(".replyBox").on("click","ul li #redeleteBtn",function(e){
-		
+	
+		if(confirm("삭제하시겠습니까?")){
+
 		var random = $(this).parent();
-		var bno = '${param.bno}'
+		var bno = "${param.bno}";
 		var rno = random.data('rno');
 
-		console.log(rno);
-		
 		$.ajax({
 			
 		type : 'delete',
-		url : '/replies/'+bno+"/" + rno,
+		url : "/replies/"+bno+"/"+rno,
 		headers : {
 			"Content-Type" : "application/json",
 			"X-HTTP-Method-Override" : "DELETE"
@@ -301,15 +295,14 @@ $(document).ready(function() {
 				pageList();
 			}
 		  }
-		});		
+		});
+		};
 	}); // delete ajax
-	/* 댓글 삭제  여기까지*/
+	/* 댓글 삭제 */
 	
+	/* 댓글 하단 페이징 */
 	function replyPaging(pm){
 		
-		console.log(pm.startPage);
-		console.log(pm.endPage);
-			
 		var ddd = "";
 		
 		if(pm.prev){
@@ -331,16 +324,17 @@ $(document).ready(function() {
 		};
 		
 		$(".empty").on("click","li a",function(e){
-		e.preventDefault();
-		var page = $(e.target).text(); // page number
-		pageList(page);
+			e.preventDefault();
+			var page = $(e.target).text(); // page number
+			pageList(page);
 		});
+
 	
 });
 
 
-
 </script>
+
 
 
 
