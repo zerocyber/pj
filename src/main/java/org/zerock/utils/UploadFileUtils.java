@@ -35,7 +35,7 @@ public class UploadFileUtils {
 
 		return datePath;
 	}
-
+	// 경로에 폴더 생성 
 	private static void makeDir(String uploadPath, String... paths) {
 
 		if (new File(uploadPath + paths[paths.length - 1]).exists()) {
@@ -48,7 +48,7 @@ public class UploadFileUtils {
 			}
 		}
 	}
-
+	// 썸네일 만들어주는 메소
 	private static String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
 
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
@@ -91,7 +91,7 @@ public class UploadFileUtils {
 		return uploadedFileName;
 
 	}
-
+	// 경로를 처리하는 문자열의 치환 
 	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception {
 
 		String iconName = uploadPath + path + File.separator + fileName;
