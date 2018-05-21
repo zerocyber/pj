@@ -140,7 +140,7 @@ $(document).ready(function() {
 		}
 		console.log("page loading.....................	");
 
-		$.getJSON("/replies/"+ ${param.bno}+"/"+page, function(data){
+		$.getJSON("/replies/${param.bno}/"+page, function(data){
 
 			var str = "";
 
@@ -199,7 +199,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				type: "PUT",
-				url : "/replies/"+${param.bno}+"/"+ 1,
+				url : "/replies/${param.bno}/1",
 				dataType : "text",
 				headers : {
 					"content-type" : "application/json",
@@ -250,7 +250,7 @@ $(document).ready(function() {
 	$(".replyBox").on("click","ul li #redeleteBtn",function(e){
 
 		var random = $(this).parent();
-		var bno = '${param.bno}'
+		var bno = "${param.bno}";
 		var rno = random.data('rno');
 
 		console.log(rno);
@@ -258,7 +258,7 @@ $(document).ready(function() {
 		$.ajax({
 			
 		type : 'delete',
-		url : '/replies/'+bno+"/" + rno,
+		url : "/replies/"+bno+"/"+rno,
 		headers : {
 			"Content-Type" : "application/json",
 			"X-HTTP-Method-Override" : "DELETE"
@@ -307,8 +307,8 @@ $(document).ready(function() {
 			pageList(page);
 		});
 });
-
 </script>
+
 
 
 

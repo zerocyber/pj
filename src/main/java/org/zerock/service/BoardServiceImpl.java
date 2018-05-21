@@ -32,13 +32,8 @@ public class BoardServiceImpl implements BoardService{
 	public void write(BoardVO vo) {
 		// TODO Auto-generated method stub
 		mapper.insert(vo);
-		
-		String[] files = vo.getFiles();
-		
-		if(files ==null) {return;}
-		
-		for(String file : files) {
-			mapper.addFile(file);
+		if(!vo.getFiles().isEmpty()) {
+			mapper.addFile(vo);	
 		}
 	}
 
@@ -67,9 +62,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int addFile(String fno) {
+	public int addFile(BoardVO vo) {
 		
-		return mapper.addFile(fno);
+		return mapper.addFile(vo);
 		
 	}
 

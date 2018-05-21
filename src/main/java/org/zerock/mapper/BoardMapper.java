@@ -2,7 +2,6 @@ package org.zerock.mapper;
 
 import java.util.List;
 
-
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -23,5 +22,6 @@ public interface BoardMapper {
 	
 	public List<BoardVO> searchList(Criteria cri);
 	
-	public int addFile(String fullname);
+	public int addFile(BoardVO vo);
+	
 }

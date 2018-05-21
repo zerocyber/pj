@@ -21,5 +21,5 @@ public interface BoardService {
 	
 	public List<BoardVO> searchList(Criteria cri);
 	
-	public int addFile(String fullname);
+	public int addFile(BoardVO vo);
 }
