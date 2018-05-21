@@ -21,7 +21,10 @@ public interface BoardMapper {
 	public int count(Criteria cri);
 	
 	public List<BoardVO> searchList(Criteria cri);
+		
+	public int addViews(int bno);
 	
 	public int addFile(BoardVO vo);
+
 	
 }

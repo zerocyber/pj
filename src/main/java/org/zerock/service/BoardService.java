@@ -22,4 +22,7 @@ public interface BoardService {
 	public List<BoardVO> searchList(Criteria cri);
 	
 	public int addFile(BoardVO vo);
+	
+	public int viewCnt(int bno);
+
 }

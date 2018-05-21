@@ -64,11 +64,11 @@
 							<p class="ellip"></p>
 							<div class="bottom-article">
 								<ul class="meta-post">
-									<li><i class="icon-folder-open"></i><a href="#">${board.bno}</a></li>
+									<li><i class="icon-folder-open"></i>${board.bno}</a></li>
 
-									<li><i class="icon-user"></i><a href="#">${board.mid}</a></li>
+									<li><i class="icon-user"></i>${board.mid}</a></li>
 									<li><i class="icon-calendar"></i><fmt:formatDate value="${board.regdate}" pattern="yyyy.MM.dd hh:mm:ss" /></li>
-									<li><i class="icon-comments"></i><a href="#">${board.views}</a></li>
+									<li><i class="icon-comments"></i>${board.views}</a></li>
 								</ul>
 
 							</div>

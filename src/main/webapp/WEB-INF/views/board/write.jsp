@@ -4,21 +4,23 @@
 	pageEncoding="UTF-8"%>
 
 <style>
-
 .fileDrop {
-    width: 600px;
-    height: 70px;
-    border: gray;
-    background-color: #FAF6F6;
+	width: 600px;
+	height: 70px;
+	border: gray;
+	background-color: #FAF6F6;
 }
 </style>
+
+
 
 <div class="container">
 	<div id="content" class="snippet-hidden">
 
 		<div id="mainbar" class="ask-mainbar">
 
-			<form id="post-form" class="post-form" name = "post-form" method="post" enctype="multipart/form-data">
+			<form id="post-form" class="post-form" name="post-form" method="post"
+				enctype="multipart/form-data">
 
 				<select name="kno">
 					<option value="">게시판 분류</option>
@@ -46,7 +48,12 @@
 										data-min-length="15" data-max-length="150"></td>
 								</tr>
 							</table>
+							<div>
+								첨부파일 등록
+								<div class="fileDrop"></div>
 
+								<div id="uploadList"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -92,17 +99,7 @@
 						</div>
 					</div>
 				</div>
-				<br>
-
-<div>
-    첨부파일 등록
-
-    <div class="fileDrop"></div>
-
-    <div id="uploadList"></div>
-</div>
-
-<br>
+				<br> <br>
 
 				<div id="question-only-section">
 					<div class="form-submit cbt">
@@ -114,18 +111,53 @@
 	</div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+
 <script>
 $(document).ready(function() {
-	
-	$(".fileDrop").on("drop", function(e){
-		e.preventDefault();
-		
+
+// 파일 업로드
+	$(".fileDrop").on("dragenter dragover",function(event) {
+		event.preventDefault();
+	});
+	$(".fileDrop").on("drop",function(event) {
+		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
-		
+
 		console.log(file);
+
+		var formData = new FormData();
+		formData.append("file", file);
+		console.log(files);
+
+		$.ajax({
+			url : '/upload',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(data) {
+			var str = "";
+
+			if (checkImageType(data)) {
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>";
+				} else {
+				str = "<div>"+ data + "</div>";
+				}
+				$("#uploadList").append(str);
+			}
+		});
 	});
-	
+
+	function checkImageType(fileName) {
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		return fileName.match(pattern);
+	}
+
 });
 </script>
 
