@@ -55,7 +55,7 @@
 							<div class="post-image">
 								<div class="post-heading">
 									<h3>
-										<a href="/board/read/?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">
+										<a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">
 											${board.title}</a>
 									</h3>
 								</div>
@@ -141,7 +141,6 @@
 	</section>
 </div>
 
-<h1><a id="test" href="http://naver.com">테스트</a></h1>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
