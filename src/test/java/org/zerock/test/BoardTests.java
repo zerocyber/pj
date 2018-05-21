@@ -1,10 +1,13 @@
 package org.zerock.test;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.BoardVO;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -26,6 +29,13 @@ public class BoardTests {
 	
 	@Test
 	public void addFile() {
-		log.info(mapper.addFile("test5.jpg"));
+		BoardVO vo = new BoardVO();
+		vo.getFiles().add("test6");
+		vo.getFiles().add("test7");
+		vo.getFiles().add("test8");
+		mapper.addFile(vo);
 	}
+	
+	
+	
 }

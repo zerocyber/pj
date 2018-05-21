@@ -73,14 +73,17 @@
 
 	</select>
 
-	<insert id="addFile">
+	<insert id="addFile" parameterType="org.zerock.domain.BoardVO" >
 
 		<selectKey order="BEFORE" keyProperty="bno" resultType="int">
-			select max(bno) from t_board
+			select max(bno) bno from t_board
 		</selectKey>
 		
-		insert into t_file(fullname, bno)
-		values (#{fullname}, #{bno})
+		insert into t_file (fullname, bno)
+		values 
+		<foreach collection="files" item="item" separator=",">
+		( #{item}, #{bno})
+		</foreach>
 
 	</insert>
 	

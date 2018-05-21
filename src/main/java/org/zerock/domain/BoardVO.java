@@ -1,6 +1,8 @@
 package org.zerock.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -16,7 +18,11 @@ public class BoardVO {
 	private String mid;
 	private int kno;
 	private int cno;
+	private List<String> files;
 	
-	private String[] files;
+	public BoardVO () {
+		this.files = new ArrayList<>();
+	}
+	
 	
 }
