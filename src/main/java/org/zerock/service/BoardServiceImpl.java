@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService{
 	public void write(BoardVO vo) {
 		// TODO Auto-generated method stub
 		mapper.insert(vo);
-		if(!vo.getFiles().isEmpty()) {
+		if(vo.getFile().size() > 0) {
 			mapper.addFile(vo);	
 		}
 	}

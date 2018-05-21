@@ -24,6 +24,7 @@ public interface BoardMapper {
 		
 	public int addViews(int bno);
 	
+	// 파일 업로드 
 	public int addFile(BoardVO vo);
 
 	

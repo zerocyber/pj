@@ -114,7 +114,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
-
 <script>
 $(document).ready(function() {
 
@@ -144,7 +143,7 @@ $(document).ready(function() {
 			var str = "";
 
 			if (checkImageType(data)) {
-				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>";
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='file' value='"data+"'/>"
 				} else {
 				str = "<div>"+ data + "</div>";
 				}

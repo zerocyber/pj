@@ -79,12 +79,12 @@
 			select max(bno) bno from t_board
 		</selectKey>
 		
+		
 		insert into t_file (fullname, bno)
-		values 
-		<foreach collection="files" item="item" separator=",">
+		values
+		<foreach collection="fileName" item="item" separator="," > 
 		( #{item}, #{bno})
 		</foreach>
-
 	</insert>
 	
 	
