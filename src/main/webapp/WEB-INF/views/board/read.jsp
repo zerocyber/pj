@@ -134,7 +134,6 @@ $(document).ready(function() {
 	/* 댓글 페이지 로딩 */
 	
 	function pageList(page) {
-		console.log(page);
 		if(typeof page == "undefined"){
 			var page = 1;
 		}
@@ -148,7 +147,6 @@ $(document).ready(function() {
 
 			str += "<li data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid = '"+this.mid+"' data-event = regist>"+this.rno+" : "+this.content + this.mid
 				       +"<button id='reModiBtn'>Modify</button><button id='redeleteBtn'>Delete</button></li>";
-				str += "<li>"+this.rno+"</li>";
 
 			});
 			$(".replyUL").html(str);
@@ -231,6 +229,7 @@ $(document).ready(function() {
 	/* 댓글 수정 */
 	$(".replyBox").on("click","ul li #reModiBtn",function(e){
 		
+		
 		var applyBtn = $("#replyBtn");
 		applyBtn[0].innerText = "Modify";
 		
@@ -254,12 +253,12 @@ $(document).ready(function() {
 	/* 댓글 삭제 시작*/
 	$(".replyBox").on("click","ul li #redeleteBtn",function(e){
 		
+		
+		if(confirm("삭제하시겠습니까?")){
 		var random = $(this).parent();
 		var bno = '${param.bno}'
 		var rno = random.data('rno');
 
-		console.log(rno);
-		
 		$.ajax({
 			
 		type : 'delete',
@@ -276,15 +275,13 @@ $(document).ready(function() {
 				pageList();
 			}
 		  }
-		});		
+		});
+		};
 	}); // delete ajax
 	/* 댓글 삭제  여기까지*/
 	
 	function replyPaging(pm){
 		
-		console.log(pm.startPage);
-		console.log(pm.endPage);
-			
 		var ddd = "";
 		
 		if(pm.prev){

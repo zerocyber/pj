@@ -83,6 +83,13 @@
 		values (#{fullname}, #{bno})
 
 	</insert>
+	
+	
+	<update id="addViews">
+	
+	update t_board set views = views + 1 where bno = #{bno}
+	
+	</update>
 
 
 </mapper>

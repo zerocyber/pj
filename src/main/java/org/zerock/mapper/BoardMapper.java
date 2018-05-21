@@ -24,4 +24,8 @@ public interface BoardMapper {
 	public List<BoardVO> searchList(Criteria cri);
 	
 	public int addFile(String fullname);
+	
+	public int addViews(int bno);
+	
+	
 }
