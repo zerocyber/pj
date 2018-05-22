@@ -56,53 +56,34 @@ public class BoardController {
 		pm.setTotal(service.count(cri));
 //		model.addAttribute("BoardVO", service.pageList(cri));
 		model.addAttribute("pm", pm);
-
-		
 	}
 	
 	@GetMapping("/read")
 	public void read(BoardVO vo, Model model, @Param("bno") int bno, Criteria cri) {
 		log.info("read.............");
-		
 		Cookie cookies[] = req.getCookies();
-
 		Map cookieMap = new HashMap();
-		
 		if(req.getCookies() != null ) {
-			
 			log.info("getCookies not null...............................................");
-			
 			for(int i = 0; i < cookies.length; i++) {
-				
 			Cookie cookieObj = cookies[i];
-			
 			cookieMap.put(cookieObj.getName(), cookieObj.getValue());
-			
 			log.info("name: " + cookieObj.getName()+ "  value: "+ cookieObj.getValue());
-			}
-			
+			}	
 		}
-
 		String cookieViews = (String)cookieMap.get("views");
 		log.info("cookieViews........................: " + cookieViews);
-
 		String cookie_viewCnt = "|" + bno;
-		
 		if(cookieViews == null) {
 			cookieViews = "views";
 		}
 		
-		
 		if(StringUtils.indexOfIgnoreCase(cookieViews, cookie_viewCnt) == -1) {
-			
-
 			Cookie cookie = new Cookie("views" ,  cookieViews+ cookie_viewCnt);
 			cookie.setMaxAge(60 * 60 * 24);
 			res.addCookie(cookie);
 			service.viewCnt(bno);
-
 		}
-		
 		model.addAttribute("BoardVO", service.read(bno));
 		model.addAttribute("cri",cri);
 		
@@ -117,8 +98,6 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writePost(BoardVO vo){
 		log.info("write post.......");
-		log.info(vo.getFile().get(0));
-		log.info(vo.getFile());
 		service.write(vo);
 		return "redirect:/board/list";
 	}
@@ -135,13 +114,10 @@ public class BoardController {
 	public String modifyPost(BoardVO vo, Criteria cri) {
 		log.info("modify post...........");
 		service.modify(vo);
-		return "redirect:/board/read?page="+ cri.getPage() + "&perPageNum="+cri.getPerPageNum()+"&bno="+vo.getBno();
-		
+		return "redirect:/board/read?page="+ cri.getPage() + "&perPageNum="+cri.getPerPageNum()+"&bno="+vo.getBno();	
 	}
-	
 	@PostMapping("/delete")
-	public String delete(int bno) {
-		log.info("delete........");
+	public String delete(@Param("bno") int bno) {
 		service.remove(bno);
 		return "redirect:/board/list";
 	}

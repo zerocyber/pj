@@ -93,9 +93,7 @@ public class UploadFileUtils {
 	}
 	// 경로를 처리하는 문자열의 치환 
 	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception {
-
 		String iconName = uploadPath + path + File.separator + fileName;
-
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 

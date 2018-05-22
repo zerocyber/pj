@@ -22,8 +22,13 @@ public interface BoardMapper {
 	public List<BoardVO> searchList(Criteria cri);
 		
 	public int addViews(int bno);
+	
 	// 파일 업로드 
 	public int addFile(BoardVO vo);
+	// 파일 삭제
+	public int removeFile(int bno);
+	// 파일 조회 
+	public BoardVO searchFile(int bno);
 
 	
 }

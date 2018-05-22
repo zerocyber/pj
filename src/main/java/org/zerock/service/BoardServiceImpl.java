@@ -43,6 +43,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int remove(int bno) {
+		mapper.removeFile(bno);
 		return mapper.delete(bno);
 	}
 
@@ -55,7 +56,7 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> searchList(Criteria cri) {
 		return mapper.searchList(cri);
 	}
-
+	// 파일 추가 sql
 	@Override
 	public int addFile(BoardVO vo) {
 		return mapper.addFile(vo);
@@ -65,12 +66,16 @@ public class BoardServiceImpl implements BoardService{
 	public int viewCnt(int bno) {
 		return mapper.addViews(bno);
 	}
-	
-	
-
-	
-	
-	
+	// 파일 삭제 sql
+	@Override
+	public int removeFile(int bno) {
+		return mapper.removeFile(bno);
+	}
+	// 파일 조회 sql
+	@Override
+	public BoardVO searchFile(int bno) {
+		return mapper.searchFile(bno);
+	}
 	
 	
 }

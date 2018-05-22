@@ -25,4 +25,7 @@ public interface BoardService {
 	
 	public int viewCnt(int bno);
 
+	public int removeFile(int bno);
+	
+	public BoardVO searchFile(int bno);
 }

@@ -3,20 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
-<!-- css -->
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../resources/css/fancybox/jquery.fancybox.css"
-	rel="stylesheet">
-<link href="../resources/css/jcarousel.css" rel="stylesheet" />
-<link href="../resources/css/flexslider.css" rel="stylesheet" />
-<link href="../resources/css/style.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="../resources/boot.css">
-
-<!-- Theme skin -->
-<link href="../resources/skins/default.css" rel="stylesheet" />
-
-
 <style>
 /*====================*/
 /* reset.css */
@@ -40,7 +26,7 @@ table {
 	border-spacing: 0;
 }
 /*====================*/
-section {
+.section1 {
 	max-width: 960px;
 	margin: 30px auto;
 	padding: 30px;
@@ -88,7 +74,7 @@ th {
 }
 </style>
 
-<section>
+<section class="section1">
 	<table class="demo01">
 		<tr>
 			<th>제목</th>
@@ -121,11 +107,12 @@ th {
 
 
 
+
 <form id="inform" method="post">
-	<input type="hidden" name="page" value="${cri.page}"> <input
-		type="hidden" name="bno" value="${BoardVO.bno}"> <input
-		type="hidden" name="type" value="${cri.type}"> <input
-		type="hidden" name="keyword" value="${cri.keyword}">
+	<input type="hidden" name="page" value="${cri.page}"> 
+	<input type="hidden" name="bno" value="${BoardVO.bno}">
+	<input type="hidden" name="type" value="${cri.type}">
+	<input type="hidden" name="keyword" value="${cri.keyword}">
 </form>
 
 <div class="wrapper">
@@ -142,6 +129,7 @@ th {
 $(document).ready(function() {
 	
 	var formObj = $("#inform");
+	
 	$("#back").on("click", function(e) {
 		self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 

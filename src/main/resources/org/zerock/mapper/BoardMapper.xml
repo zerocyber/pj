@@ -38,10 +38,8 @@
 	</select>
 
 	<sql id="criteria">
-
 		<if test="type !='' and keyword !=''">
 			<where>
-
 				<foreach collection="arr" separator="OR" item="type"
 					open="(" close=")">
 
@@ -72,26 +70,31 @@
 		limit #{pageStart},#{perPageNum}
 
 	</select>
-
+	<!-- 파일 업로드 sql 시작 -->
 	<insert id="addFile" parameterType="org.zerock.domain.BoardVO" >
-
 		<selectKey order="BEFORE" keyProperty="bno" resultType="int">
 			select max(bno) bno from t_board
 		</selectKey>
-		
-		
-		insert into t_file (fullname, bno)
+			
+		insert into t_file (file, bno)
 		values
 		<foreach collection="file" item="item" separator="," > 
 		( #{item}, #{bno})
 		</foreach>
 	</insert>
 	
+	<!-- 파일 삭제 sql -->
+	<delete id="removeFile">
+	delete from t_file where bno = #{bno}
+	</delete>
+	
+	<!-- 파일 조회 sql -->
+	<select id="searchFile" resultType="org.zerock.domain.BoardVO">
+	select file, bno from t_file where bno = #{bno} 
+	</select>
 	
 	<update id="addViews">
-	
 	update t_board set views = views + 1 where bno = #{bno}
-	
 	</update>
 
 
