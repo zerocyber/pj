@@ -5,7 +5,6 @@ import java.util.List;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
-
 public interface BoardMapper {
 
 	public List<BoardVO> list(Criteria cri);
@@ -23,7 +22,6 @@ public interface BoardMapper {
 	public List<BoardVO> searchList(Criteria cri);
 		
 	public int addViews(int bno);
-	
 	// 파일 업로드 
 	public int addFile(BoardVO vo);
 

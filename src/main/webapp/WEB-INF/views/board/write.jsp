@@ -143,7 +143,7 @@ $(document).ready(function() {
 			var str = "";
 
 			if (checkImageType(data)) {
-				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='file' value='"data+"'/>"
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='file' value='"+data+"'/>"
 				} else {
 				str = "<div>"+ data + "</div>";
 				}

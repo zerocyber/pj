@@ -115,10 +115,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String writePost(BoardVO vo,@Param("file") String file){
-		log.info(file);
-		log.info(vo.getFile());
+	public String writePost(BoardVO vo){
 		log.info("write post.......");
+		log.info(vo.getFile().get(0));
+		log.info(vo.getFile());
 		service.write(vo);
 		return "redirect:/board/list";
 	}
