@@ -21,8 +21,18 @@ public interface BoardService {
 	
 	public List<BoardVO> searchList(Criteria cri);
 	
+<<<<<<< HEAD
 	public int viewCnt(int bno);
 
 	public int addFile(BoardVO vo);
 
+=======
+	public int addFile(BoardVO vo);
+	
+	public int viewCnt(int bno);
+
+	public int removeFile(int bno);
+	
+	public BoardVO searchFile(int bno);
+>>>>>>> 980a2346bc00ed3c1c65c47fbfb3776fa7785fe9
 }

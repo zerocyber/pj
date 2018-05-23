@@ -11,9 +11,6 @@ public class PageMaker {
 	private int displayNum;
 	private int total;
 	
-	
-	
-	
 	public PageMaker() {		
 		this.displayNum = 10;
 	}
@@ -21,12 +18,11 @@ public class PageMaker {
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
+	
 	public void setTotal(int total) {
 		this.total = total;
-		calc();
-		
+		calc();	
 	}
-	
 	
 	public void calc() {
 		endPage = (int)(Math.ceil((cri.getPage()/(double)displayNum))*displayNum);	
@@ -38,11 +34,7 @@ public class PageMaker {
 		if(endPage > tempEndPage) {
 			endPage = tempEndPage;
 		}
-
-
 	}
 	
-	
-
 	
 }

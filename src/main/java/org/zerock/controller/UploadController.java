@@ -40,23 +40,13 @@ public class UploadController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
-//	@GetMapping("/upload")
-//	public void uploadAjax() {
-//		log.info("upload Ajax");
-//	}
 	@ResponseBody
 	@PostMapping(value="/upload", produces="application/json; charset=UTF-8")	//produces로 mime타입 지정
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
 		
-		log.info("upload....................post");
-		log.info("originalName: " + file.getOriginalFilename());
-		log.info("size: " + file.getSize());
-		log.info("contentType : " + file.getContentType());
 		return new ResponseEntity<>(
 				UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), 
 						file.getBytes()),HttpStatus.CREATED);
-		
-	
 	}
 	
 	@ResponseBody

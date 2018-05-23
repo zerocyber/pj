@@ -10,11 +10,9 @@ public class Criteria {
 	
 	private int page;
 	private int perPageNum;
-	
 	private String type;
 	private String keyword;
 	private URIMaker um;
-	
 	
 	public Criteria() {
 		this.page = 1;
@@ -22,9 +20,6 @@ public class Criteria {
 		this.type = "";
 		this.keyword = "";
 	}
-	
-	
-	
 	
 	public void setPage(int page) {
 		if(page <= 0) {
@@ -56,12 +51,11 @@ public class Criteria {
 		}
 		
 		return this.type.split("");
-		
 	}
-	
 	
 	public int getPageStart() {
-		return (this.page-1) * perPageNum;
-				
+		return (this.page-1) * perPageNum;			
 	}
+	
+	
 }
