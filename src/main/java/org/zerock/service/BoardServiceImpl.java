@@ -10,7 +10,9 @@ import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Service
 public class BoardServiceImpl implements BoardService{
 
@@ -35,6 +37,7 @@ public class BoardServiceImpl implements BoardService{
 	public void write(BoardVO vo) {
 		// TODO Auto-generated method stub
 		mapper.insert(vo);
+		log.info(vo.getFiles().size()+"........................");
 		if(!vo.getFiles().isEmpty()) {
 			mapper.addFile(vo);	
 		}
@@ -77,12 +80,6 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.addViews(bno);
 		
 	}
-	
-	
 
-	
-	
-	
-	
 	
 }
