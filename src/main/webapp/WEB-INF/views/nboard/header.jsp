@@ -13,15 +13,13 @@
 
 <title>Leaf village</title>
 <!-- CSS -->
-<link href="bootstrap-3.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="dashboard.css" rel="stylesheet">
-<link href="sticky-footer.css" rel="stylesheet">
+<link href="/resources/bootstrap-3.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/dashboard.css" rel="stylesheet">
+<link href="/resources/sticky-footer.css" rel="stylesheet">
 
 <!-- JAVA SCRIPT -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script
-	src="bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
 
 </head>
 

@@ -29,7 +29,7 @@ import com.mysql.jdbc.StringUtils;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/board/*")
+@RequestMapping("/nboard/*")
 @Controller
 @Log4j
 public class BoardController {
@@ -122,5 +122,9 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/nread")
+	public void test() {
+		
+	}
 	
 }
