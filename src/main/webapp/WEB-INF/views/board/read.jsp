@@ -247,13 +247,11 @@ $(document).ready(function() {
 	
 	/* 댓글 삭제 시작*/
 	$(".replyBox").on("click","ul li #redeleteBtn",function(e){
-<<<<<<< HEAD
+
 		
 		
 		if(confirm("삭제하시겠습니까?")){
-=======
 
->>>>>>> 3e5051165ec9400cce03e32cd4507699955b8447
 		var random = $(this).parent();
 		var bno = "${param.bno}";
 		var rno = random.data('rno');
