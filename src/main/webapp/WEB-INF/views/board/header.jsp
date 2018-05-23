@@ -58,7 +58,7 @@
             <a href="/index/contact" class="w3-button w3-block w3-black">CONTACT US</a>
         </div>
         <div class="w3-col s2">
-        <div class=w3-button w2-block w3-black">
+        <div class="w3-button w2-block w3-black">
         <a href="/member/login">SIGN IN</a> or <a href="/member/register">SIGN UP</a>
         </div>    
         </div>
