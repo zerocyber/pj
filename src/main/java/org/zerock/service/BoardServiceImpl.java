@@ -18,71 +18,64 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 
 	
-
 	@Override
 	public BoardVO read(int bno) {
-
 		return mapper.read(bno);
 	}
 
 	@Override
 	public List<BoardVO> pageList(Criteria cri) {
-		// TODO Auto-generated method stub
 		return mapper.list(cri);
 	}
 
 	@Override
 	public void write(BoardVO vo) {
-		// TODO Auto-generated method stub
 		mapper.insert(vo);
-		if(!vo.getFiles().isEmpty()) {
+		if(vo.getFile().size() > 0) {
 			mapper.addFile(vo);	
 		}
 	}
 
 	@Override
 	public int modify(BoardVO vo) {
-		// TODO Auto-generated method stub
 		return mapper.update(vo);
 	}
 
 	@Override
 	public int remove(int bno) {
-		// TODO Auto-generated method stub
+		mapper.removeFile(bno);
 		return mapper.delete(bno);
 	}
 
 	@Override
 	public int count(Criteria cri) {
-		// TODO Auto-generated method stub
 		return mapper.count(cri);
 	}
 
 	@Override
 	public List<BoardVO> searchList(Criteria cri) {
-
 		return mapper.searchList(cri);
 	}
-
+	// 파일 추가 sql
 	@Override
 	public int addFile(BoardVO vo) {
-		
 		return mapper.addFile(vo);
-		
 	}
 
 	@Override
 	public int viewCnt(int bno) {
-		
 		return mapper.addViews(bno);
-		
 	}
-	
-	
-
-	
-	
-	
+	// 파일 삭제 sql
+	@Override
+	public int removeFile(int bno) {
+		return mapper.removeFile(bno);
+	}
+	// 파일 조회 sql
+	@Override
+	public BoardVO searchFile(int bno) {
+		return mapper.searchFile(bno);
+	}
 	
 	
 }

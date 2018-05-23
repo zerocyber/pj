@@ -24,53 +24,37 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public void register(ReplyVO vo) {
 		mapper.insert(vo);
-		
 	}
 	
 	@Override
 	public void modify(ReplyVO vo) {
 		mapper.update(vo);
-		
 	}
 
 	@Override
 	public void remove(int rno) {
 		mapper.delete(rno);
-		
 	}
 
 	@Override
 	public int count(int bno) {
-		
 		return mapper.count(bno);
 	}
 
 	@Override
 	public ReplyVO read(int rno) {
-		
 		return mapper.read(rno);
 	}
 
-
-
 	@Override
-	public List<ReplyVO> listReplies(int bno) {
-		
+	public List<ReplyVO> listReplies(int bno) {		
 		return mapper.list(bno);
 	}
 
 	@Override
 	public List<ReplyVO> listReplyPage(int bno, Criteria cri) {
-
 		return mapper.listPage(bno, cri);
 	}
 	
-	
-	
 
-
-	
-	
-	
-	
 }

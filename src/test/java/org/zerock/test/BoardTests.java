@@ -29,11 +29,7 @@ public class BoardTests {
 	
 	@Test
 	public void addFile() {
-		BoardVO vo = new BoardVO();
-		vo.getFiles().add("test6");
-		vo.getFiles().add("test7");
-		vo.getFiles().add("test8");
-		mapper.addFile(vo);
+
 	}
 	
 	
