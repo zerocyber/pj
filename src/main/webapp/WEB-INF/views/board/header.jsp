@@ -42,7 +42,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Sign in</a></li>
+				<li><a href="../login">Sign in</a></li>
 				<li><a href="#">Sign up</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
@@ -56,8 +56,8 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Board</a></li>
+					<li><a href="index">Home</a></li>
+					<li><a href="list">Board</a></li>
 					<li><a href="#">Gallery</a></li>
 					<li><a href="#">Team</a></li>
 					<li><a href="#">Contact us</a></li>

@@ -2,107 +2,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<meta charset="utf-8">
-<title>Moderna - Bootstrap 3 flat corporate template</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="" />
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="row">
+		<div class="panel-body">
+			<table width="100%"
+				class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr class="danger">
+						<th style="text-align: center" width="10%">글번호</th>
+						<th style="text-align: center" width="50%">제목</th>
+						<th style="text-align: center" width="15%">작성자</th>
+						<th style="text-align: center" width="20%">작성일</th>
+						<th style="text-align: center" width="5%">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${BoardVO}" var="board">
+						<tr style="text-align: center">
+							<td>${board.bno}</td>
+							<td style="text-align: left"><a
+								href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">${board.title}</a></td>
+							<td>${board.mid}</td>
+							<td><fmt:formatDate value="${board.regdate}"
+									pattern="yyyy.MM.dd hh:mm:ss" /></td>
+							<td class="center">${board.views}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<form method="get" class="form-inline">
+				<div class="form-group">
+					<select name="type" id="selectType" class="form-control"
+						style="width: 225px;">
+						<option value="">----</option>
+						<option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
+						<option value="c" ${pm.cri.type eq 'c'? "selected": '' }>CONTENT</option>
+						<option value="m" ${pm.cri.type eq 'm'? "selected": '' }>WRITER</option>
+						<option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
+						<option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
+						<option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" id="keyword" name="keyword"
+						value="${pm.cri.keyword}" size="70">
+				</div>
+				<div class="form-group">
+					<button id="btn_search" class="btn btn-primary">SEARCH</button>
+				</div>
+				<div class="form-group">
+					<button id="btn_write" class="btn btn-info">등록</button>
+				</div>
+			</form>
+		</div>
 
-<style type="text/css">
-.ellip {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
- .col-lg-8 {
- 	margin: 0 auto;
- }
-</style>
+	</div>
+</div>
 
-<section id="content">
-<div class="container">
 <div class="row">
-<div class="col-lg-8">
-	<c:forEach items="${BoardVO}" var="board">
-	<article>
-	<div class="post-image">
-		<div class="post-heading">
-	<h3><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">${board.title}</a></h3>
+	<div class="col-sm-6 col-sm-offset-4">
+		<div id="pagination">
+			<ul class="pagination">
+				<c:if test="${pm.prev}">
+					<c:choose>
+						<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+							<li><a class="btn btn-info"
+								href="list?page=${pm.startPage -1}">prev</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a class="btn btn-info"
+								href="list?page=${pm.startPage -1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+
+				<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
+					<c:choose>
+						<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+							<li><a id="pageLink" class="btn btn-secondary"
+								href="/board/list?page=${idx}">${idx}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a id="pageLink" class="btn btn-secondary"
+								href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+				<c:if test="${pm.next}">
+					<c:choose>
+						<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+							<li><a class="btn btn-info"
+								href="list?page=${pm.endPage + 1}">next</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a class="btn btn-info"
+								href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+			</ul>
 		</div>
 	</div>
-	<p class="ellip"></p>
-	<div class="bottom-article">
-		<ul class="meta-post">
-		<li><i class="icon-folder-open">글 번호: ${board.bno}</i></li>
-		<li><i class="icon-user">작성자: ${board.mid}</i></li>
-		<li><i class="icon-calendar"><fmt:formatDate value="${board.regdate}" pattern="yyyy.MM.dd hh:mm:ss" /></i></li>
-		<li><i class="icon-comments">${board.views} views</i></li>
-		</ul>
+
+</div>
 	</div>
-	</article>
-	</c:forEach>
-	
-<div id="pagination">
-	<span class="all">Page ${pm.cri.page} of ${pm.total}</span>
-	<ul class="pagination">
-	<c:if test="${pm.prev}">
-		<c:choose>
-		<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-		<li><a class="btn btn-info" href="list?page=${pm.startPage -1}">prev</a></li>
-		</c:when>
-		<c:otherwise>
-		<li><a class="btn btn-info" href="list?page=${pm.startPage -1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a></li>
-		</c:otherwise>
-		</c:choose>
-	</c:if>
-
-	<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
-		<c:choose>
-		<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }" >
-		<li ><a id="pageLink" class="btn btn-secondary" href="/board/list?page=${idx}">${idx}</a></li>
-		</c:when>
-		<c:otherwise>
-		<li ><a id="pageLink" class="btn btn-secondary"
-		href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
-		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-
-	<c:if test="${pm.next}">
-		<c:choose>
-		<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-		<li><a class="btn btn-info" href="list?page=${pm.endPage + 1}">next</a></li>
-		</c:when>
-		<c:otherwise>
-		<li><a class="btn btn-info" href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a></li>
-		</c:otherwise>
-		</c:choose>
-	</c:if>
-						
-	<li><button id="write" class="btn btn-info">등록</button></li>
-	</ul>
-	</div>
-
-	<form method="get">
-	<select name="type" id="selectType" class="custom-select" style="width: 170px;">
-	<option value="">----</option>
-		<option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
-		<option value="c" ${pm.cri.type eq 'c'? "selected": '' }>CONTENT</option>
-		<option value="m" ${pm.cri.type eq 'm'? "selected": '' }>WRITER</option>
-		<option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
-		<option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
-		<option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
-	</select> <input type="text" id="keyword" name="keyword" value="${pm.cri.keyword}" size="70">
-	<button id="btn_search" class="btn btn-primary">SEARCH</button>
-	</form>
-
-</div>
-</div>
-</div>
-</section>
 
 
 
@@ -113,7 +124,7 @@
 <script>
 	var btn = $("#btn_search")
 	var selectType = $("#selectType")
-	var write = $("#write")
+	var writeBtn = $("#btn_write") 
 	var keyword = $("#keyword")
 	var pageLink = $("#pageLink")
 
@@ -123,16 +134,16 @@
 			alert("검색조건을 선택해주세요");
 			e.preventDefault();
 		}
-		if(keyword.val() ==""){
+		if (keyword.val() == "") {
 			alert("검색어를 입력해주세요")
 			e.preventDefault();
 		}
 	});
-	
-	write.on("click", function(e){
-		location.href="/board/write"
+
+    writeBtn.on("click", function(e) {
+    	e.preventDefault();
+		location.href = "/board/write"
 	});
 </script>
 
 <%@ include file="footer.jsp"%>
-

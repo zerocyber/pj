@@ -1,6 +1,8 @@
   <!-- Footer start-->
-    <footer class="footera">
-      <p class="text-muteda">Hello my name is ninja</p>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Hello my name is ninja</p>
+      </div>
     </footer>
   <!-- Footer end-->
   <!-- Body end -->

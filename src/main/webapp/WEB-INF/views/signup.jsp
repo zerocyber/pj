@@ -26,7 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/main.css">
+ 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -34,12 +34,12 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form"  action="" method="post">
+				<form class="login100-form validate-form" method="post">
 					<span class="login100-form-title p-b-33">
-						Account Login
+						Create Acount
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate = "Valid Id, Please check id">
 						<input class="input100" type="text" name="mid" placeholder="ID">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
@@ -51,32 +51,39 @@
 						<span class="focus-input100-2"></span>
 					</div>
 					
+					<div class="wrap-input100 validate-input" data-validate = "Please write your name">
+						<input class="input100" type="text" name="mname" placeholder="Name">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+					
+					
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="E-Mail">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+					
 					
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-							Sign in
+							Sign Up
 						</button>
 					</div>
 					
-					<div class="text-center p-t-45 p-b-4">
-						<span class="txt1">
-							Forgot
-						</span>
-
-						<a href="#" class="txt2 hov1">
-							Username / Password?
-						</a>
-					</div>
 
 					<div class="text-center">
-						<span class="txt1">
-							Create an account?
-						</span>
 
-						<a href="signup" class="txt2 hov1">
-							Sign up
+						<span class="txt1">
+							Do yo want Sign In?
+						</span>
+						
+						<a href="login" class="txt2 hov1">
+							Sign In
 						</a>
+
 					</div>
 				</form>
 			</div>
@@ -86,21 +93,21 @@
 
 	
 <!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+	<script src="/resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+	<script src="/resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
+	<script src="/resources/loginResources/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="/resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+	<script src="/resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/loginResources/js/main.js"></script>
+	<script src="/resources/loginResources/js/main.js"></script>
 
 </body>
 </html>

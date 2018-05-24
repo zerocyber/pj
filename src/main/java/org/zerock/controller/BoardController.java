@@ -25,7 +25,7 @@ import com.mysql.jdbc.StringUtils;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/nboard/*")
+@RequestMapping("/board/*")
 @Controller
 @Log4j
 public class BoardController {
@@ -124,6 +124,8 @@ public class BoardController {
 	@GetMapping("/nread")
 	public void test() {
 
+		log.info("nread...............");
 	}
+
 	
 }

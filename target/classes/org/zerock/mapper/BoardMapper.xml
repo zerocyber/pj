@@ -76,9 +76,9 @@
 			select max(bno) bno from t_board
 		</selectKey>
 			
-		insert into t_file (file, bno)
+		insert into t_file (fullname, bno)
 		values
-		<foreach collection="file" item="item" separator="," > 
+		<foreach collection="fullname" item="item" separator="," > 
 		( #{item}, #{bno})
 		</foreach>
 	</insert>
@@ -90,7 +90,7 @@
 	
 	<!-- 파일 조회 sql -->
 	<select id="searchFile" resultType="org.zerock.domain.BoardVO">
-	select file, bno from t_file where bno = #{bno} 
+	select fullname, bno from t_file where bno = #{bno} 
 	</select>
 	
 	<update id="addViews">
