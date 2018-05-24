@@ -1,7 +1,5 @@
 package org.zerock.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +20,6 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
-
-import com.fasterxml.jackson.databind.annotation.JsonAppend.Prop;
 import com.mysql.jdbc.StringUtils;
 
 import lombok.Setter;
@@ -94,9 +90,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String writePost(BoardVO vo){
+	public String writePost(BoardVO vo, Model model){
 		log.info("write post.......");
 		service.write(vo);
+		model.addAttribute("result", "success");
 		return "redirect:/board/list";
 	}
 	
@@ -120,6 +117,5 @@ public class BoardController {
 		service.remove(bno);
 		return "redirect:/board/list";
 	}
-	
-	
+
 }

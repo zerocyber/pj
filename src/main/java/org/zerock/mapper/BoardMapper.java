@@ -20,7 +20,7 @@ public interface BoardMapper {
 	public int count(Criteria cri);
 	
 	public List<BoardVO> searchList(Criteria cri);
-		
+
 	public int addViews(int bno);
 	
 	// 파일 업로드 
@@ -30,5 +30,5 @@ public interface BoardMapper {
 	// 파일 조회 
 	public BoardVO searchFile(int bno);
 
-	
+
 }
