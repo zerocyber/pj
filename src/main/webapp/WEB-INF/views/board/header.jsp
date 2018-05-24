@@ -1,93 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
+<!-- Header 시작 -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/resources/css1.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 
-<!-- css -->
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../resources/css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="../resources/css/jcarousel.css" rel="stylesheet" />
-<link href="../resources/css/flexslider.css" rel="stylesheet" />
-<link href="../resources/css/style.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="../resources/boot.css">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<!-- Theme skin -->
-<link href="../resources/skins/default.css" rel="stylesheet" />
-<style>
-    body, html {
-        height: 100%;
-        font-family: "Inconsolata", sans-serif;
-    }
-    .bgimg {
-        background-position: center;
-        background-size: cover;
-        background-image: url("https://pre00.deviantart.net/c03b/th/pre/f/2014/338/a/0/hidden_leaf_village__landscape__the_best__by_iennidesign-d88ors4.png");
-        min-height: 60%;
-    }
-    .menu {
-        display: none;
-    }
-    .w2-block {
-    display:block;
-    width:100%;
-    }    
-</style>
+<title>Leaf village</title>
+<!-- CSS -->
+<link href="/resources/bootstrap-3.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/dashboard.css" rel="stylesheet">
+<link href="/resources/sticky-footer.css" rel="stylesheet">
+
+<!-- JAVA SCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
+
+</head>
+
 <body>
-<!-- Links (sit on top) -->
-<div class="w3-top">
-    <div class="w3-row w3-padding w3-black">
-        <div class="w3-col s2">
-            <a href="/index/home" class="w3-button w3-block w3-black">HOME</a>
-        </div>
-        <div class="w3-col s2">
-            <a href="/board/list" class="w3-button w3-block w3-black">BOARD</a>
-        </div>
-        <div class="w3-col s2">
-            <a href="/gallery/list" class="w3-button w3-block w3-black">GALLERY</a>
-        </div>
-        <div class="w3-col s2">
-            <a href="/index/qna" class="w3-button w3-block w3-black">Q&A</a>
-        </div>
-        <div class="w3-col s2">
-            <a href="/index/contact" class="w3-button w3-block w3-black">CONTACT US</a>
-        </div>
-        <div class="w3-col s2">
-        <div class="w3-button w2-block w3-black">
-        <a href="/member/login">SIGN IN</a> or <a href="/member/register">SIGN UP</a>
-        </div>    
-        </div>
-    </div>
-</div>
+	<!-- Body 시작 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Project name</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Sign in</a></li>
+				<li><a href="#">Sign up</a></li>
+			</ul>
+			<form class="navbar-form navbar-right">
+				<input type="text" class="form-control" placeholder="Search...">
+			</form>
+		</div>
+	</div>
+	</nav>
 
-<!-- Header with image -->
-<header class="bgimg w3-display-container w3-grayscale-min" id="home">
-    <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
-        <span class="w3-tag"><%= new java.util.Date() %></span>
-    </div>
-    <div class="w3-display-middle w3-center">
-        <span class="w3-text-white" style="font-size:90px">
-        Leaf Village</span>
-    </div>
-</header>
-
-<!-- Add a background color and large text to the whole page -->
-<div id="wrapper">
-	<section id="inner-headline">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<ul class="breadcrumb">
-						<li><a href="//www.google.com" target="_blank"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
-						<li class="active">Google</li>
-					</ul>
-				</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Board</a></li>
+					<li><a href="#">Gallery</a></li>
+					<li><a href="#">Team</a></li>
+					<li><a href="#">Contact us</a></li>
+				</ul>
 			</div>
 		</div>
-	</section>
-</div>
+	</div>
+	<!-- Header 끝 -->

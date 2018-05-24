@@ -2,99 +2,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+ <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
 
-<div class="container">
-	<div id="content" class="snippet-hidden">
+  <div class="row">
+  	<div class="col-sm-9 col-sm-offset-1">
+  	<h1>Dash Board</h1>
+  	</div>
+  </div>
 
-		<div id="mainbar" class="ask-mainbar">
+<form method="post" id="modiForm">
+  <div class="form-group row">
+    <div class="col-sm-9 col-sm-offset-1">
+      <label for="title">Title</label>
+      <div class="row">
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title" name="title" value="${BoardVO.title}"/>
+        </div>
+        <div class="col-sm-1">
+          <h4 class="text-center"><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4>
+        </div>
+        <div class="col-sm-1">
+          <h4><span class="label label-primary">${BoardVO.cno eq '100' ? 'JAVA' : BoardVO.cno eq '200' ? 'C' : 'C#' }</span></h4>
+        </div>
+      </div>
+    </div>
+  </div>
 
-			<form id="post-form" class="post-form" method="post">
+  <div class="form-group row">
+        <div class="col-sm-9 col-sm-offset-1">
+          <label for="content">Content</label>
+          <textarea class="form-control" name="content" rows="10">${BoardVO.content}</textarea>
+        </div>
+      </div>
 
-				<select name="kno">
-					<option value="">게시판 분류</option>
-					<option value="10" ${boardVO.kno eq "10"?"selected":''}>후기</option>
-					<option value="20" ${boardVO.kno eq "20"?"selected":''}>일반</option>
-					<option value="30" ${boardVO.kno eq "30"?"selected":''}>질문</option>
-				</select> 
-				<select name="cno">
-					<option value="">과정선택</option>
-					<option value="100" ${boardVO.cno eq "100"?"selected":''}>JAVA</option>
-					<option value="200" ${boardVO.cno eq "200"?"selected":''}>C</option>
-					<option value="300" ${boardVO.cno eq "300"?"selected":''}>C#</option>
-				</select>
+  <div class="form-group row">
+        <div class="col-sm-2 col-sm-offset-8">
+          <p class="text-right label label-warning pull-right">${BoardVO.mid}</p>
+        </div>
+      </div>
 
-				<div id="question-form">
-					<div style="position: relative;">
-						<div class="form-item ask-title">
+  <div class="form-group row">
+        <div class="col-sm-9 col-sm-offset-1">
+          <label for="fileList">FileList</label>
+          <div class="row">
+            <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+            <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+            <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+            <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+            <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+            <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+          </div>
+        </div>
+      </div>
+    
+  </form>
 
-							<table class="ask-title-table">
-								<tr>
-									<td class="ask-title-cell-key"><label for="title">제목</label>
-									</td>
-									<td class="ask-title-cell-value"><input id="title"
-										name="title" type="text" maxlength="300" tabindex="100"
-										class="js-ask-title"
-										data-min-length="15" data-max-length="150" value = "${boardVO.title}"></td>
-								</tr>
-							</table>
-
-						</div>
-					</div>
-				</div>
-
-
-				<div id="post-editor" class="post-editor js-post-editor">
-
-					<div style="position: relative;">
-						<div class="wmd-container">
-							<label>내용</label> <br>
-							<textarea id="wmd-input" class="wmd-input" name="content"
-								cols="92" rows="15" tabindex="101" data-min-length="">${boardVO.content}</textarea>
-						</div>
-					</div>
-
-					<div class="fl" style="margin-top: 8px; height: 24px;">&nbsp;</div>
-					<div id="draft-saved" class="draft-saved community-option fl"
-						style="margin-top: 8px; height: 24px; display: none;">draft
-						saved</div>
-
-					<div id="draft-discarded"
-						class="draft-discarded community-option fl"
-						style="margin-top: 8px; height: 24px; display: none;">draft
-						discarded</div>
-
-				</div>
-
-				<div id="question-form">
-					<div style="position: relative;">
-						<div class="form-item ask-title">
-
-							<table class="ask-title-table">
-								<tr>
-									<td class="ask-title-cell-key"><label for="title">작성자</label>
-									</td>
-									<td class="ask-title-cell-value"><input id="user"
-										name="mid" type="text" maxlength="300" tabindex="100"
-										class="js-ask-title" data-min-length="15"
-										data-max-length="150" value = "${boardVO.mid}"></td>
-								</tr>
-							</table>
-
-						</div>
-					</div>
-				</div>
-				<br>
-
-
-				<div id="question-only-section">
-					<div class="form-submit cbt">
-						<button>수정</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+  <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+        <div class="row">
+          <div class="col-sm-offset-5">
+          <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
+          <button id="delete" type="button" class="btn btn-xs btn-default">Cancle</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var formObj = $("#modiForm");
+	$("#modify").on("click", function(e){
+		formObj.submit();
+	});
+	
+	$("#delete").on("click", function(e){
+		self.location = "/board/read?page=${param.page}&perPageNum=${param.perPageNum}&bno=${BoardVO.bno}";
+	});
+	
+	
+});
+</script>
 
-	<%@ include file="footer.jsp"%>
+        
+    
+    
+    
+
+    
+    
+    
+<%@ include file="footer.jsp"%>

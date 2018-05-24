@@ -29,7 +29,7 @@ import com.mysql.jdbc.StringUtils;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/nboard/*")
+@RequestMapping("/board/*")
 @Controller
 @Log4j
 public class BoardController {
@@ -58,7 +58,7 @@ public class BoardController {
 		model.addAttribute("pm", pm);
 	}
 	
-	@GetMapping("/nread")
+	@GetMapping("/read")
 	public void read(BoardVO vo, Model model, @Param("bno") int bno, Criteria cri) {
 		log.info("read.............");
 		Cookie cookies[] = req.getCookies();
@@ -101,9 +101,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("/modify")
-	public void modify(BoardVO vo, Model model, Criteria cri) {
+	public void modify(@Param("bno")int bno, Model model, Criteria cri) {
 		log.info("modify get.........");
-		model.addAttribute("boardVO", service.read(vo.getBno()));
+		log.info(bno);
+		model.addAttribute("BoardVO", service.read(bno));
 		model.addAttribute("cri", cri);
 		
 	}
