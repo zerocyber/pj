@@ -2,108 +2,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-	
-
 <style>
 .fileDrop {
-	width: 600px;
-	height: 70px;
+	width: 100%;
+	height: 100px;
 	border: gray;
 	background-color: #FAF6F6;
 }
+
+.form-control-s {
+	display: block;
+	width: 150px;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
 </style>
-<div class="row">
-	<div id="content" class="snippet-hidden">
-		<div id="mainbar" class="ask-mainbar">
-		<form id="post-form" class="post-form" name="post-form" method="post" enctype="multipart/form-data">
-		<select name="kno">
-			<option value="">게시판 분류</option>
-			<option value="10">후기</option>
-			<option value="20">일반</option>
-			<option value="30">질문</option>
-		</select> 
-		<select name="cno">
-			<option value="">과정선택</option>
-			<option value="100">JAVA</option>
-			<option value="200">C</option>
-			<option value="300">C#</option>
-		</select>
-	
-					<div id="question-form">
-						<div style="position: relative;">
-							<div class="form-item ask-title">
-	
-								<table class="ask-title-table">
-									<tr>
-										<td class="ask-title-cell-key"><label for="title">제목</label>
-										</td>
-										<td class="ask-title-cell-value"><input id="title"
-											name="title" type="text" maxlength="300" tabindex="100"
-											placeholder="제목을 입력하세요" class="js-ask-title"
-											data-min-length="15" data-max-length="150"></td>
-									</tr>
-								</table>
-								<div>
-									첨부파일 등록
-									<div class="fileDrop"></div>
-	
-									<div id="uploadList"></div>
-								</div>
+
+<div
+	class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+	<div class="row">
+		<div class="col-md-10 col-sm-10">
+			<form  id="post-form" name="post-form" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-3">
+							<select class="form-control" name="kno">
+								<option value="30">일반</option>
+								<option value="20">후기</option>
+								<option value="10">질문</option>
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<select class="form-control col-sm-3" name="cno">
+								<option value="100">Java</option>
+								<option value="200">C</option>
+								<option value="300">C#</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="title">Title</label> <input id="title" name="title"
+						type="text" class="form-control" placeholder="Text input">
+				</div>
+				<label for="content">Content</label>
+				<p>
+					<textarea id="content" name="content" class="form-control"
+						rows="15"></textarea>
+				</p>
+				<label>Writer</label>
+				<p>
+					<input id="mid" name="mid" type="text" class="form-control-s"
+						placeholder="Text input">
+				</p>
+				<div>
+					<div class="form-group">
+						<label for="exampleInputFile">파일 업로드</label> <input type="file"
+							id="exampleInputFile">
+					</div>
+
+					<div class="fileDrop"></div>
+
+					<div id="uploadList"></div>
+				</div>
+
+					<div class="row">
+						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
+							<div class="row">
+							<div class="col-md-offset-5 col-sm-offset-5">
+							<button class="btn btn-info">등록</button>
+
+							<button id="back" type="button" class="btn btn-danger ">취소</button>
+							</div>
 							</div>
 						</div>
 					</div>
-	
-	
-					<div id="post-editor" class="post-editor js-post-editor">
-	
-						<div style="position: relative;">
-							<div class="wmd-container">
-								<label>내용</label> <br>
-								<textarea id="wmd-input" class="wmd-input" name="content"
-									cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
-							</div>
-						</div>
-	
-						<div class="fl" style="margin-top: 8px; height: 24px;">&nbsp;</div>
-						<div id="draft-saved" class="draft-saved community-option fl"
-							style="margin-top: 8px; height: 24px; display: none;">draft
-							saved</div>
-	
-						<div id="draft-discarded"
-							class="draft-discarded community-option fl"
-							style="margin-top: 8px; height: 24px; display: none;">draft
-							discarded</div>
-	
-					</div>
-	
-					<div id="question-form">
-						<div style="position: relative;">
-							<div class="form-item ask-title">
-	
-								<table class="ask-title-table">
-									<tr>
-										<td class="ask-title-cell-key"><label for="title">작성자</label>
-										</td>
-										<td class="ask-title-cell-value"><input id="user"
-											name="mid" type="text" maxlength="300" tabindex="100"
-											class="js-ask-title" data-min-length="15"
-											data-max-length="150"></td>
-									</tr>
-								</table>
-	
-							</div>
-						</div>
-					</div>
-					<br> <br>
-	
-					<div id="question-only-section">
-						<div class="form-submit cbt">
-							<button>등록</button>
-						</div>
-					</div>
-				</form>
+
+			</form>
 		</div>
 	</div>
+</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -111,7 +107,10 @@
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
-
+	
+	$("#back").on("click", function(e) {
+		self.location = "/board/list";
+	});
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
 		event.preventDefault();
@@ -154,5 +153,6 @@ $(document).ready(function() {
 
 });
 </script>
+
 
 <%@ include file="footer.jsp"%>

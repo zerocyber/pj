@@ -22,7 +22,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script
-	src="bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
+	src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
 
 </head>
 
