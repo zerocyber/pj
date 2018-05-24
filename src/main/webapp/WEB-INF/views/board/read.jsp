@@ -95,27 +95,16 @@ $(document).ready(function() {
   var formObj = $("#inform");
   
   $("#back").on("click", function(e) {
-<<<<<<< HEAD
-    self.location = "/nboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-  });
-  
-  $("#modify").on("click", function(e) {
-    self.location = "/nboard/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
-  });
-  
-  $("#remove").on("click", function(e) {
-    formObj.attr("action", "/nboard/delete");
-=======
     self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
   });
-  
+
+
   $("#modify").on("click", function(e) {
     self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
   });
   
   $("#remove").on("click", function(e) {
     formObj.attr("action", "/board/delete");
->>>>>>> ab411688bf6828428523f8f31b4a6ea40702007e
     formObj.submit();
   });
   
