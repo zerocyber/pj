@@ -40,6 +40,7 @@
         <button type="submit" class="btn btn-default">제출</button>
       </div>
     </form>
+    
     <div class="row">
       <div class="col-sm-9 col-sm-offset-1">
         <label for="replyList">ReplyList</label>
