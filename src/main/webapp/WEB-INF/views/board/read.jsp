@@ -95,6 +95,7 @@ $(document).ready(function() {
   var formObj = $("#inform");
   
   $("#back").on("click", function(e) {
+
     self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
   });
 
@@ -105,6 +106,7 @@ $(document).ready(function() {
   
   $("#remove").on("click", function(e) {
     formObj.attr("action", "/board/delete");
+
     formObj.submit();
   });
   
