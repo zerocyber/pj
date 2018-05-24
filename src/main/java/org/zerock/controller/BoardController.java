@@ -90,9 +90,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String writePost(BoardVO vo){
+	public String writePost(BoardVO vo, Model model){
 		log.info("write post.......");
 		service.write(vo);
+		model.addAttribute("result", "success");
 		return "redirect:/board/list";
 	}
 	
@@ -115,4 +116,5 @@ public class BoardController {
 		service.remove(bno);
 		return "redirect:/board/list";
 	}
+
 }
