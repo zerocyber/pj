@@ -9,7 +9,6 @@
 	border: gray;
 	background-color: #FAF6F6;
 }
-
 .form-control-s {
 	display: block;
 	width: 150px;
@@ -32,8 +31,7 @@
 }
 </style>
 
-<div
-	class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 	<div class="row">
 		<div class="col-md-10 col-sm-10">
