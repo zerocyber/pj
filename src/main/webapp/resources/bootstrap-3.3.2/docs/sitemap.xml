@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9.xsd">
+=======
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" 
+xmlns="http://www.sitemaps.org/schemas/sitemap/0.9.xsd">
+>>>>>>> e79f206565604353b40cd29b0470d648243078bf
   <url>
     <loc>{{ site.url }}/</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
