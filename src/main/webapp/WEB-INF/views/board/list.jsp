@@ -76,7 +76,7 @@
 	<div class="col-sm-8 col-sm-offset-4">
 		<div id="pagination">
 			<ul class="pagination">
-			<li><span style="background-color: orange">Page ${pm.cri.page} of ${pm.total}</span></li>
+			<li><span style="background-color: black;" >Page ${pm.cri.page} of ${pm.total}</span></li>
 				<c:if test="${pm.prev}">
 					<c:choose>
 						<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
