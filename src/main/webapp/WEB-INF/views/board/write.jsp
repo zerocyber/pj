@@ -12,7 +12,7 @@
 	background-color: #FAF6F6;
 }
 </style>
-
+<div class="row">
 	<div id="content" class="snippet-hidden">
 		<div id="mainbar" class="ask-mainbar">
 		<form id="post-form" class="post-form" name="post-form" method="post" enctype="multipart/form-data">

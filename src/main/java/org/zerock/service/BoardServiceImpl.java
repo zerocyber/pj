@@ -33,12 +33,8 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void write(BoardVO vo) {
 		mapper.insert(vo);
-<<<<<<< HEAD
-		log.info(vo.getFiles().size()+"........................");
-		if(!vo.getFiles().isEmpty()) {
-=======
+
 		if(vo.getFile().size() > 0) {
->>>>>>> 980a2346bc00ed3c1c65c47fbfb3776fa7785fe9
 			mapper.addFile(vo);	
 		}
 	}
@@ -73,9 +69,7 @@ public class BoardServiceImpl implements BoardService{
 	public int viewCnt(int bno) {
 		return mapper.addViews(bno);
 	}
-<<<<<<< HEAD
 
-=======
 	// 파일 삭제 sql
 	@Override
 	public int removeFile(int bno) {
@@ -86,7 +80,5 @@ public class BoardServiceImpl implements BoardService{
 	public BoardVO searchFile(int bno) {
 		return mapper.searchFile(bno);
 	}
-	
->>>>>>> 980a2346bc00ed3c1c65c47fbfb3776fa7785fe9
 	
 }
