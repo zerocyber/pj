@@ -1,7 +1,5 @@
 package org.zerock.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,14 +20,12 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
-
-import com.fasterxml.jackson.databind.annotation.JsonAppend.Prop;
 import com.mysql.jdbc.StringUtils;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/nboard/*")
+@RequestMapping("/board/*")
 @Controller
 @Log4j
 public class BoardController {
@@ -58,7 +54,7 @@ public class BoardController {
 		model.addAttribute("pm", pm);
 	}
 	
-	@GetMapping("/read")
+	@GetMapping("/nread")
 	public void read(BoardVO vo, Model model, @Param("bno") int bno, Criteria cri) {
 		log.info("read.............");
 		Cookie cookies[] = req.getCookies();
@@ -85,9 +81,7 @@ public class BoardController {
 			service.viewCnt(bno);
 		}
 		model.addAttribute("BoardVO", service.read(bno));
-		model.addAttribute("cri",cri);
-		
-		
+		model.addAttribute("cri",cri);	
 	}
 	
 	@GetMapping("/write")
@@ -121,10 +115,14 @@ public class BoardController {
 		service.remove(bno);
 		return "redirect:/board/list";
 	}
-	
+
+	@GetMapping("/Test")
+	public void Test() {
+	}
 	@GetMapping("/nread")
 	public void test() {
-		
+
+		log.info("nread...............");
 	}
-	
+
 }
