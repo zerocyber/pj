@@ -1,7 +1,7 @@
 <%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
+
  <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
 	<div class="row">
 		<div class="col-sm-9 col-sm-offset-1">
@@ -28,23 +28,6 @@
 		</div>
 	</div>
 
-=======
-  <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
-
-	<div class="row">
-	<div class="col-sm-9 col-sm-offset-1">
-	<h1>Dash Board</h1>
-	</div>
-	</div>
-
-
-    <form>
-      <div class="form-group row">
-        <div class="col-sm-9 col-sm-offset-1">
-          <label for="title">Title</label> <input type="text" class="form-control" id="title" value="${BoardVO.title}" readonly />
-        </div>
-      </div>
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
       <div class="form-group row">
         <div class="col-sm-9 col-sm-offset-1">
           <label for="content">Content</label>
@@ -73,13 +56,12 @@
       </div>
     </form>
 
-<<<<<<< HEAD
+
   <div class="row">
     <div class="col-sm-9 col-sm-offset-1">
       <label for="replyList" class="replyUL">ReplyList</label>
-    </div>
-      <div class="col-sm-9 col-sm-offset-1 replyBox">
-        </div>
+  	</div>
+      <div class="col-sm-9 col-sm-offset-1 replyBox"></div>
   </div>
 
   <div class="row">
@@ -88,24 +70,9 @@
     </div>
   </div>
 
-  <div class="row">
-=======
-	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
-			<label for="replyList" class="replyUL">ReplyList</label>
-		</div>
-     	<div class="col-sm-9 col-sm-offset-1 replyBox">
-      	</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
-			<div class="empty col-sm-12 text-center"></div>
-		</div>
-	</div>
+
 
 	<div class="row">
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
       <div class="col-sm-9 col-sm-offset-1">
         <label for="replyContent">ReplyContent</label>
         <div class="row">
@@ -115,11 +82,7 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-
-=======
-      
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
+    
     <div class="row">
       <div class="col-sm-9 col-sm-offset-1">
         <div class="row">
@@ -130,27 +93,17 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
   </div>
+    
 </div>
 
-  <form id="inform" method="post">
-    <input type="hidden" name="page" value="${cri.page}">
-    <input type="hidden" name="bno" value="${BoardVO.bno}">
-    <input type="hidden" name="type" value="${cri.type}">
-    <input type="hidden" name="keyword" value="${cri.keyword}">
-  </form>
-=======
-	</div>
-</div>
+<form id="inform" method="post">
+  <input type="hidden" name="page" value="${cri.page}">
+  <input type="hidden" name="bno" value="${BoardVO.bno}">
+  <input type="hidden" name="type" value="${cri.type}">
+  <input type="hidden" name="keyword" value="${cri.keyword}">
+</form>
 
-	<form id="inform" method="post">
-		<input type="hidden" name="page" value="${cri.page}"> 
-		<input type="hidden" name="bno" value="${BoardVO.bno}">
-		<input type="hidden" name="type" value="${cri.type}">
-		<input type="hidden" name="keyword" value="${cri.keyword}">
-	</form>
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -158,27 +111,15 @@ $(document).ready(function() {
   var formObj = $("#inform");
   
   $("#back").on("click", function(e) {
-<<<<<<< HEAD
-    self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-  });
-  
-=======
-
     self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
   });
 
-
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
   $("#modify").on("click", function(e) {
     self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
   });
   
   $("#remove").on("click", function(e) {
     formObj.attr("action", "/board/delete");
-<<<<<<< HEAD
-=======
-
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
     formObj.submit();
   });
   

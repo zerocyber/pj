@@ -13,26 +13,13 @@
 
 <title>Leaf village</title>
 <!-- CSS -->
-<<<<<<< HEAD
 <link href="/resources/bootstrap-3.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-=======
-<link href="/resources/bootstrap-3.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
 <link href="/resources/dashboard.css" rel="stylesheet">
 <link href="/resources/sticky-footer.css" rel="stylesheet">
 
 <!-- JAVA SCRIPT -->
-<<<<<<< HEAD
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
-=======
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script
-	src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
-
 </head>
 
 <body>
@@ -51,12 +38,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
-				<li><a href="#">Sign in</a></li>
-=======
 				<li><a href="../login">Sign in</a></li>
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
-				<li><a href="#">Sign up</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">
@@ -69,13 +51,8 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-<<<<<<< HEAD
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Board</a></li>
-=======
 					<li><a href="index">Home</a></li>
 					<li><a href="list">Board</a></li>
->>>>>>> 401f46b3c11975fdc9d645256ac11dd964a726eb
 					<li><a href="#">Gallery</a></li>
 					<li><a href="#">Team</a></li>
 					<li><a href="#">Contact us</a></li>
