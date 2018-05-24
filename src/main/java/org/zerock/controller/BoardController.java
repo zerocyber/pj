@@ -117,8 +117,4 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
-	@GetMapping("/Test")
-	public void Test() {
-	}
-
 }

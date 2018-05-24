@@ -1,6 +1,5 @@
 <%@ include file="header.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -22,13 +21,20 @@
 				<tbody>
 					<c:forEach items="${BoardVO}" var="board">
 						<tr style="text-align: center">
-							<td>${board.bno}</td>
-							<td style="text-align: left"><a
-								href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}">${board.title}</a></td>
-							<td>${board.mid}</td>
-							<td><fmt:formatDate value="${board.regdate}"
-									pattern="yyyy.MM.dd hh:mm:ss" /></td>
-							<td class="center">${board.views}</td>
+							<td><c:out value="${board.bno}"/></td>
+							  <c:choose>
+							<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+							<td style="text-align: left">
+							<a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}"><c:out value="${board.title}"/></a></td>
+								</c:when>
+								<c:otherwise>
+								<td style="text-align: left">
+								<a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}&type=${pm.cri.type}&keyword=${pm.cri.keyword}"><c:out value="${board.title}"/></a></td>
+							  </c:otherwise>
+							  </c:choose>
+							<td><c:out value="${board.mid}"/></td>
+							<td><fmt:formatDate value='${board.regdate}' pattern="yyyy.MM.dd hh:mm:ss" /></td>
+							<td class="center"><c:out value="${board.views}"/></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -67,9 +73,10 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-6 col-sm-offset-4">
+	<div class="col-sm-8 col-sm-offset-4">
 		<div id="pagination">
 			<ul class="pagination">
+			<li><span style="background-color: orange">Page ${pm.cri.page} of ${pm.total}</span></li>
 				<c:if test="${pm.prev}">
 					<c:choose>
 						<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
@@ -86,11 +93,11 @@
 				<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
 					<c:choose>
 						<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-							<li><a id="pageLink" class="btn btn-secondary"
+							<li ${pm.cri.page == idx ? 'class=active':''}><a id="pageLink" class="btn btn-secondary"
 								href="/board/list?page=${idx}">${idx}</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a id="pageLink" class="btn btn-secondary"
+							<li ${pm.cri.page == idx ? 'class=active':''}><a id="pageLink" class="btn btn-secondary"
 								href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
 						</c:otherwise>
 					</c:choose>
