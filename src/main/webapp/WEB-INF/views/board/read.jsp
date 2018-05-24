@@ -280,5 +280,14 @@ $(document).ready(function() {
       pageList(page);
     });  
 });
+
+function getOriginalName(filmeName){
+	if(checkImageType(fileName)){
+		return;
+	}
+	var idx = fileName.indexOf("_") + 1;
+	return fileName.substr(idx);
+}
+
 </script>
 <%@ include file="footer.jsp"%>

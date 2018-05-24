@@ -10,7 +10,9 @@ import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Service
 public class BoardServiceImpl implements BoardService{
 
@@ -31,6 +33,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void write(BoardVO vo) {
 		mapper.insert(vo);
+
 		if(vo.getFile().size() > 0) {
 			mapper.addFile(vo);	
 		}
@@ -66,6 +69,7 @@ public class BoardServiceImpl implements BoardService{
 	public int viewCnt(int bno) {
 		return mapper.addViews(bno);
 	}
+
 	// 파일 삭제 sql
 	@Override
 	public int removeFile(int bno) {
@@ -76,6 +80,5 @@ public class BoardServiceImpl implements BoardService{
 	public BoardVO searchFile(int bno) {
 		return mapper.searchFile(bno);
 	}
-	
 	
 }

@@ -31,5 +31,4 @@ public interface BoardMapper {
 	public BoardVO searchFile(int bno);
 
 
-	
 }
