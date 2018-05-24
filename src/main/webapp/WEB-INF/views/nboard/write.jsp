@@ -1,18 +1,18 @@
-<%@ include file="header2.jsp"%>
+<%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <style>
 .fileDrop {
-	width: 600px;
-	height: 70px;
+	width: 100%;
+	height: 100px;
 	border: gray;
 	background-color: #FAF6F6;
 }
 
 .form-control-s {
 	display: block;
-	width: 20%;
+	width: 150px;
 	height: 34px;
 	padding: 6px 12px;
 	font-size: 14px;
@@ -33,78 +33,124 @@
 </style>
 
 <div
-	class="Site-content col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<div class="container-fluid">
+	class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-		<div class="row">
-			<div class="col-md-9">
-				<form>
-					<div style="border: 1px solid gold; float: left; width: 33%;">
-						<select class="form-control-s">
-							<option>분류</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-						</select>
-					</div>
-					<div style="border: 1px solid gold; float: left; width: 33%;">
-						<select class="form-control-s">
-							<option>과정</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-						</select>
-					</div>
-
-					<br>
-					<p>Title</p>
-					<p>
-						<input type="text" class="form-control" placeholder="Text input">
-					</p>
-					<p>Content</p>
-					<p>
-						<textarea class="form-control" rows="15"></textarea>
-					</p>
-					<p>Writer</p>
-					<p>
-						<input type="text" class="form-control-s" placeholder="Text input">
-					</p>
-					<div>
-						<p>Attach File</p>
-
-						<div class="form-group">
-							<label for="exampleInputFile">파일 업로드</label> <input type="file"
-								id="exampleInputFile">
-						</div>
-
-						<div class="fileDrop"></div>
-
-						<div id="uploadList"></div>
-
-					</div>
-
-
-					<p>
+	<div class="row">
+		<div class="col-md-10 col-sm-10">
+			<form  id="post-form" name="post-form" method="post" enctype="multipart/form-data">
+				<div class="form-group">
 					<div class="row">
-						<div class="col-md-3"></div>
-						<div class="col-md-3">
-							<button type="button" class="btn btn-info">등록</button>
+						<div class="col-sm-3">
+							<select class="form-control" name="kno">
+								<option value="">분류</option>
+								<option value="10">후기</option>
+								<option value="20">일반</option>
+								<option value="30">질문</option>
+							</select>
 						</div>
-						<div class="col-md-3">
-							<button type="button" class="btn btn-danger">뒤로가기</button>
+						<div class="col-sm-3">
+							<select class="form-control col-sm-3" name="cno">
+								<option value="">과정</option>
+								<option value="100">Java</option>
+								<option value="200">C</option>
+								<option value="300">C#</option>
+							</select>
 						</div>
-						<div class="col-md-3"></div>
 					</div>
-					</p>
-				</form>
-			</div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="title">Title</label> <input id="title" name="title"
+						type="text" class="form-control" placeholder="Text input">
+				</div>
+				<label for="content">Content</label>
+				<p>
+					<textarea id="content" name="content" class="form-control"
+						rows="15"></textarea>
+				</p>
+				<label>Writer</label>
+				<p>
+					<input id="writer" name="mid" type="text" class="form-control-s"
+						placeholder="Text input">
+				</p>
+				<div>
+					<div class="form-group">
+						<label for="exampleInputFile">파일 업로드</label> <input type="file"
+							id="exampleInputFile">
+					</div>
+
+					<div class="fileDrop"></div>
+
+					<div id="uploadList"></div>
+				</div>
+
+					<div class="row">
+						<div class="col-md-3 col-sm-3" style="margin:auto">
+							<button class="btn btn-info">등록</button>
+
+							<button id="back" type="button" class="btn btn-danger ">취소</button>
+						</div>
+					</div>
+
+			</form>
 		</div>
 	</div>
 </div>
 
 
-<%@ include file="footer2.jsp"%>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+	
+	$("#back").on("click", function(e) {
+		self.location = "/nboard/list";
+	});
+// 파일 업로드
+	$(".fileDrop").on("dragenter dragover",function(event) {
+		event.preventDefault();
+	});
+	$(".fileDrop").on("drop",function(event) {
+		event.preventDefault();
+		var files = event.originalEvent.dataTransfer.files;
+		var file = files[0];
+
+		console.log(file);
+
+		var formData = new FormData();
+		formData.append("file", file);
+		console.log(files);
+
+		$.ajax({
+			url : '/upload',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(data) {
+			var str = "";
+
+			if (checkImageType(data)) {
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='file' value='"+data+"'/>"
+				} else {
+				str = "<div>"+ data + "</div>";
+				}
+				$("#uploadList").append(str);
+			}
+		});
+	});
+
+	function checkImageType(fileName) {
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		return fileName.match(pattern);
+	}
+
+});
+</script>
+
+
+<%@ include file="footer.jsp"%>

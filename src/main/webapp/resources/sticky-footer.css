@@ -15,11 +15,7 @@ body {
   /* Set the fixed height of the footer here */
   height: 30px;
   background-color: black;
-<<<<<<< HEAD
   z-index: 100000;
-=======
-  z-index: 1000;
->>>>>>> e79f206565604353b40cd29b0470d648243078bf
 }
 
 
