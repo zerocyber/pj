@@ -1,7 +1,10 @@
-<!-- Footer -->
-<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
-
-</body>
+  <!-- Footer start-->
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Hello my name is ninja</p>
+      </div>
+    </footer>
+  <!-- Footer end-->
+  <!-- Body end -->
+  </body>
 </html>

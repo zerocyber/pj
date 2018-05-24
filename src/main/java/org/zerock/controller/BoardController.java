@@ -1,7 +1,5 @@
 package org.zerock.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +20,6 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
-
-import com.fasterxml.jackson.databind.annotation.JsonAppend.Prop;
 import com.mysql.jdbc.StringUtils;
 
 import lombok.Setter;
@@ -122,5 +118,9 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/Test")
+	public void Test() {
+		
+	}
 	
 }
