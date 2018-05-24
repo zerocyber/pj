@@ -54,7 +54,7 @@ public class BoardController {
 		model.addAttribute("pm", pm);
 	}
 	
-	@GetMapping("/nread")
+	@GetMapping("/read")
 	public void read(BoardVO vo, Model model, @Param("bno") int bno, Criteria cri) {
 		log.info("read.............");
 		Cookie cookies[] = req.getCookies();
@@ -115,14 +115,4 @@ public class BoardController {
 		service.remove(bno);
 		return "redirect:/board/list";
 	}
-
-	@GetMapping("/Test")
-	public void Test() {
-	}
-	@GetMapping("/nread")
-	public void test() {
-
-		log.info("nread...............");
-	}
-
 }
