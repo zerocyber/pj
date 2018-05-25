@@ -19,5 +19,4 @@ public class BoardVO {
 	private int kno;
 	private int cno;
 	private String[] files;
-
 }

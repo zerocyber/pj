@@ -325,5 +325,6 @@ $(document).ready(function() {
   pageList();
   /* 파일 리스트 로딩 */
 });
+
 </script>
 <%@ include file="footer.jsp"%>
