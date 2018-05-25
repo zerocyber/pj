@@ -9,7 +9,9 @@
 		</div>
 	</div>
 
-
+${fileList.files[0]}<br>
+${fileList.files[1]}<br>
+${fileList.files[2]}<br>
 <form>
 	<div class="form-group row">
 		<div class="col-sm-9 col-sm-offset-1">
@@ -295,6 +297,33 @@ $(document).ready(function() {
       var page = $(e.target).text(); // page number
       pageList(page);
     });  
+
+	/* 파일 리스트 로딩 */
+	function pageList(page) {
+    if(typeof page == "undefined"){
+      var page = 1;
+    }
+    console.log("page loading.....................  ");
+
+    $.getJSON("/replies/${param.bno}/"+page, function(data){
+
+      var str = "";
+
+      $(data.list).each(function(){
+	  str += "<div class='row' style='background-color:#f5f5f5;' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
+			      +"<span class='col-sm-2 label label-warning'>"+this.mid+"</span>"
+				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
+				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
+				      +"<span class='col-sm-1 text-right label label-danger'>"+this.rno+"</span>"
+			      +"<span class='col-sm-12'>"+this.content+"</span>"
+    		 +"</div>";
+      });
+      $(".replyBox").html(str);
+      replyPaging(data.pm);
+    });
+  };
+  pageList();
+  /* 파일 리스트 로딩 */
 });
 </script>
 <%@ include file="footer.jsp"%>

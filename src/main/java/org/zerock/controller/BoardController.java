@@ -1,5 +1,6 @@
 package org.zerock.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,7 +81,9 @@ public class BoardController {
 			res.addCookie(cookie);
 			service.viewCnt(bno);
 		}
+		vo.setFiles(service.searchFile(bno));
 		model.addAttribute("BoardVO", service.read(bno));
+		model.addAttribute("fileList",vo);
 		model.addAttribute("cri",cri);	
 	}
 	
@@ -90,7 +93,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String writePost(BoardVO vo, Model model){
+	public String writePost(BoardVO vo, Model model) throws Exception{
 		log.info("write post.......");
 		service.write(vo);
 		model.addAttribute("result", "success");

@@ -58,23 +58,23 @@ public class UploadController {
 		log.info("File name : "+fileName);
 		
 		try {
-			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
+			String formatName = fileName.substring(fileName.lastIndexOf(".")+1); // 확장
 			
-			MediaType mType = MediaUtils.getMediaType(formatName);
+			MediaType mType = MediaUtils.getMediaType(formatName); 
 			
 			HttpHeaders headers = new HttpHeaders();
 			
-			in = new FileInputStream(uploadPath + fileName);
+			in = new FileInputStream(uploadPath + fileName); // 풀 경로 
 			
 			if(mType != null) {
 				headers.setContentType(mType);
 			}else {
-				fileName = fileName.substring(fileName.indexOf("_")+1);
-				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				fileName = fileName.substring(fileName.indexOf("_")+1); // 순수한 파일이름 
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); 
 		        headers.add("Content-Disposition", "attachment; filename=\""+ 
 		                new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
 			}
-			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in),
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), // 파일을 담는다 엔티티 
 					headers, HttpStatus.CREATED);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -84,5 +84,11 @@ public class UploadController {
 		}
 		return entity;
 	}
+	
+//	@ResponseBody
+//	@GetMapping("/listFile")
+//	public ResponseEntity<byte []> listFile() {
+//		
+//	}
 
 }

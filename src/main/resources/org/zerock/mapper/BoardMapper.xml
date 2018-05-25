@@ -70,6 +70,8 @@
 		limit #{pageStart},#{perPageNum}
 
 	</select>
+	
+	
 	<!-- 파일 업로드 sql 시작 -->
 	<insert id="addFile" parameterType="org.zerock.domain.BoardVO" >
 		<selectKey order="BEFORE" keyProperty="bno" resultType="int">
@@ -78,7 +80,7 @@
 			
 		insert into t_file (fullname, bno)
 		values
-		<foreach collection="fullname" item="item" separator="," > 
+		<foreach collection="files" item="item" separator="," > 
 		( #{item}, #{bno})
 		</foreach>
 	</insert>
@@ -89,8 +91,8 @@
 	</delete>
 	
 	<!-- 파일 조회 sql -->
-	<select id="searchFile" resultType="org.zerock.domain.BoardVO">
-	select fullname, bno from t_file where bno = #{bno} 
+	<select id="searchFile" resultType="string">
+	select fullname from t_file where bno = #{bno} 
 	</select>
 	
 	<update id="addViews">

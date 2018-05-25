@@ -18,11 +18,6 @@ public class BoardVO {
 	private String mid;
 	private int kno;
 	private int cno;
-	private List<String> file;
-	
-	public BoardVO () {
-		this.file = new ArrayList<>();
-	}
-	
-	
+	private String[] files;
+
 }

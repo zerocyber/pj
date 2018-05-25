@@ -29,13 +29,13 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> pageList(Criteria cri) {
 		return mapper.list(cri);
 	}
-
+	
+	@Transactional
 	@Override
-	public void write(BoardVO vo) {
+	public void write(BoardVO vo)throws Exception{
 		mapper.insert(vo);
-
-		if(vo.getFile().size() > 0) {
-			mapper.addFile(vo);	
+		if(vo.getFiles() != null) {
+		mapper.addFile(vo);	
 		}
 	}
 
@@ -77,7 +77,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 	// 파일 조회 sql
 	@Override
-	public BoardVO searchFile(int bno) {
+	public String[] searchFile(int bno) {
 		return mapper.searchFile(bno);
 	}
 	

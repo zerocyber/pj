@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<div class="col-md-10 col-sm-10">
-			<form  id="post-form" name="post-form" method="post" enctype="multipart/form-data">
+			<form  id="post-form" name="post-form" method="post">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-3">
@@ -135,7 +135,7 @@ $(document).ready(function() {
 			var str = "";
 
 			if (checkImageType(data)) {
-				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='file' value='"+data+"'/>"
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='files' value='"+data+"'/>"
 				} else {
 				str = "<div>"+ data + "</div>";
 				}
