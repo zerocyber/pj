@@ -299,15 +299,11 @@ $(document).ready(function() {
     });  
 
 	/* 파일 리스트 로딩 */
-	function pageList(page) {
-    if(typeof page == "undefined"){
-      var page = 1;
-    }
-    console.log("page loading.....................  ");
+/* 	function fileList() {
+    
+    $.getJSON("/replies/displayFile", function(data){
 
-    $.getJSON("/replies/${param.bno}/"+page, function(data){
-
-      var str = "";
+      var 
 
       $(data.list).each(function(){
 	  str += "<div class='row' style='background-color:#f5f5f5;' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
@@ -323,8 +319,7 @@ $(document).ready(function() {
     });
   };
   pageList();
-  /* 파일 리스트 로딩 */
+  /* 파일 리스트 로딩 */ */
 });
-
 </script>
 <%@ include file="footer.jsp"%>
