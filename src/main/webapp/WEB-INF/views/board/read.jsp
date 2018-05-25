@@ -296,5 +296,6 @@ $(document).ready(function() {
       pageList(page);
     });  
 });
+
 </script>
 <%@ include file="footer.jsp"%>

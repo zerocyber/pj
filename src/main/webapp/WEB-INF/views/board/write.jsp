@@ -60,17 +60,17 @@
 
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
-						type="text" class="form-control" placeholder="Text input">
+						type="text" class="form-control" placeholder="Text input" required="required">
 				</div>
 				<label for="content">Content</label>
 				<p>
 					<textarea id="content" name="content" class="form-control"
-						rows="15"></textarea>
+						rows="15" required="required"></textarea>
 				</p>
 				<label>Writer</label>
 				<p>
 					<input id="mid" name="mid" type="text" class="form-control-s"
-						placeholder="Text input">
+						placeholder="Text input" required="required">
 				</p>
 				<div>
 					<div class="form-group">
@@ -87,7 +87,7 @@
 						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
 							<div class="row">
 							<div class="col-md-offset-5 col-sm-offset-5">
-							<button class="btn btn-info">등록</button>
+							<button class="btn btn-info btnc">등록</button>
 
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
 							</div>
@@ -107,7 +107,7 @@
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
-	
+
 	$("#back").on("click", function(e) {
 		self.location = "/board/list";
 	});

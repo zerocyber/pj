@@ -16,7 +16,7 @@
       <label for="title">Title</label>
       <div class="row">
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="title" name="title" value="${BoardVO.title}"/>
+          <input type="text" class="form-control" id="title" name="title" required="required" value="${BoardVO.title}"/>
         </div>
         <div class="col-sm-1">
           <h4 class="text-center"><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4>
@@ -31,7 +31,7 @@
   <div class="form-group row">
     <div class="col-sm-9 col-sm-offset-1">
       <label for="content">Content</label>
-      <textarea class="form-control" name="content" rows="10">${BoardVO.content}</textarea>
+      <textarea class="form-control" name="content" rows="10" required="required">${BoardVO.content}</textarea>
     </div>
   </div>
 

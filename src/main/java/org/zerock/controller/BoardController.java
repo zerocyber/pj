@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
@@ -90,10 +91,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String writePost(BoardVO vo, Model model){
+	public String writePost(BoardVO vo, RedirectAttributes rttr){
 		log.info("write post.......");
 		service.write(vo);
-		model.addAttribute("result", "success");
+		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/list";
 	}
 	

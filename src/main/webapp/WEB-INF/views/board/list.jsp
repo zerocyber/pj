@@ -129,12 +129,23 @@
 	crossorigin="anonymous"></script>
 
 <script>
+var result = '${msg}';
+
+
+if(result=="success"){
+	alert("게시글이 등록되었습니다.");
+	
+}
+</script>
+
+<script>
 	var btn = $("#btn_search")
 	var selectType = $("#selectType")
 	var writeBtn = $("#btn_write") 
 	var keyword = $("#keyword")
 	var pageLink = $("#pageLink")
-
+	
+	
 	btn.on("click", function(e) {
 		console.log("click........................")
 		if (selectType.val() == "") {
@@ -151,6 +162,8 @@
     	e.preventDefault();
 		location.href = "/board/write"
 	});
+    
+
 </script>
 
 <%@ include file="footer.jsp"%>

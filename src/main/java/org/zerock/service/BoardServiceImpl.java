@@ -34,7 +34,7 @@ public class BoardServiceImpl implements BoardService{
 	public void write(BoardVO vo) {
 		mapper.insert(vo);
 
-		if(vo.getFile().size() > 0) {
+		if(vo.getFullname().size() > 0) {
 			mapper.addFile(vo);	
 		}
 	}
