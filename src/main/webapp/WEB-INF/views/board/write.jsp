@@ -137,7 +137,7 @@ $(document).ready(function() {
 			if (checkImageType(data)) {
 				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='files' value='"+data+"'/>"
 				} else {
-				str = "<div>"+ data + "</div>";
+				str = "<div>"+ data +"<input type='hidden' name='files' value='"+data+"'/>"+"</div>";
 				}
 				$("#uploadList").append(str);
 			}

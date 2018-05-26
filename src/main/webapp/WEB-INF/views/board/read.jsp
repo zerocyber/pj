@@ -1,6 +1,8 @@
 <%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
  <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
 	<div class="row">
@@ -9,9 +11,7 @@
 		</div>
 	</div>
 
-${fileList.files[0]}<br>
-${fileList.files[1]}<br>
-${fileList.files[2]}<br>
+
 <form>
 	<div class="form-group row">
 		<div class="col-sm-9 col-sm-offset-1">
@@ -47,12 +47,16 @@ ${fileList.files[2]}<br>
         <div class="col-sm-9 col-sm-offset-1">
           <label for="fileList">FileList</label>
           <div class="row">
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+            <c:forEach items="${BoardVO.files }" var="list">
+            <c:choose> 
+            <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
+            <a href="/displayFile?fileName=${list}"><span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
+            </c:when>
+            <c:otherwise>         
+            <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
+            </c:otherwise>                        
+            </c:choose>
+            </c:forEach>
           </div>
         </div>
       </div>
@@ -109,7 +113,6 @@ ${fileList.files[2]}<br>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-  
   var formObj = $("#inform");
   
   $("#back").on("click", function(e) {
@@ -298,28 +301,22 @@ $(document).ready(function() {
       pageList(page);
     });  
 
-	/* 파일 리스트 로딩 */
-/* 	function fileList() {
-    
-    $.getJSON("/replies/displayFile", function(data){
-
-      var 
-
-      $(data.list).each(function(){
-	  str += "<div class='row' style='background-color:#f5f5f5;' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
-			      +"<span class='col-sm-2 label label-warning'>"+this.mid+"</span>"
-				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
-				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
-				      +"<span class='col-sm-1 text-right label label-danger'>"+this.rno+"</span>"
-			      +"<span class='col-sm-12'>"+this.content+"</span>"
-    		 +"</div>";
-      });
-      $(".replyBox").html(str);
-      replyPaging(data.pm);
-    });
-  };
-  pageList();
-  /* 파일 리스트 로딩 */ */
+  /* 파일 리스트 로딩 */
+  (function fileList() {
+	 
+	  
+	var file = '${fileList}';
+	console.log(file);
+	
+	
+	
+	  
+	  
+	  
+	 
+	  
+  })();
+  /* 파일 리스트 로딩 */
 });
 </script>
 <%@ include file="footer.jsp"%>

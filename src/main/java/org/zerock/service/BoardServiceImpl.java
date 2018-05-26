@@ -38,9 +38,12 @@ public class BoardServiceImpl implements BoardService{
 		mapper.addFile(vo);	
 		}
 	}
-
+	@Transactional
 	@Override
 	public int modify(BoardVO vo) {
+		if(vo.getFiles() != null) {
+			mapper.modiFile(vo);
+		}
 		return mapper.update(vo);
 	}
 
@@ -80,5 +83,18 @@ public class BoardServiceImpl implements BoardService{
 	public String[] searchFile(int bno) {
 		return mapper.searchFile(bno);
 	}
+	// 글 수정 시 파일 삭제 
+	@Override
+	public int removeFiles(String[] deleteFiles) {
+		return mapper.removeFiles(deleteFiles);
+	}
+	// 글 수정 시 파일 등록 
+	@Override
+	public int modiFile(BoardVO vo) {		
+		return mapper.modiFile(vo);
+	}
+	
+	
+	
 	
 }

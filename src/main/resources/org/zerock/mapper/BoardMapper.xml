@@ -27,7 +27,7 @@
 		content=#{content}, updatedate = now()
 		where bno=#{bno}
 	</update>
-
+	
 	<delete id="delete">
 		delete from t_board where bno=#{bno}
 	</delete>
@@ -99,7 +99,22 @@
 	update t_board set views = views + 1 where bno = #{bno}
 	</update>
 
-
+	<!-- 글 수정 시 파일 삭제 -->
+	<delete id="removeFiles" parameterType="string">
+	delete from t_file where fullname in
+	<foreach collection="array" item="item" separator="," open="(" close=")">
+	 #{item}
+	</foreach>
+	</delete>
+	
+	<!-- 글 수정 시 파일 등록 -->
+	<insert id="modiFile" parameterType="org.zerock.domain.BoardVO">
+	insert into t_file (fullname, bno) values
+	<foreach collection="files" item="item" separator=",">
+	( #{item}, #{bno})
+	</foreach>
+	</insert>
+	
 </mapper>
 
 

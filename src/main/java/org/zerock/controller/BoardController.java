@@ -2,9 +2,9 @@ package org.zerock.controller;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,6 +21,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
+
 import com.mysql.jdbc.StringUtils;
 
 import lombok.Setter;
@@ -57,7 +57,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/read")
-	public void read(BoardVO vo, Model model, @Param("bno") int bno, Criteria cri) {
+	public void read(Model model, @Param("bno") int bno, Criteria cri) {
 		log.info("read.............");
 		Cookie cookies[] = req.getCookies();
 		Map cookieMap = new HashMap();
@@ -82,9 +82,9 @@ public class BoardController {
 			res.addCookie(cookie);
 			service.viewCnt(bno);
 		}
+		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
-		model.addAttribute("BoardVO", service.read(bno));
-		model.addAttribute("fileList",vo);
+		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
 	}
 	
@@ -104,18 +104,24 @@ public class BoardController {
 	@GetMapping("/modify")
 	public void modify(@Param("bno")int bno, Model model, Criteria cri) {
 		log.info("modify get.........");
-		log.info(bno);
-		model.addAttribute("BoardVO", service.read(bno));
+		
+		BoardVO vo = service.read(bno);
+		vo.setFiles(service.searchFile(bno));
+		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri", cri);
 		
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPost(BoardVO vo, Criteria cri) {
+	public String modifyPost(BoardVO vo, Criteria cri, String[] deleteFiles) {
 		log.info("modify post...........");
+		if(deleteFiles != null) {
+			service.removeFiles(deleteFiles);   
+		}
 		service.modify(vo);
 		return "redirect:/board/read?page="+ cri.getPage() + "&perPageNum="+cri.getPerPageNum()+"&bno="+vo.getBno();	
 	}
+	
 	@PostMapping("/delete")
 	public String delete(@Param("bno") int bno) {
 		service.remove(bno);

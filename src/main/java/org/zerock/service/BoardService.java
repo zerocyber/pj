@@ -20,7 +20,7 @@ public interface BoardService {
 	public int count(Criteria cri);
 	
 	public List<BoardVO> searchList(Criteria cri);
-
+	// file method...............................
 	public int addFile(BoardVO vo);
 	
 	public int viewCnt(int bno);
@@ -28,5 +28,9 @@ public interface BoardService {
 	public int removeFile(int bno);
 	
 	public String[] searchFile(int bno);
+	
+	public int removeFiles(String[] deleteFiles);
+	
+	public int modiFile(BoardVO vo);
 
 }

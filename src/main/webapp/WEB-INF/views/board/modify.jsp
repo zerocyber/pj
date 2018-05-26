@@ -1,6 +1,8 @@
 <%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
     <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
 
@@ -40,20 +42,35 @@
       <p class="text-right label label-warning pull-right">${BoardVO.mid}</p>
     </div>
   </div>
-
-  <div class="form-group row">
-    <div class="col-sm-9 col-sm-offset-1">
-      <label for="fileList">FileList</label>
-      <div class="row">
-        <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-        <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-        <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-        <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-        <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-        <span class="col-sm-2">X<img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-      </div>
-    </div>
-  </div>
+  
+	<div class="form-group row">
+		<div class="col-sm-9 col-sm-offset-1">
+			<label for="uploadFile">uploadFile</label>
+			<div class="row uploadList" style="min-height: 100px; background-color: #f5f5f5;">
+			<div class="col-sm-12 text-center">
+			<p style="margin-top: 38px;">File Drop Here</p>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<div class="col-sm-9 col-sm-offset-1">
+			<label for="fileList">FileList</label>
+			<div class="row fileList">
+				<c:forEach items="${BoardVO.files }" var="list">
+					<c:choose> 
+						<c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
+							<a href="/displayFile?fileName=${list}"><span class="col-sm-2" data-add="${list}"><button class="btn btn-xs">X</button><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
+						</c:when>
+						<c:otherwise>         
+							<a href="/displayFile?fileName=${list}"><span class="col-sm-2" data-add="${list}"><button class="btn btn-xs">X</button>${list}</span></a>
+						</c:otherwise>                        
+					</c:choose>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
 
 </form>
 
@@ -72,15 +89,66 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
-  $(document).ready(function(){
-   var formObj = $("#modiForm");
-   $("#modify").on("click", function(e){
-     formObj.submit();
-   });
+$(document).ready(function(){   
+  var formObj = $("#modiForm");
+  $("#modify").on("click", function(e){
+    formObj.submit();
+  });
+  $("#delete").on("click", function(e){
+    self.location = "/board/read?page=${param.page}&perPageNum=${param.perPageNum}&bno=${BoardVO.bno}";
+  });
+  
+  var fileBtn = $(".fileList");
+  console.log(fileBtn)
+  fileBtn.on("click","a span button",function(e){
+	 e.preventDefault();
+	 console.log(e);
+	 console.log($(e.target).parent().parent().remove());
+	 var add = $(e.target).parent().data('add');
+	 var str = "<input type='hidden' name='deleteFiles' value='"+add+"' />";
+	 $("#modiForm").append(str);
+  });
+  
+	//파일 업로드
+	$(".uploadList").on("dragenter dragover",function(event) {
+		event.preventDefault();
+	});
+	$(".uploadList").on("drop",function(event) {
+		event.preventDefault();
+		var files = event.originalEvent.dataTransfer.files;
+		var file = files[0];
 
-   $("#delete").on("click", function(e){
-     self.location = "/board/read?page=${param.page}&perPageNum=${param.perPageNum}&bno=${BoardVO.bno}";
-   });
+		console.log(file);
+
+		var formData = new FormData();
+		formData.append("file", file);
+		console.log(files);
+
+		$.ajax({
+			url : '/upload',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(data) {
+			var str = "";
+
+			if (checkImageType(data)) {								
+					str = "<a href='/dispalyFile?fileName="+data+"'><span class='col-sm-2'><button class='btn btn-xs'>X</button><img src='/displayFile?fileName="+data+"' class='img-thumbnail'></span><input type='hidden' name='files' value='"+data+"'/></a>";
+				} else {
+					str = "<a href='/dispalyFile?fileName="+data+"'><span class='col-sm-2'><button class='btn btn-xs'>X</button>"+data+"</span><input type='hidden' name='files' value='"+data+"'/></a>";
+				}
+				$(".fileList").append(str);
+			}
+		});
+	});
+
+	function checkImageType(fileName) {
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		return fileName.match(pattern);
+	}
+  
 
 
  });
