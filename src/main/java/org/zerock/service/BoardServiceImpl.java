@@ -46,11 +46,12 @@ public class BoardServiceImpl implements BoardService{
 		}
 		return mapper.update(vo);
 	}
-
+	@Transactional
 	@Override
 	public int remove(int bno) {
-		mapper.removeFile(bno);
-		return mapper.delete(bno);
+		int row = mapper.removeFile(bno);
+		mapper.delete(bno);
+		return row;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
+import org.zerock.utils.UploadFileUtils;
 
 import com.mysql.jdbc.StringUtils;
 
@@ -40,6 +43,9 @@ public class BoardController {
 	
 	@Setter(onMethod_= {@Autowired})
 	private HttpServletResponse res;
+	
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
@@ -84,6 +90,7 @@ public class BoardController {
 		}
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
+		log.info("Arrays check............................................"+Arrays.toString(vo.getFiles()));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
 	}
@@ -113,18 +120,24 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPost(BoardVO vo, Criteria cri, String[] deleteFiles) {
+	public String modifyPost(BoardVO vo, Criteria cri, String[] deleteFiles)throws Exception {
 		log.info("modify post...........");
 		if(deleteFiles != null) {
-			service.removeFiles(deleteFiles);   
+			service.removeFiles(deleteFiles);
+			UploadFileUtils.deleteFile(uploadPath, deleteFiles);
 		}
 		service.modify(vo);
 		return "redirect:/board/read?page="+ cri.getPage() + "&perPageNum="+cri.getPerPageNum()+"&bno="+vo.getBno();	
 	}
 	
 	@PostMapping("/delete")
-	public String delete(@Param("bno") int bno) {
-		service.remove(bno);
+	public String delete(@Param("bno") int bno)throws Exception {
+		log.info("Delete in.....................................Post");
+		String[] deleteFiles = service.searchFile(bno);
+		int success = service.remove(bno);
+		if(success > 0) { 
+		UploadFileUtils.deleteFile(uploadPath, deleteFiles);	
+		}
 		return "redirect:/board/list";
 	}
 

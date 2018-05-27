@@ -85,10 +85,6 @@ public class UploadController {
 		return entity;
 	}
 	
-//	@ResponseBody
-//	@GetMapping("/listFile")
-//	public ResponseEntity<byte []> listFile() {
-//		
-//	}
+
 
 }
