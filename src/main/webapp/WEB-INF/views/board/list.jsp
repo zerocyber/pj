@@ -134,6 +134,7 @@
 	var writeBtn = $("#btn_write") 
 	var keyword = $("#keyword")
 	var pageLink = $("#pageLink")
+	var msg = '${msg}';
 
 	btn.on("click", function(e) {
 		console.log("click........................")
@@ -151,6 +152,22 @@
     	e.preventDefault();
 		location.href = "/board/write"
 	});
+    
+    if(msg == "success"){
+    	alert("글이 등록되었습니다");
+    	
+		window.location.reload();
+    	
+/* 	    if(window.location.reload()){
+	        history.pushState(null, null, location.href);
+	        window.onpopstate = function(){
+	        history.go(1);
+	        } 
+	     } */
+    }
+    
+
+    
 </script>
 
 <%@ include file="footer.jsp"%>

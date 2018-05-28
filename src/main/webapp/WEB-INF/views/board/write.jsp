@@ -60,12 +60,12 @@
 
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
-						type="text" class="form-control" placeholder="Text input">
+						type="text" class="form-control" placeholder="Text input" required="required">
 				</div>
 				<label for="content">Content</label>
 				<p>
 					<textarea id="content" name="content" class="form-control"
-						rows="15"></textarea>
+						rows="15" required="required"></textarea>
 				</p>
 				<label>Writer</label>
 				<p>
@@ -83,19 +83,19 @@
 					<div id="uploadList"></div>
 				</div>
 
-					<div class="row">
-						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
-							<div class="row">
-							<div class="col-md-offset-5 col-sm-offset-5">
-							<button class="btn btn-info">등록</button>
+				<div class="row">
+					<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
+						<div class="row">
+						  <div class="col-md-offset-5 col-sm-offset-5">
+							<button class="btn btn-info addBtn">등록</button>
 
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
-							</div>
-							</div>
+						  </div>
 						</div>
 					</div>
-
+				</div>
 			</form>
+			
 		</div>
 	</div>
 </div>
@@ -110,6 +110,7 @@ $(document).ready(function() {
 	
 	$("#back").on("click", function(e) {
 		self.location = "/board/list";
+
 	});
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
@@ -150,8 +151,19 @@ $(document).ready(function() {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}
+	var abc = { "list" : "write"};
 
+/* 	$(".addBtn").on("click",function(e){
+
+	   history.pushState(abc, null, "list");
+	   window.onpopstate = function(){
+		 history.go(1);
+	    }
+	}); */
+	
+	
 });
+	
 </script>
 
 

@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-	private String mid, mname, mpw, email;
+	private String mid, mpw, mname, email;
 	private Date regdate;
 }
