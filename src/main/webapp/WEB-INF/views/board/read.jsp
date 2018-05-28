@@ -44,13 +44,13 @@
       </div>
 
       <div class="form-group row">
-        <div class="col-sm-9 col-sm-offset-1">
+        <div class="col-sm-9 col-sm-offset-1 upload">
           <label for="fileList">FileList</label>
           <div class="row">
             <c:forEach items="${BoardVO.files }" var="list">
             <c:choose> 
             <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
-            <a href="/displayFile?fileName=${list}"><span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
+            <span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail picture"></span>        
             </c:when>
             <c:otherwise>         
             <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
@@ -61,6 +61,33 @@
         </div>
       </div>
     </form>
+
+<style>
+#wall{
+width:100%;
+height:100%;
+border:1px solid #E0F8F7;
+background-color: #F2F2F2;
+position: absolute;
+display: none;
+z-index: 100000;
+justify-content: center;
+align-items: center;
+opacity:1;
+top: 0px;
+left: 0px;
+}
+.picture{
+z-index:1;
+opacity: 1;
+}
+</style>
+
+<div id="wall">
+<div class="picture" align="center">
+
+</div>
+</div>
 
 
   <div class="row">
@@ -114,6 +141,29 @@
 <script>
 $(document).ready(function() {
   var formObj = $("#inform");
+  
+  var wall= $("#wall");
+  var picture=$(".picture");
+  
+	$(".upload").on("click","span",function(e) {
+		console.log("span clicked");
+		//$(this).attr("data-file")
+		var address = $(e.target)[0].src;
+		var target1 = address.substring(0, address.indexOf('s_'));
+		var target2 = address.substring(address.indexOf('s_')+2);
+		var originalName = target1 + target2;
+		var add = "<img src='"+originalName+"'/>";
+		
+		/* wall.html(str); */
+		picture.html(add);
+		wall.show("slow");
+/* 		picture.show("slow"); */
+	});
+
+	wall.on("click", function(e) {
+		wall.hide("slow");
+/* 		picture.hide("slow"); */
+	});
   
   $("#back").on("click", function(e) {
     self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
