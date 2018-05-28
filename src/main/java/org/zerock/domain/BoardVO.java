@@ -18,11 +18,5 @@ public class BoardVO {
 	private String mid;
 	private int kno;
 	private int cno;
-	private List<String> fullname;
-	
-	public BoardVO () {
-		this.fullname = new ArrayList<>();
-	}
-	
-	
+	private String[] files;
 }

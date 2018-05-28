@@ -29,25 +29,29 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> pageList(Criteria cri) {
 		return mapper.list(cri);
 	}
-
+	
+	@Transactional
 	@Override
-	public void write(BoardVO vo) {
+	public void write(BoardVO vo)throws Exception{
 		mapper.insert(vo);
-
-		if(vo.getFullname().size() > 0) {
-			mapper.addFile(vo);	
+		if(vo.getFiles() != null) {
+		mapper.addFile(vo);	
 		}
 	}
-
+	@Transactional
 	@Override
 	public int modify(BoardVO vo) {
+		if(vo.getFiles() != null) {
+			mapper.modiFile(vo);
+		}
 		return mapper.update(vo);
 	}
-
+	@Transactional
 	@Override
 	public int remove(int bno) {
-		mapper.removeFile(bno);
-		return mapper.delete(bno);
+		int row = mapper.removeFile(bno);
+		mapper.delete(bno);
+		return row;
 	}
 
 	@Override
@@ -77,8 +81,21 @@ public class BoardServiceImpl implements BoardService{
 	}
 	// 파일 조회 sql
 	@Override
-	public BoardVO searchFile(int bno) {
+	public String[] searchFile(int bno) {
 		return mapper.searchFile(bno);
 	}
+	// 글 수정 시 파일 삭제 
+	@Override
+	public int removeFiles(String[] deleteFiles) {
+		return mapper.removeFiles(deleteFiles);
+	}
+	// 글 수정 시 파일 등록 
+	@Override
+	public int modiFile(BoardVO vo) {		
+		return mapper.modiFile(vo);
+	}
+	
+	
+	
 	
 }
