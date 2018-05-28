@@ -1,9 +1,11 @@
 package org.zerock.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,6 +23,8 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
+import org.zerock.utils.UploadFileUtils;
+
 import com.mysql.jdbc.StringUtils;
 
 import lombok.Setter;
@@ -40,6 +44,9 @@ public class BoardController {
 	@Setter(onMethod_= {@Autowired})
 	private HttpServletResponse res;
 	
+	@Resource(name = "uploadPath")
+	private String uploadPath;
+	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
 		log.info("list..............");
@@ -56,7 +63,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/read")
-	public void read(BoardVO vo, Model model, @Param("bno") int bno, Criteria cri) {
+	public void read(Model model, @Param("bno") int bno, Criteria cri) {
 		log.info("read.............");
 		Cookie cookies[] = req.getCookies();
 		Map cookieMap = new HashMap();
@@ -81,7 +88,10 @@ public class BoardController {
 			res.addCookie(cookie);
 			service.viewCnt(bno);
 		}
-		model.addAttribute("BoardVO", service.read(bno));
+		BoardVO vo = service.read(bno);
+		vo.setFiles(service.searchFile(bno));
+		log.info("Arrays check............................................"+Arrays.toString(vo.getFiles()));
+		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
 	}
 	
@@ -91,7 +101,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String writePost(BoardVO vo, RedirectAttributes rttr){
+
+	public String writePost(BoardVO vo, Model model, RedirectAttributes rttr) throws Exception{
+
 		log.info("write post.......");
 		service.write(vo);
 		rttr.addFlashAttribute("msg", "success");
@@ -101,21 +113,33 @@ public class BoardController {
 	@GetMapping("/modify")
 	public void modify(@Param("bno")int bno, Model model, Criteria cri) {
 		log.info("modify get.........");
-		log.info(bno);
-		model.addAttribute("BoardVO", service.read(bno));
+		
+		BoardVO vo = service.read(bno);
+		vo.setFiles(service.searchFile(bno));
+		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri", cri);
 		
 	}
 	
 	@PostMapping("/modify")
-	public String modifyPost(BoardVO vo, Criteria cri) {
+	public String modifyPost(BoardVO vo, Criteria cri, String[] deleteFiles)throws Exception {
 		log.info("modify post...........");
+		if(deleteFiles != null) {
+			service.removeFiles(deleteFiles);
+			UploadFileUtils.deleteFile(uploadPath, deleteFiles);
+		}
 		service.modify(vo);
 		return "redirect:/board/read?page="+ cri.getPage() + "&perPageNum="+cri.getPerPageNum()+"&bno="+vo.getBno();	
 	}
+	
 	@PostMapping("/delete")
-	public String delete(@Param("bno") int bno) {
-		service.remove(bno);
+	public String delete(@Param("bno") int bno)throws Exception {
+		log.info("Delete in.....................................Post");
+		String[] deleteFiles = service.searchFile(bno);
+		int success = service.remove(bno);
+		if(success > 0) { 
+		UploadFileUtils.deleteFile(uploadPath, deleteFiles);	
+		}
 		return "redirect:/board/list";
 	}
 

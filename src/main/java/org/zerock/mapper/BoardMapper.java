@@ -28,7 +28,10 @@ public interface BoardMapper {
 	// 파일 삭제
 	public int removeFile(int bno);
 	// 파일 조회 
-	public BoardVO searchFile(int bno);
-
+	public String[] searchFile(int bno);
+	// 글 수정 시 파일 삭제
+	public int removeFiles(String[] deleteFiles);
+	// 글 수정 시 파일 등록
+	public int modiFile(BoardVO vo);
 
 }

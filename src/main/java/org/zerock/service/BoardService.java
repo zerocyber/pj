@@ -11,7 +11,7 @@ public interface BoardService {
 	
 	public List<BoardVO> pageList(Criteria cri);
 		
-	public void write(BoardVO vo);
+	public void write(BoardVO vo)throws Exception;
 	
 	public int modify(BoardVO vo);
 	
@@ -20,13 +20,17 @@ public interface BoardService {
 	public int count(Criteria cri);
 	
 	public List<BoardVO> searchList(Criteria cri);
-
+	// file method...............................
 	public int addFile(BoardVO vo);
 	
 	public int viewCnt(int bno);
 
 	public int removeFile(int bno);
 	
-	public BoardVO searchFile(int bno);
+	public String[] searchFile(int bno);
+	
+	public int removeFiles(String[] deleteFiles);
+	
+	public int modiFile(BoardVO vo);
 
 }

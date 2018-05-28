@@ -9,7 +9,6 @@
 	border: gray;
 	background-color: #FAF6F6;
 }
-
 .form-control-s {
 	display: block;
 	width: 150px;
@@ -32,12 +31,11 @@
 }
 </style>
 
-<div
-	class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 	<div class="row">
 		<div class="col-md-10 col-sm-10">
-			<form  id="post-form" name="post-form" method="post" enctype="multipart/form-data">
+			<form  id="post-form" name="post-form" method="post">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-3">
@@ -70,7 +68,7 @@
 				<label>Writer</label>
 				<p>
 					<input id="mid" name="mid" type="text" class="form-control-s"
-						placeholder="Text input">
+						placeholder="Text input" required="required">
 				</p>
 				<div>
 					<div class="form-group">
@@ -83,11 +81,19 @@
 					<div id="uploadList"></div>
 				</div>
 
+<<<<<<< HEAD
 				<div class="row">
 					<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
 						<div class="row">
 						  <div class="col-md-offset-5 col-sm-offset-5">
 							<button class="btn btn-info addBtn">등록</button>
+=======
+					<div class="row">
+						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
+							<div class="row">
+							<div class="col-md-offset-5 col-sm-offset-5">
+							<button class="btn btn-info btnc">등록</button>
+>>>>>>> f3f5445d0cf21bad033f3f99819e82fae061a348
 
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
 						  </div>
@@ -107,7 +113,7 @@
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
-	
+
 	$("#back").on("click", function(e) {
 		self.location = "/board/list";
 
@@ -138,9 +144,9 @@ $(document).ready(function() {
 			var str = "";
 
 			if (checkImageType(data)) {
-				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='file' value='"+data+"'/>"
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='files' value='"+data+"'/>"
 				} else {
-				str = "<div>"+ data + "</div>";
+				str = "<div>"+ data +"<input type='hidden' name='files' value='"+data+"'/>"+"</div>";
 				}
 				$("#uploadList").append(str);
 			}

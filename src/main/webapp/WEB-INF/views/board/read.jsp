@@ -1,6 +1,8 @@
 <%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
  <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
 	<div class="row">
@@ -45,12 +47,16 @@
         <div class="col-sm-9 col-sm-offset-1">
           <label for="fileList">FileList</label>
           <div class="row">
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
-            <span class="col-sm-2"><img src="http://cfile26.uf.tistory.com/image/2539083755DD6E5A21E5C8" class="img-thumbnail"></span>
+            <c:forEach items="${BoardVO.files }" var="list">
+            <c:choose> 
+            <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
+            <a href="/displayFile?fileName=${list}"><span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
+            </c:when>
+            <c:otherwise>         
+            <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
+            </c:otherwise>                        
+            </c:choose>
+            </c:forEach>
           </div>
         </div>
       </div>
@@ -107,7 +113,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-  
   var formObj = $("#inform");
   
   $("#back").on("click", function(e) {
@@ -295,6 +300,23 @@ $(document).ready(function() {
       var page = $(e.target).text(); // page number
       pageList(page);
     });  
+
+  /* 파일 리스트 로딩 */
+  (function fileList() {
+	 
+	  
+	var file = '${fileList}';
+	console.log(file);
+	
+	
+	
+	  
+	  
+	  
+	 
+	  
+  })();
+  /* 파일 리스트 로딩 */
 });
 </script>
 <%@ include file="footer.jsp"%>

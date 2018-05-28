@@ -27,7 +27,7 @@
 		content=#{content}, updatedate = now()
 		where bno=#{bno}
 	</update>
-
+	
 	<delete id="delete">
 		delete from t_board where bno=#{bno}
 	</delete>
@@ -70,6 +70,8 @@
 		limit #{pageStart},#{perPageNum}
 
 	</select>
+	
+	
 	<!-- 파일 업로드 sql 시작 -->
 	<insert id="addFile" parameterType="org.zerock.domain.BoardVO" >
 		<selectKey order="BEFORE" keyProperty="bno" resultType="int">
@@ -78,7 +80,7 @@
 			
 		insert into t_file (fullname, bno)
 		values
-		<foreach collection="fullname" item="item" separator="," > 
+		<foreach collection="files" item="item" separator="," > 
 		( #{item}, #{bno})
 		</foreach>
 	</insert>
@@ -89,15 +91,30 @@
 	</delete>
 	
 	<!-- 파일 조회 sql -->
-	<select id="searchFile" resultType="org.zerock.domain.BoardVO">
-	select fullname, bno from t_file where bno = #{bno} 
+	<select id="searchFile" resultType="string">
+	select fullname from t_file where bno = #{bno} 
 	</select>
 	
 	<update id="addViews">
 	update t_board set views = views + 1 where bno = #{bno}
 	</update>
 
-
+	<!-- 글 수정 시 파일 삭제 -->
+	<delete id="removeFiles" parameterType="string">
+	delete from t_file where fullname in
+	<foreach collection="array" item="item" separator="," open="(" close=")">
+	 #{item}
+	</foreach>
+	</delete>
+	
+	<!-- 글 수정 시 파일 등록 -->
+	<insert id="modiFile" parameterType="org.zerock.domain.BoardVO">
+	insert into t_file (fullname, bno) values
+	<foreach collection="files" item="item" separator=",">
+	( #{item}, #{bno})
+	</foreach>
+	</insert>
+	
 </mapper>
 
 

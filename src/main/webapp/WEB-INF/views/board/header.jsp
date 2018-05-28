@@ -40,7 +40,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="../login">Sign In</a></li>
 			</ul>
-						<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right">
 				<li><a href="../signup">Sign Up</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
