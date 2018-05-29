@@ -60,7 +60,8 @@
 			<div class="row fileList">
 				<c:forEach items="${BoardVO.files }" var="list">
 					<c:choose> 
-						<c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
+						<c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">
+							<span>${list}</span>                               
 							<a href="/displayFile?fileName=${list}"><span class="col-sm-2" data-add="${list}"><button class="btn btn-xs">X</button><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
 						</c:when>
 						<c:otherwise>         
@@ -135,9 +136,9 @@ $(document).ready(function(){
 			var str = "";
 
 			if (checkImageType(data)) {								
-					str = "<a href='/dispalyFile?fileName="+data+"'><span class='col-sm-2'><button class='btn btn-xs'>X</button><img src='/displayFile?fileName="+data+"' class='img-thumbnail'></span><input type='hidden' name='files' value='"+data+"'/></a>";
+					str = "<a href='/dispalyFile?fileName="+data+"'><span class='col-sm-2' data-add='"+data+"'><button class='btn btn-xs'>X</button><img src='/displayFile?fileName="+data+"' class='img-thumbnail'></span><input type='hidden' name='files' value='"+data+"'/></a>";
 				} else {
-					str = "<a href='/dispalyFile?fileName="+data+"'><span class='col-sm-2'><button class='btn btn-xs'>X</button>"+data+"</span><input type='hidden' name='files' value='"+data+"'/></a>";
+					str = "<a href='/dispalyFile?fileName="+data+"'><span class='col-sm-2' data-add='"+data+"'><button class='btn btn-xs'>X</button>"+data+"</span><input type='hidden' name='files' value='"+data+"'/></a>";
 				}
 				$(".fileList").append(str);
 			}

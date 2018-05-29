@@ -13,7 +13,7 @@
 
 
 <form>
-	<div class="form-group row">
+	<div class="form-group row z1">
 		<div class="col-sm-9 col-sm-offset-1">
 			<label for="title">Title</label>
 			<div class="row">
@@ -50,7 +50,8 @@
             <c:forEach items="${BoardVO.files }" var="list">
             <c:choose> 
             <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
-            <a href="/displayFile?fileName=${list}"><span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
+            <span class="col-sm-2 imgon"><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span>
+    		<div id="wall" style="display: hide;"></div>
             </c:when>
             <c:otherwise>         
             <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
@@ -299,24 +300,10 @@ $(document).ready(function() {
       e.preventDefault();
       var page = $(e.target).text(); // page number
       pageList(page);
-    });  
+    });
+    
+	    
 
-  /* 파일 리스트 로딩 */
-  (function fileList() {
-	 
-	  
-	var file = '${fileList}';
-	console.log(file);
-	
-	
-	
-	  
-	  
-	  
-	 
-	  
-  })();
-  /* 파일 리스트 로딩 */
 });
 </script>
 <%@ include file="footer.jsp"%>
