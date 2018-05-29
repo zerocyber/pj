@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-<%@ include file="header.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-=======
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
->>>>>>> 913a1ccbe37d9a49307e8f2f9aba6680a6636ea7
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
@@ -165,8 +159,7 @@ th {
 $(document).ready(function() {
 	if(msg=="success" && !history.state){
 		alert("등록이 완료되었습니다.");
-		
-	}
+	   }
 	history.replaceState({}, null, null);
 	
 });
@@ -194,8 +187,6 @@ $(document).ready(function() {
     	e.preventDefault();
 		location.href = "/board/write"
 	});
- 
-
- 
+    
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

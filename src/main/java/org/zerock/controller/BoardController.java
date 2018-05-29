@@ -100,14 +100,20 @@ public class BoardController {
 		log.info("write get...........");
 	}
 	
-	@PostMapping("/write")
-
-	public String writePost(BoardVO vo, Model model, RedirectAttributes rttr) throws Exception{
-
-		log.info("write post.......");
-		service.write(vo);
-		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/board/list";
+//	@PostMapping("/write")
+//	public String writePost(BoardVO vo, Model model, RedirectAttributes rttr) throws Exception{
+//
+//		log.info("write post.......");
+//		service.write(vo);
+//		rttr.addFlashAttribute("msg", "success");
+//		return "redirect:/board/list";
+//	}
+	
+	@RequestMapping("/write")
+	public String writePost() {
+		
+		
+		return null;
 	}
 	
 	@GetMapping("/modify")

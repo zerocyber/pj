@@ -47,15 +47,12 @@
 				<li><a href="#">Contact us</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/board/header.jsp
+
 				<li><a href="../login">Sign In</a></li>
 			</ul>
 				<ul class="nav navbar-nav navbar-right">
 				<li><a href="../signup">Sign Up</a></li>
-=======
-				<li><a href="/login">Sign in</a></li>
-				<li><a href="/signup">Sign up</a></li>
->>>>>>> 913a1ccbe37d9a49307e8f2f9aba6680a6636ea7:src/main/webapp/WEB-INF/views/include/header.jsp
+
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">

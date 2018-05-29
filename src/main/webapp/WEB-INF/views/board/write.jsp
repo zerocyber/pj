@@ -39,14 +39,14 @@
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-3">
-							<select class="form-control" name="kno">
+							<select class="form-control kno" name="kno">
 								<option value="30">일반</option>
 								<option value="20">후기</option>
 								<option value="10">질문</option>
 							</select>
 						</div>
 						<div class="col-sm-3">
-							<select class="form-control col-sm-3" name="cno">
+							<select class="form-control col-sm-3 cno" name="cno">
 								<option value="100">Java</option>
 								<option value="200">C</option>
 								<option value="300">C#</option>
@@ -58,16 +58,16 @@
 
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
-						type="text" class="form-control" placeholder="Text input" required="required">
+						type="text" class="form-control title" placeholder="Text input" required="required">
 				</div>
 				<label for="content">Content</label>
 				<p>
-					<textarea id="content" name="content" class="form-control"
+					<textarea id="content" name="content" class="form-control content"
 						rows="15" required="required"></textarea>
 				</p>
 				<label>Writer</label>
 				<p>
-					<input id="mid" name="mid" type="text" class="form-control-s"
+					<input id="mid" name="mid" type="text" class="form-control-s mid"
 						placeholder="Text input" required="required">
 				</p>
 				<div>
@@ -112,6 +112,27 @@ $(document).ready(function() {
 		self.location = "/board/list";
 
 	});
+	
+	$(".btnc").on("click",function(e){
+		
+		var cno = $(".cno").val();
+		var kno = $(".kno").val();
+		var title = $(".title").val();
+	    var content = $(".content").val();
+	    var mid = $(".mid").val();
+	    $.ajax({
+	    	url: "/write",
+	    	data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(e){
+				alert(result);
+			}
+	    });
+	});
+	
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
 		event.preventDefault();
@@ -151,11 +172,6 @@ $(document).ready(function() {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}	
-	
-	$(".btnc").on("click",function(e){
-		console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-		location.replace = "http://naver.com";
-	});
 	
 	
 });

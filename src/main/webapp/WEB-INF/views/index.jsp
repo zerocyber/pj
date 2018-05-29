@@ -159,7 +159,7 @@
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
-</div>
+  </div>
 </div>
 
 

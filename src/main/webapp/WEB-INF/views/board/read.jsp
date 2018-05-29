@@ -384,7 +384,7 @@ $(document).ready(function() {
       e.preventDefault();
       var page = $(e.target).text(); // page number
       pageList(page);
-<<<<<<< HEAD
+
     });  
 
   /* 파일 리스트 로딩 */
@@ -406,10 +406,7 @@ $(document).ready(function() {
 	  } 
   });
   
-=======
-    });
-    
->>>>>>> 601c60f988ed9c7b3e882d453f37140b01ae4d3b
-});
+ });
+
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

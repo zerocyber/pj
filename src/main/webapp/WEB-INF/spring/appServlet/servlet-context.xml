@@ -26,14 +26,9 @@
 	</beans:bean>
 	
 	<beans:bean id="uploadPath" class="java.lang.String">
-<<<<<<< HEAD
 
 	<beans:constructor-arg value="C:\\zzz\\upload">
 	</beans:constructor-arg>
-=======
-		<beans:constructor-arg value="c:\\zzz\\upload">
-		</beans:constructor-arg>
->>>>>>> 913a1ccbe37d9a49307e8f2f9aba6680a6636ea7
 	</beans:bean>
 	
 	<context:component-scan base-package="org.zerock.controller" />
