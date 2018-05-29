@@ -60,8 +60,7 @@
 			<div class="row fileList">
 				<c:forEach items="${BoardVO.files }" var="list">
 					<c:choose> 
-						<c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">
-							<span>${list}</span>                               
+						<c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                     
 							<a href="/displayFile?fileName=${list}"><span class="col-sm-2" data-add="${list}"><button class="btn btn-xs">X</button><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
 						</c:when>
 						<c:otherwise>         

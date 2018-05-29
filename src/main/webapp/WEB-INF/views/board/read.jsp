@@ -85,6 +85,7 @@
 
 
 
+
 	<div id="wall">
 		<div class="picture" align="center">
 		</div>
@@ -109,7 +110,7 @@
 	       <label for="replyContent">ReplyContent</label>
 	       <div class="row">
 	       <textarea class="form-control replyContent" rows="2"></textarea>
-	       <label class="col-sm-1">Writer</label><input tyep="text" class="col-sm-2 replyWriter"/>
+	       <label class="col-sm-1">Writer</label><input type="text" class="col-sm-2 replyWriter"/>
 	       <button type="submit" class="col-sm-1 col-sm-offset-8 btn btn-default btn-xs active" id="replyBtn">등록</button>
 	       </div>
 	     </div>
