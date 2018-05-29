@@ -52,8 +52,8 @@
             <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
             <span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail picture"></span>        
             </c:when>
-            <c:otherwise>         
-            <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
+            <c:otherwise>                     
+            <a href="/displayFile?fileName=${list}" class="download"><span class="col-sm-2">${list}</span></a>
             </c:otherwise>                        
             </c:choose>
             </c:forEach>
@@ -144,8 +144,9 @@ $(document).ready(function() {
   
   var wall= $("#wall");
   var picture=$(".picture");
+  var download=$(".download");
   
-	$(".upload").on("click","span",function(e) {
+	$(".upload").on("click","div span img",function(e) {
 		console.log("span clicked");
 		//$(this).attr("data-file")
 		var address = $(e.target)[0].src;
@@ -164,7 +165,20 @@ $(document).ready(function() {
 		wall.hide("slow");
 /* 		picture.hide("slow"); */
 	});
+	
+	download.on("click", function(e) {
+		console.log(e.target);
+		e.preventDefault();
+		var fileName = $(e.target).text();
+		var result = confirm("download?");
+		if(result){
+			location.replace('/displayFile?fileName='+fileName);
+		};
+	});
   
+
+	
+	
   $("#back").on("click", function(e) {
     self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
   });
