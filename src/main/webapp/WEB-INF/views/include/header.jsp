@@ -26,6 +26,7 @@
 	<!-- Body 시작 -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
+	
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -34,33 +35,47 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Project name</a>
+			<a class="navbar-brand" href="/index">Leaf viliage</a>	
 		</div>
+		
 		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/index">Home</a></li>
+				<li><a href="/board/list">Board</a></li>
+				<li><a href="#">Gallery</a></li>
+				<li><a href="#">Team</a></li>
+				<li><a href="#">Contact us</a></li>
+			</ul>
 			<ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/board/header.jsp
 				<li><a href="../login">Sign In</a></li>
 			</ul>
 				<ul class="nav navbar-nav navbar-right">
 				<li><a href="../signup">Sign Up</a></li>
+=======
+				<li><a href="/login">Sign in</a></li>
+				<li><a href="/signup">Sign up</a></li>
+>>>>>>> 913a1ccbe37d9a49307e8f2f9aba6680a6636ea7:src/main/webapp/WEB-INF/views/include/header.jsp
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">
 			</form>
 		</div>
+		
 	</div>
 	</nav>
 
-	<div class="container-fluid">
+<!-- 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li><a href="index">Home</a></li>
-					<li><a href="list">Board</a></li>
+					<li><a href="/index">Home</a></li>
+					<li><a href="/board/list">Board</a></li>
 					<li><a href="#">Gallery</a></li>
 					<li><a href="#">Team</a></li>
 					<li><a href="#">Contact us</a></li>
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Header 끝 -->

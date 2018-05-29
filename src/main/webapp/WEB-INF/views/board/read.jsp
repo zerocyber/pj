@@ -1,4 +1,4 @@
-<%@ include file="header.jsp"%>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -63,6 +63,7 @@
        </div>
      </div>
 
+<<<<<<< HEAD
       <div class="form-group row">
         <div class="col-sm-9 col-sm-offset-1 upload">
           <label for="fileList">FileList</label>
@@ -83,6 +84,27 @@
         </div>
       </div>
     </form>
+=======
+
+     <div class="form-group row">
+       <div class="col-sm-9 col-sm-offset-1 upload">
+         <label for="fileList">FileList</label>
+         <div class="row">
+           <c:forEach items="${BoardVO.files }" var="list">
+           <c:choose> 
+           <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
+           <span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail picture"></span>
+           </c:when>
+           <c:otherwise>         
+           <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
+           </c:otherwise>                        
+           </c:choose>
+           </c:forEach>
+         </div>
+       </div>
+     </div>
+</form>
+>>>>>>> 913a1ccbe37d9a49307e8f2f9aba6680a6636ea7
 
 
 
@@ -111,7 +133,7 @@
 	       <label for="replyContent">ReplyContent</label>
 	       <div class="row">
 	       <textarea class="form-control replyContent" rows="2"></textarea>
-	       <label class="col-sm-1">Writer</label><input tyep="text" class="col-sm-2 replyWriter"/>
+	       <label class="col-sm-1">Writer</label><input type="text" class="col-sm-2 replyWriter"/>
 	       <button type="submit" class="col-sm-1 col-sm-offset-8 btn btn-default btn-xs active" id="replyBtn">등록</button>
 	       </div>
 	     </div>
@@ -390,4 +412,4 @@ $(document).ready(function() {
 >>>>>>> 601c60f988ed9c7b3e882d453f37140b01ae4d3b
 });
 </script>
-<%@ include file="footer.jsp"%>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>

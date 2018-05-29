@@ -6,28 +6,27 @@
 	<title>Login V19</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/resources/loginResources/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/animate/animate.css">
-<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/util.css">
  	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/main.css">
-<!--===============================================================================================-->
+ 	
+ 	<script src="/resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+	<script src="/resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+	<script src="/resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/loginResources/vendor/select2/select2.min.js"></script>
+	<script src="/resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="/resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+	<script src="/resources/loginResources/js/main.js"></script>
 </head>
 <body>
 	
@@ -35,6 +34,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form class="login100-form validate-form" method="post">
+				
 					<span class="login100-form-title p-b-33">
 						Create Acount
 					</span>
@@ -83,31 +83,11 @@
 						<a href="login" class="txt2 hov1">
 							Sign In
 						</a>
-
 					</div>
+					
 				</form>
 			</div>
 		</div>
 	</div>
-	
-
-	
-<!--===============================================================================================-->
-	<script src="/resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/resources/loginResources/vendor/bootstrap/js/popper.js"></script>
-	<script src="/resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/resources/loginResources/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="/resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="/resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="/resources/loginResources/js/main.js"></script>
-
 </body>
 </html>

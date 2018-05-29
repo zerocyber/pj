@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 <%@ include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+=======
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+>>>>>>> 913a1ccbe37d9a49307e8f2f9aba6680a6636ea7
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
@@ -8,6 +13,7 @@ th {
 	text-align: center;
 }
 </style>
+
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
@@ -23,7 +29,7 @@ th {
 			<table width="100%"
 				class="table table-striped table-bordered table-hover">
 				<thead>
-					<tr class="danger">
+					<tr class="info">
 						<th width="10%">글번호</th>
 						<th width="50%">제목</th>
 						<th width="10%">작성자</th>
@@ -192,4 +198,4 @@ $(document).ready(function() {
 
  
 </script>
-<%@ include file="footer.jsp"%>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>
