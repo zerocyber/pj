@@ -3,8 +3,28 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<style>
+#wall {
+	width:100%;
+	height:100%;
+	border:1px solid #E0F8F7;
+	background-color: #F2F2F2;
+	position: absolute;
+	display: none;
+	z-index: 100000;
+	justify-content: center;
+	align-items: center;
+	opacity:1;
+	top: 0px;
+	left: 0px;
+}
+.picture {
+	z-index:1;
+	opacity: 1;
+}
+</style>
 
- <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
+<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
 	<div class="row">
 		<div class="col-sm-9 col-sm-offset-1">
 			<h1>Dash Board</h1>
@@ -13,7 +33,7 @@
 
 
 <form>
-	<div class="form-group row">
+	<div class="form-group row z1">
 		<div class="col-sm-9 col-sm-offset-1">
 			<label for="title">Title</label>
 			<div class="row">
@@ -30,18 +50,12 @@
 		</div>
 	</div>
 
-      <div class="form-group row">
-        <div class="col-sm-9 col-sm-offset-1">
-          <label for="content">Content</label>
-          <textarea class="form-control" rows="10" readonly>${BoardVO.content}</textarea>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <div class="col-sm-2 col-sm-offset-8">
-          <p class="text-right label label-warning pull-right">${BoardVO.mid}</p>
-        </div>
-      </div>
+	<div class="form-group row">
+	    <div class="col-sm-9 col-sm-offset-1">
+	      <label for="content">Content</label>
+	      <textarea class="form-control" rows="10" readonly>${BoardVO.content}</textarea>
+	    </div>
+    </div>
 
       <div class="form-group row">
         <div class="col-sm-9 col-sm-offset-1 upload">
@@ -62,71 +76,75 @@
       </div>
     </form>
 
-<style>
-#wall{
-width:100%;
-height:100%;
-border:1px solid #E0F8F7;
-background-color: #F2F2F2;
-position: absolute;
-display: none;
-z-index: 100000;
-justify-content: center;
-align-items: center;
-opacity:1;
-top: 0px;
-left: 0px;
-}
-.picture{
-z-index:1;
-opacity: 1;
-}
-</style>
-
-<div id="wall">
-<div class="picture" align="center">
-
-</div>
-</div>
+     <div class="form-group row">
+       <div class="col-sm-2 col-sm-offset-8">
+         <p class="text-right label label-warning pull-right">${BoardVO.mid}</p>
+       </div>
+     </div>
 
 
-  <div class="row">
-    <div class="col-sm-9 col-sm-offset-1">
-      <label for="replyList" class="replyUL">ReplyList</label>
-  	</div>
-      <div class="col-sm-9 col-sm-offset-1 replyBox"></div>
-  </div>
+     <div class="form-group row">
+       <div class="col-sm-9 col-sm-offset-1 upload">
+         <label for="fileList">FileList</label>
+         <div class="row">
+           <c:forEach items="${BoardVO.files }" var="list">
+           <c:choose> 
+           <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
+           <span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail picture"></span>
+           </c:when>
+           <c:otherwise>         
+           <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
+           </c:otherwise>                        
+           </c:choose>
+           </c:forEach>
+         </div>
+       </div>
+     </div>
+</form>
 
-  <div class="row">
-    <div class="col-sm-9 col-sm-offset-1">
-      <div class="empty col-sm-12 text-center"></div>
-    </div>
-  </div>
 
+
+	<div id="wall">
+		<div class="picture" align="center">
+		</div>
+	</div>
 
 
 	<div class="row">
-      <div class="col-sm-9 col-sm-offset-1">
-        <label for="replyContent">ReplyContent</label>
-        <div class="row">
-        <textarea class="form-control replyContent" rows="2"></textarea>
-        <label class="col-sm-1">Writer</label><input tyep="text" class="col-sm-2 replyWriter"/>
-        <button type="submit" class="col-sm-1 col-sm-offset-8 btn btn-default btn-xs active" id="replyBtn">등록</button>
-        </div>
-      </div>
-    </div>
+	  <div class="col-sm-9 col-sm-offset-1">
+	    <label for="replyList" class="replyUL">ReplyList</label>
+		</div>
+	    <div class="col-sm-9 col-sm-offset-1 replyBox"></div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-9 col-sm-offset-1">
+	    <div class="empty col-sm-12 text-center"></div>
+	  </div>
+	</div>
+
+	<div class="row">
+	     <div class="col-sm-9 col-sm-offset-1">
+	       <label for="replyContent">ReplyContent</label>
+	       <div class="row">
+	       <textarea class="form-control replyContent" rows="2"></textarea>
+	       <label class="col-sm-1">Writer</label><input tyep="text" class="col-sm-2 replyWriter"/>
+	       <button type="submit" class="col-sm-1 col-sm-offset-8 btn btn-default btn-xs active" id="replyBtn">등록</button>
+	       </div>
+	     </div>
+	</div>
     
-    <div class="row">
-      <div class="col-sm-9 col-sm-offset-1">
-        <div class="row">
-          <div class="col-sm-offset-5">
-          <button id="back" type="button" class="btn btn-xs btn-default">To List</button>
-          <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
-          <button id="remove" type="button" class="btn btn-xs btn-default">Delete</button>
-          </div>
-        </div>
-      </div>
-  </div>
+	<div class="row">
+	    <div class="col-sm-9 col-sm-offset-1">
+	      <div class="row">
+	        <div class="col-sm-offset-5">
+	        <button id="back" type="button" class="btn btn-xs btn-default">To List</button>
+	        <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
+	        <button id="remove" type="button" class="btn btn-xs btn-default">Delete</button>
+	        </div>
+	      </div>
+	    </div>
+	</div>
     
 </div>
 
@@ -142,28 +160,25 @@ opacity: 1;
 $(document).ready(function() {
   var formObj = $("#inform");
   
+
   var wall= $("#wall");
   var picture=$(".picture");
   var download=$(".download");
+
   
 	$(".upload").on("click","div span img",function(e) {
 		console.log("span clicked");
-		//$(this).attr("data-file")
 		var address = $(e.target)[0].src;
 		var target1 = address.substring(0, address.indexOf('s_'));
 		var target2 = address.substring(address.indexOf('s_')+2);
 		var originalName = target1 + target2;
 		var add = "<img src='"+originalName+"'/>";
-		
-		/* wall.html(str); */
 		picture.html(add);
 		wall.show("slow");
-/* 		picture.show("slow"); */
 	});
 
 	wall.on("click", function(e) {
 		wall.hide("slow");
-/* 		picture.hide("slow"); */
 	});
 	
 	download.on("click", function(e) {
@@ -183,14 +198,15 @@ $(document).ready(function() {
     self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
   });
 
-  $("#modify").on("click", function(e) {
-    self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
-  });
+
+  	$("#modify").on("click", function(e) {
+    	self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
+  	});
   
-  $("#remove").on("click", function(e) {
-    formObj.attr("action", "/board/delete");
-    formObj.submit();
-  });
+  	$("#remove").on("click", function(e) {
+    	formObj.attr("action", "/board/delete");
+    	formObj.submit();
+  	});
   
   /* 댓글 페이지 로딩 */
   function pageList(page) {
@@ -363,24 +379,8 @@ $(document).ready(function() {
       e.preventDefault();
       var page = $(e.target).text(); // page number
       pageList(page);
-    });  
-
-  /* 파일 리스트 로딩 */
-  (function fileList() {
-	 
-	  
-	var file = '${fileList}';
-	console.log(file);
-	
-	
-	
-	  
-	  
-	  
-	 
-	  
-  })();
-  /* 파일 리스트 로딩 */
+    });
+    
 });
 </script>
 <%@ include file="footer.jsp"%>
