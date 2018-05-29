@@ -57,25 +57,6 @@
 	    </div>
     </div>
 
-      <div class="form-group row">
-        <div class="col-sm-9 col-sm-offset-1 upload">
-          <label for="fileList">FileList</label>
-          <div class="row">
-            <c:forEach items="${BoardVO.files }" var="list">
-            <c:choose> 
-            <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
-            <span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail picture"></span>        
-            </c:when>
-            <c:otherwise>                     
-            <a href="/displayFile?fileName=${list}" class="download"><span class="col-sm-2">${list}</span></a>
-            </c:otherwise>                        
-            </c:choose>
-            </c:forEach>
-          </div>
-        </div>
-      </div>
-    </form>
-
      <div class="form-group row">
        <div class="col-sm-2 col-sm-offset-8">
          <p class="text-right label label-warning pull-right">${BoardVO.mid}</p>
