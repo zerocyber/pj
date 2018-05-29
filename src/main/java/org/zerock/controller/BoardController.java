@@ -125,6 +125,7 @@ public class BoardController {
 	public String modifyPost(BoardVO vo, Criteria cri, String[] deleteFiles)throws Exception {
 		log.info("modify post...........");
 		if(deleteFiles != null) {
+			log.info("dddddddddddddddddddddddddddddddddd"+Arrays.toString(deleteFiles));
 			service.removeFiles(deleteFiles);
 			UploadFileUtils.deleteFile(uploadPath, deleteFiles);
 		}

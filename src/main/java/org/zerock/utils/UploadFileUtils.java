@@ -99,16 +99,21 @@ public class UploadFileUtils {
 	// 파일 삭제 시 실제 경로에 가서 파일삭제 
 	public static void deleteFile(String uploadPath, String[] deleteFiles)throws Exception {
 		
+		
+		// 썸네일 이름이 붙은 uuid+s_+폴더경로 + 파일이름 
 		for(int i=0; i < deleteFiles.length; i ++) {
 			File target = new File(uploadPath+deleteFiles[i]);
 			if(target.exists()) {
 				target.delete();
 			}
-			String path = deleteFiles[i].substring(0, deleteFiles[i].indexOf("s_"));
-			String fileName = deleteFiles[i].substring(deleteFiles[i].indexOf("s_")+2);
-			File target2 = new File(uploadPath+path+fileName);
-			if(target2.exists()) {
-				target2.delete();
+			// 썸네일 이름이 안붙은 uuid+폴더경로+파일이름
+			if(deleteFiles[i].contains("s_")) {
+				String path = deleteFiles[i].substring(0, deleteFiles[i].indexOf("s_"));
+				String fileName = deleteFiles[i].substring(deleteFiles[i].indexOf("s_")+2);
+				File target2 = new File(uploadPath+path+fileName);
+				if(target2.exists()) {
+					target2.delete();
+				}
 			}
 		}	
 	}
