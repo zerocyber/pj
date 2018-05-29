@@ -53,7 +53,7 @@
             <a href="/displayFile?fileName=${list}"><span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail"></span></a>         
             </c:when>
             <c:otherwise>         
-            <a href="/displayFile?fileName=${list}"><span class="col-sm-2">${list}</span></a>
+            <a href="/displayFile?fileName=${list}"><span class="col-sm-2 download">${list}</span></a>
             </c:otherwise>                        
             </c:choose>
             </c:forEach>
@@ -307,16 +307,19 @@ $(document).ready(function() {
 	  
 	var file = '${fileList}';
 	console.log(file);
-	
-	
-	
-	  
-	  
-	  
-	 
+
 	  
   })();
   /* 파일 리스트 로딩 */
+  
+  $(".download").on("click",function(e){
+	  console.log("download click")
+	  
+	  if(confirm("download??")){
+		  location.replace("/displayFile?fileName=${BoardVO.files}");
+	  } 
+  });
+  
 });
 </script>
 <%@ include file="footer.jsp"%>

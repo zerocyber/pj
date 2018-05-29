@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<div class="col-md-10 col-sm-10">
-			<form  id="post-form" name="post-form" method="post">
+			<form  id="post-form" name="post-form form1" method="post">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-3">
@@ -81,19 +81,12 @@
 					<div id="uploadList"></div>
 				</div>
 
-<<<<<<< HEAD
-				<div class="row">
-					<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
-						<div class="row">
-						  <div class="col-md-offset-5 col-sm-offset-5">
-							<button class="btn btn-info addBtn">등록</button>
-=======
+
 					<div class="row">
 						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
 							<div class="row">
 							<div class="col-md-offset-5 col-sm-offset-5">
 							<button class="btn btn-info btnc">등록</button>
->>>>>>> f3f5445d0cf21bad033f3f99819e82fae061a348
 
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
 						  </div>
@@ -107,11 +100,12 @@
 </div>
 
 
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
+
 <script>
+
 $(document).ready(function() {
 
 	$("#back").on("click", function(e) {
@@ -156,20 +150,16 @@ $(document).ready(function() {
 	function checkImageType(fileName) {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
-	}
-	var abc = { "list" : "write"};
-
-/* 	$(".addBtn").on("click",function(e){
-
-	   history.pushState(abc, null, "list");
-	   window.onpopstate = function(){
-		 history.go(1);
-	    }
-	}); */
+	}	
+	
+	$(".btnc").on("click",function(e){
+		console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+		location.replace = "http://naver.com";
+	});
 	
 	
 });
-	
+
 </script>
 
 
