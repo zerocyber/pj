@@ -58,7 +58,7 @@
 	</div>
 	</nav>
 
-	<div class="container-fluid">
+<!-- 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
@@ -70,5 +70,5 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Header 끝 -->
