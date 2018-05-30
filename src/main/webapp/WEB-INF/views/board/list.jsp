@@ -8,6 +8,7 @@ text-align: center;
 }
 </style>
 
+
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 	<div class="row">
@@ -21,12 +22,12 @@ text-align: center;
 			
 			<table width="100%" class="table table-striped table-bordered table-hover">
 				<thead>
-					<tr class="danger">
+					<tr class="info">
 						<th width="10%">글번호</th>
 						<th width="50%">제목</th>
-						<th width="15%">작성자</th>
+						<th width="10%">작성자</th>
 						<th width="20%">작성일</th>
-						<th width="5%">조회수</th>
+						<th width="10%">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
