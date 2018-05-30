@@ -150,7 +150,7 @@ th {
 	</div>
 
 </div>
-
+	
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
@@ -159,6 +159,7 @@ th {
 $(document).ready(function() {
 	if(msg=="success" && !history.state){
 		alert("등록이 완료되었습니다.");
+/* 		location.reload(); */
 	   }
 	history.replaceState({}, null, null);
 	

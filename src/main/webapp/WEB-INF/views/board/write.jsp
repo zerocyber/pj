@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<div class="col-md-10 col-sm-10">
-			<form  id="post-form" name="post-form form1" method="post">
+			<form  id="post-form form1" name="post-form form1" method="post">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-3">
@@ -46,7 +46,7 @@
 							</select>
 						</div>
 						<div class="col-sm-3">
-							<select class="form-control col-sm-3 cno" name="cno">
+							<select class="form-control col-sm-3 gno" name="gno">
 								<option value="100">Java</option>
 								<option value="200">C</option>
 								<option value="300">C#</option>
@@ -100,11 +100,15 @@
 </div>
 
 
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
 
+<body onload="document.forms[1].reset()">
+
 <script>
+
 
 $(document).ready(function() {
 
@@ -113,25 +117,6 @@ $(document).ready(function() {
 
 	});
 	
-	$(".btnc").on("click",function(e){
-		
-		var cno = $(".cno").val();
-		var kno = $(".kno").val();
-		var title = $(".title").val();
-	    var content = $(".content").val();
-	    var mid = $(".mid").val();
-	    $.ajax({
-	    	url: "/write",
-	    	data : formData,
-			dataType : 'text',
-			processData : false,
-			contentType : false,
-			type : 'POST',
-			success : function(e){
-				alert(result);
-			}
-	    });
-	});
 	
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {

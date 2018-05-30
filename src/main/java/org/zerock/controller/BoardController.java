@@ -65,29 +65,7 @@ public class BoardController {
 	@GetMapping("/read")
 	public void read(Model model, @Param("bno") int bno, Criteria cri) {
 		log.info("read.............");
-		Cookie cookies[] = req.getCookies();
-		Map cookieMap = new HashMap();
-		if(req.getCookies() != null ) {
-			log.info("getCookies not null...............................................");
-			for(int i = 0; i < cookies.length; i++) {
-			Cookie cookieObj = cookies[i];
-			cookieMap.put(cookieObj.getName(), cookieObj.getValue());
-			log.info("name: " + cookieObj.getName()+ "  value: "+ cookieObj.getValue());
-			}	
-		}
-		String cookieViews = (String)cookieMap.get("views");
-		log.info("cookieViews........................: " + cookieViews);
-		String cookie_viewCnt = "|" + bno;
-		if(cookieViews == null) {
-			cookieViews = "views";
-		}
-		
-		if(StringUtils.indexOfIgnoreCase(cookieViews, cookie_viewCnt) == -1) {
-			Cookie cookie = new Cookie("views" ,  cookieViews+ cookie_viewCnt);
-			cookie.setMaxAge(60 * 60 * 24);
-			res.addCookie(cookie);
-			service.viewCnt(bno);
-		}
+
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
 		log.info("Arrays check............................................"+Arrays.toString(vo.getFiles()));
@@ -100,21 +78,15 @@ public class BoardController {
 		log.info("write get...........");
 	}
 	
-//	@PostMapping("/write")
-//	public String writePost(BoardVO vo, Model model, RedirectAttributes rttr) throws Exception{
-//
-//		log.info("write post.......");
-//		service.write(vo);
-//		rttr.addFlashAttribute("msg", "success");
-//		return "redirect:/board/list";
-//	}
-	
-	@RequestMapping("/write")
-	public String writePost() {
-		
-		
-		return null;
+	@PostMapping("/write")
+	public String writePost(BoardVO vo, Model model, RedirectAttributes rttr) throws Exception{
+
+		log.info("write post.......");
+		service.write(vo);
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/board/list";
 	}
+
 	
 	@GetMapping("/modify")
 	public void modify(@Param("bno")int bno, Model model, Criteria cri) {

@@ -27,17 +27,16 @@
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
 			<img class="first-slide"
-				src="http://file3.instiz.net/data/file3/2018/02/05/e/1/8/e1850ea9b6954f0021719a6112d5f810.jpg"
+				src="https://www.suyongso.com/files/attach/images/115/733/477/014/9060e163a43cd0a58f88813dbf53d12a.png"
 				alt="First slide">
 			<div class="container">
 				<div class="carousel-caption">
 					<h1>What's your name?</h1>
 					<p>
-						Note: If you're viewing this page via a
-						<code>file://</code>
-						URL, the "next" and "previous" Glyphicon buttons on the left and
+						<code>URL, the "next" and "previous" Glyphicon buttons on the left and
 						right might not load/display properly due to web browser security
-						rules.
+						rules.</code>
+
 					</p>
 					<p>
 						<a class="btn btn-lg btn-primary" href="#" role="button">Sign

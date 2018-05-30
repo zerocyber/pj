@@ -24,7 +24,7 @@
           <h4 class="text-center"><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4>
         </div>
         <div class="col-sm-1">
-          <h4><span class="label label-primary">${BoardVO.cno eq '100' ? 'JAVA' : BoardVO.cno eq '200' ? 'C' : 'C#' }</span></h4>
+          <h4><span class="label label-primary">${BoardVO.gno eq '100' ? 'JAVA' : BoardVO.gno eq '200' ? 'C' : 'C#' }</span></h4>
         </div>
       </div>
     </div>

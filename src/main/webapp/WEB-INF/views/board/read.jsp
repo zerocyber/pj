@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <style>
 #wall {
 	width:100%;
@@ -44,7 +45,7 @@
 					<h4 class="text-center"><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4>
 				</div>
 				<div class="col-sm-1">
-					<h4><span class="label label-primary">${BoardVO.cno eq '100' ? 'JAVA' : BoardVO.cno eq '200' ? 'C' : 'C#' }</span></h4>
+					<h4><span class="label label-primary">${BoardVO.gno eq '100' ? 'JAVA' : BoardVO.gno eq '200' ? 'C' : 'C#' }</span></h4>
 				</div>
 			</div>
 		</div>
@@ -62,29 +63,6 @@
          <p class="text-right label label-warning pull-right">${BoardVO.mid}</p>
        </div>
      </div>
-
-<<<<<<< HEAD
-      <div class="form-group row">
-        <div class="col-sm-9 col-sm-offset-1 upload">
-          <label for="fileList">FileList</label>
-          <div class="row">
-            <c:forEach items="${BoardVO.files }" var="list">
-            <c:choose> 
-            <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
-            <span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail picture"></span>        
-            </c:when>
-
-            <c:otherwise>                     
-            <a href="/displayFile?fileName=${list}" class="download"><span class="col-sm-2">${list}</span></a>
-
-            </c:otherwise>                        
-            </c:choose>
-            </c:forEach>
-          </div>
-        </div>
-      </div>
-    </form>
-=======
 
      <div class="form-group row">
        <div class="col-sm-9 col-sm-offset-1 upload">
@@ -104,9 +82,6 @@
        </div>
      </div>
 </form>
->>>>>>> 913a1ccbe37d9a49307e8f2f9aba6680a6636ea7
-
-
 
 
 	<div id="wall">
@@ -224,12 +199,17 @@ $(document).ready(function() {
 
       var str = "";
 
+      
+		/* <td><fmt:formatDate value='${board.regdate}'
+			pattern="yyyy.MM.dd hh:mm:ss" /></td> */
+      
+      
       $(data.list).each(function(){
 	  str += "<div class='row' style='background-color:#f5f5f5;' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
 			      +"<span class='col-sm-2 label label-warning'>"+this.mid+"</span>"
 				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
 				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
-				      +"<span class='col-sm-1 text-right label label-danger'>"+this.rno+"</span>"
+				      +"<span class='col-sm-1 text-right label label-danger'>"+this.regdate+"</span>"
 			      +"<span class='col-sm-12'>"+this.content+"</span>"
     		 +"</div>";
       });
@@ -406,7 +386,7 @@ $(document).ready(function() {
 	  } 
   });
   
- });
+    });
 
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
