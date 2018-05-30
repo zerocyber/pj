@@ -25,7 +25,7 @@
 <body>
 	<!-- Body 시작 -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
+	<div class="container-fluid " style="background-color: white;">
 	
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
