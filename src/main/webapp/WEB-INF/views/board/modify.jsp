@@ -4,17 +4,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-    <div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
+    <div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:10px;">
 
   <div class="row">
-   <div class="col-sm-9 col-sm-offset-1">
-     <h1>Dash Board</h1>
+   <div class="col-sm-8 col-sm-offset-2">
+     <h3>영화 게시판</h3>
    </div>
  </div>
 
  <form method="post" id="modiForm">
   <div class="form-group row">
-    <div class="col-sm-9 col-sm-offset-1">
+    <div class="col-sm-8 col-sm-offset-2">
       <label for="title">Title</label>
       <div class="row">
         <div class="col-sm-10">
@@ -31,7 +31,7 @@
   </div>
 
   <div class="form-group row">
-    <div class="col-sm-9 col-sm-offset-1">
+    <div class="col-sm-8 col-sm-offset-2">
       <label for="content">Content</label>
       <textarea class="form-control" name="content" rows="10" required="required">${BoardVO.content}</textarea>
     </div>
@@ -44,7 +44,7 @@
   </div>
   
 	<div class="form-group row">
-		<div class="col-sm-9 col-sm-offset-1">
+		<div class="col-sm-8 col-sm-offset-2">
 			<label for="uploadFile">uploadFile</label>
 			<div class="row uploadList" style="min-height: 100px; background-color: #f5f5f5;">
 			<div class="col-sm-12 text-center">
@@ -55,7 +55,7 @@
 	</div>
 	
 	<div class="form-group row">
-		<div class="col-sm-9 col-sm-offset-1">
+		<div class="col-sm-8 col-sm-offset-2">
 			<label for="fileList">FileList</label>
 			<div class="row fileList">
 				<c:forEach items="${BoardVO.files }" var="list">
@@ -75,9 +75,9 @@
 </form>
 
 	<div class="row">
-	  <div class="col-sm-9 col-sm-offset-1">
+	  <div class="col-sm-8 col-sm-offset-2">
 	    <div class="row">
-	      <div class="col-sm-offset-5">
+	      <div class="col-sm-12 text-center">
 	        <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
 	        <button id="delete" type="button" class="btn btn-xs btn-default">Cancle</button>
 	      </div>

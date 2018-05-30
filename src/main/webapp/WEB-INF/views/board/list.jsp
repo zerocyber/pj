@@ -9,18 +9,18 @@ text-align: center;
 </style>
 
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 10px;">
 
 	<div class="row">
-	  <div class="col-sm-9 col-sm-offset-1">
-	    <h1>Dash Board</h1>
+	  <div class="col-sm-offset-2 col-sm-4">
+	    <h3>영화 게시판</h3>
 	  </div>
 	</div>
 	
 	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
+		<div class="col-sm-offset-2 col-sm-8">
 			
-			<table width="100%" class="table table-striped table-bordered table-hover">
+			<table width="100%" class="table table-hover">
 				<thead>
 					<tr class="info">
 						<th width="10%">글번호</th>
@@ -57,10 +57,10 @@ text-align: center;
 	
 	<form method="get">
   <div class="form-group row">
-    <div class="col-sm-9 col-sm-offset-1">
+    <div class="col-sm-offset-2 col-sm-8">
         <div class="row">
 
-            <div class="col-sm-3">
+            <div class="col-sm-2">
               <select name="type" id="selectType" class="form-control">
                 <option value="">----</option>
                 <option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
@@ -72,7 +72,7 @@ text-align: center;
               </select>
             </div>
           
-            <div class="col-sm-7">
+            <div class="col-sm-8">
             <input class="form-control" type="text" id="keyword" name="keyword"
             value="${pm.cri.keyword}"/>
             </div>
@@ -92,12 +92,12 @@ text-align: center;
 
 	
 	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
+		<div class="col-sm-12">
 		<div class="col-sm-12 text-center">
 			<div id="pagination">
 				<ul class="pagination">
 				
-					<li><span style="background-color: black;" >Page ${pm.cri.page} of ${pm.total}</span></li>
+					<li><span style="background-color: white;" >Page ${pm.cri.page} of ${pm.total}</span></li>
 					<c:if test="${pm.prev}">
 					<c:choose>
 					<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
