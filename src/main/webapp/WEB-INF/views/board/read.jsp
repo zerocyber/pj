@@ -24,34 +24,35 @@
 }
 </style>
 
-<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10 main">
+<div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:10px;">
 	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
-			<h1>Dash Board</h1>
+		<div class="col-sm-offset-2 col-sm-4">
+			<h3>영화 게시판</h3>
 		</div>
 	</div>
 
 
 <form>
-	<div class="form-group row z1">
-		<div class="col-sm-9 col-sm-offset-1">
+	<div class="form-group row">
+		<div class="col-sm-8 col-sm-offset-2">
 			<label for="title">Title</label>
 			<div class="row">
-				<div class="col-sm-10">
+				<div class="col-sm-9">
 					<input type="text" class="form-control" id="title" value="${BoardVO.title}" readonly />
 				</div>
-				<div class="col-sm-1">
-					<h4 class="text-center"><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4>
+
+				<div class="col-sm-3 text-right">
+					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4></div>
+					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.cno eq '100' ? 'Comedy' : BoardVO.cno eq '200' ? 'Action' : 'Drama' }</span></h4></div>
+
 				</div>
-				<div class="col-sm-1">
-					<h4><span class="label label-primary">${BoardVO.gno eq '100' ? 'JAVA' : BoardVO.gno eq '200' ? 'C' : 'C#' }</span></h4>
-				</div>
+
 			</div>
 		</div>
 	</div>
 
 	<div class="form-group row">
-	    <div class="col-sm-9 col-sm-offset-1">
+	    <div class="col-sm-8 col-sm-offset-2">
 	      <label for="content">Content</label>
 	      <textarea class="form-control" rows="10" readonly>${BoardVO.content}</textarea>
 	    </div>
@@ -65,7 +66,7 @@
 
 
      <div class="form-group row">
-       <div class="col-sm-9 col-sm-offset-1 upload">
+       <div class="col-sm-8 col-sm-offset-2 upload">
          <label for="fileList">FileList</label>
          <div class="row">
            <c:forEach items="${BoardVO.files }" var="list">
@@ -93,33 +94,36 @@
 
 
 	<div class="row">
-	  <div class="col-sm-9 col-sm-offset-1">
+	  <div class="col-sm-8 col-sm-offset-2">
 	    <label for="replyList" class="replyUL">ReplyList</label>
 		</div>
-	    <div class="col-sm-9 col-sm-offset-1 replyBox"></div>
+	    <div class="col-sm-8 col-sm-offset-2 replyBox"></div>
 	</div>
 
 	<div class="row">
-	  <div class="col-sm-9 col-sm-offset-1">
+	  <div class="col-sm-8 col-sm-offset-2">
 	    <div class="empty col-sm-12 text-center"></div>
 	  </div>
 	</div>
 
 	<div class="row">
-	     <div class="col-sm-9 col-sm-offset-1">
+	     <div class="col-sm-8 col-sm-offset-2">
 	       <label for="replyContent">ReplyContent</label>
 	       <div class="row">
 	       <textarea class="form-control replyContent" rows="2"></textarea>
-	       <label class="col-sm-1">Writer</label><input type="text" class="col-sm-2 replyWriter"/>
-	       <button type="submit" class="col-sm-1 col-sm-offset-8 btn btn-default btn-xs active" id="replyBtn">등록</button>
+	       <label class="col-sm-1">Writer</label>
+	       <button type="submit" class="col-sm-1 col-sm-offset-10 btn btn-default btn-xs active" id="replyBtn">등록</button>
+	       </div>
+	       <div class="row">
+	       <input type="text" class="col-sm-2 replyWriter"/>
 	       </div>
 	     </div>
 	</div>
     
 	<div class="row">
-	    <div class="col-sm-9 col-sm-offset-1">
+	    <div class="col-sm-8 col-sm-offset-2">
 	      <div class="row">
-	        <div class="col-sm-offset-5">
+	        <div class="col-sm-12 text-center">
 	        <button id="back" type="button" class="btn btn-xs btn-default">To List</button>
 	        <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
 	        <button id="remove" type="button" class="btn btn-xs btn-default">Delete</button>
@@ -202,11 +206,13 @@ $(document).ready(function() {
       var str = "";
 
       $(data.list).each(function(){
-	  str += "<div class='row' style='background-color:#f5f5f5;' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
-			      +"<span class='col-sm-2 label label-warning'>"+this.mid+"</span>"
+      var calendar = new Date(this.regdate);
+      var cal = calendar.getFullYear() +"/"+ calendar.getMonth() +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
+	  str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
+			      +"<span class='col-sm-1' style='font-size:2px; font-style: italic;'>"+this.mid+"</span>"
 				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
 				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
-				      +"<span class='col-sm-1 text-right label label-danger'>"+this.rno+"</span>"
+				      +"<span class='col-sm-2 text-right label label-danger'>"+cal+"</span>"
 			      +"<span class='col-sm-12'>"+this.content+"</span>"
     		 +"</div>";
       });

@@ -50,10 +50,10 @@ public class BoardController {
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
 		log.info("list..............");
-		
+	
 		String uri = request.getRequestURI().split("/")[1].toString();
 		log.info("............................................................................................"+uri);
-		
+		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);

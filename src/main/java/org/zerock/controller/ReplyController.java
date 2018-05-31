@@ -1,5 +1,7 @@
 package org.zerock.controller;
 
+
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
@@ -66,7 +67,6 @@ public class ReplyController {
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<ReplyVO> list = service.listReplyPage(bno, cri);
-			
 			map.put("list", list);
 			
 			int count = service.count(bno);

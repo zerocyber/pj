@@ -20,6 +20,9 @@ public interface BoardService {
 	public int count(Criteria cri);
 	
 	public List<BoardVO> searchList(Criteria cri);
+	
+	public List<BoardVO> bestList();
+	
 	// file method...............................
 	public int addFile(BoardVO vo);
 	

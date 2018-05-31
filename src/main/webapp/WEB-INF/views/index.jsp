@@ -24,10 +24,10 @@
 		<li data-target="#myCarousel" data-slide-to="1"></li>
 		<li data-target="#myCarousel" data-slide-to="2"></li>
 	</ol>
-	<div class="carousel-inner" role="listbox">
-		<div class="item active">
+	<div class="carousel-inner" role="listbox" style="margin-bottom: 10px;">
+		<div class="item active" >
 			<img class="first-slide"
-				src="http://file3.instiz.net/data/file3/2018/02/05/e/1/8/e1850ea9b6954f0021719a6112d5f810.jpg"
+				src="https://file3.instiz.net/data/file3/2018/02/05/e/1/8/e1850ea9b6954f0021719a6112d5f810.jpg"
 				alt="First slide">
 			<div class="container">
 				<div class="carousel-caption">

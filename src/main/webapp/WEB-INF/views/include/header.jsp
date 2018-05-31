@@ -21,41 +21,51 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
 </head>
+<style>
+ul li{
+list-style: none;
+}
+</style>
 
 <body>
 	<!-- Body 시작 -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white;">
+				
+		<ul class="nav text-right" style="list-style: none; background-color: white;">				
+					<li style="float: right;"><a href="/login">Sign in</a></li>
+					<li style="float: right;"><a href="/signup">Sign up</a></li>								
+		</ul>
 	
+	
+	<div class="container-fluid" style="background-color: white; border-top: solid 1px #e5e5e5; border-bottom: solid 1px #e5e5e5;">
+		
 		<div class="navbar-header">
+			
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+				<span class="sr-only">Toggle navigation</span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				
 			</button>
-			<a class="navbar-brand" href="/index">Leaf viliage</a>	
+		<a class="navbar-brand" href="/index">Leaf Movie Viliage</a>
 		</div>
-		
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="/index">Home</a></li>
-				<li><a href="/board/list">Board</a></li>
-				<li><a href="#">Gallery</a></li>
-				<li><a href="#">Team</a></li>
-				<li><a href="#">Contact us</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/login">Sign in</a></li>
-				<li><a href="/signup">Sign up</a></li>
-			</ul>
-			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
+		<div class="row col-sm-4 col-sm-offset-3">
+			<div id="navbar" class="navbar-collapse text-center">
+				<ul class="nav navbar-nav">
+					<li><a href="/index">Home</a></li>
+					<li><a href="/board/list">Board</a></li>
+					<li><a href="#">Gallery</a></li>
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Q&A</a></li>
+				</ul>						
+			</div>
 		</div>
-		
 	</div>
+		
+		
 	</nav>
 
 <!-- 	<div class="container-fluid">
