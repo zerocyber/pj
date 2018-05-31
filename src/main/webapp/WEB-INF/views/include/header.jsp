@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- Header 시작 -->
@@ -46,14 +47,27 @@
 				<li><a href="#">Team</a></li>
 				<li><a href="#">Contact us</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-
-				<li><a href="../login">Sign In</a></li>
-			</ul>
+			<%-- ${LOGIN.mname} --%>
+			
+			<c:choose>
+			 <c:when test="${LOGIN.mname eq null}">
+				 <ul class="nav navbar-nav navbar-right">
+					<li><a href="../login">Sign In</a></li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				<li><a href="../signup">Sign Up</a></li>
+					<li><a href="../signup">Sign Up</a></li>
+	
+				</ul>
+			 </c:when>
+			 <c:otherwise>
+			 	 <ul class="nav navbar-nav navbar-right">
+					<li><a href="#">${LOGIN.mname}님 로그아웃</a></li>
+				</ul>		 
+			 </c:otherwise>
+			
+			</c:choose>
+			
 
-			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">
 			</form>

@@ -23,6 +23,7 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 	@Setter(onMethod_= {@Autowired})
 	private BoardService service;
 	
+	//Read페이지 불러오기 전 쿠키 검사
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

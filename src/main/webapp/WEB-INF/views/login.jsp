@@ -50,6 +50,11 @@
 						<span class="focus-input100-2"></span>
 					</div>
 					
+					<div>
+					Remember Me<input type="checkbox" name="rememberMe">
+					
+					</div>
+					
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
 							Sign in
@@ -102,13 +107,6 @@
 	
 <script>
 
-var msg = "${msg}"
-
-if(msg == "success"){
-	alert("회원등록 되었습니다");
-	
-	window.location.reload();
-}
 
 </script>
 

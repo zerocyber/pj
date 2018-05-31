@@ -17,16 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/util.css">
  	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/main.css">
- 	
- 	<script src="/resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="/resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
-	<script src="/resources/loginResources/vendor/bootstrap/js/popper.js"></script>
-	<script src="/resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/resources/loginResources/vendor/select2/select2.min.js"></script>
-	<script src="/resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="/resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
-	<script src="/resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
-	<script src="/resources/loginResources/js/main.js"></script>
+
 </head>
 <body>
 	
@@ -45,13 +36,19 @@
 						<span class="focus-input100-2"></span>
 					</div>
 
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="mpw" placeholder="Password">
+					<div class="wrap-input100 rs1 validate-input" data-validate="사용하실 비밀번호를 입력해주세요">
+						<input id="mpw1" class="input100 mpw" type="password" name="mpw" placeholder="Password">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Please write your name">
+					<div class="wrap-input100 rs1 validate-input" data-validate="비밀번호 확인을 위해 입력해주세요">
+						<input id="mpw2" class="input100 mpw2" type="password" name="mpw2"  placeholder="Password">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "이름을 입력해주세요">
 						<input class="input100" type="text" name="mname" placeholder="Name">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
@@ -59,7 +56,7 @@
 					
 					
 					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate ="이메일을 ex@abc.xyz 방식으로 입력해주세요">
 						<input class="input100" type="text" name="email" placeholder="E-Mail">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
@@ -68,7 +65,7 @@
 					
 
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn signUP">
 							Sign Up
 						</button>
 					</div>
@@ -89,5 +86,44 @@
 			</div>
 		</div>
 	</div>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+	<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/js/main.js"></script>
+	
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+
+<body onload="document.forms[0].reset()">
+
+<script>
+$(".signUP").on("click",function(e){
+
+	var mpw1 = document.getElementById("mpw1").value;
+	var mpw2 = document.getElementById("mpw2").value;
+	console.log(mpw1);
+	console.log(mpw2);
+	if(mpw1 != mpw2){
+		alert("입력한 비밀번호가 서로 다릅니다.")
+	}
+	
+});
+
+</script>
+	
+	
 </body>
 </html>

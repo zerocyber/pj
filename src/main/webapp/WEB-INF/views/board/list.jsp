@@ -159,8 +159,11 @@ th {
 $(document).ready(function() {
 	if(msg=="success" && !history.state){
 		alert("등록이 완료되었습니다.");
-/* 		location.reload(); */
-	   }
+/* 	새로고침으로 메세지 세션 지우기 -> location.reload(); */ 
+	 }
+	if(msg=="signUp" && !history.state){
+		alert("회원으로 등록되셨습니다")
+	}
 	history.replaceState({}, null, null);
 	
 });

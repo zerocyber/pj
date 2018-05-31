@@ -5,17 +5,14 @@
    
  <mapper namespace="org.zerock.mapper.MemberMapper">
  
- <select id="login" resultType="org.zerock.domain.MemberVO">
- 
- select * from t_member where mid = #{mid}
- 
- </select>
- 
- <insert id="signUp">
- insert into t_member(mid,mpw,mname,email)
- 
- values(#{mid},#{mpw},#{mname},#{email})
- </insert>
- 
- 
+	 <select id="login" resultType="org.zerock.domain.MemberVO">
+	 select * from t_member where mid = #{mid} and mpw = #{mpw}
+	 </select>
+	 
+	 <insert id="signUp">
+	 insert into t_member(mid,mpw,mname,email)
+	 values(#{mid},#{mpw},#{mname},#{email})
+	 
+	 </insert>
+
  </mapper>   

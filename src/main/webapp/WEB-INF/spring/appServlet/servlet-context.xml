@@ -38,9 +38,7 @@
 
 	<interceptors>
 	 <interceptor>
-	  <mapping path="/board/write"/>
-	  <mapping path="/board/modify"/>
-	  <mapping path="/board/read"/>
+	  <mapping path="/login"/>
 	  <beans:ref bean="LoginInterceptor"/>
 	 </interceptor>
 	 

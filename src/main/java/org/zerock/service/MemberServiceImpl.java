@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.domain.LoginDTO;
 import org.zerock.domain.MemberVO;
 import org.zerock.mapper.MemberMapper;
 
@@ -12,21 +13,22 @@ public class MemberServiceImpl implements MemberService {
 
 	@Setter(onMethod_= {@Autowired})
 	private MemberMapper mapper;
-
+	
+	
 	@Override
-	public MemberVO userLogin(String mid) {
+	public MemberVO userLogin(LoginDTO dto) {
 		
-		return mapper.login(mid);
+		return mapper.login(dto);
 	}
 
+
 	@Override
-	public int userRegister(MemberVO vo) {
+	public int userRegist(MemberVO vo) {
 		
 		return mapper.signUp(vo);
 	}
 	
 	
 
-	
 	
 }
