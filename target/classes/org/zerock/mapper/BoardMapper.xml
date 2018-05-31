@@ -18,8 +18,8 @@
 	</select>
 
 	<insert id="insert">
-		insert into t_board(title, content, mid, cno, kno)
-		values(#{title}, #{content},#{mid}, #{cno}, #{kno})
+		insert into t_board(title, content, mid, gno, kno)
+		values(#{title}, #{content},#{mid}, #{gno}, #{kno})
 	</insert>
 
 	<update id="update">

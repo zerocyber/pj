@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
@@ -40,10 +41,20 @@ public class UploadController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
+	@Resource(name = "photoUploadPath")
+	private String photoUploadPath;
+	
 	@ResponseBody
 	@PostMapping(value="/upload", produces="application/json; charset=UTF-8")	//produces로 mime타입 지정
-	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+	public ResponseEntity<String> uploadAjax(MultipartFile file, HttpServletRequest request) throws Exception {
 		
+		String uri = request.getRequestURI().split("/")[1].toString();
+		log.info("******************************************************"+uri);
+		if(uri=="gallery") {
+			return new ResponseEntity<>(
+					UploadFileUtils.uploadFile(photoUploadPath, file.getOriginalFilename(), 
+							file.getBytes()),HttpStatus.CREATED);
+		}
 		return new ResponseEntity<>(
 				UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), 
 						file.getBytes()),HttpStatus.CREATED);

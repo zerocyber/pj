@@ -30,6 +30,11 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
+		<beans:bean id="photoUploadPath" class="java.lang.String">
+		<beans:constructor-arg value="c:\\zzz\\photoUpload">
+		</beans:constructor-arg>
+	</beans:bean>
+	
 	<context:component-scan base-package="org.zerock.controller" />
 	
 

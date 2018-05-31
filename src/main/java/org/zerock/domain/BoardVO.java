@@ -17,6 +17,6 @@ public class BoardVO {
 	private int views;
 	private String mid;
 	private int kno;
-	private int cno;
+	private int gno;
 	private String[] files;
 }
