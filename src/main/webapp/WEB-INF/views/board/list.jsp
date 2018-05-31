@@ -9,7 +9,32 @@ text-align: center;
 </style>
 
 
-<div class="col-sm-12 col-md-12 main" style="margin-top: 10px;">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 30px;">
+
+	
+		<div class="col-sm-offset-2 col-sm-8">
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="text-center" style="border-bottom: 1px solid black;">게시판 BEST</div>
+					<table class="table" style="background-color: #f9f9f9;">
+					<tr>
+					<c:forEach items="${bestList}" var="list" begin="0" end="9" varStatus="status">
+					<td class="col-sm-6"><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}">${list.title}</a></td>
+					<c:if test="${status.index%2 == 1}">
+					</tr>
+					<tr>
+					</c:if>
+					</c:forEach>
+						
+						
+					</table>
+				</div>	
+				<div class="col-sm-4">
+						<img style="height: 200px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
+				</div>
+			</div>									
+		</div>
+
 
 	<div class="row">
 	  <div class="col-sm-offset-2 col-sm-4">
@@ -22,7 +47,7 @@ text-align: center;
 			
 			<table width="100%" class="table table-hover">
 				<thead>
-					<tr class="info">
+					<tr>
 						<th width="10%">글번호</th>
 						<th width="50%">제목</th>
 						<th width="10%">작성자</th>

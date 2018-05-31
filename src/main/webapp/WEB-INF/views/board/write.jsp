@@ -46,7 +46,7 @@
 							</select>
 						</div>
 						<div class="col-sm-3">
-							<select class="form-control col-sm-3" name="cno">
+							<select class="form-control col-sm-3" name="gno">
 								<option value="100">Java</option>
 								<option value="200">C</option>
 								<option value="300">C#</option>

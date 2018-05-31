@@ -53,7 +53,7 @@ public class BoardController {
 		
 		String uri = request.getRequestURI().split("/")[2].toString();
 		log.info(uri);
-		
+		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
