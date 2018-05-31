@@ -43,8 +43,7 @@
 
 				<div class="col-sm-3 text-right">
 					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4></div>
-					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.cno eq '100' ? 'Comedy' : BoardVO.cno eq '200' ? 'Action' : 'Drama' }</span></h4></div>
-
+					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.gno eq '100' ? 'Comedy' : BoardVO.gno eq '200' ? 'Action' : 'Drama' }</span></h4></div>
 				</div>
 
 			</div>
@@ -115,7 +114,8 @@
 	       <button type="submit" class="col-sm-1 col-sm-offset-10 btn btn-default btn-xs active" id="replyBtn">등록</button>
 	       </div>
 	       <div class="row">
-	       <input type="text" class="col-sm-2 replyWriter"/>
+	       <input type="text" class="col-sm-2 replyWriter btn-xs"/>
+	       </div>
 	       </div>
 	     </div>
 	</div>

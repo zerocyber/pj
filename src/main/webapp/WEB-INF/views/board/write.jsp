@@ -31,10 +31,10 @@
 }
 </style>
 
-<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 
 	<div class="row">
-		<div class="col-md-10 col-sm-10">
+		<div class="col-sm-8 col-sm-offset-2">
 			<form  id="post-form" name="post-form" method="post">
 				<div class="form-group">
 					<div class="row">
@@ -47,9 +47,9 @@
 						</div>
 						<div class="col-sm-3">
 							<select class="form-control col-sm-3" name="gno">
-								<option value="100">Java</option>
-								<option value="200">C</option>
-								<option value="300">C#</option>
+								<option value="100">Comedy</option>
+								<option value="200">Action</option>
+								<option value="300">Drama</option>
 							</select>
 						</div>
 					</div>
@@ -81,8 +81,8 @@
 					<div id="uploadList"></div>
 				</div>
 
-					<div class="row">
-						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
+					<div class="row" style="margin-top: 10px;">
+						<div class="col-md-12 col-sm-12">
 							<div class="row">
 							<div class="col-md-offset-5 col-sm-offset-5">
 							<button class="btn btn-info btnc">등록</button>

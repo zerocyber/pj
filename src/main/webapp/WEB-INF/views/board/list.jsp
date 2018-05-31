@@ -9,14 +9,14 @@ text-align: center;
 </style>
 
 
-<div class="col-sm-12 col-md-12 main" style="margin-top: 30px;">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 
 	
-		<div class="col-sm-offset-2 col-sm-8">
+		<div class="col-sm-offset-2 col-sm-8" style="background-color: #e9faff;">
 			<div class="row">
 				<div class="col-sm-8">
-					<div class="text-center" style="border-bottom: 1px solid black;">게시판 BEST</div>
-					<table class="table" style="background-color: #f9f9f9;">
+					<div class="text-center" style="border-bottom: 1px solid black; padding-top:10px;"><p sytle="font-size: 10px;">게시판 BEST</p></div>
+					<table class="table" style="padding-bottom : 0px;" >
 					<tr>
 					<c:forEach items="${bestList}" var="list" begin="0" end="9" varStatus="status">
 					<td class="col-sm-6"><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}">${list.title}</a></td>
@@ -24,13 +24,12 @@ text-align: center;
 					</tr>
 					<tr>
 					</c:if>
-					</c:forEach>
-						
-						
+					</c:forEach>											
 					</table>
-				</div>	
-				<div class="col-sm-4">
-						<img style="height: 200px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
+				</div>
+					
+				<div class="col-sm-4" style="margin-top: 30px; padding-left:0px;">
+						<img style="height: 185px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
 				</div>
 			</div>									
 		</div>

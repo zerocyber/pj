@@ -6,7 +6,7 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
 	<select id="bestList" resultType="org.zerock.domain.BoardVO">
-	select * from t_board where bno > 0 and regdate = curdate() order by views desc limit 0, 10
+	select * from t_board where bno > 0 and regdate between curdate() - interval 1 day and curdate() + interval 1 day order by views desc limit 0, 10
 	</select>
 
 	<select id="list" resultType="org.zerock.domain.BoardVO">
