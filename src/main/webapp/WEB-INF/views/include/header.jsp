@@ -30,11 +30,20 @@ list-style: none;
 
 <body>
 	<!-- Body 시작 -->
+	
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white;">
-				
-		<ul class="nav text-right" style="list-style: none; background-color: white;">				
-					<li style="float: right;"><a href="/login">Sign in</a></li>
-					<li style="float: right;"><a href="/signup">Sign up</a></li>								
+		<ul class="nav text-right" style="list-style: none; background-color: white;">
+		<c:choose>
+		  <c:when test="${LOGIN.mname eq null}">
+		  	<li style="float: right;"><a href="/login">Sign in</a></li>
+			<li style="float: right;"><a href="/signup">Sign up</a></li>	
+		  </c:when>
+		  <c:otherwise>
+		  	<li style="float: right;"><a href="#">로그아웃</a></li>	
+		  	<li style="float: right;"><a href="#">${LOGIN.mname}님</a></li>
+		  </c:otherwise>
+		</c:choose>				
+							
 		</ul>
 	
 	
@@ -51,7 +60,7 @@ list-style: none;
 				<span class="icon-bar"></span>
 				
 			</button>
-		<a class="navbar-brand" href="/index">Leaf Movie Viliage</a>
+			<a class="navbar-brand" href="/index">Leaf Movie Viliage</a>
 		</div>
 
 		<div class="row col-sm-4 col-sm-offset-3">
@@ -64,7 +73,6 @@ list-style: none;
 					<li><a href="#">Q&A</a></li>
 				</ul>						
 			</div>
-
 		</div>
 	</div>
 		
