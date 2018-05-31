@@ -9,21 +9,48 @@ th {
 </style>
 
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
+
+	
+		<div class="col-sm-offset-2 col-sm-8" style="background-color: #e9faff;">
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="text-center" style="border-bottom: 1px solid black; padding-top:10px;"><p sytle="font-size: 10px;">게시판 BEST</p></div>
+					<table class="table" style="padding-bottom : 0px;" >
+					<tr>
+					<c:forEach items="${bestList}" var="list" begin="0" end="9" varStatus="status">
+					<td class="col-sm-6"><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}">${list.title}</a></td>
+					<c:if test="${status.index%2 == 1}">
+					</tr>
+					<tr>
+					</c:if>
+					</c:forEach>											
+					</table>
+				</div>
+					
+				<div class="col-sm-4" style="margin-top: 30px; padding-left:0px;">
+						<img style="height: 185px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
+				</div>
+			</div>									
+		</div>
+
 
 	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
-			<h1>Dash Board</h1>
-		</div>
+
+	  <div class="col-sm-offset-2 col-sm-4">
+	    <h3>영화 게시판</h3>
+	  </div>
+
 	</div>
 
 	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
 
-			<table width="100%"
-				class="table table-striped table-bordered table-hover">
+		<div class="col-sm-offset-2 col-sm-8">
+			
+			<table width="100%" class="table table-hover">
+
 				<thead>
-					<tr class="info">
+					<tr>
 						<th width="10%">글번호</th>
 						<th width="50%">제목</th>
 						<th width="10%">작성자</th>
@@ -60,91 +87,92 @@ th {
 	</div>
 
 	<form method="get">
-		<div class="form-group row">
-			<div class="col-sm-9 col-sm-offset-1">
-				<div class="row">
 
-					<div class="col-sm-3">
-						<select name="type" id="selectType" class="form-control">
-							<option value="">----</option>
-							<option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
-							<option value="c" ${pm.cri.type eq 'c'? "selected": '' }>CONTENT</option>
-							<option value="m" ${pm.cri.type eq 'm'? "selected": '' }>WRITER</option>
-							<option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
-							<option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
-							<option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
-						</select>
-					</div>
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-8">
+        <div class="row">
 
-					<div class="col-sm-7">
-						<input class="form-control" type="text" id="keyword"
-							name="keyword" value="${pm.cri.keyword}" />
-					</div>
-
-					<div class="col-sm-1">
-						<button id="btn_search" class="btn btn-xs btn-primary">SEARCH</button>
-					</div>
-
-					<div class="col-sm-1">
-						<button id="btn_write" class="btn btn-xs btn-info">등록</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</form>
-
+            <div class="col-sm-2">
+              <select name="type" id="selectType" class="form-control">
+                <option value="">----</option>
+                <option value="t" ${pm.cri.type eq 't'? "selected": '' }>TITLE</option>
+                <option value="c" ${pm.cri.type eq 'c'? "selected": '' }>CONTENT</option>
+                <option value="m" ${pm.cri.type eq 'm'? "selected": '' }>WRITER</option>
+                <option value="tc" ${pm.cri.type eq 'tc'? "selected": '' }>TITLE+CONTENT</option>
+                <option value="tm" ${pm.cri.type eq 'tm'? "selected": '' }>TITLE+WRITER</option>
+                <option value="tcm" ${pm.cri.type eq 'tcm'? "selected": '' }>TITLE+CONTENT+WRITER</option>
+              </select>
+            </div>
+          
+            <div class="col-sm-8">
+            <input class="form-control" type="text" id="keyword" name="keyword"
+            value="${pm.cri.keyword}"/>
+            </div>
+          
+            <div class="col-sm-1">
+            <button id="btn_search" class="btn btn-xs btn-primary">SEARCH</button>
+            </div>
+          
+            <div class="col-sm-1">
+            <button id="btn_write" class="btn btn-xs btn-info">등록</button>
+            </div>
+   
+         </div>
+       </div> 
+    </div> 
+</form>
 
 	<div class="row">
-		<div class="col-sm-9 col-sm-offset-1">
-			<div class="col-sm-12 text-center">
-				<div id="pagination">
-					<ul class="pagination">
 
-						<li><span style="background-color: black;">Page
-								${pm.cri.page} of ${pm.total}</span></li>
-						<c:if test="${pm.prev}">
-							<c:choose>
-								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-									<li><a class="btn btn-info"
-										href="list?page=${pm.startPage -1}">prev</a></li>
-								</c:when>
-								<c:otherwise>
-									<li><a class="btn btn-info"
-										href="list?page=${pm.startPage -1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a></li>
-								</c:otherwise>
-							</c:choose>
-						</c:if>
+		<div class="col-sm-12">
+		<div class="col-sm-12 text-center">
+			<div id="pagination">
+				<ul class="pagination">
+				
 
-						<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
-							<c:choose>
-								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-									<li ${pm.cri.page == idx ? 'class=active':''}><a
-										id="pageLink" class="btn btn-secondary"
-										href="/board/list?page=${idx}">${idx}</a></li>
-								</c:when>
-								<c:otherwise>
-									<li ${pm.cri.page == idx ? 'class=active':''}><a
-										id="pageLink" class="btn btn-secondary"
-										href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+					<li><span style="background-color: white;" >Page ${pm.cri.page} of ${pm.total}</span></li>
 
-						<c:if test="${pm.next}">
-							<c:choose>
-								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-									<li><a class="btn btn-info"
-										href="list?page=${pm.endPage + 1}">next</a></li>
-								</c:when>
-								<c:otherwise>
-									<li><a class="btn btn-info"
-										href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a></li>
-								</c:otherwise>
-							</c:choose>
-						</c:if>
-					</ul>
-				</div>
+					<c:if test="${pm.prev}">
+					<c:choose>
+					<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+					<li><a class="btn btn-info"
+						href="list?page=${pm.startPage -1}">prev</a></li>
+					</c:when>
+					<c:otherwise>
+					<li><a class="btn btn-info"
+						href="list?page=${pm.startPage -1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a></li>
+					</c:otherwise>
+					</c:choose>
+					</c:if>
+
+				<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
+					<c:choose>
+					<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+					<li ${pm.cri.page == idx ? 'class=active':''}><a id="pageLink" class="btn btn-secondary"
+						href="/board/list?page=${idx}">${idx}</a></li>
+					</c:when>
+					<c:otherwise>
+					<li ${pm.cri.page == idx ? 'class=active':''}><a id="pageLink" class="btn btn-secondary"
+						href="/board/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
+					</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+				<c:if test="${pm.next}">
+					<c:choose>
+					<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+					<li><a class="btn btn-info"
+						href="list?page=${pm.endPage + 1}">next</a></li>
+					</c:when>
+					<c:otherwise>
+					<li><a class="btn btn-info"
+						href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a></li>
+					</c:otherwise>
+					</c:choose>
+				</c:if>
+				</ul>
+			</div>
+
 			</div>
 		</div>
 	</div>

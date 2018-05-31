@@ -11,7 +11,7 @@ public class PageMaker {
 	private int displayNum;
 	private int total;
 	
-	public PageMaker() {		
+	public PageMaker() {
 		this.displayNum = 10;
 	}
 

@@ -27,9 +27,14 @@
 	
 	<beans:bean id="uploadPath" class="java.lang.String">
 
-	<beans:constructor-arg value="C:\\zzz\\upload">
-	</beans:constructor-arg>
+		<beans:constructor-arg value="/Users/whwp0913/Desktop/files">
+		</beans:constructor-arg>
+	</beans:bean>
 	
+		<beans:bean id="photoUploadPath" class="java.lang.String">
+		<beans:constructor-arg value="/zzz/upload">
+		</beans:constructor-arg>
+
 	</beans:bean>
 	
 	<beans:bean id="LoginInterceptor" class="org.zerock.interceptor.LoginInterceptor"> </beans:bean>

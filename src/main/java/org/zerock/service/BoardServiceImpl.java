@@ -63,6 +63,8 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> searchList(Criteria cri) {
 		return mapper.searchList(cri);
 	}
+	
+	
 	// 파일 추가 sql
 	@Override
 	public int addFile(BoardVO vo) {
@@ -93,6 +95,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int modiFile(BoardVO vo) {		
 		return mapper.modiFile(vo);
+	}
+
+	@Override
+	public List<BoardVO> bestList() {
+		return mapper.bestList();
 	}
 	
 	

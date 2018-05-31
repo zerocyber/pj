@@ -23,6 +23,8 @@ public interface BoardMapper {
 
 	public int addViews(int bno);
 	
+	public List<BoardVO> bestList();
+	
 	// 파일 업로드 
 	public int addFile(BoardVO vo);
 	// 파일 삭제
