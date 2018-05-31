@@ -185,7 +185,7 @@ th {
 <script>
 
 $(document).ready(function() {
-	if(msg=="success" && !history.state){
+	if(msg=="regist" && !history.state){
 		alert("등록이 완료되었습니다.");
 /* 	새로고침으로 메세지 세션 지우기 -> location.reload(); */ 
 	 }
@@ -205,14 +205,11 @@ $(document).ready(function() {
 
 	btn.on("click", function(e) {
 		console.log("click........................")
-		if (selectType.val() == "") {
-			alert("검색조건을 선택해주세요");
+		if (selectType.val() == "" || keyword.val() == "") {
+			alert("검색조건이나 검색어가 입력되지 않았습니다");
 			e.preventDefault();
 		}
-		if (keyword.val() == "") {
-			alert("검색어를 입력해주세요")
-			e.preventDefault();
-		}
+
 	});
 
     writeBtn.on("click", function(e) {

@@ -109,7 +109,7 @@
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
 
-<body onload="document.forms[1].reset()">
+<body onload="document.forms[0].reset()">
 
 <script>
 

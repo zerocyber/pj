@@ -21,5 +21,7 @@ public interface ReplyMapper {
 	public int count(int bno);
 	
 	public ReplyVO read(int rno);
+	
+	public void deleteAll(int bno);
 
 }

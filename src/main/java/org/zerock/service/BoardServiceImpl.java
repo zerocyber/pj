@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.ReplyMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -18,6 +19,8 @@ public class BoardServiceImpl implements BoardService{
 
 	@Setter(onMethod_= {@Autowired})
 	private BoardMapper mapper;
+	@Setter(onMethod_= {@Autowired})
+	private ReplyMapper mapper2;
 
 	
 	@Override
@@ -50,6 +53,8 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int remove(int bno) {
 		int row = mapper.removeFile(bno);
+
+		mapper2.deleteAll(bno);
 		mapper.delete(bno);
 		return row;
 	}
@@ -65,7 +70,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	
-	// 파일 추가 sql
+	// �뙆�씪 異붽� sql
 	@Override
 	public int addFile(BoardVO vo) {
 		return mapper.addFile(vo);
@@ -76,22 +81,22 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.addViews(bno);
 	}
 
-	// 파일 삭제 sql
+	// �뙆�씪 �궘�젣 sql
 	@Override
 	public int removeFile(int bno) {
 		return mapper.removeFile(bno);
 	}
-	// 파일 조회 sql
+	// �뙆�씪 議고쉶 sql
 	@Override
 	public String[] searchFile(int bno) {
 		return mapper.searchFile(bno);
 	}
-	// 글 수정 시 파일 삭제 
+	// 湲� �닔�젙 �떆 �뙆�씪 �궘�젣 
 	@Override
 	public int removeFiles(String[] deleteFiles) {
 		return mapper.removeFiles(deleteFiles);
 	}
-	// 글 수정 시 파일 등록 
+	// 湲� �닔�젙 �떆 �뙆�씪 �벑濡� 
 	@Override
 	public int modiFile(BoardVO vo) {		
 		return mapper.modiFile(vo);

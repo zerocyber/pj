@@ -131,7 +131,6 @@
 	    </div>
 	</div>
     
-</div>
 
 <form id="inform" method="post">
   <input type="hidden" name="page" value="${cri.page}">
@@ -149,7 +148,13 @@ $(document).ready(function() {
   var wall= $("#wall");
   var picture=$(".picture");
   var download=$(".download");
-
+  
+  console.log('${BoardVO.mid}');
+  console.log('${LOGIN.mid}');
+  
+  var mid = '${BoardVO.mid}';
+  var user = '${LOGIN.mid}';
+  
   
 	$(".upload").on("click","div span img",function(e) {
 		console.log("span clicked");
@@ -189,6 +194,17 @@ $(document).ready(function() {
   	});
   
   	$("#remove").on("click", function(e) {
+  		
+  		 if(user != "" && user != mid){
+  			 alert("글 작성자만 삭제 가능합니다");
+  			 e.preventDefault();
+  			 return false;
+  		 }
+  		 if(user === ""){
+  			 alert("로그인이 필요한 기능입니다")
+  			 location.href = "/login";
+  		 }
+  		
     	formObj.attr("action", "/board/delete");
     	formObj.submit();
   	});
@@ -395,7 +411,7 @@ $(document).ready(function() {
 	  } 
   });
   
-    });
+});
 
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

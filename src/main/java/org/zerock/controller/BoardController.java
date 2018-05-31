@@ -83,7 +83,7 @@ public class BoardController {
 
 		log.info("write post.......");
 		service.write(vo);
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "regist");
 		return "redirect:/board/list";
 	}
 

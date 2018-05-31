@@ -55,6 +55,13 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> listReplyPage(int bno, Criteria cri) {
 		return mapper.listPage(bno, cri);
 	}
+
+	@Override
+	public void removeAll(int bno) {
+		mapper.deleteAll(bno);
+		
+	}
+	
 	
 
 }
