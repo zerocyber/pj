@@ -96,37 +96,37 @@ $(document).ready(function() {
 	});
 	$(".fileDrop").on("drop",function(event) {
 		event.preventDefault();
-		
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
-
+		var path = 'img';
 		console.log(file);
+		console.log(file.type);
+		var image = file.type;
+		console.log(image.split('/')[0]);
 		
-		if (checkImageType(files)) {
-
+		
 		var formData = new FormData();
 		formData.append("file", file);
-		console.log(files);
+		
 
 		$.ajax({
-			url : '/upload',
+			url : '/'+path+'/upload',
 			data : formData,
 			dataType : 'text',
 			processData : false,
 			contentType : false,
 			type : 'POST',
 			success : function(data) {
+			
 			var str = "";
 
 			if (checkImageType(data)) {
 				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='images' value='"+data+"'/>"
-				}
 				$("#uploadList").append(str);
 			}
+			}	
+			
 		});
-		}else {
-			alert("이미지 파일만 올려주세요..!");
-		}
 	});
 
 	function checkImageType(fileName) {

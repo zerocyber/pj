@@ -130,7 +130,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
-
+		var path = 'board';
 		console.log(file);
 
 		var formData = new FormData();
@@ -138,7 +138,7 @@ $(document).ready(function() {
 		console.log(files);
 
 		$.ajax({
-			url : '/upload',
+			url : '/'+path+'/upload',
 			data : formData,
 			dataType : 'text',
 			processData : false,

@@ -111,7 +111,7 @@
 	
 		$("#btn_write").on("click", function(e) {
 	    	e.preventDefault();
-			location.href = "/gallery/write"
+			location.href = "/photo/write"
 		}); 	
 	
 	});
