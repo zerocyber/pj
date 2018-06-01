@@ -12,27 +12,27 @@
 </style>
 
 
+<div class="col-sm-12 col-md-12 main" style="margin-top: 150px;">
 
-<div class="container">
-	<div class="row">
+<div class="row">
+<div class="col-sm-offset-1 col-sm-10">
 	
 		<div class='list-group gallery'>
 		
-<%-- 			<c:forEach items="${GalleryVO}" var="gallery">
-				<div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
-					<a class="thumbnail fancybox" rel="ligthbox" href="${gallery.fullname}"> 
-						<img class="img-responsive" alt="" src="${gallery.fullname}" />
-						<div class='text-right'>
-							<small class='text-muted'><c:out value="${gallery.title}" /></small>
-							<small class='text-muted'><c:out value="${gallery.mid}" /></small><br>
-							<small class='text-muted'><c:out value="${gallery.content}" /></small>
+			<c:forEach items="${photoList}" var="list">
+				<div class='col-sm-3'>				
+					<a class="thumbnail fancybox" rel="ligthbox" href="https://quasarzone.co.kr/data/editor/1603/thumb-8a697f1a337c62e602fef5887802976d_1458839258_2364_740x416.jpg"> 
+						<img class="img-responsive" alt="" src="https://quasarzone.co.kr/data/editor/1603/thumb-8a697f1a337c62e602fef5887802976d_1458839258_2364_740x416.jpg" />
+						<div class='text-right text-center'>
+							<p><c:out value="${list.title}" /></p>
+							<p><small class='text-muted'><c:out value="작성자 :${list.mid }" /></small></p>
+							
 						</div>
 					</a>
 				</div>				
-			</c:forEach> --%>
+			</c:forEach>
 			
 		</div>
-		
 	</div>	
 </div>
 
@@ -94,6 +94,8 @@
 	<div class="col-sm-1">
 		<button id="btn_write" class="btn btn-xs btn-info">등록</button>
 	</div>
+</div>
+
 </div>
 
 
