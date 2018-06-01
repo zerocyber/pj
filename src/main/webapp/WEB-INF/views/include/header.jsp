@@ -21,6 +21,13 @@
 <!-- JAVA SCRIPT -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
+
+<!-- Photo Board -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </head>
 <style>
 ul li{
@@ -68,28 +75,12 @@ list-style: none;
 				<ul class="nav navbar-nav">
 					<li><a href="/index">Home</a></li>
 					<li><a href="/board/list">Board</a></li>
-					<li><a href="#">Gallery</a></li>
+					<li><a href="/photo/list">Gallery</a></li>
 					<li><a href="#">About us</a></li>
 					<li><a href="#">Q&A</a></li>
 				</ul>						
 			</div>
 		</div>
-	</div>
-		
-		
-	</nav>
-
-<!-- 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li><a href="/index">Home</a></li>
-					<li><a href="/board/list">Board</a></li>
-					<li><a href="#">Gallery</a></li>
-					<li><a href="#">Team</a></li>
-					<li><a href="#">Contact us</a></li>
-				</ul>
-			</div>
-		</div>
-	</div> -->
+	</div>				
+</nav>
 	<!-- Header 끝 -->
