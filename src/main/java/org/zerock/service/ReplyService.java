@@ -22,5 +22,7 @@ public interface ReplyService {
 	public int count(int bno);
 	
 	public ReplyVO read(int rno);
+	
+	public void removeAll(int bno);
 
 }

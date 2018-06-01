@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.MemberVO;
 import org.zerock.domain.ReplyVO;
+import org.zerock.mapper.MemberMapper;
 import org.zerock.mapper.ReplyMapper;
 
 import lombok.Setter;
@@ -19,6 +21,8 @@ public class ReplyTest {
 
 	@Setter(onMethod_= {@Autowired})
 	private ReplyMapper mapper;
+	
+
 	
 	// 댓글리스트 테스트 
 	@Test
@@ -57,5 +61,5 @@ public class ReplyTest {
 		log.info(mapper.count(4));
 	}
 	
-	
+
 }

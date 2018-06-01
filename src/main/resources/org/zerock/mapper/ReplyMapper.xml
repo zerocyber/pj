@@ -40,6 +40,10 @@
     select * from t_reply where rno = #{rno}
     </select>
     
+    <delete id="deleteAll">
+    delete from t_reply where bno = #{bno}
+    </delete>
+    
   
     
     </mapper>

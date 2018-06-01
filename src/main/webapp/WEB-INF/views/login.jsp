@@ -28,7 +28,17 @@
 	<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
 	<script src="resources/loginResources/js/main.js"></script>
 </head>
+<style>
+.rememberMe{
+padding: 10px;
+text-align: left;
+font-size: 14px;
+margin-top: 5px;
+}
+</style>
 <body>
+
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
@@ -49,6 +59,12 @@
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
+					
+					
+					<span class="login100-form-title p-b-33 rememberMe">
+						<input type="checkbox" name="rememberMe">&nbsp;Remember Me
+					</span>
+
 					
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
@@ -78,5 +94,32 @@
 			</div>
 		</div>
 	</div>
+
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+	<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="resources/loginResources/js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	
+<script>
+
+
+</script>
+
 </body>
 </html>

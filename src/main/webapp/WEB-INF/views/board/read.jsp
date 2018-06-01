@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <style>
 #wall {
 	width:100%;
@@ -44,6 +45,7 @@
 				<div class="col-sm-3 text-right">
 					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4></div>
 					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.gno eq '100' ? 'Comedy' : BoardVO.gno eq '200' ? 'Action' : 'Drama' }</span></h4></div>
+
 				</div>
 
 			</div>
@@ -63,7 +65,6 @@
        </div>
      </div>
 
-
      <div class="form-group row">
        <div class="col-sm-8 col-sm-offset-2 upload">
          <label for="fileList">FileList</label>
@@ -82,8 +83,6 @@
        </div>
      </div>
 </form>
-
-
 
 
 	<div id="wall">
@@ -132,7 +131,6 @@
 	    </div>
 	</div>
     
-</div>
 
 <form id="inform" method="post">
   <input type="hidden" name="page" value="${cri.page}">
@@ -150,7 +148,13 @@ $(document).ready(function() {
   var wall= $("#wall");
   var picture=$(".picture");
   var download=$(".download");
-
+  
+  console.log('${BoardVO.mid}');
+  console.log('${LOGIN.mid}');
+  
+  var mid = '${BoardVO.mid}';
+  var user = '${LOGIN.mid}';
+  
   
 	$(".upload").on("click","div span img",function(e) {
 		console.log("span clicked");
@@ -190,6 +194,17 @@ $(document).ready(function() {
   	});
   
   	$("#remove").on("click", function(e) {
+  		
+  		 if(user != "" && user != mid){
+  			 alert("글 작성자만 삭제 가능합니다");
+  			 e.preventDefault();
+  			 return false;
+  		 }
+  		 if(user === ""){
+  			 alert("로그인이 필요한 기능입니다")
+  			 location.href = "/login";
+  		 }
+  		
     	formObj.attr("action", "/board/delete");
     	formObj.submit();
   	});
@@ -205,6 +220,11 @@ $(document).ready(function() {
 
       var str = "";
 
+      
+		/* <td><fmt:formatDate value='${board.regdate}'
+			pattern="yyyy.MM.dd hh:mm:ss" /></td> */
+      
+      
       $(data.list).each(function(){
       var calendar = new Date(this.regdate);
       var cal = calendar.getFullYear() +"/"+ calendar.getMonth() +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
@@ -212,7 +232,9 @@ $(document).ready(function() {
 			      +"<span class='col-sm-1' style='font-size:2px; font-style: italic;'>"+this.mid+"</span>"
 				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
 				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
+
 				      +"<span class='col-sm-2 text-right label label-danger'>"+cal+"</span>"
+
 			      +"<span class='col-sm-12'>"+this.content+"</span>"
     		 +"</div>";
       });
@@ -367,8 +389,29 @@ $(document).ready(function() {
       e.preventDefault();
       var page = $(e.target).text(); // page number
       pageList(page);
-    });
-    
+
+    });  
+
+  /* 파일 리스트 로딩 */
+  (function fileList() {
+	 
+	  
+	var file = '${fileList}';
+	console.log(file);
+
+	  
+  })();
+  /* 파일 리스트 로딩 */
+  
+  $(".download").on("click",function(e){
+	  console.log("download click")
+	  
+	  if(confirm("download??")){
+		  location.replace("/displayFile?fileName=${BoardVO.files}");
+	  } 
+  });
+  
 });
+
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- Header 시작 -->
@@ -29,11 +30,20 @@ list-style: none;
 
 <body>
 	<!-- Body 시작 -->
+	
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white;">
-				
-		<ul class="nav text-right" style="list-style: none; background-color: white;">				
-					<li style="float: right;"><a href="/login">Sign in</a></li>
-					<li style="float: right;"><a href="/signup">Sign up</a></li>								
+		<ul class="nav text-right" style="list-style: none; background-color: white;">
+		<c:choose>
+		  <c:when test="${LOGIN.mname eq null}">
+		  	<li style="float: right;"><a href="/login">Sign in</a></li>
+			<li style="float: right;"><a href="/signup">Sign up</a></li>	
+		  </c:when>
+		  <c:otherwise>
+		  	<li style="float: right;"><a href="#">로그아웃</a></li>	
+		  	<li style="float: right;"><a href="#">${LOGIN.mname}님</a></li>
+		  </c:otherwise>
+		</c:choose>				
+							
 		</ul>
 	
 	
@@ -50,8 +60,9 @@ list-style: none;
 				<span class="icon-bar"></span>
 				
 			</button>
-		<a class="navbar-brand" href="/index">Leaf Movie Viliage</a>
+			<a class="navbar-brand" href="/index">Leaf Movie Viliage</a>
 		</div>
+
 		<div class="row col-sm-4 col-sm-offset-3">
 			<div id="navbar" class="navbar-collapse text-center">
 				<ul class="nav navbar-nav">
