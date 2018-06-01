@@ -11,54 +11,31 @@
 }
 </style>
 
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<!--####
-### How to add in your boostrap project
-1) Add jQuery "<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>"
-2) Download fancybox (https://github.com/fancyapps/fancyBox)
-3) Or use CDN (http://cdnjs.com/libraries/fancybox)
-####--!>
-
-<!-- References: https://github.com/fancyapps/fancyBox -->
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-	media="screen">
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 <div class="container">
 	<div class="row">
+	
 		<div class='list-group gallery'>
-
-			<c:forEach items="${GalleryVO}" var="gallery">
+		
+<%-- 			<c:forEach items="${GalleryVO}" var="gallery">
 				<div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
-					<a class="thumbnail fancybox" rel="ligthbox"
-						href="${gallery.fullname}"> <img class="img-responsive" alt=""
-						src="${gallery.fullname}" />
+					<a class="thumbnail fancybox" rel="ligthbox" href="${gallery.fullname}"> 
+						<img class="img-responsive" alt="" src="${gallery.fullname}" />
 						<div class='text-right'>
 							<small class='text-muted'><c:out value="${gallery.title}" /></small>
 							<small class='text-muted'><c:out value="${gallery.mid}" /></small><br>
 							<small class='text-muted'><c:out value="${gallery.content}" /></small>
-						</div> <!-- text-right / end -->
+						</div>
 					</a>
-				</div>
-				<!-- col-6 / end -->
-			</c:forEach>
-
+				</div>				
+			</c:forEach> --%>
+			
 		</div>
-		<!-- list-group / end -->
-	</div>
-	<!-- row / end -->
+		
+	</div>	
 </div>
-<!-- container / end -->
+
 
 
 
@@ -67,7 +44,6 @@
 		<div class="col-sm-12 text-center">
 			<div id="pagination">
 				<ul class="pagination">
-
 					<li><span style="background-color: black;">Page
 							${pm.cri.page} of ${pm.endPage}</span></li>
 					<c:if test="${pm.prev}">

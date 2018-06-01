@@ -78,7 +78,6 @@
 		<selectKey order="BEFORE" keyProperty="pno" resultType="int">
 			select max(pno) pno from t_photo
 		</selectKey>
-
 		insert into t_image (fullname, pno)
 		values
 		<foreach collection="images" item="item" separator=",">
