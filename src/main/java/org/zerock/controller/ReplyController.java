@@ -32,10 +32,8 @@ public class ReplyController {
 	private ReplyService service;
 
 	//댓글 등록
-
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
-		System.out.println("..............................====================================");
 		ResponseEntity<String> entity = null;
 		 try {
 			 service.register(vo);
@@ -44,20 +42,15 @@ public class ReplyController {
 			 e.getMessage();
 		 }
 		 return entity;
-
 	}
 
 	//댓글 리스트
-
 	@RequestMapping(value="/{bno}/{page}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listReplies(
 			@PathVariable("bno") int bno,
 			@PathVariable("page")int page){
 		
-		log.info("reply list get...................................");
-		log.info("bno : " + bno);
 		ResponseEntity<Map<String, Object>> entity = null;
-		
 		try {
 			Criteria cri = new Criteria();
 			cri.setPage(page);
@@ -70,31 +63,25 @@ public class ReplyController {
 			map.put("list", list);
 			
 			int count = service.count(bno);
+			
 			pm.setTotal(count);
-			
 			map.put("pm", pm);
-			
 			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-
 		return entity;
 	}
 	
 	@RequestMapping(value="/{bno}/{rno}", method=RequestMethod.PUT)
 	public ResponseEntity<String> updateReplies(@PathVariable("bno") int bno, 
 			@PathVariable("rno")int rno,@RequestBody ReplyVO vo) {
-		
-		System.out.println("=======================================puuuuuuuuuuuuuuuuuuuuuuuuuuuuuut.........");
-		ResponseEntity<String> entity = null;
-		
+		ResponseEntity<String> entity = null;		
 		try {
 			service.modify(vo);
-			entity = new ResponseEntity<String>("Modify", HttpStatus.OK);
-			
+			entity = new ResponseEntity<String>("Modify", HttpStatus.OK);			
 		}catch(Exception e) {
 			e.getMessage();
 		}
@@ -104,17 +91,14 @@ public class ReplyController {
 	@RequestMapping(value = "/{bno}/{rno}" , method = RequestMethod.DELETE)
 	public ResponseEntity<String> removeReplies(@PathVariable("rno")int rno) {
 		ResponseEntity<String> entity = null;
-		System.out.println("removing..........................");
 		try {
 			service.remove(rno);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		
-		return entity;
-		
-		
+		}		
+		return entity;			
 	}
+	
 }

@@ -46,10 +46,8 @@ public class UploadController {
 	
 	@ResponseBody
 	@PostMapping(value="/upload", produces="application/json; charset=UTF-8")	//produces로 mime타입 지정
-	public ResponseEntity<String> uploadAjax(MultipartFile file, HttpServletRequest request) throws Exception {
-		
+	public ResponseEntity<String> uploadAjax(MultipartFile file, HttpServletRequest request) throws Exception {		
 		String uri = request.getRequestURI().split("/")[1].toString();
-		log.info("******************************************************"+uri);
 		if(uri=="gallery") {
 			return new ResponseEntity<>(
 					UploadFileUtils.uploadFile(photoUploadPath, file.getOriginalFilename(), 
@@ -65,9 +63,7 @@ public class UploadController {
 	public ResponseEntity<byte []> displayFile(String fileName)throws Exception{
 		InputStream in  = null;
 		ResponseEntity<byte[]> entity = null;
-		
-		log.info("File name : "+fileName);
-		
+				
 		try {
 			String formatName = fileName.substring(fileName.lastIndexOf(".")+1); // 확장
 			
@@ -85,6 +81,7 @@ public class UploadController {
 		        headers.add("Content-Disposition", "attachment; filename=\""+ 
 		                new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
 			}
+			
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), // 파일을 담는다 엔티티 
 					headers, HttpStatus.CREATED);
 		}catch(Exception e) {
@@ -96,6 +93,4 @@ public class UploadController {
 		return entity;
 	}
 	
-
-
 }

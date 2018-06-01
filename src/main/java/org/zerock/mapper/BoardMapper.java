@@ -25,15 +25,16 @@ public interface BoardMapper {
 	
 	public List<BoardVO> bestList();
 	
-	// 파일 업로드 
+	// file method.................
+	 
 	public int addFile(BoardVO vo);
-	// 파일 삭제
+	
 	public int removeFile(int bno);
-	// 파일 조회 
+	 
 	public String[] searchFile(int bno);
-	// 글 수정 시 파일 삭제
+	
 	public int removeFiles(String[] deleteFiles);
-	// 글 수정 시 파일 등록
+	
 	public int modiFile(BoardVO vo);
 
 }

@@ -31,25 +31,29 @@
 }
 </style>
 
-<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 
 	<div class="row">
-		<div class="col-md-10 col-sm-10">
-			<form  id="post-form" name="post-form" method="post">
+
+		<div class="col-sm-8 col-sm-offset-2">
+			<form  id="post-form form1" name="post-form" method="post">
+
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-3">
-							<select class="form-control" name="kno">
+							<select class="form-control kno" name="kno">
 								<option value="30">일반</option>
 								<option value="20">후기</option>
 								<option value="10">질문</option>
 							</select>
 						</div>
 						<div class="col-sm-3">
+
 							<select class="form-control col-sm-3" name="gno">
-								<option value="100">Java</option>
-								<option value="200">C</option>
-								<option value="300">C#</option>
+								<option value="100">Comedy</option>
+								<option value="200">Action</option>
+								<option value="300">Drama</option>
+
 							</select>
 						</div>
 					</div>
@@ -58,16 +62,16 @@
 
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
-						type="text" class="form-control" placeholder="Text input" required="required">
+						type="text" class="form-control title" placeholder="Text input" required="required">
 				</div>
 				<label for="content">Content</label>
 				<p>
-					<textarea id="content" name="content" class="form-control"
+					<textarea id="content" name="content" class="form-control content"
 						rows="15" required="required"></textarea>
 				</p>
 				<label>Writer</label>
 				<p>
-					<input id="mid" name="mid" type="text" class="form-control-s"
+					<input id="mid" name="mid" type="text" class="form-control-s mid"
 						placeholder="Text input" required="required">
 				</p>
 				<div>
@@ -81,19 +85,20 @@
 					<div id="uploadList"></div>
 				</div>
 
-					<div class="row">
-						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
+
+					<div class="row" style="margin-top: 10px;">
+						<div class="col-md-12 col-sm-12">
 							<div class="row">
 							<div class="col-md-offset-5 col-sm-offset-5">
 							<button class="btn btn-info btnc">등록</button>
 
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
-							</div>
-							</div>
+						  </div>
 						</div>
 					</div>
-
+				</div>
 			</form>
+			
 		</div>
 	</div>
 </div>
@@ -103,12 +108,20 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
+
+<body onload="document.forms[0].reset()">
+
 <script>
+
+
 $(document).ready(function() {
 
 	$("#back").on("click", function(e) {
 		self.location = "/board/list";
+
 	});
+	
+	
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
 		event.preventDefault();
@@ -147,9 +160,11 @@ $(document).ready(function() {
 	function checkImageType(fileName) {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
-	}
-
+	}	
+	
+	
 });
+
 </script>
 
 

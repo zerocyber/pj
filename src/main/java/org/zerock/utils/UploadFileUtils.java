@@ -20,7 +20,6 @@ import lombok.extern.log4j.Log4j;
 @Data
 public class UploadFileUtils {
 
-
 	// 파일저장경로내에 날짜별 파일 업로드 경로 설정
 	public static String calcPath(String uploadPath) {
 		Calendar cal = Calendar.getInstance();
@@ -35,6 +34,7 @@ public class UploadFileUtils {
 
 		return datePath;
 	}
+	
 	// 경로에 폴더 생성 
 	private static void makeDir(String uploadPath, String... paths) {
 
@@ -48,6 +48,7 @@ public class UploadFileUtils {
 			}
 		}
 	}
+	
 	// 썸네일 만들어주는 메소
 	private static String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
 
@@ -91,14 +92,15 @@ public class UploadFileUtils {
 		return uploadedFileName;
 
 	}
+	
 	// 경로를 처리하는 문자열의 치환 
 	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception {
 		String iconName = uploadPath + path + File.separator + fileName;
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
+	
 	// 파일 삭제 시 실제 경로에 가서 파일삭제 
-	public static void deleteFile(String uploadPath, String[] deleteFiles)throws Exception {
-		
+	public static void deleteFile(String uploadPath, String[] deleteFiles)throws Exception {			
 		
 		// 썸네일 이름이 붙은 uuid+s_+폴더경로 + 파일이름 
 		for(int i=0; i < deleteFiles.length; i ++) {

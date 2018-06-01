@@ -4,19 +4,19 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 th {
-text-align: center;
+	text-align: center;
 }
 </style>
 
 
-<div class="col-sm-12 col-md-12 main" style="margin-top: 30px;">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 
 	
-		<div class="col-sm-offset-2 col-sm-8">
+		<div class="col-sm-offset-2 col-sm-8" style="background-color: #e9faff;">
 			<div class="row">
 				<div class="col-sm-8">
-					<div class="text-center" style="border-bottom: 1px solid black;">게시판 BEST</div>
-					<table class="table" style="background-color: #f9f9f9;">
+					<div class="text-center" style="border-bottom: 1px solid black; padding-top:10px;"><p sytle="font-size: 10px;">게시판 BEST</p></div>
+					<table class="table" style="padding-bottom : 0px;" >
 					<tr>
 					<c:forEach items="${bestList}" var="list" begin="0" end="9" varStatus="status">
 					<td class="col-sm-6"><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}">${list.title}</a></td>
@@ -24,28 +24,31 @@ text-align: center;
 					</tr>
 					<tr>
 					</c:if>
-					</c:forEach>
-						
-						
+					</c:forEach>											
 					</table>
-				</div>	
-				<div class="col-sm-4">
-						<img style="height: 200px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
+				</div>
+					
+				<div class="col-sm-4" style="margin-top: 30px; padding-left:0px;">
+						<img style="height: 185px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
 				</div>
 			</div>									
 		</div>
 
 
 	<div class="row">
+
 	  <div class="col-sm-offset-2 col-sm-4">
 	    <h3>영화 게시판</h3>
 	  </div>
+
 	</div>
-	
+
 	<div class="row">
+
 		<div class="col-sm-offset-2 col-sm-8">
 			
 			<table width="100%" class="table table-hover">
+
 				<thead>
 					<tr>
 						<th width="10%">글번호</th>
@@ -58,29 +61,33 @@ text-align: center;
 				<tbody>
 					<c:forEach items="${BoardVO}" var="board">
 						<tr style="text-align: center">
-							<td><c:out value="${board.bno}"/></td>
-								<c:choose>
-									<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-									<td style="text-align: left">
-									<a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}"><c:out value="${board.title}"/></a></td>
-									</c:when>
+							<td><c:out value="${board.bno}" /></td>
+							<c:choose>
+								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+									<td style="text-align: left"><a
+										href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}"><c:out
+												value="${board.title}" /></a></td>
+								</c:when>
 								<c:otherwise>
-									<td style="text-align: left">
-									<a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}&type=${pm.cri.type}&keyword=${pm.cri.keyword}"><c:out value="${board.title}"/></a></td>
+									<td style="text-align: left"><a
+										href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}&type=${pm.cri.type}&keyword=${pm.cri.keyword}"><c:out
+												value="${board.title}" /></a></td>
 								</c:otherwise>
-								</c:choose>
-							<td><c:out value="${board.mid}"/></td>
-							<td><fmt:formatDate value='${board.regdate}' pattern="yyyy.MM.dd hh:mm:ss" /></td>
-							<td class="center"><c:out value="${board.views}"/></td>
+							</c:choose>
+							<td><c:out value="${board.mid}" /></td>
+							<td><fmt:formatDate value='${board.regdate}'
+									pattern="yyyy.MM.dd hh:mm:ss" /></td>
+							<td class="center"><c:out value="${board.views}" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			
+
 		</div>
 	</div>
-	
+
 	<form method="get">
+
   <div class="form-group row">
     <div class="col-sm-offset-2 col-sm-8">
         <div class="row">
@@ -115,8 +122,8 @@ text-align: center;
     </div> 
 </form>
 
-	
 	<div class="row">
+
 		<div class="col-sm-12">
 		<div class="col-sm-12 text-center">
 			<div id="pagination">
@@ -165,43 +172,44 @@ text-align: center;
 				</c:if>
 				</ul>
 			</div>
+
 			</div>
 		</div>
 	</div>
 
 </div>
-
+	
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
 <script>
-var result = '${msg}';
 
-
-if(result=="success"){
-	alert("게시글이 등록되었습니다.");
+$(document).ready(function() {
+	if(msg=="regist" && !history.state){
+		alert("등록이 완료되었습니다.");
+/* 	새로고침으로 메세지 세션 지우기 -> location.reload(); */ 
+	 }
+	if(msg=="signUp" && !history.state){
+		alert("회원으로 등록되셨습니다")
+	}
+	history.replaceState({}, null, null);
 	
-}
-</script>
+});
 
-<script>
 	var btn = $("#btn_search")
 	var selectType = $("#selectType")
 	var writeBtn = $("#btn_write") 
 	var keyword = $("#keyword")
 	var pageLink = $("#pageLink")
-	
-	
+	var msg = '${msg}';
+
 	btn.on("click", function(e) {
 		console.log("click........................")
-		if (selectType.val() == "") {
-			alert("검색조건을 선택해주세요");
+		if (selectType.val() == "" || keyword.val() == "") {
+			alert("검색조건이나 검색어가 입력되지 않았습니다");
 			e.preventDefault();
 		}
-		if (keyword.val() == "") {
-			alert("검색어를 입력해주세요")
-			e.preventDefault();
-		}
+
 	});
 
     writeBtn.on("click", function(e) {
@@ -209,6 +217,5 @@ if(result=="success"){
 		location.href = "/board/write"
 	});
     
-
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
