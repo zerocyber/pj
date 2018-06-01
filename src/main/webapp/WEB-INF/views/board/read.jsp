@@ -113,7 +113,7 @@
 	       <button type="submit" class="col-sm-1 col-sm-offset-10 btn btn-default btn-xs active" id="replyBtn">등록</button>
 	       </div>
 	       <div class="row">
-	       <input type="text" class="col-sm-2 replyWriter btn-xs"/>
+	       <input type="text" class="col-sm-2 replyWriter btn-xs" value="${LOGIN.mid}" readonly/>
 	       </div>
 	       </div>
 	     </div>
@@ -148,9 +148,6 @@ $(document).ready(function() {
   var wall= $("#wall");
   var picture=$(".picture");
   var download=$(".download");
-  
-  console.log('${BoardVO.mid}');
-  console.log('${LOGIN.mid}');
   
   var mid = '${BoardVO.mid}';
   var user = '${LOGIN.mid}';
@@ -190,6 +187,12 @@ $(document).ready(function() {
 
 
   	$("#modify").on("click", function(e) {
+  		
+  		if(user != "" && user != mid){
+ 			 alert("글 작성자만 수정 가능합니다");
+  			 e.preventDefault();
+  			 return false;
+  		}
     	self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
   	});
   
@@ -203,10 +206,13 @@ $(document).ready(function() {
   		 if(user === ""){
   			 alert("로그인이 필요한 기능입니다")
   			 location.href = "/login";
+  			 return false
+  		 }
+  		 if(confirm("정말 삭제하시겠습니까?")){
+  	    	formObj.attr("action", "/board/delete");
+  	    	formObj.submit();
   		 }
   		
-    	formObj.attr("action", "/board/delete");
-    	formObj.submit();
   	});
   
   /* 댓글 페이지 로딩 */
@@ -220,11 +226,6 @@ $(document).ready(function() {
 
       var str = "";
 
-      
-		/* <td><fmt:formatDate value='${board.regdate}'
-			pattern="yyyy.MM.dd hh:mm:ss" /></td> */
-      
-      
       $(data.list).each(function(){
       var calendar = new Date(this.regdate);
       var cal = calendar.getFullYear() +"/"+ calendar.getMonth() +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();

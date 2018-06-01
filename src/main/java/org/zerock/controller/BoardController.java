@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,10 +90,10 @@ public class BoardController {
 
 	
 	@GetMapping("/modify")
-	public void modify(@Param("bno")int bno, Model model, Criteria cri) {
+	public void modify(@Param("bno")int bno, Model model, Criteria cri, HttpSession session) {
 		log.info("modify get.........");
-		
 		BoardVO vo = service.read(bno);
+		
 		vo.setFiles(service.searchFile(bno));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri", cri);

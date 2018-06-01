@@ -19,7 +19,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	
 	if(session.getAttribute("LOGIN") == null) {
 		
-		log.info("로그인 권한이 필요한 페이지에 유저가 접속 시도...................");
+		saveURI(request);
+		
 		response.sendRedirect("/login");
 		return false;
 	}
@@ -27,6 +28,25 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		return true;
 	
 	}
+	
+	
+	private void saveURI(HttpServletRequest req) {
+		String uri = req.getRequestURI();
+		String query = req.getQueryString();
+		log.info("URI: " + uri);
+		log.info("QueryString: " + query);
+		if(query ==null || query.equals("null")) {
+			query = "";
+		}else {
+			query= "?"+query;
+		}
+		
+		if(req.getMethod().equals("GET")) {
+			log.info("final URI: " + uri + query);
+			req.getSession().setAttribute("URI", uri+query);
+		}
+	}
+
 
 	
 	

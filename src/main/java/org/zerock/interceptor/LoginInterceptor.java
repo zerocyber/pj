@@ -14,6 +14,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
+	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -22,11 +23,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		ModelMap modelMap = modelAndView.getModelMap();
 		log.info("modelMap: " + modelMap);
 		Object memberVO = modelMap.get("MemberVO");
+		log.info("memberVO: "+memberVO);
 		if(memberVO !=null) {
 			log.info("login success.............................");
 			session.setAttribute("LOGIN", memberVO);
-			response.sendRedirect("/index");
 			
+			Object uri = session.getAttribute("URI");
+
+			response.sendRedirect(uri != null? (String)uri : "/index");		
 		}
 	
 	}
@@ -39,13 +43,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		if(session.getAttribute("LOGIN") !=null) {
 			
-			log.info("이전에 있던 로그인 데이터를 삭제합니다...................");
+			log.info("이전에 있던 로그인 데이터 삭제처리");
 			session.removeAttribute("LOGIN");
 		}
 		
 		return true;
 	}
 	
-	
-	
+
+
 }

@@ -19,7 +19,9 @@
 
 
 <!-- JAVA SCRIPT -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 <script src="/resources/bootstrap-3.3.2/docs/assets/js/ie-emulation-modes-warning.js"></script>
 </head>
 <style>
@@ -29,17 +31,34 @@ list-style: none;
 </style>
 
 <body>
+<script>
+
+$(document).ready(function(){
+	
+	var Obj = $("#loginform");
+	
+	$("ul").on("click",".logout",function(e){
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href = "/logout";
+		}
+	});
+	
+});
+
+</script>
 	<!-- Body 시작 -->
+
 	
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white;">
 		<ul class="nav text-right" style="list-style: none; background-color: white;">
+
 		<c:choose>
 		  <c:when test="${LOGIN.mname eq null}">
 		  	<li style="float: right;"><a href="/login">Sign in</a></li>
 			<li style="float: right;"><a href="/signup">Sign up</a></li>	
 		  </c:when>
 		  <c:otherwise>
-		  	<li style="float: right;"><a href="#">로그아웃</a></li>	
+		  	<li style="float: right;"><a class="logout">로그아웃</a></li>	
 		  	<li style="float: right;"><a href="#">${LOGIN.mname}님</a></li>
 		  </c:otherwise>
 		</c:choose>				
