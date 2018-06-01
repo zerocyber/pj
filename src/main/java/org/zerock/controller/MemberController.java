@@ -29,13 +29,13 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public void login() {
-		
-		log.info("Login get............................");
+
 	}
 	
 	@PostMapping("/login")
+
 	public void loginPost(LoginDTO dto, Model model, RedirectAttributes rttr) {
-		
+
 		MemberVO vo = service.userLogin(dto);
 		if(vo == null) {
 			log.info("로그인 실패.....");
@@ -53,12 +53,11 @@ public class MemberController {
 	
 	@GetMapping("/signup")
 	public void signUp() {
-		log.info("SignUp get...........................");
+		
 	}
 	
 	@PostMapping("/signup")
 	public String signUpPost(MemberVO vo, Model model, RedirectAttributes rttr) {
-		log.info("send SignUp info............................");
 		service.userRegist(vo);
 		rttr.addFlashAttribute("msg", "signUp");
 		return "redirect:/board/list";

@@ -11,25 +11,23 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 	throws Exception{
 	
 	HttpSession session = request.getSession();
-	
 	if(session.getAttribute("LOGIN") == null) {
-		
+
 		saveURI(request);
-		
+
 		response.sendRedirect("/login");
+		
 		return false;
 	}
-	
 		return true;
-	
 	}
-	
-	
+
 	private void saveURI(HttpServletRequest req) {
 		String uri = req.getRequestURI();
 		String query = req.getQueryString();
@@ -48,6 +46,4 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	}
 
 
-	
-	
 }

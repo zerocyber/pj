@@ -23,7 +23,8 @@ public interface BoardService {
 	
 	public List<BoardVO> bestList();
 	
-	// file method...............................
+	// file method.......................
+	
 	public int addFile(BoardVO vo);
 	
 	public int viewCnt(int bno);

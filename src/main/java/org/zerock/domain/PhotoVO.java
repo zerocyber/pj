@@ -6,11 +6,12 @@ import lombok.Data;
 
 @Data
 public class PhotoVO {
-
+	
 	private int pno;
-	private String ptitle, pcontent;
+	private String title, content;
 	private Date regdate, updatedate;
-	private String src;
 	private String mid;
+	private int views;
+	private String[] images;
 	
 }
