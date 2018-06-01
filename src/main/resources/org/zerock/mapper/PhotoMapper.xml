@@ -10,27 +10,27 @@
 		order by
 		pno
 		desc
-		limit #{pageStart}, 8
+		limit #{pageStart}, #{perPageNum}
 	</select>
 
 	<select id="read" resultType="org.zerock.domain.PhotoVO">
 		select * from t_photo where
-		pno=#{pno}
+		pno= #{pno}
 	</select>
 
 	<insert id="insert">
 		insert into t_photo(title, content, mid)
-		values(#{title}, #{content},#{mid})
+		values(#{title}, #{content}, #{mid})
 	</insert>
 
 	<update id="update">
 		update t_photo set title = #{title},
 		content=#{content}, updatedate = now()
-		where pno=#{pno}
+		where pno = #{pno}
 	</update>
 
 	<delete id="delete">
-		delete from t_photo where pno=#{pno}
+		delete from t_photo where pno = #{pno}
 	</delete>
 
 	<select id="count" resultType="int">
@@ -68,7 +68,7 @@
 		<include refid="criteria"></include>
 
 		order by pno desc
-		limit #{pageStart},8
+		limit #{pageStart},#{perPageNum}
 
 	</select>
 
