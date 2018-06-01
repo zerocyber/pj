@@ -38,18 +38,11 @@ public class BoardController {
 	@Setter(onMethod_= {@Autowired})
 	private BoardService service;
 	
-	@Setter(onMethod_= {@Autowired})
-	private HttpServletRequest req;
-	
-	@Setter(onMethod_= {@Autowired})
-	private HttpServletResponse res;
-	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
-		String uri = request.getRequestURI().split("/")[1].toString();
 		
 		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));

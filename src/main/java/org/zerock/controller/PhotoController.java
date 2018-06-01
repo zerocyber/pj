@@ -10,6 +10,7 @@ import org.zerock.service.PhotoService;
 @RequestMapping("/photo/*")
 public class PhotoController {
 
+
 	@Autowired
 	private PhotoService service;
 	
