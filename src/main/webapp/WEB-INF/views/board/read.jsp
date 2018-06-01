@@ -184,9 +184,9 @@ $(document).ready(function() {
 
 	
 	
-  $("#back").on("click", function(e) {
-    self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-  });
+  	$("#back").on("click", function(e) {
+   	 self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+ 	});
 
 
   	$("#modify").on("click", function(e) {

@@ -27,7 +27,7 @@
 	
 	<beans:bean id="uploadPath" class="java.lang.String">
 
-		<beans:constructor-arg value="/zzz/upload">
+		<beans:constructor-arg value="/Users/whwp0913/Desktop/files">
 		</beans:constructor-arg>
 	</beans:bean>
 	

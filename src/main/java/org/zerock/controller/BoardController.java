@@ -49,39 +49,32 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
-		log.info("list..............");
-	
 		String uri = request.getRequestURI().split("/")[1].toString();
-		log.info("............................................................................................"+uri);
+		
 		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));
+		
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
 		pm.setTotal(service.count(cri));
-//		model.addAttribute("BoardVO", service.pageList(cri));
 		model.addAttribute("pm", pm);
 	}
 	
 	@GetMapping("/read")
-	public void read(Model model, @Param("bno") int bno, Criteria cri) {
-		log.info("read.............");
-
+	public void read(Model model, @Param("bno") int bno, Criteria cri) {	
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
-		log.info("Arrays check............................................"+Arrays.toString(vo.getFiles()));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
 	}
 	
 	@GetMapping("/write")
 	public void write() {
-		log.info("write get...........");
+
 	}
 	
 	@PostMapping("/write")
 	public String writePost(BoardVO vo, Model model, RedirectAttributes rttr) throws Exception{
-
-		log.info("write post.......");
 		service.write(vo);
 		rttr.addFlashAttribute("msg", "regist");
 		return "redirect:/board/list";
@@ -89,21 +82,16 @@ public class BoardController {
 
 	
 	@GetMapping("/modify")
-	public void modify(@Param("bno")int bno, Model model, Criteria cri) {
-		log.info("modify get.........");
-		
+	public void modify(@Param("bno")int bno, Model model, Criteria cri) {		
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri", cri);
-		
 	}
 	
 	@PostMapping("/modify")
 	public String modifyPost(BoardVO vo, Criteria cri, String[] deleteFiles)throws Exception {
-		log.info("modify post...........");
 		if(deleteFiles != null) {
-			log.info("dddddddddddddddddddddddddddddddddd"+Arrays.toString(deleteFiles));
 			service.removeFiles(deleteFiles);
 			UploadFileUtils.deleteFile(uploadPath, deleteFiles);
 		}
@@ -113,7 +101,6 @@ public class BoardController {
 	
 	@PostMapping("/delete")
 	public String delete(@Param("bno") int bno)throws Exception {
-		log.info("Delete in.....................................Post");
 		String[] deleteFiles = service.searchFile(bno);
 		int success = service.remove(bno);
 		if(success > 0) { 

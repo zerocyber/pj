@@ -32,15 +32,16 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 		Cookie cookies[] = request.getCookies();
 		Map cookieMap = new HashMap();
 		if(request.getCookies() != null ) {
-			log.info("getCookies not null...............................................");
+	
 			for(int i = 0; i < cookies.length; i++) {
 			Cookie cookieObj = cookies[i];
 			cookieMap.put(cookieObj.getName(), cookieObj.getValue());
-			log.info("name: " + cookieObj.getName()+ "  value: "+ cookieObj.getValue());
+			
 			}	
 		}
+		
 		String cookieViews = (String)cookieMap.get("views");
-		log.info("cookieViews........................: " + cookieViews);
+		
 		String cookie_viewCnt = "|" + bno;
 		if(cookieViews == null) {
 			cookieViews = "views";
@@ -53,7 +54,7 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 			service.viewCnt(bno);
 	   }
 		return true;
- }
+	}
 	
 	
 }

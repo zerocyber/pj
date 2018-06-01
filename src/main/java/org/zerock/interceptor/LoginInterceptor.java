@@ -17,18 +17,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		log.info("post handle.............................................");
+		
 		HttpSession session = request.getSession();
 		ModelMap modelMap = modelAndView.getModelMap();
-		log.info("modelMap: " + modelMap);
+		
 		Object memberVO = modelMap.get("MemberVO");
-		if(memberVO !=null) {
-			log.info("login success.............................");
+		
+		if(memberVO !=null) {			
 			session.setAttribute("LOGIN", memberVO);
-			response.sendRedirect("/index");
-			
-		}
-	
+			response.sendRedirect("/index");	
+		}	
 	}
 
 	@Override
@@ -38,14 +36,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("LOGIN") !=null) {
-			
-			log.info("이전에 있던 로그인 데이터를 삭제합니다...................");
 			session.removeAttribute("LOGIN");
 		}
-		
 		return true;
 	}
-	
-	
-	
 }

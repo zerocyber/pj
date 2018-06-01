@@ -26,14 +26,11 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public void login() {
-		
-		log.info("Login get............................");
+
 	}
 	
 	@PostMapping("/login")
-	public void loginPost(LoginDTO dto, Model model) {
-		log.info("send login info................");
-		
+	public void loginPost(LoginDTO dto, Model model) {		
 		MemberVO vo = service.userLogin(dto);
 		if(vo == null) {
 			return;
@@ -44,12 +41,11 @@ public class MemberController {
 	
 	@GetMapping("/signup")
 	public void signUp() {
-		log.info("SignUp get...........................");
+		
 	}
 	
 	@PostMapping("/signup")
 	public String signUpPost(MemberVO vo, Model model, RedirectAttributes rttr) {
-		log.info("send SignUp info............................");
 		service.userRegist(vo);
 		rttr.addFlashAttribute("msg", "signUp");
 		return "redirect:/board/list";
