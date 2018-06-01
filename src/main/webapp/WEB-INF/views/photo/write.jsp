@@ -36,26 +36,7 @@
 	<div class="row">
 		<div class="col-md-10 col-sm-10">
 			<form  id="post-form" name="post-form" method="post">
-				<div class="form-group">
-					<div class="row">
-						<div class="col-sm-3">
-							<select class="form-control" name="kno">
-								<option value="30">일반</option>
-								<option value="20">후기</option>
-								<option value="10">질문</option>
-							</select>
-						</div>
-						<div class="col-sm-3">
-							<select class="form-control col-sm-3" name="gno">
-								<option value="100">Java</option>
-								<option value="200">C</option>
-								<option value="300">C#</option>
-							</select>
-						</div>
-					</div>
-				</div>
-
-
+				
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
 						type="text" class="form-control" placeholder="Text input" required="required">
@@ -72,7 +53,7 @@
 				</p>
 				<div>
 					<div class="form-group">
-						<label for="exampleInputFile">파일 업로드</label> <input type="file"
+						<label for="exampleInputFile">이미지 업로드</label> <input type="file"
 							id="exampleInputFile">
 					</div>
 
@@ -107,7 +88,7 @@
 $(document).ready(function() {
 
 	$("#back").on("click", function(e) {
-		self.location = "/board/list";
+		self.location = "/photo/list";
 	});
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
@@ -115,10 +96,13 @@ $(document).ready(function() {
 	});
 	$(".fileDrop").on("drop",function(event) {
 		event.preventDefault();
+		
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
 
 		console.log(file);
+		
+		if (checkImageType(files)) {
 
 		var formData = new FormData();
 		formData.append("file", file);
@@ -135,13 +119,14 @@ $(document).ready(function() {
 			var str = "";
 
 			if (checkImageType(data)) {
-				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='files' value='"+data+"'/>"
-				} else {
-				str = "<div>"+ data +"<input type='hidden' name='files' value='"+data+"'/>"+"</div>";
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='images' value='"+data+"'/>"
 				}
 				$("#uploadList").append(str);
 			}
 		});
+		}else {
+			alert("이미지 파일만 올려주세요..!");
+		}
 	});
 
 	function checkImageType(fileName) {
