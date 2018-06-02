@@ -30,11 +30,9 @@
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 </style>
-
-<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 	<div class="row">
-		<div class="col-md-10 col-sm-10">
+		<div class="col-sm-8 col-sm-offset-2">
 			<form  id="post-form" name="post-form" method="post">
 				<div class="form-group">
 					<div class="row">
@@ -97,9 +95,6 @@
 		</div>
 	</div>
 </div>
-
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>

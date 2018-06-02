@@ -38,10 +38,9 @@ public class UploadController {
 	produces="application/json; charset=UTF-8",
 	method=RequestMethod.POST)	//produces로 mime타입 지정
 	public ResponseEntity<String> uploadAjax(@PathVariable("path")String path, MultipartFile file) throws Exception {		
-		log.info("......................................"+path);
 		if(path.equalsIgnoreCase("img")) {
 			return new ResponseEntity<>(
-					UploadFileUtils.uploadFile(photoUploadPath, file.getOriginalFilename(), 
+					UploadFileUtils.uploadFile(photoUploadPath, path+file.getOriginalFilename(), 
 							file.getBytes()),HttpStatus.CREATED);
 		}
 		return new ResponseEntity<>(
@@ -62,7 +61,11 @@ public class UploadController {
 			
 			HttpHeaders headers = new HttpHeaders();
 			
-			in = new FileInputStream(uploadPath + fileName); // 풀 경로 
+			if(fileName.contains("img")) {
+				in = new FileInputStream(photoUploadPath + fileName);
+			}else {
+				in = new FileInputStream(uploadPath + fileName); // 풀 경로 
+			}
 			
 			if(mType != null) {
 				headers.setContentType(mType);
