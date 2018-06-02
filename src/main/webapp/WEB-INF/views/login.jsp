@@ -48,14 +48,14 @@ margin-top: 5px;
 						Account Login
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="mid" placeholder="ID">
+					<div class="wrap-input100 validate-input" data-validate = "ID를 입력해주세요">
+						<input class="input100" type="text" name="mid" placeholder="ID" value="zerocyber4">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
 
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="mpw" placeholder="Password">
+					<div class="wrap-input100 rs1 validate-input" data-validate="비밀번호를 입력해주세요">
+						<input class="input100" type="password" name="mpw" placeholder="Password" value="1234">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -85,7 +85,7 @@ margin-top: 5px;
 						<span class="txt1">
 							Create an account?
 						</span>
-						<a href="signup" class="txt2 hov1">
+						<a href="signup" class="txt2 hov1 signup">
 							Sign up
 						</a>
 					</div>
@@ -117,6 +117,17 @@ margin-top: 5px;
 	crossorigin="anonymous"></script>
 	
 <script>
+$(document).ready(function(){
+	var msg = '${msg}';
+	console.log(msg);
+
+	if(msg == "fail" && !history.state){
+		
+		alert("로그인 정보를 확인해주세요");
+	}history.replaceState({}, null, null);
+
+});
+
 
 
 </script>
