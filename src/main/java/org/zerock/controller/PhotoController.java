@@ -20,8 +20,8 @@ public class PhotoController {
 	@GetMapping("/list")
 	public void photoList(Model model,Criteria cri) {
 		PageMaker pm = new PageMaker();
-		pm.setCri(cri);
 		cri.setPerPageNum(12);
+		pm.setCri(cri);		
 		model.addAttribute("photoList", service.pageList(cri));
 		model.addAttribute("pageMaker", pm);
 		

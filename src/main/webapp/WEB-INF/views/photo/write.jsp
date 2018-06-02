@@ -117,15 +117,18 @@ $(document).ready(function() {
 		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
-
-		console.log(file);
+		var path = 'img';
+		
+		files[0].name= "";
+		console.log(files[0].name);
+		
 
 		var formData = new FormData();
 		formData.append("file", file);
 		console.log(files);
 
 		$.ajax({
-			url : '/upload',
+			url : '/'+path+'/upload',
 			data : formData,
 			dataType : 'text',
 			processData : false,
@@ -133,7 +136,7 @@ $(document).ready(function() {
 			type : 'POST',
 			success : function(data) {
 			var str = "";
-
+			console.log('success');
 			if (checkImageType(data)) {
 				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='files' value='"+data+"'/>"
 				} else {

@@ -1,16 +1,9 @@
 package org.zerock.controller;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
@@ -18,9 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,10 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.zerock.utils.MediaUtils;
 import org.zerock.utils.UploadFileUtils;
 
-import com.sun.net.httpserver.Headers;
-
 import lombok.extern.log4j.Log4j;
-import net.coobird.thumbnailator.Thumbnailator;
 
 
 @Controller
@@ -45,10 +34,12 @@ public class UploadController {
 	private String photoUploadPath;
 	
 	@ResponseBody
-	@PostMapping(value="/upload", produces="application/json; charset=UTF-8")	//produces로 mime타입 지정
-	public ResponseEntity<String> uploadAjax(MultipartFile file, HttpServletRequest request) throws Exception {		
-		String uri = request.getRequestURI().split("/")[1].toString();
-		if(uri=="gallery") {
+	@RequestMapping(value="/{path}/upload", 
+	produces="application/json; charset=UTF-8",
+	method=RequestMethod.POST)	//produces로 mime타입 지정
+	public ResponseEntity<String> uploadAjax(@PathVariable("path")String path, MultipartFile file) throws Exception {		
+		log.info("......................................"+path);
+		if(path.equalsIgnoreCase("img")) {
 			return new ResponseEntity<>(
 					UploadFileUtils.uploadFile(photoUploadPath, file.getOriginalFilename(), 
 							file.getBytes()),HttpStatus.CREATED);
