@@ -13,5 +13,6 @@ public class PhotoVO {
 	private String mid;
 	private int views;
 	private String[] images;
+	private String image;
 	
 }

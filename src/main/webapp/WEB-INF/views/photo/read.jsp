@@ -28,7 +28,7 @@
 <div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:10px;">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-4">
-			<h3>영화 게시판</h3>
+			<h3>이미지 게시판</h3>
 		</div>
 	</div>
 

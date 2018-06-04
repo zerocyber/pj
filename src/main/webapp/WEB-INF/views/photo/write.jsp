@@ -30,13 +30,10 @@
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 </style>
-
-<div class="container-fluid col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 	<div class="row">
-		<div class="col-md-10 col-sm-10">
-			<form  id="post-form" name="post-form" method="post">
-				
+		<div class="col-sm-8 col-sm-offset-2">
+			<form  id="post-form" name="post-form" method="post">				
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
 						type="text" class="form-control" placeholder="Text input" required="required">
@@ -67,7 +64,6 @@
 							<div class="row">
 							<div class="col-md-offset-5 col-sm-offset-5">
 							<button class="btn btn-info btnc">등록</button>
-
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
 							</div>
 							</div>
@@ -78,9 +74,6 @@
 		</div>
 	</div>
 </div>
-
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
@@ -99,11 +92,10 @@ $(document).ready(function() {
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
 		var path = 'img';
-		console.log(file);
-		console.log(file.type);
 		var image = file.type;
-		console.log(image.split('/')[0]);
-		
+				
+		files[0].name= "";
+		console.log(files[0].name);
 		
 		var formData = new FormData();
 		formData.append("file", file);
@@ -119,9 +111,13 @@ $(document).ready(function() {
 			success : function(data) {
 			
 			var str = "";
-
+			console.log('success');
 			if (checkImageType(data)) {
 				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='images' value='"+data+"'/>"
+				} else {
+				str = "<div>"+ data +"<input type='hidden' name='images' value='"+data+"'/>"+"</div>";
+				}
+
 				$("#uploadList").append(str);
 			}
 			}	

@@ -72,7 +72,7 @@
 				<label>Writer</label>
 				<p>
 					<input id="mid" name="mid" type="text" class="form-control-s mid"
-						placeholder="Text input" required="required">
+						placeholder="Text input" value="${LOGIN.mid}" readonly>
 				</p>
 				<div>
 					<div class="form-group">

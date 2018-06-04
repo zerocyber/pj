@@ -37,8 +37,6 @@ margin-top: 5px;
 }
 </style>
 <body>
-
-
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
@@ -48,14 +46,16 @@ margin-top: 5px;
 						Account Login
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="mid" placeholder="ID" value="user10">
+
+					<div class="wrap-input100 validate-input" data-validate = "ID를 입력해주세요">
+						<input class="input100" type="text" name="mid" placeholder="ID" value="nara">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
 
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="mpw" placeholder="Password" value="pw10">
+
+					<div class="wrap-input100 rs1 validate-input" data-validate="비밀번호를 입력해주세요">
+						<input class="input100" type="password" name="mpw" placeholder="Password" value="1234">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -85,7 +85,7 @@ margin-top: 5px;
 						<span class="txt1">
 							Create an account?
 						</span>
-						<a href="signup" class="txt2 hov1">
+						<a href="signup" class="txt2 hov1 signup">
 							Sign up
 						</a>
 					</div>
@@ -94,32 +94,25 @@ margin-top: 5px;
 			</div>
 		</div>
 	</div>
-
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/js/main.js"></script>
-
+<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
+<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+<script src="resources/loginResources/js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
-	
 <script>
-
-
+$(document).ready(function(){
+	var msg = '${msg}';
+	if(msg == "fail" && !history.state){
+		alert("로그인 정보를 확인해주세요");
+	}history.replaceState({}, null, null);
+});
 </script>
-
 </body>
 </html>
