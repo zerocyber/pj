@@ -29,6 +29,9 @@ public class PhotoController {
 		PageMaker pm = new PageMaker();
 		cri.setPerPageNum(12);
 		pm.setCri(cri);
+		pm.setTotal(service.count(cri));
+		
+		
 		model.addAttribute("join", service.joinList(cri));
 //		model.addAttribute("photoList", service.pageList(cri));
 		model.addAttribute("pageMaker", pm);
@@ -46,5 +49,10 @@ public class PhotoController {
 		log.info(Arrays.toString(vo.getImages()));
 		service.write(vo);
 		return "redirect:/photo/list";
+	}
+	
+	@GetMapping("read")
+	public void photoRead(PhotoVO vo, Criteria cri, Model model) {
+		
 	}
 }

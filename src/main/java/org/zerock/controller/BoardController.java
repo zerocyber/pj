@@ -47,7 +47,6 @@ public class BoardController {
 		
 		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));
-		
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
 		pm.setTotal(service.count(cri));
