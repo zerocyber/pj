@@ -23,6 +23,8 @@ public interface PhotoMapper {
 
 	public int addViews(int pno);
 	
+	public List<PhotoVO> joinList(Criteria cri);
+	
 	//  업로드 
 	public int addImage(PhotoVO vo);
 	// 파일 삭제

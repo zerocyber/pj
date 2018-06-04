@@ -10,29 +10,27 @@
 	margin-top: 20px;
 }
 </style>
-
-
 <div class="col-sm-12 col-md-12 main" style="margin-top: 150px;">
-	
+
 	<div class="row">
 		<div class="col-sm-offset-1 col-sm-10">
 			<div class='list-group gallery'>
-				<c:forEach items="${photoList}" var="list">
+				<c:forEach items="${join}" var="list">
 					<div class='col-sm-3'>
-						<a class="thumbnail fancybox" rel="ligthbox"
-							href="https://quasarzone.co.kr/data/editor/1603/thumb-8a697f1a337c62e602fef5887802976d_1458839258_2364_740x416.jpg">
+							<a class="thumbnail fancybox" rel="lightbox" href="/displayFile?fileName=${list.image}">
 							<img class="img-responsive" alt=""
-							src="https://quasarzone.co.kr/data/editor/1603/thumb-8a697f1a337c62e602fef5887802976d_1458839258_2364_740x416.jpg" />
+							src="/displayFile?fileName=${list.image}" /></a>
 							<div class='text-right text-center'>
 								<p>
-									<c:out value="${list.title}" />
+									<a href="/photo/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&pno=${list.pno}">
+									<c:out value="${list.title}" /></a>																								
 								</p>
 								<p>
 									<small class='text-muted'><c:out
 											value="작성자 :${list.mid }" /></small>
 								</p>
 							</div>
-						</a>
+							
 					</div>
 				</c:forEach>
 			</div>

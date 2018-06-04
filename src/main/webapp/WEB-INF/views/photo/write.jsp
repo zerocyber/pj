@@ -33,27 +33,7 @@
 <div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
-			<form  id="post-form" name="post-form" method="post">
-				<div class="form-group">
-					<div class="row">
-						<div class="col-sm-3">
-							<select class="form-control" name="kno">
-								<option value="30">일반</option>
-								<option value="20">후기</option>
-								<option value="10">질문</option>
-							</select>
-						</div>
-						<div class="col-sm-3">
-							<select class="form-control col-sm-3" name="gno">
-								<option value="100">Java</option>
-								<option value="200">C</option>
-								<option value="300">C#</option>
-							</select>
-						</div>
-					</div>
-				</div>
-
-
+			<form  id="post-form" name="post-form" method="post">				
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
 						type="text" class="form-control" placeholder="Text input" required="required">
@@ -84,7 +64,6 @@
 							<div class="row">
 							<div class="col-md-offset-5 col-sm-offset-5">
 							<button class="btn btn-info btnc">등록</button>
-
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
 							</div>
 							</div>
@@ -102,7 +81,7 @@
 $(document).ready(function() {
 
 	$("#back").on("click", function(e) {
-		self.location = "/board/list";
+		self.location = "/board/photo";
 	});
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
@@ -133,9 +112,9 @@ $(document).ready(function() {
 			var str = "";
 			console.log('success');
 			if (checkImageType(data)) {
-				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='files' value='"+data+"'/>"
+				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='images' value='"+data+"'/>"
 				} else {
-				str = "<div>"+ data +"<input type='hidden' name='files' value='"+data+"'/>"+"</div>";
+				str = "<div>"+ data +"<input type='hidden' name='images' value='"+data+"'/>"+"</div>";
 				}
 				$("#uploadList").append(str);
 			}

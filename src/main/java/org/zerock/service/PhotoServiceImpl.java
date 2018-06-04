@@ -65,6 +65,12 @@ public class PhotoServiceImpl implements PhotoService {
 	public List<PhotoVO> searchList(Criteria cri) {
 		return mapper.searchList(cri);
 	}
+	
+	@Override
+	public List<PhotoVO> joinList(Criteria cri) {
+	
+		return mapper.joinList(cri);
+	}
 
 	@Override
 	public int addImage(PhotoVO vo) {
@@ -95,5 +101,7 @@ public class PhotoServiceImpl implements PhotoService {
 	public int modiImage(PhotoVO vo) {	
 		return mapper.modiImage(vo);
 	}
+
+	
 
 }
