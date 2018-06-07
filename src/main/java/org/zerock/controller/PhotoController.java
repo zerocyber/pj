@@ -2,10 +2,12 @@ package org.zerock.controller;
 
 import java.util.Arrays;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.domain.Criteria;
@@ -33,7 +35,6 @@ public class PhotoController {
 		
 		
 		model.addAttribute("join", service.joinList(cri));
-//		model.addAttribute("photoList", service.pageList(cri));
 		model.addAttribute("pageMaker", pm);
 		
 	}
@@ -45,6 +46,8 @@ public class PhotoController {
 	
 	@PostMapping("write")
 	public String writePOST(PhotoVO vo, Model model)throws Exception {
+		
+		log.info("asdfasdfasdfasdfasdfasdfasdf"+vo.getContent());
 		log.info("write come in.........");
 		log.info(Arrays.toString(vo.getImages()));
 		service.write(vo);
@@ -52,7 +55,9 @@ public class PhotoController {
 	}
 	
 	@GetMapping("read")
-	public void photoRead(PhotoVO vo, Criteria cri, Model model) {
-		
+	public void photoRead(@Param("pno") int pno, Criteria cri, Model model) {
+		log.info("===================================================="+pno);
+		model.addAttribute("PhotoVO", service.read(pno));
+		model.addAttribute("ImageList",service.searchImage(pno));
 	}
 }

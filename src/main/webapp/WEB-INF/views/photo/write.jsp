@@ -29,47 +29,48 @@
 		.15s;
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+#fakeContent {
+	border: 1px solid;
+	height: 600px;
+	overflow:scroll;
+}
 </style>
+
 <div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
-			<form  id="post-form" name="post-form" method="post">				
+			<form  id="post-form" name="post-form" method="post">
+							
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
 						type="text" class="form-control" placeholder="Text input" required="required">
 				</div>
+			
 				<label for="content">Content</label>
+				<div class="form-control" id="fakeContent" contenteditable="true"></div>
+				
 				<p>
 					<textarea id="content" name="content" class="form-control"
-						rows="15" required="required"></textarea>
+						rows="15" required="required" style="display: none;"></textarea>
 				</p>
+				
 				<label>Writer</label>
 				<p>
 					<input id="mid" name="mid" type="text" class="form-control-s"
 						placeholder="Text input" required="required">
 				</p>
-				<div>
-					<div class="form-group">
-						<label for="exampleInputFile">파일 업로드</label> <input type="file"
-							id="exampleInputFile">
-					</div>
-
-					<div class="fileDrop"></div>
-
-					<div id="uploadList"></div>
-				</div>
-
-					<div class="row">
-						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
-							<div class="row">
-							<div class="col-md-offset-5 col-sm-offset-5">
-							<button id="addBtn" class="btn btn-info btnc">등록</button>
-							<button id="back" type="button" class="btn btn-danger ">취소</button>
-							</div>
-							</div>
+				
+				<div class="row">
+					<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
+						<div class="row">
+						<div class="col-md-offset-5 col-sm-offset-5">
+						<button id="addBtn" class="btn btn-info btnc">등록</button>
+						<button id="back" type="button" class="btn btn-danger ">취소</button>
+						</div>
 						</div>
 					</div>
-
+				</div>
+				
 			</form>
 		</div>
 	</div>
@@ -79,23 +80,14 @@
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
-	
-	$("#addBtn").on("click",function(e){
-		var fileList = $("#uploadList");
-		if(fileList[0].childNodes.length == 0) {
-			e.preventDefault();
-			alert("이미지 파일을 올려주세요 ... ");
-		}
-	});
-
 	$("#back").on("click", function(e) {
 		self.location = "/board/photo";
 	});
 // 파일 업로드
-	$(".fileDrop").on("dragenter dragover",function(event) {
+	$("#fakeContent").on("dragenter dragover",function(event) {
 		event.preventDefault();
 	});
-	$(".fileDrop").on("drop",function(event) {
+	$("#fakeContent").on("drop",function(event) {
 		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
@@ -104,7 +96,6 @@ $(document).ready(function() {
 		files[0].name= "";
 		console.log(files[0].name);
 		
-
 		var formData = new FormData();
 		formData.append("file", file);
 		console.log(files);
@@ -120,11 +111,9 @@ $(document).ready(function() {
 			var str = "";
 			console.log('success');
 			if (checkImageType(data)) {
-				str = "<div>"+ "<img src ='/displayFile?fileName="+data+"'/>"+data+"</div>" + "<input type='hidden' name='images' value='"+data+"'/>"
-				} else {
-				str = "<div>"+ data +"<input type='hidden' name='images' value='"+data+"'/>"+"</div>";
+				str = "<div style='text-align:center;'>"+ "<img src ='/displayImage?fileName="+data+"'/></div><br>" + "<input type='hidden' name='images' value='"+data+"'/>"
 				}
-				$("#uploadList").append(str);
+				$("#fakeContent").append(str);
 			}
 		});
 	});
@@ -133,9 +122,21 @@ $(document).ready(function() {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}
+	
+	$("#addBtn").on("click", function(e){
+		var fileList = $("#uploadList");
+		if(fileList[0].childNodes.length == 0) {
+			e.preventDefault();
+			alert("이미지 파일을 올려주세요 ... ")
+			return;
+		}
+		var str = $("#fakeContent")[0].innerHTML;
+		console.log(str);
+		$("#content").text(str);
+		console.log($("#content"));
+		$("#post-form").submit();	
+	});
 
 });
 </script>
-
-
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
