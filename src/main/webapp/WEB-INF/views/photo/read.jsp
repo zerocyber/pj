@@ -4,35 +4,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <style>
-#wall {
-	width:100%;
-	height:100%;
-	border:1px solid #E0F8F7;
-	background-color: #F2F2F2;
-	position: absolute;
-	display: none;
-	z-index: 100000;
-	justify-content: center;
-	align-items: center;
-	opacity:1;
-	top: 0px;
-	left: 0px;
-}
-.picture {
-	z-index:1;
-	opacity: 1;
-}
 #fakeContent {
 	height: 600px;
-	overflow:scroll;	
+	overflow:scroll;
 }
 </style>
 
-<div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:10px;">
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 	<div class="row">
-		<div class="col-sm-offset-2 col-sm-4">
-			<h3>이미지 게시판</h3>
-		</div>
+	  <div class="text-center">
+	    <h3>이미지 게시판</h3>
+	  </div>
 	</div>
 
 	<form>
@@ -51,7 +33,7 @@
 		    <div class="col-sm-8 col-sm-offset-2">
 		      <label for="content">Content</label>
 		      
-		      <div class="form-control" id="fakeContent" contenteditable="true">
+		      <div class="form-control" id="fakeContent" contenteditable="false">
 			   <div class="col-sm-12">
 			   ${PhotoVO.content}
 			   </div>
@@ -85,9 +67,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-  var formObj = $("#inform");  
-  var mid = '${PhotoVO.mid}';
-  var user = '${LOGIN.mid}';
+	var formObj = $("#inform");  
+	var mid = '${PhotoVO.mid}';
+	var user = '${LOGIN.mid}';
   
 	/* 뒤로가기 */
   	$("#back").on("click", function(e) {

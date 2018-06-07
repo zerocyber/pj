@@ -1,14 +1,7 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <style>
-.fileDrop {
-	width: 100%;
-	height: 100px;
-	border: gray;
-	background-color: #FAF6F6;
-}
 .form-control-s {
 	display: block;
 	width: 150px;
@@ -80,10 +73,12 @@
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
+	
 	$("#back").on("click", function(e) {
-		self.location = "/board/photo";
+		self.location = "/photo/list";
 	});
-// 파일 업로드
+	
+	/* 파일업로드 */
 	$("#fakeContent").on("dragenter dragover",function(event) {
 		event.preventDefault();
 	});
@@ -91,15 +86,10 @@ $(document).ready(function() {
 		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
-		var path = 'img';
-		
-		files[0].name= "";
-		console.log(files[0].name);
-		
+		var path = 'img';	
 		var formData = new FormData();
 		formData.append("file", file);
-		console.log(files);
-
+		
 		$.ajax({
 			url : '/'+path+'/upload',
 			data : formData,
@@ -117,26 +107,25 @@ $(document).ready(function() {
 			}
 		});
 	});
-
+	/* 파일업로드 */
+	
+	/* 파일타입 체크 */
 	function checkImageType(fileName) {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}
+	/* 파일타입 체크 */
 	
 	$("#addBtn").on("click", function(e){
-		var fileList = $("#uploadList");
-		if(fileList[0].childNodes.length == 0) {
+		if($("input[name=images]").length == 0) {
 			e.preventDefault();
 			alert("이미지 파일을 올려주세요 ... ")
 			return;
 		}
 		var str = $("#fakeContent")[0].innerHTML;
-		console.log(str);
 		$("#content").text(str);
-		console.log($("#content"));
 		$("#post-form").submit();	
 	});
-
 });
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
