@@ -50,7 +50,7 @@
 				</p>
 				<div>
 					<div class="form-group">
-						<label for="exampleInputFile">이미지 업로드</label> <input type="file"
+						<label for="exampleInputFile">파일 업로드</label> <input type="file"
 							id="exampleInputFile">
 					</div>
 
@@ -79,9 +79,8 @@
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
-
 	$("#back").on("click", function(e) {
-		self.location = "/photo/list";
+		self.location = "/board/photo";
 	});
 // 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
@@ -92,15 +91,13 @@ $(document).ready(function() {
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
 		var path = 'img';
-		var image = file.type;
-				
+		
 		files[0].name= "";
 		console.log(files[0].name);
 		
 		var formData = new FormData();
 		formData.append("file", file);
-		
-
+		console.log(files);
 		$.ajax({
 			url : '/'+path+'/upload',
 			data : formData,
@@ -109,7 +106,6 @@ $(document).ready(function() {
 			contentType : false,
 			type : 'POST',
 			success : function(data) {
-			
 			var str = "";
 			console.log('success');
 			if (checkImageType(data)) {
@@ -117,19 +113,14 @@ $(document).ready(function() {
 				} else {
 				str = "<div>"+ data +"<input type='hidden' name='images' value='"+data+"'/>"+"</div>";
 				}
-
 				$("#uploadList").append(str);
 			}
-			}	
-			
 		});
 	});
-
 	function checkImageType(fileName) {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}
-
 });
 </script>
 

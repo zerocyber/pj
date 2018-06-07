@@ -63,6 +63,7 @@ public class UploadController {
 			HttpHeaders headers = new HttpHeaders();
 			
 			if(fileName.contains("img")) {
+				fileName = fileName.replace("s_", "");
 				in = new FileInputStream(photoUploadPath + fileName);
 			}else {
 				in = new FileInputStream(uploadPath + fileName); // 풀 경로 
