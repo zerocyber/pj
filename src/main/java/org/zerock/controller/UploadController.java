@@ -89,4 +89,43 @@ public class UploadController {
 		return entity;
 	}
 	
+	@ResponseBody
+	@GetMapping("/displayImage")
+	public ResponseEntity<byte []> displayImage(String fileName)throws Exception{
+		InputStream in  = null;
+		ResponseEntity<byte[]> entity = null;
+				
+		try {
+			String formatName = fileName.substring(fileName.lastIndexOf(".")+1); // 확장
+			
+			MediaType mType = MediaUtils.getMediaType(formatName); 
+			
+			HttpHeaders headers = new HttpHeaders();
+			
+			if(fileName.contains("img")) {
+				String[] str = fileName.split("s_");
+				String add = str[0] + str[1];
+				in = new FileInputStream(photoUploadPath + add);
+			}
+			
+			if(mType != null) {
+				headers.setContentType(mType);
+			}else {
+				fileName = fileName.substring(fileName.indexOf("_")+1); // 순수한 파일이름 
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); 
+		        headers.add("Content-Disposition", "attachment; filename=\""+ 
+		                new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
+			}
+			
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), // 파일을 담는다 엔티티 
+					headers, HttpStatus.CREATED);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		}finally {
+			in.close();
+		}
+		return entity;
+	}
+	
 }

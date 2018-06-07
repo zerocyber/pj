@@ -63,7 +63,7 @@
 						<div class="col-md-9 col-sm-9 col-md-offset-1 col-sm-offset-1">
 							<div class="row">
 							<div class="col-md-offset-5 col-sm-offset-5">
-							<button class="btn btn-info btnc">등록</button>
+							<button id="addBtn" class="btn btn-info btnc">등록</button>
 							<button id="back" type="button" class="btn btn-danger ">취소</button>
 							</div>
 							</div>
@@ -79,6 +79,14 @@
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
+	$("#addBtn").on("click",function(e){
+		var fileList = $("#uploadList");
+		if(fileList[0].childNodes.length == 0) {
+			e.preventDefault();
+			alert("이미지 파일을 올려주세요 ... ");
+		}
+	});
+
 	$("#back").on("click", function(e) {
 		self.location = "/board/photo";
 	});
