@@ -11,7 +11,6 @@
 }
 </style>
 <div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
-
 	<div class="row">
 	  <div class="text-center">
 	    <h3>이미지 게시판</h3>
@@ -23,20 +22,19 @@
 			<div class='list-group photo'>
 				<c:forEach items="${join}" var="list">
 					<div class='col-sm-3'>
-							<a class="thumbnail fancybox" rel="lightbox" href="/displayImage?fileName=${list.image}">
-							<img class="img-responsive" alt=""
-							src="/displayFile?fileName=${list.image}" /></a>
-							<div class='text-right text-center'>
-								<p>
-									<a href="/photo/read?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&pno=${list.pno}">
-									<c:out value="${list.title}" /></a>																								
-								</p>
-								<p>
-									<small class='text-muted'><c:out
-											value="작성자 :${list.mid }" /></small>
-								</p>
-							</div>
-							
+						<a class="thumbnail fancybox" rel="lightbox" href="/displayImage?fileName=${list.image}">
+						<img class="img-responsive" alt=""
+						src="/displayFile?fileName=${list.image}" /></a>
+						<div class='text-right text-center'>
+							<p>
+								<a href="/photo/read?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&pno=${list.pno}">
+								<c:out value="${list.title}" /></a>																								
+							</p>
+							<p>
+								<small class='text-muted'><c:out
+										value="작성자 :${list.mid }" /></small>
+							</p>
+						</div>					
 					</div>
 				</c:forEach>
 			</div>
@@ -48,7 +46,7 @@
 			<div class="col-sm-12 text-center">
 				<div id="pagination">
 					<ul class="pagination">
-						<li><span style="background-color: black;">Page
+						<li><span style="background-color: white;">Page
 								${pageMaker.cri.page} of ${pageMaker.endPage}</span></li>
 						<c:if test="${pageMaker.prev}">
 							<c:choose>
@@ -99,7 +97,6 @@
 			<button id="btn_write" class="btn btn-xs btn-info">등록</button>
 		</div>
 	</div>
-
 </div>
 <script>
 	$(document).ready(function() {

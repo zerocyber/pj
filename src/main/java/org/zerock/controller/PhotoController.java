@@ -1,7 +1,7 @@
 package org.zerock.controller;
 
-import java.util.Arrays;
 
+import java.util.Arrays;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class PhotoController {
 
-
 	@Autowired
 	private PhotoService service;
 	
@@ -32,32 +31,30 @@ public class PhotoController {
 		cri.setPerPageNum(12);
 		pm.setCri(cri);
 		pm.setTotal(service.count(cri));
-		
-		
 		model.addAttribute("join", service.joinList(cri));
-//		model.addAttribute("photoList", service.pageList(cri));
-		model.addAttribute("pageMaker", pm);
-		
+		model.addAttribute("pageMaker", pm);	
 	}
 	
 	@GetMapping("/write")
 	public void photoWrite() {
-		
 	}
 	
-	@PostMapping("write")
+	@PostMapping("/write")
 	public String writePOST(PhotoVO vo, Model model)throws Exception {
-		log.info("write come in.........");
-		log.info(Arrays.toString(vo.getImages()));
 		service.write(vo);
 		return "redirect:/photo/list";
 	}
 	
+
 	@GetMapping("/read")
-	public void read(Model model, @Param("pno") int pno, Criteria cri) {	
-		PhotoVO vo = service.read(pno);
-		vo.setImages(service.searchImage(pno));
-		model.addAttribute("PhotoVO", vo);
-		model.addAttribute("cri",cri);	
+	public void photoRead(@Param("pno") int pno, Criteria cri, Model model) {
+		model.addAttribute("PhotoVO", service.read(pno));
+		model.addAttribute("cri", cri);
+	}
+	
+	@GetMapping("/modify")
+	public void photoModify(Criteria cri, Model model) {
+		
+
 	}
 }
