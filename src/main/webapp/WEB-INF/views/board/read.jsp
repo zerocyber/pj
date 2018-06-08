@@ -124,8 +124,10 @@
 	      <div class="row">
 	        <div class="col-sm-12 text-center">
 	        <button id="back" type="button" class="btn btn-xs btn-default">To List</button>
-	        <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
-	        <button id="remove" type="button" class="btn btn-xs btn-default">Delete</button>
+	        <c:if test="${LOGIN.mid == BoardVO.mid}">
+		        <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
+		        <button id="remove" type="button" class="btn btn-xs btn-default">Delete</button>
+	        </c:if>
 	        </div>
 	      </div>
 	    </div>
@@ -313,7 +315,11 @@ $(document).ready(function() {
   /* 댓글 수정 */
   $(".replyBox").on("click","div #reModiBtn",function(e){
     
-    
+	var target = e.target;
+	var replyMid = target.parentElement.childNodes[0].innerText;
+	
+	if(replyMid === user){
+	  
     var applyBtn = $("#replyBtn");
     applyBtn[0].innerText = "Modify";
     
@@ -329,6 +335,10 @@ $(document).ready(function() {
     applyBtn.attr("content", content);
     applyBtn.attr("mid", mid);
     applyBtn.attr("event", "modify");
+	}else{
+		alert("댓글 작성자만 수정 가능합니다")
+		return;
+	}
   });
 
   /* 댓글 수정  */
@@ -336,7 +346,10 @@ $(document).ready(function() {
   /* 댓글 삭제 시작*/
   $(".replyBox").on("click","div #redeleteBtn",function(e){
   
-    if(confirm("삭제하시겠습니까?")){
+	var target = e.target;
+	var replyMid = target.parentElement.childNodes[0].innerText;
+	
+    if(replyMid === user && confirm("삭제하시겠습니까?")){
 
     var random = $(this).parent();
     var bno = "${param.bno}";
@@ -359,6 +372,9 @@ $(document).ready(function() {
       }
       }
     });
+    }else{
+    	alert("댓글 작성자만 삭제 가능합니다.");
+    	return;
     };
   }); // delete ajax
   /* 댓글 삭제 */

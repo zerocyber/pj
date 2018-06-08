@@ -14,39 +14,32 @@ import org.zerock.service.MemberService;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class AuthInterceptor extends HandlerInterceptorAdapter {
+public class URIInterceptor extends HandlerInterceptorAdapter {
 
-	
 	@Autowired
 	private MemberService service;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-	throws Exception{
-	
-	HttpSession session = request.getSession();
-	if(session.getAttribute("LOGIN") == null) {
-
-		saveURI(request);
-		
-		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-		
+			throws Exception {
+		HttpSession session = request.getSession();
+		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie"); //자동로그인 쿠키 가져오기
+		saveURI(request); //URI 저장
+		log.info("Save URI...................");
 		if(loginCookie != null) {
 			MemberVO vo= service.checkLoginBefore(loginCookie.getValue());
 			log.info("MemberVO: " + vo);
 			if(vo !=null) {
-				session.setAttribute("LOGIN", vo);
-				return true;
+				session.setAttribute("LOGIN", vo); // 자동로그인시 로그인 정보 세션에 세팅
 			}
 		}
-
-		response.sendRedirect("/login");
 		
-		return false;
-	}
 		return true;
+
 	}
 
+	
+	//URI 저장 메서드
 	private void saveURI(HttpServletRequest req) {
 		String uri = req.getRequestURI();
 		String query = req.getQueryString();
@@ -63,6 +56,5 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			req.getSession().setAttribute("URI", uri+query);
 		}
 	}
-
-
+	
 }

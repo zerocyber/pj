@@ -1,5 +1,8 @@
 package org.zerock.test;
 
+import java.util.Date;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,5 +21,14 @@ public class MemberTests {
 	@Setter(onMethod_= {@Autowired})
 	private MemberMapper mapper;
 	
+	@Test
+	public void cookieTest() {
+		mapper.keepLogin("loginCookie", "zero", new Date());
+	}
+	@Test
+	public void test2() {
+		mapper.checkUserWithSessionKey("loginCookie");
+	}
+
 
 }

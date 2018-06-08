@@ -90,7 +90,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	
+var sessionMid = '${LOGIN.mid}';
+var mid = '${BoardVO.mid}';
+if(sessionMid != mid){
+	alert("글 작성자만 수정 가능합니다")
+	window.history.go(-2);
+}
 	
 	
   var formObj = $("#modiForm");

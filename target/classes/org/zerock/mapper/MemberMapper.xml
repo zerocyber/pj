@@ -14,5 +14,13 @@
 	 values(#{mid},#{mpw},#{mname},#{email})
 	 
 	 </insert>
+	  
+	 <update id="keepLogin">
+	 update t_member set sessionkey = #{sessionId}, sessionlimit = #{next} where mid = #{mid}
+	 </update>
+	 
+	 <select id="checkUserWithSessionKey" resultType="org.zerock.domain.MemberVO">
+	 select * from t_member where sessionKey = #{value} and sessionLimit > now()
+	 </select>
 
  </mapper>   

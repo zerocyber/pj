@@ -27,13 +27,13 @@ public interface PhotoMapper {
 	
 	//  업로드 
 	public int addImage(PhotoVO vo);
-	// 파일 삭제
+	// 이미지 삭제
 	public int removeImage(int pno);
-	// 파일 조회 
+	// 이미지 조회 
 	public String[] searchImage(int pno);
-	// 글 수정 시 파일 삭제
+	// 글 수정 시 이미지 삭제
 	public int removeImages(String[] deleteImages);
-	// 글 수정 시 파일 등록
+	// 글 수정 시 이미지 등록
 	public int modiImage(PhotoVO vo);
 	
 }

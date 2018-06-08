@@ -1,5 +1,6 @@
 package org.zerock.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,8 +29,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if(memberVO !=null) {
 			log.info("login success.............................");
 			session.setAttribute("LOGIN", memberVO);
+			if(request.getParameter("rememberMe") != null) {
+				log.info("rememberMe existing.............");
+				Cookie loginCookie = new Cookie("loginCookie", session.getId());
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(60*60*24*7);
+				response.addCookie(loginCookie);
+			}
 			
 			Object uri = session.getAttribute("URI");
+			log.info("URI�ּ�: " + uri);
 
 			response.sendRedirect(uri != null? (String)uri : "/index");		
 		}
@@ -43,10 +52,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("LOGIN") !=null) {
-
-			
-			log.info("이전에 있던 로그인 데이터 삭제처리");
-
+			log.info("remove prev login data........................");
 			session.removeAttribute("LOGIN");
 		}
 		return true;
