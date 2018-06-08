@@ -7,7 +7,12 @@
 	width: 100%;
 	height: 100px;
 	border: gray;
-	background-color: #FAF6F6;
+ 	background-color: #FAF6F6;
+/* 	background-image: URL("https://i.stack.imgur.com/aTW7T.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-attachment: fixed;
+	background-position: 50% 50%; */
 }
 .form-control-s {
 	display: block;
@@ -80,7 +85,7 @@
 							id="exampleInputFile">
 					</div>
 
-					<div class="fileDrop"></div>
+					<div class="fileDrop" ><img src="https://cdn.formidableforms.com/wp-content/uploads/2016/06/drag-drop-uploader.png" width="100%" height="100%"></div>
 
 					<div id="uploadList"></div>
 				</div>
