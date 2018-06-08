@@ -50,7 +50,7 @@
 				<label>Writer</label>
 				<p>
 					<input id="mid" name="mid" type="text" class="form-control-s"
-						placeholder="Text input" required="required">
+						placeholder="Text input" required="required" value="${LOGIN.mid}" readonly>
 				</p>
 				
 				<div class="row">
