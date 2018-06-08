@@ -5,34 +5,36 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <style>
-.gallery {
+.photo {
 	display: inline-block;
 	margin-top: 20px;
 }
 </style>
+<div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
+	<div class="row">
+	  <div class="text-center">
+	    <h3>이미지 게시판</h3>
+	  </div>
+	</div>
 
-
-<div class="col-sm-12 col-md-12 main" style="margin-top: 150px;">
-	
 	<div class="row">
 		<div class="col-sm-offset-1 col-sm-10">
-			<div class='list-group gallery'>
-				<c:forEach items="${photoList}" var="list">
+			<div class='list-group photo'>
+				<c:forEach items="${join}" var="list">
 					<div class='col-sm-3'>
-						<a class="thumbnail fancybox" rel="ligthbox"
-							href="https://quasarzone.co.kr/data/editor/1603/thumb-8a697f1a337c62e602fef5887802976d_1458839258_2364_740x416.jpg">
-							<img class="img-responsive" alt=""
-							src="https://quasarzone.co.kr/data/editor/1603/thumb-8a697f1a337c62e602fef5887802976d_1458839258_2364_740x416.jpg" />
-							<div class='text-right text-center'>
-								<p>
-									<c:out value="${list.title}" />
-								</p>
-								<p>
-									<small class='text-muted'><c:out
-											value="작성자 :${list.mid }" /></small>
-								</p>
-							</div>
-						</a>
+						<a class="thumbnail fancybox" rel="lightbox" href="/displayImage?fileName=${list.image}">
+						<img class="img-responsive" alt=""
+						src="/displayFile?fileName=${list.image}" /></a>
+						<div class='text-right text-center'>
+							<p>
+								<a href="/photo/read?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&pno=${list.pno}">
+								<c:out value="${list.title}" /></a>																								
+							</p>
+							<p>
+								<small class='text-muted'><c:out
+										value="작성자 :${list.mid }" /></small>
+							</p>
+						</div>					
 					</div>
 				</c:forEach>
 			</div>
@@ -44,45 +46,45 @@
 			<div class="col-sm-12 text-center">
 				<div id="pagination">
 					<ul class="pagination">
-						<li><span style="background-color: black;">Page
-								${pm.cri.page} of ${pm.endPage}</span></li>
-						<c:if test="${pm.prev}">
+						<li><span style="background-color: white;">Page
+								${pageMaker.cri.page} of ${pageMaker.endPage}</span></li>
+						<c:if test="${pageMaker.prev}">
 							<c:choose>
-								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+								<c:when test="${pageMaker.cri.type eq '' && pageMaker.cri.keyword eq '' }">
 									<li><a class="btn btn-info"
-										href="gallery/list?page=${pm.startPage -1}">prev</a></li>
+										href="photo/list?page=${pageMaker.startPage -1}">prev</a></li>
 								</c:when>
 								<c:otherwise>
 									<li><a class="btn btn-info"
-										href="gallery/list?page=${pm.startPage -1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">prev</a></li>
+										href="photo/list?page=${pageMaker.startPage -1}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">prev</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:if>
 
-						<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="idx">
+						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 							<c:choose>
-								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-									<li ${pm.cri.page == idx ? 'class=active':''}><a
+								<c:when test="${pageMaker.cri.type eq '' && pageMaker.cri.keyword eq '' }">
+									<li ${pageMaker.cri.page == idx ? 'class=active':''}><a
 										id="pageLink" class="btn btn-secondary"
-										href="/gallery/list?page=${idx}">${idx}</a></li>
+										href="/photo/list?page=${idx}">${idx}</a></li>
 								</c:when>
 								<c:otherwise>
-									<li ${pm.cri.page == idx ? 'class=active':''}><a
+									<li ${pageMaker.cri.page == idx ? 'class=active':''}><a
 										id="pageLink" class="btn btn-secondary"
-										href="/gallery/list?page=${idx}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">${idx}</a></li>
+										href="/photo/list?page=${idx}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">${idx}</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 
-						<c:if test="${pm.next}">
+						<c:if test="${pageMaker.next}">
 							<c:choose>
-								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
+								<c:when test="${pageMaker.cri.type eq '' && pageMaker.cri.keyword eq '' }">
 									<li><a class="btn btn-info"
-										href="list?page=${pm.endPage + 1}">next</a></li>
+										href="list?page=${pageMaker.endPage + 1}">next</a></li>
 								</c:when>
 								<c:otherwise>
 									<li><a class="btn btn-info"
-										href="list?page=${pm.endPage + 1}&type=${pm.cri.type}&keyword=${pm.cri.keyword}">next</a></li>
+										href="list?page=${pageMaker.endPage + 1}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">next</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:if>
@@ -95,7 +97,6 @@
 			<button id="btn_write" class="btn btn-xs btn-info">등록</button>
 		</div>
 	</div>
-
 </div>
 <script>
 	$(document).ready(function() {
@@ -110,7 +111,6 @@
 			e.preventDefault();
 			location.href = "/photo/write"
 		});
-
 	});
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

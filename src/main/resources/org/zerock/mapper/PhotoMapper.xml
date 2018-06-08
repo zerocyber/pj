@@ -12,6 +12,15 @@
 		desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
+	
+	<select id="joinList" resultType="org.zerock.domain.PhotoVO">
+		select a.pno, a.title, a.regdate, a.mid, ifnull(b.fullname,0) image
+		from t_photo a left join t_image b 
+		on a.pno = b.pno 
+		group by a.pno 
+		order by pno desc 
+		limit #{pageStart},#{perPageNum}
+	</select>
 
 	<select id="read" resultType="org.zerock.domain.PhotoVO">
 		select * from t_photo where

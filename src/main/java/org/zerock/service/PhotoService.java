@@ -21,6 +21,8 @@ public interface PhotoService {
 	
 	public List<PhotoVO> searchList(Criteria cri);	
 	
+	public List<PhotoVO> joinList(Criteria cri);
+	
 	// file method.......................
 	
 	public int addImage(PhotoVO vo);
