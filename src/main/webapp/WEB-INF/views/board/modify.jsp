@@ -125,6 +125,7 @@ if(sessionMid != mid){
 		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
+		var path = 'board';
 
 		console.log(file);
 
@@ -133,7 +134,7 @@ if(sessionMid != mid){
 		console.log(files);
 
 		$.ajax({
-			url : '/upload',
+			url : '/'+path+'/upload',
 			data : formData,
 			dataType : 'text',
 			processData : false,
