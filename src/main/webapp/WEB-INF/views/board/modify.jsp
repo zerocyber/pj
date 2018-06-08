@@ -4,13 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-    <div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:10px;">
+<div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:10px;">
 
-  <div class="row">
-   <div class="col-sm-offset-2 col-sm-4">
-     <h3>영화 게시판</h3>
-   </div>
- </div>
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-4">
+			<h3>영화 게시판</h3>
+		</div>
+	</div>
 
  <form method="post" id="modiForm">
   <div class="form-group row">
@@ -120,6 +120,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
+		var path = 'board';
 
 		console.log(file);
 
@@ -128,7 +129,7 @@ $(document).ready(function(){
 		console.log(files);
 
 		$.ajax({
-			url : '/upload',
+			url : '/'+path+'/upload',
 			data : formData,
 			dataType : 'text',
 			processData : false,

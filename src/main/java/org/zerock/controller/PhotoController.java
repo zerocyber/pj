@@ -36,20 +36,21 @@ public class PhotoController {
 	public void photoWrite() {
 	}
 	
-	@PostMapping("write")
+	@PostMapping("/write")
 	public String writePOST(PhotoVO vo, Model model)throws Exception {
 		service.write(vo);
 		return "redirect:/photo/list";
 	}
 	
-	@GetMapping("read")
+	@GetMapping("/read")
 	public void photoRead(@Param("pno") int pno, Criteria cri, Model model) {
 		model.addAttribute("PhotoVO", service.read(pno));
 		model.addAttribute("cri", cri);
 	}
 	
-	@GetMapping("modify")
-	public void photoModify(Criteria cri, Model model) {
+	@GetMapping("/modify")
+	public void photoModify(@Param("pno") int pno,Criteria cri, Model model) {
+		model.addAttribute("PhotoVO", service.read(pno));
 		
 	}
 }
