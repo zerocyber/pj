@@ -23,12 +23,11 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 	@Setter(onMethod_= {@Autowired})
 	private BoardService service;
 	
-	//Read페이지 불러오기 전 쿠키 검사
+	//Read�럹�씠吏� 遺덈윭�삤湲� �쟾 荑좏궎 寃��궗
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
 		Cookie cookies[] = request.getCookies();
 		Map cookieMap = new HashMap();
 		if(request.getCookies() != null ) {

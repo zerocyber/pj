@@ -18,15 +18,15 @@
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/main.css">
 	
-	<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
-	<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
-	<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
-	<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
-	<script src="resources/loginResources/js/main.js"></script>
+	<script src="/resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+	<script src="/resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+	<script src="/resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/loginResources/vendor/select2/select2.min.js"></script>
+	<script src="/resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="/resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+	<script src="/resources/loginResources/js/main.js"></script>
 </head>
 <style>
 .rememberMe{
@@ -47,7 +47,7 @@ margin-top: 5px;
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "ID를 입력해주세요">
-						<input class="input100" type="text" name="mid" placeholder="ID" value="nara">
+						<input class="input100" type="text" name="mid" placeholder="ID" value="zero">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -92,15 +92,15 @@ margin-top: 5px;
 			</div>
 		</div>
 	</div>
-<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
-<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
-<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
-<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
-<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
-<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
-<script src="resources/loginResources/js/main.js"></script>
+<script src="/resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+<script src="/resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+<script src="/resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/resources/loginResources/vendor/select2/select2.min.js"></script>
+<script src="/resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+<script src="/resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="/resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+<script src="/resources/loginResources/js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>

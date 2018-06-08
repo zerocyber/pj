@@ -1,5 +1,7 @@
 package org.zerock.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.LoginDTO;
@@ -27,6 +29,23 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.signUp(vo);
 	}
+
+
+	@Override
+	public void keepLogin(String mid, String sessionId, Date next) {
+		
+	
+		mapper.keepLogin(mid, sessionId, next);
+	}
+
+
+	@Override
+	public MemberVO checkLoginBefore(String value) {
+		
+		return mapper.checkUserWithSessionKey(value);
+	}
+	
+	
 	
 	
 
