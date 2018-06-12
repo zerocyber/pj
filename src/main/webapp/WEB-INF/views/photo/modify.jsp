@@ -17,7 +17,7 @@
 	  </div>
 	</div>
 
-	<form>
+	<form id="modiForm">
 		<div class="form-group row">
 			<div class="col-sm-8 col-sm-offset-2">
 				<label for="title">Title</label>
@@ -49,10 +49,10 @@
 	</form>
 	
     <div class="row">
-    	<div class="col-sm-8 col-sm-offset-2">
+    	<div id="photoList" class="col-sm-8 col-sm-offset-2">
     	<c:forEach items="${images}" var="image">
     	<div class="col-sm-3">
-    	<img  data-add="${image }"  src="/displayImage?fileName=${image }"><button class="btn btn-xs imgBtn">X</button>
+    	<img class="img-thumbnail picture" data-add="${image }"  src="/displayImage?fileName=${image }"><button class="btn btn-xs imgBtn">X</button>
     	</div>
     	</c:forEach>
     	</div>
@@ -77,11 +77,57 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	$(".imgBtn").on("click",function(e){
+	$("#photoList").on("click","div .imgBtn",function(e){
 		var add = $(e.target)[0].parentElement.children[0].outerHTML;
 		var str = $(add).attr('src');
-		 console.log($("img[src='"+str+"']").remove());		
+		var imageName = str.split("=");
+		var delImg = "<input type='hidden' value='"+imageName[1]+"' name='imgList'/>";
+		
+		 $("img[src='"+str+"']").parent().remove();		
+		 $("#modiForm").append(delImg);
 	});
+
+	$("#fakeContent").on("dragenter dragover",function(event) {
+		event.preventDefault();
+	});
+	$("#fakeContent").on("drop",function(event) {
+		event.preventDefault();
+		var files = event.originalEvent.dataTransfer.files;
+		var file = files[0];
+		var path = 'img';	
+		var formData = new FormData();
+		formData.append("file", file);
+		
+		$.ajax({
+			url : '/'+path+'/upload',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(data) {
+			var str = "";
+			var foo = "";
+			console.log('success');
+			if (checkImageType(data)) {
+				str = "<div style='text-align:center;'>"+ "<input type='hidden' name='images' value='"+data+"'/><img src ='/displayImage?fileName="+data+"'/></div>"
+				}
+				foo = "<div class='col-sm-3'>"
+				+"<img class='img-thumbnail picture' data-add='"+data+"' src='/displayImage?fileName="+data+"'><button class='btn btn-xs imgBtn'>X</button>"
+	    		+"</div>";
+	    		console.log(foo);
+				$("#fakeContent").append(str);
+				$("#photoList").append(foo);
+			}
+		});
+	});
+	
+
+	function checkImageType(fileName) {
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		return fileName.match(pattern);
+	}
+
 });
 
 </script>   
