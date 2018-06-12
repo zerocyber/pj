@@ -185,10 +185,12 @@ th {
 <script>
 
 $(document).ready(function() {
-	if(msg=="regist" && !history.state){
+	var msg = '${msg}';
+	if(msg=="regist"){
 		alert("등록이 완료되었습니다.");
-/* 	새로고침으로 메세지 세션 지우기 -> location.reload(); */ 
-	 }
+		location.reload();
+	
+	}
 	
 });
 
@@ -197,7 +199,6 @@ $(document).ready(function() {
 	var writeBtn = $("#btn_write") 
 	var keyword = $("#keyword")
 	var pageLink = $("#pageLink")
-	var msg = '${msg}';
 
 	btn.on("click", function(e) {
 		console.log("click........................")
