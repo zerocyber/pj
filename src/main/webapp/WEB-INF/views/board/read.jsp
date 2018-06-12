@@ -138,6 +138,7 @@
     
 
 <form id="inform" method="post">
+
   <input type="hidden" name="page" value="${cri.page}">
   <input type="hidden" name="bno" value="${BoardVO.bno}">
   <input type="hidden" name="type" value="${cri.type}">
@@ -149,13 +150,14 @@
 $(document).ready(function() {
   var formObj = $("#inform");
   
-
   var wall= $("#wall");
   var picture=$(".picture");
   var download=$(".download");
   
   var mid = '${BoardVO.mid}';
   var user = '${LOGIN.mid}';
+  
+  var pattern = /[{}~!@#$%^&*()_+-=<>?/\/]/;
   
   
 	$(".upload").on("click","div span img",function(e) {
@@ -268,8 +270,7 @@ $(document).ready(function() {
 	    	return false;
 	    }
 	    
-	    if(content.indexOf("<xmp>") != -1 || content.indexOf("<pre>") != -1 ){
-	    	console.log("xmp or pre exsist............");
+	    if(pattern.test(content) == true){
 	    	alert("사용할 수 없는 문자열이 있습니다.");
 	    	return false;
 	    }
@@ -301,8 +302,7 @@ $(document).ready(function() {
 
       var mid = $("#replyBtn").attr('mid');
       
-	    if(content.indexOf("<xmp>") != -1 || content.indexOf("<pre>") != -1 ){
-	    	console.log("xmp or pre exsist............");
+	    if(pattern.test(content) == true){
 	    	alert("사용할 수 없는 문자열이 있습니다.");
 	    	return false;
 	    }
