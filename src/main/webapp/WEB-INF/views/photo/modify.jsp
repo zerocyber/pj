@@ -17,7 +17,7 @@
 	  </div>
 	</div>
 
-	<form>
+	<form id="modiForm">
 		<div class="form-group row">
 			<div class="col-sm-8 col-sm-offset-2">
 				<label for="title">Title</label>
@@ -32,12 +32,15 @@
 		<div class="form-group row">
 		    <div class="col-sm-8 col-sm-offset-2">
 		      <label for="content">Content</label>
-		      
 		      <div class="form-control" id="fakeContent" contenteditable="true">
-			   <div class="col-sm-12">
-			   ${PhotoVO.content}
-			   </div>
+			  	<div class="col-sm-12">
+			   	${PhotoVO.content}
+			   	</div>
 			  </div>
+			  
+			  <textarea id="content" name="content" class="form-control"
+				rows="15" required="required" style="display: none;"></textarea>
+				
 		    </div>
 	    </div>
 	
@@ -52,7 +55,7 @@
     	<div class="col-sm-8 col-sm-offset-2">
     	<c:forEach items="${images}" var="image">
     	<div class="col-sm-3">
-    	<img  data-add="${image }"  src="/displayImage?fileName=${image }"><button class="btn btn-xs imgBtn">X</button>
+    	<img calss="img-thumbnail picture" data-add="${image }"  src="/displayImage?fileName=${image }"><button class="btn btn-xs imgBtn">X</button>
     	</div>
     	</c:forEach>
     	</div>
@@ -77,12 +80,55 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+	// 이미지 리스트 x -> 글 이미지 삭제 
 	$(".imgBtn").on("click",function(e){
 		var add = $(e.target)[0].parentElement.children[0].outerHTML;
 		var str = $(add).attr('src');
-		 console.log($("img[src='"+str+"']").remove());		
+		var imageName = str.split("=");
+		var delImg = "<input type='hidden' value='"+imageName[1]+"' name='imgList' />";
+		
+		$("img[src='"+str+"']").parent().remove();
+		$("#modiForm").append(delImg);
 	});
+	
+	/* 파일업로드 */
+	$("#fakeContent").on("dragenter dragover",function(event) {
+		event.preventDefault();
+	});
+	$("#fakeContent").on("drop",function(event) {
+		event.preventDefault();
+		var files = event.originalEvent.dataTransfer.files;
+		var file = files[0];
+		var path = 'img';	
+		var formData = new FormData();
+		formData.append("file", file);
+		
+		$.ajax({
+			url : '/'+path+'/upload',
+			data : formData,
+			dataType : 'text',
+			processData : false,
+			contentType : false,
+			type : 'POST',
+			success : function(data) {
+			var str = "";
+			console.log('success');
+			if (checkImageType(data)) {
+				str = "<div style='text-align:center;'>"+ "<input type='hidden' name='images' value='"+data+"'/><img src ='/displayImage?fileName="+data+"'/></div>"
+				}
+				$("#fakeContent").append(str);
+			}
+		});
+	});
+	/* 파일업로드 */
+	
+	/* 파일타입 체크 */
+	function checkImageType(fileName) {
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		return fileName.match(pattern);
+	}
+	/* 파일타입 체크 */
+	
 });
-
 </script>   
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
