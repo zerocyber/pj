@@ -99,7 +99,7 @@ $(document).ready(function() {
   		 if(user === ""){
   			 alert("로그인이 필요한 기능입니다")
   			 location.href = "/login";
-  			 return false
+  			 return false;
   		 }
   		 if(confirm("정말 삭제하시겠습니까?")){
   	    	formObj.attr("action", "/photo/delete");

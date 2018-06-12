@@ -15,4 +15,6 @@ public interface MemberMapper {
 	public void keepLogin(@Param("mid")String mid,@Param("sessionId") String sessionId,  @Param("next")Date next);
 	
 	public MemberVO checkUserWithSessionKey(String value);
+	
+	public int idCheck(String id);
 }

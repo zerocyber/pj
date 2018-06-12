@@ -126,7 +126,6 @@ if(sessionMid != mid){
 		var files = event.originalEvent.dataTransfer.files;
 		var file = files[0];
 		var path = 'board';
-
 		console.log(file);
 
 		var formData = new FormData();

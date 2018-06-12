@@ -44,6 +44,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.checkUserWithSessionKey(value);
 	}
+
+
+	@Override
+	public int userIdCheck(String id) {
+		
+		return mapper.idCheck(id);
+	}
 	
 	
 	

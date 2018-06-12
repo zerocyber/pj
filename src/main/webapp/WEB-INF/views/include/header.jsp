@@ -47,6 +47,13 @@ background-color:#eee;
 <script>
 
 $(document).ready(function(){
+	var msg = '${msg}';
+	
+	if(msg=="signUp"){
+		console.log("..........................");
+		alert("회원으로 등록되셨습니다");
+	}
+	history.replaceState({}, null, null); 
 	
 	var Obj = $("#loginform");
 	
