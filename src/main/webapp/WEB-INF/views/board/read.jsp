@@ -69,7 +69,7 @@
        <div class="col-sm-8 col-sm-offset-2 upload">
          <label for="fileList">FileList</label>
          <div class="row">
-           <c:forEach items="${BoardVO.files }" var="list">
+           <c:forEach items="${BoardVO.files}" var="list">
            <c:choose> 
            <c:when test="${list.contains('jpg') || list.contains('png') || list.contains('gif') }">                                 
            <span class="col-sm-2"><img src="/displayFile?fileName=${list}" class="img-thumbnail picture"></span>

@@ -52,11 +52,11 @@
 	</form>
 	
     <div class="row">
-    	<div class="col-sm-8 col-sm-offset-2">
+    	<div id="photoList" class="col-sm-8 col-sm-offset-2">
     	<c:forEach items="${images}" var="image">
-    	<div class="col-sm-3">
-    	<img calss="img-thumbnail picture" data-add="${image }"  src="/displayImage?fileName=${image }"><button class="btn btn-xs imgBtn">X</button>
-    	</div>
+    		<div class="col-sm-3">
+    		<img class="img-thumbnail picture" data-add="${image }"  src="/displayImage?fileName=${image }"><button class="btn btn-xs imgBtn">X</button>
+    		</div>
     	</c:forEach>
     	</div>
     </div>
@@ -81,14 +81,14 @@
 <script>
 $(document).ready(function() {
 	// 이미지 리스트 x -> 글 이미지 삭제 
-	$(".imgBtn").on("click",function(e){
+	$("#photoList").on("click","div .imgBtn",function(e){
 		var add = $(e.target)[0].parentElement.children[0].outerHTML;
 		var str = $(add).attr('src');
 		var imageName = str.split("=");
-		var delImg = "<input type='hidden' value='"+imageName[1]+"' name='imgList' />";
+		var delImg = "<input type='hidden' value='"+imageName[1]+"' name='imgList'/>";
 		
-		$("img[src='"+str+"']").parent().remove();
-		$("#modiForm").append(delImg);
+		 $("img[src='"+str+"']").parent().remove();		
+		 $("#modiForm").append(delImg);
 	});
 	
 	/* 파일업로드 */
@@ -112,11 +112,17 @@ $(document).ready(function() {
 			type : 'POST',
 			success : function(data) {
 			var str = "";
+			var foo = "";
 			console.log('success');
 			if (checkImageType(data)) {
 				str = "<div style='text-align:center;'>"+ "<input type='hidden' name='images' value='"+data+"'/><img src ='/displayImage?fileName="+data+"'/></div>"
 				}
+				foo = "<div class='col-sm-3'>"
+				+"<img class='img-thumbnail picture' data-add='"+data+"' src='/displayImage?fileName="+data+"'><button class='btn btn-xs imgBtn'>X</button>"
+	    		+"</div>";
+	    		console.log(foo);
 				$("#fakeContent").append(str);
+				$("#photoList").append(foo);				
 			}
 		});
 	});
@@ -128,7 +134,6 @@ $(document).ready(function() {
 		return fileName.match(pattern);
 	}
 	/* 파일타입 체크 */
-	
 });
 </script>   
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
