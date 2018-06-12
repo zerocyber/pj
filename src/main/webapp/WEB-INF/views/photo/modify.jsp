@@ -17,7 +17,7 @@
 	  </div>
 	</div>
 
-	<form id="modiForm">
+	<form id="modiForm" method="post">
 		<div class="form-group row">
 			<div class="col-sm-8 col-sm-offset-2">
 				<label for="title">Title</label>
@@ -80,6 +80,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+	
 	// 이미지 리스트 x -> 글 이미지 삭제 
 	$("#photoList").on("click","div .imgBtn",function(e){
 		var add = $(e.target)[0].parentElement.children[0].outerHTML;
@@ -113,27 +114,36 @@ $(document).ready(function() {
 			success : function(data) {
 			var str = "";
 			var foo = "";
+			var bar = "";
 			console.log('success');
 			if (checkImageType(data)) {
-				str = "<div style='text-align:center;'>"+ "<input type='hidden' name='images' value='"+data+"'/><img src ='/displayImage?fileName="+data+"'/></div>"
-				}
+				str = "<div style='text-align:center;'>"+ "<img src ='/displayImage?fileName="+data+"'/></div>";
+				
 				foo = "<div class='col-sm-3'>"
 				+"<img class='img-thumbnail picture' data-add='"+data+"' src='/displayImage?fileName="+data+"'><button class='btn btn-xs imgBtn'>X</button>"
 	    		+"</div>";
+	    		
+	    		bar = "<input type='hidden' name='images' value='"+data+"'/>";
+			}
 	    		console.log(foo);
 				$("#fakeContent").append(str);
-				$("#photoList").append(foo);				
+				$("#photoList").append(foo);
+				$("#modiForm").append(bar);
 			}
 		});
 	});
-	/* 파일업로드 */
 	
 	/* 파일타입 체크 */
 	function checkImageType(fileName) {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}
-	/* 파일타입 체크 */
+	
+	$("#modify").on("click", function(e) {
+	var str = $("#fakeContent")[0].innerHTML;
+	$("#content").text(str);
+	$("#modiForm").submit();	
+	});
 });
 </script>   
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

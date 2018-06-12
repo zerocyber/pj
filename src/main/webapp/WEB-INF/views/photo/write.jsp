@@ -99,10 +99,13 @@ $(document).ready(function() {
 			type : 'POST',
 			success : function(data) {
 			var str = "";
+			var foo = "";
 			console.log('success');
 			if (checkImageType(data)) {
-				str = "<div style='text-align:center;'>"+ "<input type='hidden' name='images' value='"+data+"'/><img src ='/displayImage?fileName="+data+"'/></div>"
+				str = "<div style='text-align:center;'>"+ "<img src ='/displayImage?fileName="+data+"'/></div>"
 				}
+				foo = "<input type='hidden' name='images' value='"+data+"'/>";
+				$("#post-form").append(foo);
 				$("#fakeContent").append(str);
 			}
 		});
