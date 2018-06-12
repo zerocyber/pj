@@ -54,6 +54,7 @@ public class PhotoController {
 	
 	@GetMapping("/modify")
 	public void photoModify(@Param("pno") int pno,Criteria cri, Model model) {
+		model.addAttribute("images", service.searchImage(pno));
 		model.addAttribute("PhotoVO", service.read(pno));
 
 	}

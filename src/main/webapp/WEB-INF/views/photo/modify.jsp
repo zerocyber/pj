@@ -47,6 +47,16 @@
 	       </div>
 	     </div>
 	</form>
+	
+    <div class="row">
+    	<div class="col-sm-8 col-sm-offset-2">
+    	<c:forEach items="${images}" var="image">
+    	<div class="col-sm-3">
+    	<img  data-add="${image }"  src="/displayImage?fileName=${image }"><button class="btn btn-xs imgBtn">X</button>
+    	</div>
+    	</c:forEach>
+    	</div>
+    </div>
     
 	<div class="row">
 	    <div class="col-sm-8 col-sm-offset-2">
@@ -67,7 +77,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	
+	$(".imgBtn").on("click",function(e){
+		var add = $(e.target)[0].parentElement.children[0].outerHTML;
+		var str = $(add).attr('src');
+		 console.log($("img[src='"+str+"']").remove());		
+	});
 });
 
 </script>   

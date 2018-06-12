@@ -101,7 +101,7 @@ $(document).ready(function() {
 			var str = "";
 			console.log('success');
 			if (checkImageType(data)) {
-				str = "<div style='text-align:center;'>"+ "<img src ='/displayImage?fileName="+data+"'/></div><br>" + "<input type='hidden' name='images' value='"+data+"'/>"
+				str = "<div style='text-align:center;'>"+ "<input type='hidden' name='images' value='"+data+"'/><img src ='/displayImage?fileName="+data+"'/></div>"
 				}
 				$("#fakeContent").append(str);
 			}
