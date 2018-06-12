@@ -57,6 +57,7 @@ public class BoardController {
 	public void read(Model model, @Param("bno") int bno, Criteria cri) {	
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
+		
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
 	}

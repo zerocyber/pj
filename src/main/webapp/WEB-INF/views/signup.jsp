@@ -30,8 +30,9 @@
 						Create Acount
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요">
-						<input class="input100" type="text" name="mid" placeholder="ID">
+					<div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요" data-checkId = "이미 존재하는 ID입니다.">
+						<input class="input100 inputId" type="text" name="mid" placeholder="ID">
+						<button class="btn btn-info idCheck">아이디 중복확인</button>
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -110,16 +111,60 @@
 <body onload="document.forms[0].reset()">
 
 <script>
+
+var idCheck =  false; 
+var inputId = "";
+var pattern = /[~!@#$%^&*()_+<>=?-]/;
+
 $(".signUP").on("click",function(e){
 
-	var mpw1 = document.getElementById("mpw1").value;
-	var mpw2 = document.getElementById("mpw2").value;
-	console.log(mpw1);
-	console.log(mpw2);
-	if(mpw1 != mpw2){
+	var mpw = document.getElementById("mpw1").value; // 입력한 비밀번호
+	var confirmMpw = document.getElementById("mpw2").value; // 입력한 비밀번호 확인
+	if(mpw != confirmMpw){
+		console.log("비밀번호 불일치")
 		alert("입력한 비밀번호가 서로 다릅니다.")
+		return false;
+	}
+	if(idCheck == false || $('.inputId').val() != inputId){
+		console.log(inputId + "/" + $('.inputId').val())
+		alert("아이디 중복확인을 해주세요");
+		return false;
 	}
 	
+});
+
+$(".idCheck").on("click",function(e){
+	e.preventDefault();
+	var id = $('.inputId').val();
+	
+	if(pattern.test(id) == true){
+		console.log(pattern.test(id));
+		alert("아이디에 특수문자는 사용할 수 없습니다.");
+		return false;
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: "/idCheck",
+		dataType: "json",
+		contentType	:	"application/x-www-form-urlencoded; charset=UTF-8",
+        headers : {
+            "content-type" : "application/json",
+            "x-http-method-override" : "POST"
+          },
+		data : id,
+		success: function(data){
+			if(data === 1){
+				alert("이미 존재하는 아이디입니다");
+			}
+			if(data === 0){
+				alert("사용 가능한 아이디입니다")
+				idCheck = true; //아이디 중복확인 한것 확인됬을 경우 true로 저장
+				inputId = id;
+			}
+		}
+	}
+	);
 });
 
 </script>

@@ -15,4 +15,6 @@ public interface MemberService {
 	public void keepLogin(@Param("sessionId") String sessionId, @Param("mid")String mid, @Param("next")Date next);
 	public MemberVO checkLoginBefore(String value);
 	
+	public int userIdCheck(String id);
+	
 }

@@ -31,20 +31,20 @@ public class ReplyController {
 	@Setter(onMethod_= {@Autowired})
 	private ReplyService service;
 
-	//댓글 등록
+	//�뙎湲� �벑濡�
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
 		 try {
 			 service.register(vo);
-			 entity = new ResponseEntity<String>("okkkkk",HttpStatus.OK);
+			 entity = new ResponseEntity<String>("등록되었습니다",HttpStatus.OK);
 		 }catch(Exception e) {
 			 e.getMessage();
 		 }
 		 return entity;
 	}
 
-	//댓글 리스트
+	//�뙎湲� 由ъ뒪�듃
 	@RequestMapping(value="/{bno}/{page}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listReplies(
 			@PathVariable("bno") int bno,

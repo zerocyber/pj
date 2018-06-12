@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.http.Cookie;
@@ -9,10 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
@@ -39,7 +43,6 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-
 	public void loginPost(LoginDTO dto, Model model, RedirectAttributes rttr, HttpSession session) throws Exception {
 
 		MemberVO vo = service.userLogin(dto);
@@ -69,14 +72,19 @@ public class MemberController {
 	}
 	
 	@PostMapping("/signup")
-	public String signUpPost(MemberVO vo, Model model, RedirectAttributes rttr) {
+	public void signUpPost(MemberVO vo, Model model, RedirectAttributes rttr, HttpSession session, HttpServletResponse res) throws Exception {
 		service.userRegist(vo);
-		rttr.addFlashAttribute("msg", "signUp");
-		return "redirect:/board/list";
+		session.setAttribute("LOGIN", vo);
+		Object uri = session.getAttribute("URI");
+		
+		PrintWriter out = res.getWriter(); 
+		out.println(uri !=null? "<script>alert('SignUp Success!!'); location.href='"+(String)uri+"' </script>" :
+								"<script>alert('SignUp Success!!'); location.href='/index' </script>"
+				); 
 	}
 	
 	@GetMapping("/logout")
-	public void logOut(HttpServletRequest req, HttpServletResponse res, HttpSession session,RedirectAttributes rttr) throws IOException {
+	public void logOut(HttpServletRequest req, HttpServletResponse res, HttpSession session,RedirectAttributes rttr) throws Exception {
 		log.info("get logout................");
 		
 		Cookie loginCookie = WebUtils.getCookie(req, "loginCookie");
@@ -92,12 +100,28 @@ public class MemberController {
 		}
 		
 		if(loginCookie != null) {
-		loginCookie.setMaxAge(0);
-		res.addCookie(loginCookie);
-		log.info("쿠키 제거................");
+			loginCookie.setMaxAge(0);
+			res.addCookie(loginCookie);
+			log.info("쿠키 제거................");
 		}
 		res.sendRedirect(uri != null ? (String)uri : "/index");
 
+	}
+	
+	@PostMapping("/idCheck")
+	public ResponseEntity<String> checkId(@RequestBody String id) {
+/*		log.info("idCheck progress.....inputId : " + id);
+		int result = service.userIdCheck(id);
+		log.info("result : " + result);
+		*/
+		
+		ResponseEntity<String> entity = null;
+		
+		entity = new ResponseEntity<String>(Integer.toString(service.userIdCheck(id)), HttpStatus.OK);
+		log.info("아이디 체크 진행중..................");
+		log.info("아이디 체크 결과 : " + Integer.toString(service.userIdCheck(id)));
+		
+		return entity;
 	}
 	
 

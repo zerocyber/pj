@@ -19,7 +19,7 @@ th {
 					<table class="table" style="padding-bottom : 0px;" >
 					<tr>
 					<c:forEach items="${bestList}" var="list" begin="0" end="9" varStatus="status">
-					<td class="col-sm-6"><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}">${list.title}</a></td>
+					<td class="col-sm-6"><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}"><c:out value="${list.title}"/></a></td>
 					<c:if test="${status.index%2 == 1}">
 					</tr>
 					<tr>
@@ -189,10 +189,6 @@ $(document).ready(function() {
 		alert("등록이 완료되었습니다.");
 /* 	새로고침으로 메세지 세션 지우기 -> location.reload(); */ 
 	 }
-	if(msg=="signUp" && !history.state){
-		alert("회원으로 등록되셨습니다")
-	}
-	history.replaceState({}, null, null);
 	
 });
 

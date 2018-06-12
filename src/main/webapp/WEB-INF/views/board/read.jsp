@@ -95,7 +95,9 @@
 	  <div class="col-sm-8 col-sm-offset-2">
 	    <label for="replyList" class="replyUL">ReplyList</label>
 		</div>
-	    <div class="col-sm-8 col-sm-offset-2 replyBox"></div>
+		<div class="col-sm-8 col-sm-offset-2 replyBox">
+	    </div>
+
 	</div>
 
 	<div class="row">
@@ -108,7 +110,7 @@
 	     <div class="col-sm-8 col-sm-offset-2">
 	       <label for="replyContent">ReplyContent</label>
 	       <div class="row">
-	       <textarea class="form-control replyContent" rows="2"></textarea>
+	       <textarea class="form-control replyContent" rows="2" required="required"></textarea>
 	       <label class="col-sm-1">Writer</label>
 	       <button type="submit" class="col-sm-1 col-sm-offset-10 btn btn-default btn-xs active" id="replyBtn">등록</button>
 	       </div>
@@ -131,6 +133,7 @@
 	        </div>
 	      </div>
 	    </div>
+	    <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 	</div>
     
 
@@ -226,12 +229,14 @@ $(document).ready(function() {
 
     $.getJSON("/replies/${param.bno}/"+page, function(data){
 
-      var str = "";
+     var str = "";
 
-      $(data.list).each(function(){
-      var calendar = new Date(this.regdate);
-      var cal = calendar.getFullYear() +"/"+ calendar.getMonth() +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
-	  str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
+     $(data.list).each(function(){
+
+     var content = this.content;
+     var calendar = new Date(this.regdate);
+     var cal = calendar.getFullYear() +"/"+ calendar.getMonth() +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
+	 str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
 			      +"<span class='col-sm-1' style='font-size:2px; font-style: italic;'>"+this.mid+"</span>"
 				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
 				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
@@ -253,37 +258,54 @@ $(document).ready(function() {
     
     if( $("#replyBtn").attr('event') !== 'modify') {
       
-    var content = $(".replyContent").val();
-    var writer = $(".replyWriter").val();
-    var bno = '${param.bno}'
-    var UL = $(".replyUL");
-
-    $.ajax({
-      type: "post",
-      url : "/replies/new",
-      dataType : "text",
-      headers : {
-        "content-type" : "application/json",
-        "x-http-method-override" : "post"
-      },
-      data : JSON.stringify({
-        content : content,
-        mid : writer,
-        bno : bno
-      }),
-      success : function(result) {
-        alert(result);
-        $(".replyContent").val("");
-        pageList();
-        
-      } 
-    });
+	    var content = $(".replyContent").val();
+	    var writer = $(".replyWriter").val();
+	    var bno = '${param.bno}';
+	    var UL = $(".replyUL");
+	    
+	    if(content === ""){
+	    	alert("내용을 입력해주세요");
+	    	return false;
+	    }
+	    
+	    if(content.indexOf("<xmp>") != -1 || content.indexOf("<pre>") != -1 ){
+	    	console.log("xmp or pre exsist............");
+	    	alert("사용할 수 없는 문자열이 있습니다.");
+	    	return false;
+	    }
+	
+	    $.ajax({
+	      type: "post",
+	      url : "/replies/new",
+	      dataType : "text",
+	      headers : {
+	        "content-type" : "application/json",
+	        "x-http-method-override" : "post"
+	      },
+	      data : JSON.stringify({
+	        content : content,
+	        mid : writer,
+	        bno : bno
+	      }),
+	      success : function(result) {
+	        alert(result);
+	        $(".replyContent").val("");
+	        pageList();
+	        
+	      } 
+	    });
     }else{
       var content = $(".replyContent")[0].value;
 
       var rno = $("#replyBtn").attr('rno');
 
       var mid = $("#replyBtn").attr('mid');
+      
+	    if(content.indexOf("<xmp>") != -1 || content.indexOf("<pre>") != -1 ){
+	    	console.log("xmp or pre exsist............");
+	    	alert("사용할 수 없는 문자열이 있습니다.");
+	    	return false;
+	    }
 
       $.ajax({
         type: "PUT",
@@ -342,6 +364,8 @@ $(document).ready(function() {
   });
 
   /* 댓글 수정  */
+  
+  
   
   /* 댓글 삭제 시작*/
   $(".replyBox").on("click","div #redeleteBtn",function(e){
@@ -431,4 +455,3 @@ $(document).ready(function() {
 });
 
 </script>
-<%@ include file="/WEB-INF/views/include/footer.jsp"%>
