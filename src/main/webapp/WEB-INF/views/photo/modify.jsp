@@ -23,7 +23,7 @@
 				<label for="title">Title</label>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="text" class="form-control" id="title" value="${PhotoVO.title}" />
+						<input type="text" class="form-control" name="title" value="${PhotoVO.title}" />
 					</div>
 				</div>
 			</div>

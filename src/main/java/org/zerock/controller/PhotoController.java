@@ -56,6 +56,11 @@ public class PhotoController {
 	public void photoModify(@Param("pno") int pno,Criteria cri, Model model) {
 		model.addAttribute("images", service.searchImage(pno));
 		model.addAttribute("PhotoVO", service.read(pno));
-
 	}
+	
+	@PostMapping("/modify")
+	public void modifyPOST(PhotoVO vo, Criteria cri, String[] imgList) {
+		
+	}
+	
 }
