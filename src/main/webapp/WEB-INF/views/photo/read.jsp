@@ -17,7 +17,8 @@
 	  </div>
 	</div>
 
-	<form>
+	<form id="readForm">
+	<input type="hidden" name="pno" value="${PhotoVO.pno}">
 		<div class="form-group row">
 			<div class="col-sm-8 col-sm-offset-2">
 				<label for="title">Title</label>
@@ -70,6 +71,7 @@ $(document).ready(function() {
 	var formObj = $("#inform");  
 	var mid = '${PhotoVO.mid}';
 	var user = '${LOGIN.mid}';
+	var readForm = $("#readForm");
   
 	/* 뒤로가기 */
   	$("#back").on("click", function(e) {
@@ -102,8 +104,9 @@ $(document).ready(function() {
   			 return false;
   		 }
   		 if(confirm("정말 삭제하시겠습니까?")){
-  	    	formObj.attr("action", "/photo/delete");
-  	    	formObj.submit();
+  			readForm.attr("method","POST");
+  	    	readForm.attr("action", "/photo/delete");
+  	    	readForm.submit();
   		 }
   	});
   	/* 게시글 삭제 */
