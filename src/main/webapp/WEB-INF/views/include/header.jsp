@@ -35,7 +35,13 @@
 ul li{
 list-style: none;
 }
+.navbar-nav>li:hover{
+background-color:#eee;
+}
 </style>
+
+
+
 
 <body>
 <script>
