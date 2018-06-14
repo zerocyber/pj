@@ -241,9 +241,9 @@ $(document).ready(function() {
 
      var content = this.content;
      var calendar = new Date(this.regdate);
-     var cal = calendar.getFullYear() +"/"+ calendar.getMonth() +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
-     
-     str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
+
+     var cal = calendar.getFullYear() +"/"+ (calendar.getMonth()+1) +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
+	 str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
 			      +"<span class='col-sm-1' style='font-size:2px; font-style: italic;'>"+this.mid+"</span>"
 				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
 				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
@@ -425,6 +425,7 @@ $(document).ready(function() {
     	}else{
     		ddd += "<li><a class='btn btn-sencondary' href='"+i+"'>"+i+"</a></li>";
     	}
+
     }
     
     if(pm.next){

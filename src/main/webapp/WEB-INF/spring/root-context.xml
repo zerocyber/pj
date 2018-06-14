@@ -18,19 +18,19 @@
 		<!-- <property name="connectionTestQuery" value="SELECT 1" /> -->
 		<property name="maximumPoolSize" value="100" />
 		<property name="idleTimeout" value="30000" />
-		
-		<!-- <property name="driverClassName"
-		value="com.mysql.jdbc.Driver"></property>
-		<property name="jdbcUrl"
-		value="jdbc:mysql://10.10.10.38:3306/jr01"></property>  -->
-
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property> 
-
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://10.10.10.33:3306/pj01"></property>	
-
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		 
+		<!-- Main -->
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://10.10.10.33:3306/pj01"></property>
 		<property name="username" value="study"></property>
 		<property name="password" value="123456789"></property>
 		<property name="minimumIdle" value="3"></property>
+		
+		<!-- my localhost server -->
+		<!-- <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/pj"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="1q2w3e4r"></property>
+		<property name="minimumIdle" value="3"></property>-->
 	</bean>
 
 	<!-- HikariCP configuration -->

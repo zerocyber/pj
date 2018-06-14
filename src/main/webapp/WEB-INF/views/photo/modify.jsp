@@ -65,9 +65,8 @@
 	    <div class="col-sm-8 col-sm-offset-2">
 	      <div class="row">
 	        <div class="col-sm-12 text-center">
-		        <button id="back" type="button" class="btn btn-xs btn-default">To List</button>
 		        <button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
-		        <button id="remove" type="button" class="btn btn-xs btn-default">Delete</button>
+		        <button id="cancle" type="button" class="btn btn-xs btn-default">Cancle</button>
 	        </div>
 	      </div>
 	    </div>
@@ -80,6 +79,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+	
+	$("#cancle").on("click", function(e){
+		self.location = "/photo/read?page=${param.page}&perPageNum=${param.perPageNum}&pno=${param.pno}";
+	});
 	
 	// 이미지 리스트 x -> 글 이미지 삭제 
 	$("#photoList").on("click","div .imgBtn",function(e){
