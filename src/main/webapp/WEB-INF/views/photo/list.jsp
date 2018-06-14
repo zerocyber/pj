@@ -2,13 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
 .photo {
-	display: inline-block;
 	margin-top: 20px;
 }
+#size {
+width:100%;
+height:200px;
+}
+
 </style>
 <div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
 	<div class="row">
@@ -22,9 +27,9 @@
 			<div class='list-group photo'>
 				<c:forEach items="${join}" var="list">
 					<div class='col-sm-3'>
-						<a class="thumbnail fancybox" rel="lightbox" href="/displayImage?fileName=${list.image}">
-						<img class="img-responsive" alt=""
-						src="/displayFile?fileName=${list.image}" /></a>
+						<a class="fancybox" rel="lightbox" href="/displayImage?fileName=${list.image}">
+						<img id="size" class="img-responsive img-rounded thumbnail center-block" alt=""
+						src="/displayFile?fileName=${fn:replace(list.image,'s_','')}" /></a>
 						<div class='text-right text-center'>
 							<p>
 								<a href="/photo/read?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&pno=${list.pno}">
