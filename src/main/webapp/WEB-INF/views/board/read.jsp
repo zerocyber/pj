@@ -236,6 +236,10 @@ $(document).ready(function() {
     $.getJSON("/replies/${param.bno}/"+page, function(data){
 
      var str = "";
+     
+     console.log($(data.list).length);
+     
+     
 
      $(data.list).each(function(){
 
@@ -253,6 +257,9 @@ $(document).ready(function() {
 			      +"<span class='col-sm-12'>"+this.content+"</span>"
     		 +"</div>";
       });
+     if($(data.list).length ==0){
+    	 str += "<div class='row' style='font-size:15px; text-align:center'>등록된 댓글이 없습니다.</div>";
+     }
       $(".replyBox").html(str);
       replyPaging(data.pm);
     });

@@ -32,7 +32,7 @@ public class ReplyController {
 	private ReplyService service;
 
 	//�뙎湲� �벑濡�
-	@RequestMapping(value="/new", method=RequestMethod.POST)
+	@RequestMapping(value="/new", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
 		 try {
