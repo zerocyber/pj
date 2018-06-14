@@ -17,105 +17,80 @@
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/util.css">
  	<link rel="stylesheet" type="text/css" href="/resources/loginResources/css/main.css">
-
 </head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form" method="post">
+
+<body onload="document.forms[0].reset()">
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+			<form class="login100-form validate-form" method="post">				
+				<span class="login100-form-title p-b-33">
+					Create Acount
+				</span>
+
+				<div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요" data-checkId = "이미 존재하는 ID입니다.">
+					<input class="input100 inputId" type="text" name="mid" placeholder="ID">
+					<button class="btn btn-info idCheck">아이디 중복확인</button>
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+
+				<div class="wrap-input100 rs1 validate-input" data-validate="사용하실 비밀번호를 입력해주세요">
+					<input id="mpw1" class="input100 mpw" type="password" name="mpw" placeholder="Password">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
 				
-					<span class="login100-form-title p-b-33">
-						Create Acount
-					</span>
-
-					<div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요" data-checkId = "이미 존재하는 ID입니다.">
-						<input class="input100 inputId" type="text" name="mid" placeholder="ID">
-						<button class="btn btn-info idCheck">아이디 중복확인</button>
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-
-					<div class="wrap-input100 rs1 validate-input" data-validate="사용하실 비밀번호를 입력해주세요">
-						<input id="mpw1" class="input100 mpw" type="password" name="mpw" placeholder="Password">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					
-					<div class="wrap-input100 rs1 validate-input" data-validate="비밀번호 확인을 위해 입력해주세요">
-						<input id="mpw2" class="input100 mpw2" type="password" name="mpw2"  placeholder="Password">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "이름을 입력해주세요">
-						<input class="input100" type="text" name="mname" placeholder="Name">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					
-					
-					
-					<div class="wrap-input100 validate-input" data-validate ="이메일을 ex@abc.xyz 방식으로 입력해주세요">
-						<input class="input100" type="text" name="email" placeholder="E-Mail">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					
-					
-
-					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn signUP">
-							Sign Up
-						</button>
-					</div>
-					
-
-					<div class="text-center">
-
-						<span class="txt1">
-							Do yo want Sign In?
-						</span>
-						
-						<a href="login" class="txt2 hov1">
-							Sign In
-						</a>
-					</div>
-					
-				</form>
-			</div>
+				<div class="wrap-input100 rs1 validate-input" data-validate="비밀번호 확인을 위해 입력해주세요">
+					<input id="mpw2" class="input100 mpw2" type="password" name="mpw2"  placeholder="Password">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input" data-validate = "이름을 입력해주세요">
+					<input class="input100" type="text" name="mname" placeholder="Name">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+													
+				<div class="wrap-input100 validate-input" data-validate ="이메일을 ex@abc.xyz 방식으로 입력해주세요">
+					<input class="input100" type="text" name="email" placeholder="E-Mail">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+									
+				<div class="container-login100-form-btn m-t-20">
+					<button class="login100-form-btn signUP">
+						Sign Up
+					</button>
+				</div>
+				
+				<div class="text-center">
+					<span class="txt1">Do yo want Sign In?</span>				
+					<a href="login" class="txt2 hov1">Sign In</a>
+				</div>
+			</form>
 		</div>
 	</div>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="resources/loginResources/js/main.js"></script>
-	
+</div>
+<!-- javascript -->
+<script src="resources/loginResources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="resources/loginResources/vendor/animsition/js/animsition.min.js"></script>
+<script src="resources/loginResources/vendor/bootstrap/js/popper.js"></script>
+<script src="resources/loginResources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="resources/loginResources/vendor/select2/select2.min.js"></script>
+<script src="resources/loginResources/vendor/daterangepicker/moment.min.js"></script>
+<script src="resources/loginResources/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="resources/loginResources/vendor/countdowntime/countdowntime.js"></script>
+<script src="resources/loginResources/js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
-
-<body onload="document.forms[0].reset()">
-
 <script>
-
 var idCheck =  false; 
 var inputId = "";
 /* var pattern = /[{}~!@#$%^&*()_+<>=?-/\/]/; */
-var pattern = /[{}~!@#$%^&*()_+-=<>?/\/]/;
+var pattern = /[{}~!@#$%^&*()_+=<>?/\/]/;
 
 $(".signUP").on("click",function(e){
 
@@ -167,9 +142,6 @@ $(".idCheck").on("click",function(e){
 	}
 	);
 });
-
 </script>
-	
-	
 </body>
 </html>
