@@ -1,6 +1,5 @@
 package org.zerock.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
@@ -34,8 +33,6 @@ public class MemberController {
 
 	@Setter(onMethod_= {@Autowired})
 	private MemberService service;
-	
-	
 	
 	@GetMapping("/login")
 	public void login(HttpServletRequest req) {
@@ -72,14 +69,18 @@ public class MemberController {
 	}
 	
 	@PostMapping("/signup")
-	public void signUpPost(MemberVO vo, Model model, RedirectAttributes rttr, HttpSession session, HttpServletResponse res) throws Exception {
+	public void signUpPost(MemberVO vo, Model model, RedirectAttributes rttr, 
+			HttpSession session, HttpServletResponse res) throws Exception {
 		service.userRegist(vo);
 		session.setAttribute("LOGIN", vo);
 		Object uri = session.getAttribute("URI");
 		
-		PrintWriter out = res.getWriter(); 
-		out.println(uri !=null? "<script>alert('SignUp Success!!'); location.href='"+(String)uri+"' </script>" :
-								"<script>alert('SignUp Success!!'); location.href='/index' </script>"
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = res.getWriter();
+
+		out.println(uri !=null? "<script>alert('회원가입되었습니다'); location.href='"+(String)uri+"' </script>" :
+								"<script>alert('회원가입되었습니다'); location.href='/index' </script>"
 				); 
 	}
 	
