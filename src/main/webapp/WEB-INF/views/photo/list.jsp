@@ -6,8 +6,11 @@
 
 <style>
 .photo {
-	display: inline-block;
 	margin-top: 20px;
+}
+
+img {
+width:100%;
 }
 </style>
 <div class="col-sm-12 col-md-12 main" style="margin-top: 50px;">
@@ -19,21 +22,15 @@
 
 	<div class="row">
 		<div class="col-sm-offset-1 col-sm-10">
-			<div class='list-group photo'>
-				<c:forEach items="${join}" var="list">
+			<div class="list-group photo row">
+				<c:forEach items="${join}" var="list">				
 					<div class='col-sm-3'>
-						<a class="thumbnail fancybox" rel="lightbox" href="/displayImage?fileName=${list.image}">
-						<img class="img-responsive" alt=""
-						src="/displayFile?fileName=${list.image}" /></a>
-						<div class='text-right text-center'>
-							<p>
-								<a href="/photo/read?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&pno=${list.pno}">
-								<c:out value="${list.title}" /></a>																								
-							</p>
-							<p>
-								<small class='text-muted'><c:out
-										value="작성자 :${list.mid }" /></small>
-							</p>
+						<a class="fancybox" rel="lightbox" href="/displayImage?fileName=${list.image}">
+						<img class="img-responsive" alt="" src="/displayFile?fileName=${list.image}" /></a>
+						<div class="text-right text-center">							
+							<div><a href="/photo/read?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&pno=${list.pno}">
+							<c:out value="${list.title}" /></a></div>																																						
+							<small class="text-muted"><c:out value="작성자 :${list.mid }" /></small>							
 						</div>					
 					</div>
 				</c:forEach>

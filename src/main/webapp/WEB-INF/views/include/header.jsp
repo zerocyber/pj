@@ -92,11 +92,10 @@ $(document).ready(function(){
 				<span class="icon-bar"></span>
 				
 			</button>
-			<a class="navbar-brand" href="/index">Leaf Movie Viliage</a>
 		</div>
 
-		<div class="row col-sm-4 col-sm-offset-3">
-			<div id="navbar" class="navbar-collapse text-center">
+		<div class="row col-sm-4 col-sm-offset-4">
+			<div id="navbar" class="navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/index">Home</a></li>
 					<li><a href="/board/list">Board</a></li>
