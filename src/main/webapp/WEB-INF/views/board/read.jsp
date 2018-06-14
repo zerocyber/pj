@@ -136,12 +136,8 @@
 	        </div>
 	      </div>
 	    </div>
-	    <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 	</div>
-    
-
 <form id="inform" method="post">
-
   <input type="hidden" name="page" value="${cri.page}">
   <input type="hidden" name="bno" value="${BoardVO.bno}">
   <input type="hidden" name="type" value="${cri.type}">
@@ -152,18 +148,14 @@
 <script>
 $(document).ready(function() {
   var formObj = $("#inform");
-  
   var wall= $("#wall");
   var picture=$(".picture");
-  var download=$(".download");
-  
+  var download=$(".download");  
   var mid = '${BoardVO.mid}';
-  var user = '${LOGIN.mid}';
-  
+  var user = '${LOGIN.mid}';  
   var pattern = /[<>-]/;
   // 패턴에 마이너스(-) 추가하면 점(.)까지 사용금지되는 문제 있음
-  
-  
+    
 	$(".upload").on("click","div span img",function(e) {
 		console.log("span clicked");
 		var address = $(e.target)[0].src;
@@ -178,7 +170,6 @@ $(document).ready(function() {
 	wall.on("click", function(e) {
 		wall.hide("slow");
 	});
-	
 	download.on("click", function(e) {
 		console.log(e.target);
 		e.preventDefault();
@@ -187,18 +178,11 @@ $(document).ready(function() {
 		if(result){
 			location.replace('/displayFile?fileName='+fileName);
 		};
-	});
-  
-
-	
-	
+	});	
   	$("#back").on("click", function(e) {
    	 self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
  	});
-
-
   	$("#modify").on("click", function(e) {
-  		
   		if(user != "" && user != mid){
  			 alert("글 작성자만 수정 가능합니다");
   			 e.preventDefault();
@@ -206,9 +190,7 @@ $(document).ready(function() {
   		}
     	self.location = "/board/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&bno=${BoardVO.bno}";
   	});
-  
-  	$("#remove").on("click", function(e) {
-  		
+  	$("#remove").on("click", function(e) {  		
   		 if(user != "" && user != mid){
   			 alert("글 작성자만 삭제 가능합니다");
   			 e.preventDefault();
@@ -222,38 +204,26 @@ $(document).ready(function() {
   		 if(confirm("정말 삭제하시겠습니까?")){
   	    	formObj.attr("action", "/board/delete");
   	    	formObj.submit();
-  		 }
-  		
+  		 }  		
   	});
   
   /* 댓글 페이지 로딩 */
   function pageList(page) {
     if(typeof page == "undefined"){
       var page = 1;
-    }
-    console.log("page loading.....................  ");
-
+    }    
     $.getJSON("/replies/${param.bno}/"+page, function(data){
-
      var str = "";
      
-     console.log($(data.list).length);
-     
-     
-
      $(data.list).each(function(){
-
      var content = this.content;
      var calendar = new Date(this.regdate);
-
      var cal = calendar.getFullYear() +"/"+ (calendar.getMonth()+1) +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
 	 str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
 			      +"<span class='col-sm-1' style='font-size:2px; font-style: italic;'>"+this.mid+"</span>"
 				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
 				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
-
 				      +"<span class='col-sm-2 text-right label label-danger'>"+cal+"</span>"
-
 			      +"<span class='col-sm-12'>"+this.content+"</span>"
     		 +"</div>";
       });
@@ -265,13 +235,10 @@ $(document).ready(function() {
     });
   };
   pageList();
-  /* 댓글 페이지 로딩 */
   
   /* 댓글 추가 */
-  $("#replyBtn").on("click", function(e){
-    
-    if( $("#replyBtn").attr('event') !== 'modify') {
-      
+  $("#replyBtn").on("click", function(e){    
+    if( $("#replyBtn").attr('event') !== 'modify') {      
 	    var content = $(".replyContent").val();
 	    var writer = $(".replyWriter").val();
 	    var bno = '${param.bno}';
@@ -303,171 +270,138 @@ $(document).ready(function() {
 	      success : function(result) {
 	        alert(result);
 	        $(".replyContent").val("");
-	        pageList();
-	        
+	        pageList();	        
 	      } 
 	    });
-    }else{
-      var content = $(".replyContent")[0].value;
-
-      var rno = $("#replyBtn").attr('rno');
-
-      var mid = $("#replyBtn").attr('mid');
-      
+    } else {
+		var content = $(".replyContent")[0].value;
+		var rno = $("#replyBtn").attr('rno');
+		var mid = $("#replyBtn").attr('mid');      
 	    if(pattern.test(content) == true){
 	    	alert("사용할 수 없는 문자열이 있습니다.");
 	    	return false;
 	    }
-
-      $.ajax({
-        type: "PUT",
-        url : "/replies/${param.bno}/1",
-        dataType : "text",
-        headers : {
-          "content-type" : "application/json",
-          "x-http-method-override" : "PUT"
-        },
-        data : JSON.stringify({
-          content : content,
-          rno : rno,
-          mid : mid
-        }),
-        success : function(result) {
-            alert(result);  
-            $("#replyBtn")[0].innerText = "Apply";
-            $("#replyBtn").attr('event', 'regist');
-            $(".replyContent").val("");
-            pageList();
-        } 
-      });
+      	$.ajax({
+	        type: "PUT",
+	        url : "/replies/${param.bno}/1",
+	        dataType : "text",
+	        headers : {
+	          "content-type" : "application/json",
+	          "x-http-method-override" : "PUT"
+	        },
+	        data : JSON.stringify({
+	          content : content,
+	          rno : rno,
+	          mid : mid
+	        }),
+	        success : function(result) {
+	            alert(result);  
+	            $("#replyBtn")[0].innerText = "Apply";
+	            $("#replyBtn").attr('event', 'regist');
+	            $(".replyContent").val("");
+	            pageList();
+	        } 
+      	});
     }
-    
   });
-  /* 댓글 추가 */
-  
 
   /* 댓글 수정 */
-  $(".replyBox").on("click","div #reModiBtn",function(e){
-    
+  $(".replyBox").on("click","div #reModiBtn",function(e){    
 	var target = e.target;
 	var replyMid = target.parentElement.childNodes[0].innerText;
 	
-	if(replyMid === user){
-	  
-    var applyBtn = $("#replyBtn");
-    applyBtn[0].innerText = "Modify";
+	if(replyMid === user) {	  
+    	var applyBtn = $("#replyBtn");
+    	applyBtn[0].innerText = "Modify";
     
-    var replyText = $(e.target.parentElement);
-    var rno = replyText.data('rno');
-    var mid = replyText.data('mid');
-    var content = replyText.data('content');
+	    var replyText = $(e.target.parentElement);
+	    var rno = replyText.data('rno');
+	    var mid = replyText.data('mid');
+	    var content = replyText.data('content');
     
-    $(".replyContent")[0].value = content;
-    $(".replyWriter")[0].value = mid;
-    
-    applyBtn.attr("rno", rno);
-    applyBtn.attr("content", content);
-    applyBtn.attr("mid", mid);
-    applyBtn.attr("event", "modify");
-	}else{
-		alert("댓글 작성자만 수정 가능합니다")
-		return;
-	}
+	    $(".replyContent")[0].value = content;
+	    $(".replyWriter")[0].value = mid;
+	    
+	    applyBtn.attr("rno", rno);
+	    applyBtn.attr("content", content);
+	    applyBtn.attr("mid", mid);
+	    applyBtn.attr("event", "modify");
+		}else{
+			alert("댓글 작성자만 수정 가능합니다")
+			return;
+		}
   });
-
-  /* 댓글 수정  */
-  
-  
-  
+        
   /* 댓글 삭제 시작*/
-  $(".replyBox").on("click","div #redeleteBtn",function(e){
-  
+  $(".replyBox").on("click","div #redeleteBtn",function(e){  
 	var target = e.target;
 	var replyMid = target.parentElement.childNodes[0].innerText;
 	
-    if(replyMid === user && confirm("삭제하시겠습니까?")){
-
-    var random = $(this).parent();
+	var random = $(this).parent();
     var bno = "${param.bno}";
     var rno = random.data('rno');
-
-    $.ajax({
-      
-    type : 'delete',
-    url : "/replies/"+bno+"/"+rno,
-    headers : {
-      "Content-Type" : "application/json",
-      "X-HTTP-Method-Override" : "DELETE"
-    },  
-    dataType : 'text',
-    success : function(result){
-      console.log("result: " + result)
-      if(result == 'SUCCESS'){
-        alert("댓글이 삭제되었습니다");
-        pageList();
-      }
-      }
-    });
+    
+    if(replyMid === user && confirm("삭제하시겠습니까?")){
+	    $.ajax({
+	    type : 'delete',
+	    url : "/replies/"+bno+"/"+rno,
+	    headers : {
+	      "Content-Type" : "application/json",
+	      "X-HTTP-Method-Override" : "DELETE"
+	    },  
+	    dataType : 'text',
+	    success : function(result){
+	      console.log("result: " + result)
+	      if(result == 'SUCCESS'){
+	        alert("댓글이 삭제되었습니다");
+	        pageList();
+	      }
+	      }
+	    });
     }else{
     	alert("댓글 작성자만 삭제 가능합니다.");
     	return;
     };
-  }); // delete ajax
-  /* 댓글 삭제 */
+  });
   
   /* 댓글 하단 페이징 */
-  function replyPaging(pm){
-    
-    var ddd = "";
-    
-    if(pm.prev){
-      
+  function replyPaging(pm){    
+    var ddd = "";    
+    if(pm.prev){      
       ddd += "<li><a href = '"+(pm.startPage -1)+"'> << </a></li>";
-    }
-    
+    }    
     for(var i = pm.startPage, len = pm.endPage; i< len+1; i++){
-    	
     	if(pm.cri.page == i){
     		ddd += "<li class='active'><a class='btn btn-secondary  href='"+i+"'>"+i+"</a></li>";
     	}else{
     		ddd += "<li><a class='btn btn-sencondary' href='"+i+"'>"+i+"</a></li>";
     	}
-
     }
-    
-    if(pm.next){
-      
+    if(pm.next){      
       ddd += "<li><a href = '"+(pm.endpage +1)+"'> >> </a></li>";
     }
     $('.pagination').html(ddd);
-    };
+  };
     
+    /* reply number paging */
     $(".pagination").on("click","li a",function(e){
       e.preventDefault();
       var page = $(e.target).text(); // page number
       pageList(page);
-
     });  
 
   /* 파일 리스트 로딩 */
   (function fileList() {
-	 
-	  
 	var file = '${fileList}';
 	console.log(file);
-
-	  
   })();
-  /* 파일 리스트 로딩 */
   
+  /* file download */
   $(".download").on("click",function(e){
-	  console.log("download click")
-	  
 	  if(confirm("download??")){
 		  location.replace("/displayFile?fileName=${BoardVO.files}");
 	  } 
   });
-  
 });
-
 </script>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -90,33 +90,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-var sessionMid = '${LOGIN.mid}';
-var mid = '${BoardVO.mid}';
-if(sessionMid != mid){
-	alert("글 작성자만 수정 가능합니다")
-	window.history.go(-2);
-}
+	var sessionMid = '${LOGIN.mid}';
+	var mid = '${BoardVO.mid}';
+	if(sessionMid != mid){
+		alert("글 작성자만 수정 가능합니다")
+		window.history.go(-2);
+	}
 	
 	
-  var formObj = $("#modiForm");
-  $("#modify").on("click", function(e){
-    formObj.submit();
-  });
-  $("#delete").on("click", function(e){
-    self.location = "/board/read?page=${param.page}&perPageNum=${param.perPageNum}&bno=${BoardVO.bno}";
-  });
-  
-  var fileBtn = $(".fileList");
-  console.log(fileBtn)
-  fileBtn.on("click","a span button",function(e){
+	 var formObj = $("#modiForm");
+	 $("#modify").on("click", function(e){
+	   formObj.submit();
+	 });
+	 $("#delete").on("click", function(e){
+	   self.location = "/board/read?page=${param.page}&perPageNum=${param.perPageNum}&bno=${BoardVO.bno}";
+	 });
+	 
+	 var fileBtn = $(".fileList");
+	 console.log(fileBtn)
+	 fileBtn.on("click","a span button",function(e){
 	 e.preventDefault();
 	 console.log(e);
 	 console.log($(e.target).parent().parent().remove());
 	 var add = $(e.target).parent().data('add');
 	 var str = "<input type='hidden' name='deleteFiles' value='"+add+"' />";
 	 $("#modiForm").append(str);
-  });
-  
+	 });
+	 
 	//파일 업로드
 	$(".uploadList").on("dragenter dragover",function(event) {
 		event.preventDefault();
@@ -127,11 +127,11 @@ if(sessionMid != mid){
 		var file = files[0];
 		var path = 'board';
 		console.log(file);
-
+	
 		var formData = new FormData();
 		formData.append("file", file);
 		console.log(files);
-
+	
 		$.ajax({
 			url : '/'+path+'/upload',
 			data : formData,
@@ -141,7 +141,7 @@ if(sessionMid != mid){
 			type : 'POST',
 			success : function(data) {
 			var str = "";
-
+	
 			if (checkImageType(data)) {								
 					str = "<a href='/dispalyFile?fileName="+data+"'><span class='col-sm-2' data-add='"+data+"'><button class='btn btn-xs'>X</button><img src='/displayFile?fileName="+data+"' class='img-thumbnail'></span><input type='hidden' name='files' value='"+data+"'/></a>";
 				} else {
@@ -151,14 +151,11 @@ if(sessionMid != mid){
 			}
 		});
 	});
-
+	
 	function checkImageType(fileName) {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}
-  
-
-
  });
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
