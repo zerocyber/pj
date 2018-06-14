@@ -102,7 +102,10 @@
 
 	<div class="row">
 	  <div class="col-sm-8 col-sm-offset-2">
-	    <div class="empty col-sm-12 text-center"></div>
+	    <div class="col-sm-12 text-center">
+	     <ul class="pagination">
+	     </ul>
+	    </div>
 	  </div>
 	</div>
 
@@ -157,7 +160,8 @@ $(document).ready(function() {
   var mid = '${BoardVO.mid}';
   var user = '${LOGIN.mid}';
   
-  var pattern = /[{}~!@#$%^&*()_+-=<>?/\/]/;
+  var pattern = /[<>-]/;
+  // 패턴에 마이너스(-) 추가하면 점(.)까지 사용금지되는 문제 있음
   
   
 	$(".upload").on("click","div span img",function(e) {
@@ -238,7 +242,8 @@ $(document).ready(function() {
      var content = this.content;
      var calendar = new Date(this.regdate);
      var cal = calendar.getFullYear() +"/"+ calendar.getMonth() +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
-	 str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
+     
+     str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
 			      +"<span class='col-sm-1' style='font-size:2px; font-style: italic;'>"+this.mid+"</span>"
 				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
 				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
@@ -410,23 +415,26 @@ $(document).ready(function() {
     
     if(pm.prev){
       
-      ddd += "<li><a href = '"+(pm.startPage -1)+"'> >> </a></li>";
+      ddd += "<li><a href = '"+(pm.startPage -1)+"'> << </a></li>";
     }
     
     for(var i = pm.startPage, len = pm.endPage; i< len+1; i++){
-      
-      var strClass = pm.cri.page == i?'class=active':'';
-      ddd += "<li class='btn btn-secondary'"+ strClass +"><a href='"+i+"'>"+i+"</a></li>";
+    	
+    	if(pm.cri.page == i){
+    		ddd += "<li class='active'><a class='btn btn-secondary  href='"+i+"'>"+i+"</a></li>";
+    	}else{
+    		ddd += "<li><a class='btn btn-sencondary' href='"+i+"'>"+i+"</a></li>";
+    	}
     }
     
     if(pm.next){
       
       ddd += "<li><a href = '"+(pm.endpage +1)+"'> >> </a></li>";
     }
-    $('.empty').html(ddd);
+    $('.pagination').html(ddd);
     };
     
-    $(".empty").on("click","li a",function(e){
+    $(".pagination").on("click","li a",function(e){
       e.preventDefault();
       var page = $(e.target).text(); // page number
       pageList(page);

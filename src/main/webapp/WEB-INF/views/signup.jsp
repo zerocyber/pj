@@ -115,7 +115,7 @@
 var idCheck =  false; 
 var inputId = "";
 /* var pattern = /[{}~!@#$%^&*()_+<>=?-/\/]/; */
-var pattern = /[{}~!@#$%^&*()_+-=<>?/\/]/;
+var pattern = /[{}~!@#$%^&*()_+=<>?/\/]/;
 
 $(".signUP").on("click",function(e){
 

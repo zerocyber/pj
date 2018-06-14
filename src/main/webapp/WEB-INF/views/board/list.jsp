@@ -15,7 +15,7 @@ th {
 		<div class="col-sm-offset-2 col-sm-8" style="background-color: #e9faff;">
 			<div class="row">
 				<div class="col-sm-8">
-					<div class="text-center" style="border-bottom: 1px solid black; padding-top:10px;"><p sytle="font-size: 10px;">게시판 BEST</p></div>
+					<div class="text-center" style="border-bottom: 1px solid black; padding-top:10px;"><p sytle="font-size: 10px;">오늘의 HOT게시글</p></div>
 					<table class="table" style="padding-bottom : 0px;" >
 					<tr>
 					<c:forEach items="${bestList}" var="list" begin="0" end="9" varStatus="status">
