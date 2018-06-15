@@ -28,8 +28,8 @@ th {
 					</table>
 				</div>
 					
-				<div class="col-sm-4" style="margin-top: 30px; padding-left:0px;">
-						<img style="height: 185px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
+				<div class="col-sm-4" style="margin-top: 15px; padding-left:0px;">
+						<img style="height: 185px; width: 265px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
 				</div>
 			</div>									
 		</div>
