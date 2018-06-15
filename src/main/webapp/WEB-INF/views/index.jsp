@@ -89,7 +89,9 @@
 	</a>
 </div>	
 	<!-- youtube media add -->
-	
+	${weekly}
+	${monthly}
+	${yearly}
     <!-- Wrap the rest of the page in another container to center all the content. -->
     <div class="container marketing main">
 

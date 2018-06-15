@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 th {
 	text-align: center;
@@ -128,9 +128,9 @@ th {
 		<div class="col-sm-12 text-center">
 			<div id="pagination">
 				<ul class="pagination">
-				
-
-					<li><span style="background-color: white;" >Page ${pm.cri.page} of ${pm.total}</span></li>
+					<c:set var="totalPage" value="${pm.total/10 }"/>
+					<fmt:parseNumber var="pages" value="${totalPage + (1-(totalPage%1))%1}" integerOnly="true"></fmt:parseNumber>
+					<li><span style="background-color: white;" >Page ${pm.cri.page} of ${pages}</span></li>
 
 					<c:if test="${pm.prev}">
 					<c:choose>
