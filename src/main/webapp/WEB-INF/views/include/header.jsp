@@ -94,7 +94,7 @@ $(document).ready(function(){
 			</button>
 		</div>
 
-		<div class="row col-sm-4 col-sm-offset-4">
+		<div class="row col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
 			<div id="navbar" class="navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/index">Home</a></li>
