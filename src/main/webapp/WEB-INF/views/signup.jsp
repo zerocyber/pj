@@ -90,8 +90,8 @@
 var idCheck =  false; 
 var inputId = "";
 /* var pattern = /[{}~!@#$%^&*()_+<>=?-/\/]/; */
-var pattern = /[{}~!@#$%^&*()_+=<>?/\/]/;
-
+/* var pattern = /[{}~!@#$%^&*()_+=<>?/\/]/; */
+var pattern = /^[가-힣0-9a-zA-Z]*$/;
 $(".signUP").on("click",function(e){
 
 	var mpw = document.getElementById("mpw1").value; // 입력한 비밀번호
@@ -113,9 +113,9 @@ $(".idCheck").on("click",function(e){
 	e.preventDefault();
 	var id = $('.inputId').val();
 	
-	if(pattern.test(id) == true){
+	if(pattern.test(id) == false){
 		console.log(pattern.test(id));
-		alert("아이디에 특수문자는 사용할 수 없습니다.");
+		alert("아이디는 현대 한글, 영문 및 숫자만 가능합니다");
 		return false;
 	}
 	

@@ -153,7 +153,7 @@ $(document).ready(function() {
   var download=$(".download");  
   var mid = '${BoardVO.mid}';
   var user = '${LOGIN.mid}';  
-  var pattern = /[<>-]/;
+  var pattern = /[$<>-]/;
   // 패턴에 마이너스(-) 추가하면 점(.)까지 사용금지되는 문제 있음
     
 	$(".upload").on("click","div span img",function(e) {
