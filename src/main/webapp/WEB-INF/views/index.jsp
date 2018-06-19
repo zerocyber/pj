@@ -1,9 +1,9 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="/resources/carousel.css" rel="stylesheet">
-
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/resources/bootstrap-3.3.2/dist/js/bootstrap.min.js"></script>
@@ -87,13 +87,46 @@
 		data-slide="next"> <span class="glyphicon glyphicon-chevron-right"
 		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
-</div>	
+</div>
 	<!-- youtube media add -->
-	${weekly}
-	${monthly}
-	${yearly}
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-    <div class="container marketing main">
+	
+	
+	<div class="row">
+		<div class="col-sm-12">
+		
+				<c:forEach items="${weekly}" var="week" begin="0" end="5">
+						<div class="col-sm-2">
+							<div><img src="${week.image}"></div>
+							<div>${week.title }</div>
+							<div>${week.grade }</div>
+							<div>${week.openDate }</div>
+						</div>		
+				</c:forEach>
+		</div>
+		
+		<div class="col-sm-12">
+				<c:forEach items="${monthly}" var="month" begin="0" end="5">
+						<div class="col-sm-2">
+							<div><img src="${month.image}"></div>
+							<div>${month.title }</div>
+							<div>${month.grade }</div>
+							<div>${month.openDate }</div>
+						</div>		
+				</c:forEach>
+		</div>
+		
+		<div class="col-sm-12">
+				<c:forEach items="${yearly}" var="year" begin="0" end="5">
+						<div class="col-sm-2">
+							<div><img src="${year.image}"></div>
+							<div>${year.title }</div>
+							<div>${year.grade }</div>
+							<div>${year.openDate }</div>
+						</div>		
+				</c:forEach>
+		</div>
+	</div>	
 
- </div>
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

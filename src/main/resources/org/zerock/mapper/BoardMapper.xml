@@ -6,7 +6,11 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
 	<select id="bestList" resultType="org.zerock.domain.BoardVO">
-	select * from t_board where bno > 0 and regdate between curdate() - interval 1 day and curdate() + interval 1 day order by views desc limit 0, 10
+	select c.bno, c.title, c.mid, c.regdate, c.views, c.kname kno, t.gname gno  
+	from t_genre t right join 
+	(select b.bno,b.title, b.mid, b.regdate, b.views, k.kname, b.gno from t_board b 
+	left join t_kind k on b.kno = k.kno) c 
+	on t.gno = c.gno where c.bno > 0 and regdate between curdate() - interval 1 day and curdate() + interval 1 day order by views desc limit 0, 10
 	</select>
 
 	<select id="list" resultType="org.zerock.domain.BoardVO">
@@ -66,7 +70,11 @@
 
 	<select id="searchList" resultType="org.zerock.domain.BoardVO">
 
-		select * from t_board
+		select c.bno, c.title, c.mid, c.regdate, c.views, c.kname kno, t.gname gno  
+		from t_genre t right join 
+		(select b.bno,b.title, b.mid, b.regdate, b.views, k.kname, b.gno from t_board b 
+		left join t_kind k on b.kno = k.kno) c 
+		on t.gno = c.gno
 
 		<include refid="criteria"></include>
 

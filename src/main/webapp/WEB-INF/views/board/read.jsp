@@ -25,7 +25,7 @@
 }
 </style>
 
-<div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:10px;">
+<div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:50px;">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-4">
 			<h3>영화 게시판</h3>
@@ -37,18 +37,7 @@
 	<div class="form-group row">
 		<div class="col-sm-8 col-sm-offset-2">
 			<label for="title">Title</label>
-			<div class="row">
-				<div class="col-sm-9">
-					<input type="text" class="form-control" id="title" value="${BoardVO.title}" readonly />
-				</div>
-
-				<div class="col-sm-3 text-right">
-					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.kno eq '10' ? '후기': BoardVO.kno eq '20' ? '일반' : '질문'}</span></h4></div>
-					<div class="col-sm-6 text-right"><h4><span class="label label-primary">${BoardVO.gno eq '100' ? 'Comedy' : BoardVO.gno eq '200' ? 'Action' : 'Drama' }</span></h4></div>
-
-				</div>
-
-			</div>
+				<input type="text" class="form-control" id="title" value="${BoardVO.title}" readonly />
 		</div>
 	</div>
 
@@ -61,7 +50,7 @@
 
      <div class="form-group row">
        <div class="col-sm-2 col-sm-offset-8">
-         <p class="text-right label label-warning pull-right">${BoardVO.mid}</p>
+         <p class="text-right pull-right"><c:out value="작성자 : ${BoardVO.mid}"/></p>
        </div>
      </div>
 
@@ -89,41 +78,44 @@
 		<div class="picture" align="center">
 		</div>
 	</div>
-
-
-	<div class="row">
-	  <div class="col-sm-8 col-sm-offset-2">
-	    <label for="replyList" class="replyUL">ReplyList</label>
+	<div class="col-sm-8 col-sm-offset-2" style="border-top: 1px dashed black">
+	<a>댓글이 ${countList} 개 달려있습니다.</a> 
+	</div>
+	
+	<div id="replyBox">
+		<div class="row">
+		  <div class="col-sm-8 col-sm-offset-2">
+		    <label for="replyList" class="replyUL">ReplyList</label>
+			</div>
+			<div class="col-sm-8 col-sm-offset-2 replyBox">
+		    </div>
+	
 		</div>
-		<div class="col-sm-8 col-sm-offset-2 replyBox">
-	    </div>
-
-	</div>
-
-	<div class="row">
-	  <div class="col-sm-8 col-sm-offset-2">
-	    <div class="col-sm-12 text-center">
-	     <ul class="pagination">
-	     </ul>
-	    </div>
-	  </div>
-	</div>
-
-	<div class="row">
-	     <div class="col-sm-8 col-sm-offset-2">
-	       <label for="replyContent">ReplyContent</label>
-	       <div class="row">
-	       <textarea class="form-control replyContent" rows="2" required="required"></textarea>
-	       <label class="col-sm-1">Writer</label>
-	       <button type="submit" class="col-sm-1 col-sm-offset-10 btn btn-default btn-xs active" id="replyBtn">등록</button>
-	       </div>
-	       <div class="row">
-	       <input type="text" class="col-sm-2 replyWriter btn-xs" value="${LOGIN.mid}" readonly/>
-	       </div>
-	       </div>
-	     </div>
-	</div>
-    
+	
+		<div class="row">
+		  <div class="col-sm-8 col-sm-offset-2">
+		    <div class="col-sm-12 text-center">
+		     <ul class="pagination">
+		     </ul>
+		    </div>
+		  </div>
+		</div>
+	
+		<div class="row">
+		     <div class="col-sm-8 col-sm-offset-2">
+		       <label for="replyContent">ReplyContent</label>
+		       <div class="row">
+		       <textarea class="form-control replyContent" rows="2" required="required"></textarea>
+		       <label class="col-sm-1">Writer</label>
+		       <button type="submit" class="col-sm-1 col-sm-offset-10 btn btn-default btn-xs active" id="replyBtn">등록</button>
+		       </div>
+		       <div class="row">
+		       <input type="text" class="col-sm-2 replyWriter btn-xs" value="${LOGIN.mid}" readonly/>
+		       </div>
+		       </div>
+		     </div>
+		</div>
+    </div>
 	<div class="row">
 	    <div class="col-sm-8 col-sm-offset-2">
 	      <div class="row">
@@ -372,9 +364,9 @@ $(document).ready(function() {
     }    
     for(var i = pm.startPage, len = pm.endPage; i< len+1; i++){
     	if(pm.cri.page == i){
-    		ddd += "<li class='active'><a class='btn btn-secondary  href='"+i+"'>"+i+"</a></li>";
+    		ddd += "<li class='active'><a class='btn btn-xs btn-secondary' href='"+i+"'>"+i+"</a></li>";
     	}else{
-    		ddd += "<li><a class='btn btn-sencondary' href='"+i+"'>"+i+"</a></li>";
+    		ddd += "<li><a class='btn-xs btn btn-secondary' href='"+i+"'>"+i+"</a></li>";
     	}
     }
     if(pm.next){      
