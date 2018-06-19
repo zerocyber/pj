@@ -3,6 +3,7 @@ package org.zerock.utils;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -10,9 +11,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
+import lombok.extern.log4j.Log4j;
 
+@Component
+@Log4j
 @Data
 public class JavaWebCrawler {
 
@@ -23,9 +29,8 @@ public class JavaWebCrawler {
 	
 
 
-
+	@Scheduled(cron="* * * * * *")
 	public static List<JavaWebCrawler> goCrawling(String address) throws IOException {
-			
 	        Document doc2 = Jsoup.connect(address).get();
 	        Elements poster = doc2.body().getElementsByClass("info_movie");
 	        Elements title = doc2.body().getElementsByClass("info_tit");
@@ -47,7 +52,8 @@ public class JavaWebCrawler {
 	            movieInfo.setState(state.eq(i).text().replace("・", "/"));
 	            movieList.add(movieInfo);
 	        }
-	        
+	        log.info("crawl..............................................................................zzzzz");
+	        log.warn(new Date());
 	        return movieList;
 	}
 

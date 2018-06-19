@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="/resources/carousel.css" rel="stylesheet">
 
@@ -39,8 +40,7 @@
 
 					</p>
 					<p>
-						<a class="btn btn-lg btn-primary" href="#" role="button">Sign
-							up today</a>
+						<a class="btn btn-lg btn-primary" href="/board/list" role="button">게시판으로</a>
 					</p>
 				</div>
 			</div>
@@ -89,6 +89,21 @@
 	</a>
 </div>	
 	<!-- youtube media add -->
+	<p>인기예고편<p>
+	<video width="400" height="300" controls>
+	<source src="https://cdn.videofarm.daum.net/vod/vb51edcxsexhVkVOBnkXNTX/mp4_1280_720_2M/movie.mp4?px-time=1529058708&px-hash=5aff1be8b48c18225679b9ff5ed88312&px-bps=2861447&px-bufahead=10" type="video/mp4">
+	</video>
+	<video width="400" height="300" controls>
+	<source src="https://cdn.videofarm.daum.net/vod/vd5b6fISB6eTRIexsIIfSnN/mp4_1280_720_2M/movie.mp4?px-time=1529059376&px-hash=cae68c6944d04ac4cf7105ad9b360f10&px-bps=2879703&px-bufahead=10">
+	</video>
+	<video width="400" height="300" controls>
+	<source src="https://cdn.videofarm.daum.net/vod/v2d6e1IK31QIbQr5Mwrrw5a/mp4_1280_720_2M/movie.mp4?px-time=1529059621&px-hash=cfc10ffd2a615edfd5f7c44025523498&px-bps=2809572&px-bufahead=10">
+	</video>
+	<p>박스오피스 주간순위<p>
+	<c:forEach var="item" items="${weekly}" >
+	<img src = ${item.image}>
+	</c:forEach>
+	<p>
 	${weekly}
 	${monthly}
 	${yearly}
