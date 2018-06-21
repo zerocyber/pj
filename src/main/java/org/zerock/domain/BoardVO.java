@@ -16,7 +16,7 @@ public class BoardVO {
 	private Date updatedate;
 	private int views;
 	private String mid;
-	private int kno;
-	private int gno;
+	private String kno;
+	private String gno;
 	private String[] files;
 }

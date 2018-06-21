@@ -19,7 +19,7 @@ th {
 					<table class="table" style="padding-bottom : 0px;" >
 					<tr>
 					<c:forEach items="${bestList}" var="list" begin="0" end="9" varStatus="status">
-					<td class="col-sm-6"><a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}"><c:out value="${list.title}"/></a></td>
+					<td class="col-sm-6"><span><c:out value="[${list.kno}]"/></span> <a href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${list.bno}"><c:out value="${list.title}"/></a></td>
 					<c:if test="${status.index%2 == 1}">
 					</tr>
 					<tr>
@@ -28,8 +28,8 @@ th {
 					</table>
 				</div>
 					
-				<div class="col-sm-4" style="margin-top: 30px; padding-left:0px;">
-						<img style="height: 185px; width: 290px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
+				<div class="col-sm-4" style="margin-top: 15px; padding-left:0px;">
+						<img style="height: 185px; width: 265px;" src="http://www.xinhuanet.com/tw/2015-01/21/127406973_14218116279801n.jpg"/>
 				</div>
 			</div>									
 		</div>
@@ -64,7 +64,7 @@ th {
 							<td><c:out value="${board.bno}" /></td>
 							<c:choose>
 								<c:when test="${pm.cri.type eq '' && pm.cri.keyword eq '' }">
-									<td style="text-align: left"><a
+									<td style="text-align: left"><span><c:out value="[${board.kno}]"/></span> <a
 										href="/board/read?page=${pm.cri.page}&perPageNum=${pm.cri.perPageNum}&bno=${board.bno}"><c:out
 												value="${board.title}" /></a></td>
 								</c:when>

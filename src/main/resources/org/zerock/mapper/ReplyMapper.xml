@@ -13,7 +13,7 @@
     <select id="list" resultType="org.zerock.domain.ReplyVO">
     select * from t_reply where bno = #{bno} order by rno asc
     </select>
-
+    
     <select id="listPage" resultType="org.zerock.domain.ReplyVO">
     
     select * from t_reply where bno = #{bno} order by rno asc limit #{cri.pageStart},#{cri.perPageNum}

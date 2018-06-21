@@ -39,29 +39,8 @@ list-style: none;
 background-color:#eee;
 }
 </style>
-
-
-
-
 <body>
-<script>
-
-$(document).ready(function(){
-	
-	var Obj = $("#loginform");
-	
-	$("ul").on("click",".logout",function(e){
-		if(confirm("로그아웃 하시겠습니까?")){
-			location.href = "/logout";
-		}
-	});
-	
-});
-
-</script>
 	<!-- Body 시작 -->
-
-	
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white;">
 		<ul class="nav text-right" style="list-style: none; background-color: white;">
 
@@ -77,8 +56,7 @@ $(document).ready(function(){
 		</c:choose>				
 							
 		</ul>
-	
-	
+		
 	<div class="container-fluid" style="background-color: white; border-top: solid 1px #e5e5e5; border-bottom: solid 1px #e5e5e5;">
 		
 		<div class="navbar-header">
@@ -105,6 +83,7 @@ $(document).ready(function(){
 				</ul>						
 			</div>
 		</div>
+		
 	</div>				
 </nav>
 	<!-- Header 끝 -->
