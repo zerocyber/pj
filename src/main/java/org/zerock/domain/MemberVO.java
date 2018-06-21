@@ -10,4 +10,5 @@ public class MemberVO {
 	private String sessionKey;
 	private Date sessionLimit;
 	private Date regdate;
+	private String favor;
 }
