@@ -30,9 +30,9 @@
 
 				<div class="wrap-input100 validate-input" data-validate = "아이디를 입력해주세요" data-checkId = "이미 존재하는 ID입니다.">
 					<input class="input100 inputId" type="text" name="mid" placeholder="ID">
-					<button class="btn btn-info idCheck">아이디 중복확인</button>
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
+					<button class="btn btn-info idCheck">아이디 중복확인</button>
 				</div>
 
 				<div class="wrap-input100 rs1 validate-input" data-validate="사용하실 비밀번호를 입력해주세요">
@@ -116,6 +116,10 @@ $(".idCheck").on("click",function(e){
 	if(pattern.test(id) == false){
 		console.log(pattern.test(id));
 		alert("아이디는 현대 한글, 영문 및 숫자만 가능합니다");
+		return false;
+	}
+	if(id == ""){
+		alert("아이디를 입력해주세요");
 		return false;
 	}
 	
