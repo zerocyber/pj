@@ -88,45 +88,75 @@
 		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
 </div>
+<div class="modal">
+
+</div>
 	<!-- youtube media add -->
-	
-	
 	<div class="row">
 		<div class="col-sm-12">
-		
-				<c:forEach items="${weekly}" var="week" begin="0" end="5">
+				<h1>주간 인기영화</h1>
+				<c:forEach items="${week}" var="week" begin="0" end="5">
 						<div class="col-sm-2">
-							<div><img src="${week.image}"></div>
-							<div>${week.title }</div>
+							<div class="info"><a href="https://${week.infoLink}"><img src="https://${week.img}"></a></div>
+							<div>${week.tit }</div>
 							<div>${week.grade }</div>
-							<div>${week.openDate }</div>
+							<div>${week.open }</div>
 						</div>		
 				</c:forEach>
 		</div>
 		
 		<div class="col-sm-12">
-				<c:forEach items="${monthly}" var="month" begin="0" end="5">
+				<h1>월간 인기영화</h1>
+				<c:forEach items="${month}" var="month" begin="0" end="5">
 						<div class="col-sm-2">
-							<div><img src="${month.image}"></div>
-							<div>${month.title }</div>
+							<div class="info"><a href="https://${month.infoLink}"><img src="https://${month.img}"></a></div>
+							<div>${month.tit }</div>
 							<div>${month.grade }</div>
-							<div>${month.openDate }</div>
+							<div>${month.open }</div>
 						</div>		
 				</c:forEach>
 		</div>
 		
 		<div class="col-sm-12">
-				<c:forEach items="${yearly}" var="year" begin="0" end="5">
+				<h1>연간 인기영화</h1>
+				<c:forEach items="${year}" var="year" begin="0" end="5">
 						<div class="col-sm-2">
-							<div><img src="${year.image}"></div>
-							<div>${year.title }</div>
+							<div class="info"><a href="https://${year.infoLink}"><img src="https://${year.img}"></a></div>
+							<div>${year.tit }</div>
 							<div>${year.grade }</div>
-							<div>${year.openDate }</div>
+							<div>${year.open }</div>
 						</div>		
 				</c:forEach>
 		</div>
-	</div>	
-
+	</div>
+	<script>
+	
+$(document).ready(function(){
+	
+	var Obj = $("#loginform");
+	
+	$("ul").on("click",".logout",function(e){
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href = "/logout";
+		}
+	});
+	
+	$('.info').on("click",function(e){
+		
+		e.preventDefault();
+		var infosrc = $(e.target)[0].parentElement.href;
+		var spl = infosrc.split('?');
+		var home = spl[0];
+		var para = spl[1];
+		console.log(home);
+		console.log(para);
+		$.getJSON(home+para,function(result){
+			console.log(result);
+		});
+		
+	});
+		
+});
+</script>	
     <!-- Wrap the rest of the page in another container to center all the content. -->
-
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
