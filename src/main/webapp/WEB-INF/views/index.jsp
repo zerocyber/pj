@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="/resources/carousel.css" rel="stylesheet">
-
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/resources/bootstrap-3.3.2/dist/js/bootstrap.min.js"></script>
@@ -87,28 +86,45 @@
 		data-slide="next"> <span class="glyphicon glyphicon-chevron-right"
 		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
-</div>	
-	<!-- youtube media add -->
-	<p>인기예고편<p>
-	<video width="400" height="300" controls>
-	<source src="https://cdn.videofarm.daum.net/vod/vb51edcxsexhVkVOBnkXNTX/mp4_1280_720_2M/movie.mp4?px-time=1529058708&px-hash=5aff1be8b48c18225679b9ff5ed88312&px-bps=2861447&px-bufahead=10" type="video/mp4">
-	</video>
-	<video width="400" height="300" controls>
-	<source src="https://cdn.videofarm.daum.net/vod/vd5b6fISB6eTRIexsIIfSnN/mp4_1280_720_2M/movie.mp4?px-time=1529059376&px-hash=cae68c6944d04ac4cf7105ad9b360f10&px-bps=2879703&px-bufahead=10">
-	</video>
-	<video width="400" height="300" controls>
-	<source src="https://cdn.videofarm.daum.net/vod/v2d6e1IK31QIbQr5Mwrrw5a/mp4_1280_720_2M/movie.mp4?px-time=1529059621&px-hash=cfc10ffd2a615edfd5f7c44025523498&px-bps=2809572&px-bufahead=10">
-	</video>
-	<p>박스오피스 주간순위<p>
-	<c:forEach var="item" items="${weekly}" >
-	<img src = ${item.image}>
-	</c:forEach>
-	<p>
-	${weekly}
-	${monthly}
-	${yearly}
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-    <div class="container marketing main">
+</div>
+	<!-- youtube media add -->	
+	
+	<div class="row">
+		<div class="col-sm-12">
+		
+				<c:forEach items="${weekly}" var="week" begin="0" end="5">
+						<div class="col-sm-2">
+							<div><img src="${week.image}"></div>
+							<div>${week.title }</div>
+							<div>${week.grade }</div>
+							<div>${week.openDate }</div>
+						</div>		
+				</c:forEach>
+		</div>
+		
+		<div class="col-sm-12">
+				<c:forEach items="${monthly}" var="month" begin="0" end="5">
+						<div class="col-sm-2">
+							<div><img src="${month.image}"></div>
+							<div>${month.title }</div>
+							<div>${month.grade }</div>
+							<div>${month.openDate }</div>
+						</div>		
+				</c:forEach>
+		</div>
+		
+		<div class="col-sm-12">
+				<c:forEach items="${yearly}" var="year" begin="0" end="5">
+						<div class="col-sm-2">
+							<div><img src="${year.image}"></div>
+							<div>${year.title }</div>
+							<div>${year.grade }</div>
+							<div>${year.openDate }</div>
+						</div>		
+				</c:forEach>
+		</div>
+	</div>	
 
- </div>
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -16,6 +16,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
+import org.zerock.service.ReplyService;
 import org.zerock.utils.UploadFileUtils;
 
 import lombok.Setter;
@@ -28,6 +29,9 @@ public class BoardController {
 
 	@Setter(onMethod_= {@Autowired})
 	private BoardService service;
+	
+	@Setter(onMethod_= {@Autowired})
+	private ReplyService replyService;
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -47,7 +51,7 @@ public class BoardController {
 	public void read(Model model, @Param("bno") int bno, Criteria cri) {	
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
-		
+		model.addAttribute("countList", replyService.count(bno));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
 	}

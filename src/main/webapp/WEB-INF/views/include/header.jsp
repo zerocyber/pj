@@ -39,13 +39,8 @@ list-style: none;
 background-color:#eee;
 }
 </style>
-
-
-
-
 <body>
 <script>
-
 $(document).ready(function(){
 	
 	var Obj = $("#loginform");
@@ -55,13 +50,9 @@ $(document).ready(function(){
 			location.href = "/logout";
 		}
 	});
-	
 });
-
 </script>
 	<!-- Body 시작 -->
-
-	
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white;">
 		<ul class="nav text-right" style="list-style: none; background-color: white;">
 
@@ -105,6 +96,7 @@ $(document).ready(function(){
 				</ul>						
 			</div>
 		</div>
+		
 	</div>				
 </nav>
 	<!-- Header 끝 -->
