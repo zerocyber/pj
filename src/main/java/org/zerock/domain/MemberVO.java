@@ -11,8 +11,5 @@ public class MemberVO {
 	private Date sessionLimit;
 	private Date regdate;
 	private String favor;
-<<<<<<< HEAD
-=======
-	
->>>>>>> 9afac61dfdacacaa332e0ce28afdec8a4a2cfce2
+
 }
