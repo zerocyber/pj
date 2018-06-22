@@ -32,13 +32,10 @@
 				<div class="carousel-caption">
 					<h1>What's your name?</h1>
 					<p>
-						<code>URL, the "next" and "previous" Glyphicon buttons on the left and
-						right might not load/display properly due to web browser security
-						rules.</code>
-
+						<code>Sign up and let me know your name.</code>
 					</p>
 					<p>
-						<a class="btn btn-lg btn-primary" href="/board/list" role="button">게시판으로</a>
+						<a style="color: white" href="/signup">회원가입페이지 이동</a>
 					</p>
 				</div>
 			</div>
@@ -49,13 +46,10 @@
 				alt="Second slide">
 			<div class="container">
 				<div class="carousel-caption">
-					<h1>Another example headline.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
+					<h1>Reviews of movies</h1>
+					<p><code>Please write a movie review.</code></p>
 					<p>
-						<a class="btn btn-lg btn-primary" href="#" role="button">Learn
-							more</a>
+						<a style="color: white;" href="/board/list" role="button">게시판 이동</a>
 					</p>
 				</div>
 			</div>
@@ -66,13 +60,10 @@
 				alt="Third slide">
 			<div class="container">
 				<div class="carousel-caption">
-					<h1>One more for good measure.</h1>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
+					<h1>Great pictures</h1>
+					<p><code>Go to the gallery and watch the pictures.</code></p>
 					<p>
-						<a class="btn btn-lg btn-primary" href="#" role="button">Browse
-							gallery</a>
+						<a style="color: white;" href="/photo/list" role="button">갤러리 이동</a>
 					</p>
 				</div>
 			</div>
@@ -148,14 +139,6 @@
 	<script>
 	
 $(document).ready(function(){
-	
-	var Obj = $("#loginform");
-	
-	$("ul").on("click",".logout",function(e){
-		if(confirm("로그아웃 하시겠습니까?")){
-			location.href = "/logout";
-		}
-	});
 	
 	$('.info').on("click",function(e){
 		
