@@ -1,6 +1,5 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="/resources/carousel.css" rel="stylesheet">
@@ -94,12 +93,28 @@
 	<!-- youtube media add -->
 	<div class="row">
 		<div class="col-sm-12">
-				<h1>주간 인기영화</h1>
+		<center>
+		<c:if test="${LOGIN.mname ne null}"><p style="font-size:35px ">Have you seen this movie?</p></c:if>
+			<c:forEach items="${RecommendVO}" var="Recommend">
+					<div class="col-sm-4">
+						<div class="recommend"><img src="${Recommend.image}"></div>
+						<div>${Recommend.title}</div>
+						<div>${Recommend.genre}</div>
+						<div>감독 : ${Recommend.director}</div>
+						<div>제작 국가 : ${Recommend.country}</div>
+					</div>		
+			</c:forEach>
+			
+		</div>
+		</center>
+		
+		<div class="col-sm-12">
+				<h1>주간 인기영화 </h1>
 				<c:forEach items="${week}" var="week" begin="0" end="5">
 						<div class="col-sm-2">
 							<div class="info"><a href="https://${week.infoLink}"><img src="https://${week.img}"></a></div>
 							<div>${week.tit }</div>
-							<div>${week.grade }</div>
+							<div>평점 : ${week.grade }</div>
 							<div>${week.open }</div>
 						</div>		
 				</c:forEach>
@@ -111,7 +126,7 @@
 						<div class="col-sm-2">
 							<div class="info"><a href="https://${month.infoLink}"><img src="https://${month.img}"></a></div>
 							<div>${month.tit }</div>
-							<div>${month.grade }</div>
+							<div>평점 : ${month.grade }</div>
 							<div>${month.open }</div>
 						</div>		
 				</c:forEach>
@@ -123,7 +138,7 @@
 						<div class="col-sm-2">
 							<div class="info"><a href="https://${year.infoLink}"><img src="https://${year.img}"></a></div>
 							<div>${year.tit }</div>
-							<div>${year.grade }</div>
+							<div>평점 : ${year.grade }</div>
 							<div>${year.open }</div>
 						</div>		
 				</c:forEach>

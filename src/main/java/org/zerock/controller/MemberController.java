@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 import org.zerock.domain.LoginDTO;
 import org.zerock.domain.MemberVO;
+import org.zerock.domain.RecommendVO;
 import org.zerock.service.MemberService;
 
 import lombok.Setter;
@@ -50,6 +51,7 @@ public class MemberController {
 
 		}
 		model.addAttribute("MemberVO",vo);
+		model.addAttribute("RecommendVO", service.recommendMovie(vo.getFavor()));
 		log.info(vo);
 		if(dto.isRememberMe()) {
 			log.info("rememberMe................................");

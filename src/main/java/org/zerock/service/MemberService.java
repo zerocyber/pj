@@ -1,10 +1,12 @@
 package org.zerock.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.LoginDTO;
 import org.zerock.domain.MemberVO;
+import org.zerock.domain.RecommendVO;
 
 public interface MemberService {
 
@@ -16,5 +18,7 @@ public interface MemberService {
 	public MemberVO checkLoginBefore(String value);
 	
 	public int userIdCheck(String id);
+	
+	public List<RecommendVO> recommendMovie(String favor);
 	
 }

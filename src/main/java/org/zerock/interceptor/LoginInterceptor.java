@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.zerock.domain.RecommendVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,11 +25,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		ModelMap modelMap = modelAndView.getModelMap();
 		
 		Object memberVO = modelMap.get("MemberVO");
-
+		Object recommendVO = modelMap.get("RecommendVO");
 		log.info("memberVO: "+memberVO);
 		if(memberVO !=null) {
 			log.info("login success.............................");
 			session.setAttribute("LOGIN", memberVO);
+			session.setAttribute("RecommendVO", recommendVO);
 			if(request.getParameter("rememberMe") != null) {
 				log.info("rememberMe existing.............");
 				Cookie loginCookie = new Cookie("loginCookie", session.getId());

@@ -54,7 +54,6 @@ background-color:#eee;
 		  	<li style="float: right;"><a href="#">${LOGIN.mname}님</a></li>
 		  </c:otherwise>
 		</c:choose>				
-							
 		</ul>
 		
 	<div class="container-fluid" style="background-color: white; border-top: solid 1px #e5e5e5; border-bottom: solid 1px #e5e5e5;">
@@ -72,7 +71,7 @@ background-color:#eee;
 			</button>
 		</div>
 
-		<div class="row col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
+		<div class="row col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5">
 			<div id="navbar" class="navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/index">Home</a></li>

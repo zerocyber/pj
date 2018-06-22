@@ -385,7 +385,13 @@ $(document).ready(function() {
   /* 파일 리스트 로딩 */
   (function fileList() {
 	var file = '${fileList}';
+	var str;
 	console.log(file);
+/*      if(file.length ==0){
+   	 str += "<div class='row' style='font-size:15px; text-align:center'>첨부된 파일이 없습니다.</div>";
+   	$(".upload").html(str);
+    } */
+	
   })();
   
   /* file download */
