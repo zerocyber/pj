@@ -10,8 +10,8 @@
 	 </select>
 	 
 	 <insert id="signUp">
-	 insert into t_member(mid,mpw,mname,email)
-	 values(#{mid},#{mpw},#{mname},#{email})
+	 insert into t_member(mid,mpw,mname,email,favor)
+	 values(#{mid},#{mpw},#{mname},#{email},#{favor})
 	 
 	 </insert>
 	  
@@ -25,6 +25,10 @@
 	 
 	 <select id="idCheck" resultType="int">
 	 select count(*) from t_member where mid = #{id};
+	 </select>
+	 
+	 <select id="selectMovie" resultType="org.zerock.domain.RecommendVO">
+	 select * from t_movie where genre=#{favor} order by rand() limit 0,3
 	 </select>
 
  </mapper>   

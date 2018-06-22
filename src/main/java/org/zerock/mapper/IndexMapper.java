@@ -11,4 +11,5 @@ public interface IndexMapper {
 	public List<MovieVO> monthList();
 	
 	public List<MovieVO> yearList();
+	
 }

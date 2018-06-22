@@ -11,5 +11,5 @@ public class MemberVO {
 	private Date sessionLimit;
 	private Date regdate;
 	private String favor;
-	
+
 }

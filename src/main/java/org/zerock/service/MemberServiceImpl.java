@@ -1,11 +1,13 @@
 package org.zerock.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.LoginDTO;
 import org.zerock.domain.MemberVO;
+import org.zerock.domain.RecommendVO;
 import org.zerock.mapper.MemberMapper;
 
 import lombok.Setter;
@@ -50,6 +52,13 @@ public class MemberServiceImpl implements MemberService {
 	public int userIdCheck(String id) {
 		
 		return mapper.idCheck(id);
+	}
+
+
+	@Override
+	public List<RecommendVO> recommendMovie(String favor) {
+		
+		return mapper.selectMovie(favor);
 	}
 	
 	

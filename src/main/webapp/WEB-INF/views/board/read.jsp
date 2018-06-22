@@ -161,7 +161,7 @@ $(document).ready(function() {
   var download=$(".download");  
   var mid = '${BoardVO.mid}';
   var user = '${LOGIN.mid}';  
-  var pattern = /[<>-]/;
+  var pattern = /[$<>-]/;
   // 패턴에 마이너스(-) 추가하면 점(.)까지 사용금지되는 문제 있음
     
 	$(".upload").on("click","div span img",function(e) {
@@ -406,7 +406,13 @@ $(document).ready(function() {
   /* 파일 리스트 로딩 */
   (function fileList() {
 	var file = '${fileList}';
+	var str;
 	console.log(file);
+/*      if(file.length ==0){
+   	 str += "<div class='row' style='font-size:15px; text-align:center'>첨부된 파일이 없습니다.</div>";
+   	$(".upload").html(str);
+    } */
+	
   })();
   
   /* file download */
