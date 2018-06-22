@@ -25,6 +25,7 @@
 }
 </style>
 
+
 <div class="container-fluid col-sm-12 col-md-12 main" style="margin-top:50px;">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-4">
@@ -73,50 +74,64 @@
      </div>
 </form>
 
-
 	<div id="wall">
 		<div class="picture" align="center">
 		</div>
 	</div>
-	<div class="col-sm-8 col-sm-offset-2" style="border-top: 1px dashed black">
-	<a>댓글이 ${countList} 개 달려있습니다.</a> 
+	
+	<div class="row">
+		<div id="replyControl" class="col-sm-8 col-sm-offset-2" style="border-top: 1px dashed black;padding:10px;">
+			<a><strong>${countList} Comments</strong></a> 
+		</div>
 	</div>
 	
-	<div id="replyBox">
-		<div class="row">
-		  <div class="col-sm-8 col-sm-offset-2">
-		    <label for="replyList" class="replyUL">ReplyList</label>
-			</div>
-			<div class="col-sm-8 col-sm-offset-2 replyBox">
-		    </div>
 	
+	<div id="replyBox" style="display:none;">
+		<div class="row">
+		  <div class="col-sm-8 col-sm-offset-2 replyBox" 
+		  style="background-color: #E0E0E0;padding:0px 0px 0px 0px;
+		  		margin-bottom:20px;">
+		  
+		  </div>
+		    
+		  <div class="row">
+	        <div class="col-sm-8 col-sm-offset-2">   
+	          <div class="row">
+	            <label>NAME <input type="text" class="replyWriter" value="${LOGIN.mid}" readonly/></label>	            	        
+	            <label>PASSWORD <input type="text" class="replyPass" value="" readonly/></label>	            	            
+	            <label>HOMEPAGE <input style="width: 410px;"type="text" class="replyHome" value="" readonly/></label>
+	          </div>
+	          
+	          <div class="row">
+	          <label><input type="checkbox">secret</label>
+	          </div>
+	          
+	          <div class="row">
+		        <textarea class="form-control replyContent" rows="10" required="required"></textarea>
+		      </div>
+		      
+		      <div class="row">  
+		        <button type="submit" class="col-sm-1 col-sm-offset-11 
+		        btn btn-default btn-xs active" id="replyBtn">CONFIRM</button>
+		      </div>
+	          	          	          
+            </div>
+		  </div>  
 		</div>
-	
-		<div class="row">
+						 
+		 <div class="row">
 		  <div class="col-sm-8 col-sm-offset-2">
 		    <div class="col-sm-12 text-center">
 		     <ul class="pagination">
 		     </ul>
 		    </div>
 		  </div>
-		</div>
+		</div>	
+	</div>
 	
-		<div class="row">
-		     <div class="col-sm-8 col-sm-offset-2">
-		       <label for="replyContent">ReplyContent</label>
-		       <div class="row">
-		       <textarea class="form-control replyContent" rows="2" required="required"></textarea>
-		       <label class="col-sm-1">Writer</label>
-		       <button type="submit" class="col-sm-1 col-sm-offset-10 btn btn-default btn-xs active" id="replyBtn">등록</button>
-		       </div>
-		       <div class="row">
-		       <input type="text" class="col-sm-2 replyWriter btn-xs" value="${LOGIN.mid}" readonly/>
-		       </div>
-		       </div>
-		     </div>
-		</div>
-    </div>
-	<div class="row">
+</div>
+    
+	<div class="row" style="margin-bottom:50px;">
 	    <div class="col-sm-8 col-sm-offset-2">
 	      <div class="row">
 	        <div class="col-sm-12 text-center">
@@ -129,6 +144,7 @@
 	      </div>
 	    </div>
 	</div>
+	
 <form id="inform" method="post">
   <input type="hidden" name="page" value="${cri.page}">
   <input type="hidden" name="bno" value="${BoardVO.bno}">
@@ -211,13 +227,14 @@ $(document).ready(function() {
      var content = this.content;
      var calendar = new Date(this.regdate);
      var cal = calendar.getFullYear() +"/"+ (calendar.getMonth()+1) +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
-	 str += "<div class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
-			      +"<span class='col-sm-1' style='font-size:2px; font-style: italic;'>"+this.mid+"</span>"
-				      +"<button class='col-sm-1 col-sm-offset-7 btn-xs btn-link active' id='reModiBtn'>수정</button>"
-				      +"<button class='col-sm-1 btn-xs btn-link active' id='redeleteBtn'>삭제</button>"
-				      +"<span class='col-sm-2 text-right label label-danger'>"+cal+"</span>"
-			      +"<span class='col-sm-12'>"+this.content+"</span>"
-    		 +"</div>";
+     
+	 str += "<div style='margin: 10px 0px 10px 0px;' class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
+			      +"<div class='col-sm-10' style='font-size:15px;'><strong>"+this.mid+"</strong>"
+			      +"<button class='btn-xs btn-link active' id='reModiBtn'>수정</button>"
+			      +"<button class='btn-xs btn-link active' id='redeleteBtn'>삭제</button></div>"			   
+				  +"<div class='col-sm-2 text-right'>"+cal+"</div>"				  	  
+	       		  +"<div class='col-sm-12'>"+this.content+"</div>"
+    	   +"</div>";
       });
      if($(data.list).length ==0){
     	 str += "<div class='row' style='font-size:15px; text-align:center'>등록된 댓글이 없습니다.</div>";
@@ -234,7 +251,7 @@ $(document).ready(function() {
 	    var content = $(".replyContent").val();
 	    var writer = $(".replyWriter").val();
 	    var bno = '${param.bno}';
-	    var UL = $(".replyUL");
+	    
 	    
 	    if(content === ""){
 	    	alert("내용을 입력해주세요");
@@ -305,8 +322,11 @@ $(document).ready(function() {
 	if(replyMid === user) {	  
     	var applyBtn = $("#replyBtn");
     	applyBtn[0].innerText = "Modify";
-    
-	    var replyText = $(e.target.parentElement);
+    	
+	    var replyText = $(e.target).closest('div').parents('div');
+	    
+	    console.log(replyText);
+	    console.log(replyText[0]);
 	    var rno = replyText.data('rno');
 	    var mid = replyText.data('mid');
 	    var content = replyText.data('content');
@@ -329,7 +349,8 @@ $(document).ready(function() {
 	var target = e.target;
 	var replyMid = target.parentElement.childNodes[0].innerText;
 	
-	var random = $(this).parent();
+	var random = $(target).closest('div').parents('div');
+	console.log(random);
     var bno = "${param.bno}";
     var rno = random.data('rno');
     
@@ -394,6 +415,16 @@ $(document).ready(function() {
 		  location.replace("/displayFile?fileName=${BoardVO.files}");
 	  } 
   });
+  
+  $("#replyControl").on("click",function(e){
+	 var box = $("#replyBox");
+	 if( box.attr('style') == 'display:none;') {
+		 box.attr('style',' ');
+	 }else if ( box.attr('style') == ' ') {
+		 box.attr('style', 'display:none;');
+	 }
+  });
+  
 });
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

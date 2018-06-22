@@ -88,10 +88,11 @@
 		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
 </div>
-<div class="modal">
+
+	<!-- youtube media add -->
+	<div class="modal">
 
 </div>
-	<!-- youtube media add -->
 	<div class="row">
 		<div class="col-sm-12">
 				<h1>주간 인기영화</h1>
@@ -145,14 +146,22 @@ $(document).ready(function(){
 		
 		e.preventDefault();
 		var infosrc = $(e.target)[0].parentElement.href;
-		var spl = infosrc.split('?');
+		console.log(infosrc);
+		
+		var spl = infosrc.split('=');
 		var home = spl[0];
-		var para = spl[1];
-		console.log(home);
-		console.log(para);
-		$.getJSON(home+para,function(result){
-			console.log(result);
-		});
+		var value = spl[1];
+		
+		$.ajax({
+		      url: infosrc,
+		      dataType: 'jsonp',
+		      success: function(data) {
+		        console.log('success - ', data);
+		      },
+		      error: function(xhr) {
+		        console.log('failure - ', xhr);
+		      }
+		    });
 		
 	});
 		
