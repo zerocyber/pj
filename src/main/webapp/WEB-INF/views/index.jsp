@@ -77,11 +77,11 @@
 		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
 </div>
-
-<div class="modal">
-
-</div>
 	<!-- youtube media add -->
+
+	<div class="modal">
+
+	</div>
 
 	<div class="row">
 		<div class="col-sm-12">
@@ -139,26 +139,13 @@
 	<script>
 	
 $(document).ready(function(){
+
 	
 	$('.info').on("click",function(e){
-		
 		e.preventDefault();
 		var infosrc = $(e.target)[0].parentElement.href;
-		var spl = infosrc.split('?');
-		var home = spl[0];
-		var para = spl[1];
-		var board = "board/list";
-		console.log(infosrc);
-		console.log(home);
-		console.log(para);
-/* 		$.getJSON(home+para,function(result){
-			console.log(result);
-		}); */
-
-		$('.modal').html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="' + board + '"></iframe>')
-		
-	});
-		
+	});	
+	
 });
 </script>	
     <!-- Wrap the rest of the page in another container to center all the content. -->
