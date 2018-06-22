@@ -38,8 +38,7 @@
 
 					</p>
 					<p>
-						<a class="btn btn-lg btn-primary" href="#" role="button">Sign
-							up today</a>
+						<a class="btn btn-lg btn-primary" href="/board/list" role="button">게시판으로</a>
 					</p>
 				</div>
 			</div>
@@ -87,10 +86,12 @@
 		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
 </div>
+
 <div class="modal">
 
 </div>
 	<!-- youtube media add -->
+
 	<div class="row">
 		<div class="col-sm-12">
 		<center>
@@ -163,11 +164,15 @@ $(document).ready(function(){
 		var spl = infosrc.split('?');
 		var home = spl[0];
 		var para = spl[1];
+		var board = "board/list";
+		console.log(infosrc);
 		console.log(home);
 		console.log(para);
-		$.getJSON(home+para,function(result){
+/* 		$.getJSON(home+para,function(result){
 			console.log(result);
-		});
+		}); */
+
+		$('.modal').html('<iframe width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="' + board + '"></iframe>')
 		
 	});
 		

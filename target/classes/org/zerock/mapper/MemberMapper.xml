@@ -10,8 +10,8 @@
 	 </select>
 	 
 	 <insert id="signUp">
-	 insert into t_member(mid,mpw,mname,email)
-	 values(#{mid},#{mpw},#{mname},#{email})
+	 insert into t_member(mid,mpw,mname,email,favor)
+	 values(#{mid},#{mpw},#{mname},#{email},#{favor})
 	 
 	 </insert>
 	  
