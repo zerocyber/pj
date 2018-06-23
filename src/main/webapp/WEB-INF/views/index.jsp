@@ -77,75 +77,116 @@
 		aria-hidden="true"></span> <span class="sr-only">Next</span>
 	</a>
 </div>
-	<!-- youtube media add -->
-
-	<div class="modal">
-
-	</div>
-
-	<div class="row">
-		<div class="col-sm-12">
-		<center>
-		<c:if test="${LOGIN.mname ne null}"><p style="font-size:35px ">Have you seen this movie?</p></c:if>
-			<c:forEach items="${RecommendVO}" var="Recommend">
-					<div class="col-sm-4">
-						<div class="recommend"><img src="${Recommend.image}"></div>
-						<div>${Recommend.title}</div>
-						<div>${Recommend.genre}</div>
-						<div>감독 : ${Recommend.director}</div>
-						<div>제작 국가 : ${Recommend.country}</div>
-					</div>		
-			</c:forEach>
-			
-		</div>
-		</center>
-		
-		<div class="col-sm-12">
-				<h1>주간 인기영화 </h1>
-				<c:forEach items="${week}" var="week" begin="0" end="5">
-						<div class="col-sm-2">
-							<div class="info"><a href="https://${week.infoLink}"><img src="https://${week.img}"></a></div>
-							<div>${week.tit }</div>
-							<div>평점 : ${week.grade }</div>
-							<div>${week.open }</div>
-						</div>		
-				</c:forEach>
-		</div>
-		
-		<div class="col-sm-12">
-				<h1>월간 인기영화</h1>
-				<c:forEach items="${month}" var="month" begin="0" end="5">
-						<div class="col-sm-2">
-							<div class="info"><a href="https://${month.infoLink}"><img src="https://${month.img}"></a></div>
-							<div>${month.tit }</div>
-							<div>평점 : ${month.grade }</div>
-							<div>${month.open }</div>
-						</div>		
-				</c:forEach>
-		</div>
-		
-		<div class="col-sm-12">
-				<h1>연간 인기영화</h1>
-				<c:forEach items="${year}" var="year" begin="0" end="5">
-						<div class="col-sm-2">
-							<div class="info"><a href="https://${year.infoLink}"><img src="https://${year.img}"></a></div>
-							<div>${year.tit }</div>
-							<div>평점 : ${year.grade }</div>
-							<div>${year.open }</div>
-						</div>		
-				</c:forEach>
-		</div>
-	</div>
-	<script>
 	
+<!-- youtube media add -->
+<div class="container">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" style="margin:100px 230px;">    
+      <!-- Modal content-->
+      <div class="modal-content" style="width:1000px;">
+      
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-center"><c:if test="${LOGIN.mname ne null}">
+				오늘의 추천영화 
+				</c:if></h4>
+        </div>
+        
+        <div class="modal-body">
+          <div class="row">
+			<div class="col-sm-12 center-block">		
+				<c:forEach items="${RecommendVO}" var="Recommend">
+				<div class="col-sm-4">
+					<div class="recommend"><img src="${Recommend.image}"></div>
+					<div>${Recommend.title}</div>
+					<div>${Recommend.genre}</div>
+					<div>감독 : ${Recommend.director}</div>
+					<div>제작 국가 : ${Recommend.country}</div>
+				</div>		
+				</c:forEach>		
+			</div>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="row">
+	<%-- <div class="col-sm-12">		
+		<c:if test="${LOGIN.mname ne null}">
+		<p style="font-size:35px ">Have you seen this movie?</p>
+		</c:if>
+		<c:forEach items="${RecommendVO}" var="Recommend">
+			<div class="col-sm-4">
+				<div class="recommend"><img src="${Recommend.image}"></div>
+				<div>${Recommend.title}</div>
+				<div>${Recommend.genre}</div>
+				<div>감독 : ${Recommend.director}</div>
+				<div>제작 국가 : ${Recommend.country}</div>
+			</div>		
+		</c:forEach>		
+	</div> --%>
+				
+	<div class="col-sm-12">
+		<h1>주간 인기영화 </h1>
+		<c:forEach items="${week}" var="week" begin="0" end="5">
+			<div class="col-sm-2">
+				<div class="info"><a href="https://${week.infoLink}"><img src="https://${week.img}"></a></div>
+				<div>${week.tit }</div>
+				<div>평점 : ${week.grade }</div>
+				<div>${week.open }</div>
+			</div>		
+		</c:forEach>
+	</div>
+		
+	<div class="col-sm-12">
+		<h1>월간 인기영화</h1>
+		<c:forEach items="${month}" var="month" begin="0" end="5">
+				<div class="col-sm-2">
+					<div class="info"><a href="https://${month.infoLink}"><img src="https://${month.img}"></a></div>
+					<div>${month.tit }</div>
+					<div>평점 : ${month.grade }</div>
+					<div>${month.open }</div>
+				</div>		
+		</c:forEach>
+	</div>
+		
+	<div class="col-sm-12">
+		<h1>연간 인기영화</h1>
+		<c:forEach items="${year}" var="year" begin="0" end="5">
+				<div class="col-sm-2">
+					<div class="info"><a href="https://${year.infoLink}"><img src="https://${year.img}"></a></div>
+					<div>${year.tit }</div>
+					<div>평점 : ${year.grade }</div>
+					<div>${year.open }</div>
+				</div>		
+		</c:forEach>
+	</div>
+</div>
+<script>	
 $(document).ready(function(){
 
-	
 	$('.info').on("click",function(e){
 		e.preventDefault();
 		var infosrc = $(e.target)[0].parentElement.href;
 	});	
 	
+	(function() {
+		var name = '${LOGIN.mname}';
+		console.log(name != ' ');
+		if('${LOGIN.mname}') {
+			$("#myModal").modal();
+		};
+	})();
+    
 });
 </script>	
     <!-- Wrap the rest of the page in another container to center all the content. -->

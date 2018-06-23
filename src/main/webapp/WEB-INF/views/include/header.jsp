@@ -58,8 +58,7 @@ background-color:#eee;
 		
 	<div class="container-fluid" style="background-color: white; border-top: solid 1px #e5e5e5; border-bottom: solid 1px #e5e5e5;">
 		
-		<div class="navbar-header">
-			
+		<div class="navbar-header">	
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 				aria-controls="navbar">
@@ -67,22 +66,18 @@ background-color:#eee;
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-				
 			</button>
 		</div>
-
-		<div class="row col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5">
-			<div id="navbar" class="navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/index">Home</a></li>
-					<li><a href="/board/list">Board</a></li>
-					<li><a href="/photo/list">Gallery</a></li>
-					<li><a href="#">About us</a></li>
-					<li><a href="#">Q&A</a></li>
-				</ul>						
-			</div>
+				
+		<div id="navbar" class="navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/index">Home</a></li>
+				<li><a href="/board/list">Board</a></li>
+				<li><a href="/photo/list">Gallery</a></li>
+				<li><a href="#">About us</a></li>
+				<li><a href="#">Q&A</a></li>					
+			</ul>
 		</div>
-		
 	</div>				
 </nav>
 <script>
