@@ -48,7 +48,6 @@ public class MemberController {
 			log.info("login fail............");
 			rttr.addFlashAttribute("msg", "fail");
 			return;
-
 		}
 		model.addAttribute("MemberVO",vo);
 		model.addAttribute("RecommendVO", service.recommendMovie(vo.getFavor()));
@@ -59,11 +58,9 @@ public class MemberController {
 			Date sessionLimit = new Date(System.currentTimeMillis()+(1000*amount));
 			log.info("sessionLimit......................: "+ sessionLimit);
 			service.keepLogin(vo.getMid(), session.getId(), sessionLimit);
-			
 		}
-
-		
 	}
+	
 	
 	@GetMapping("/signup")
 	public void signUp() {

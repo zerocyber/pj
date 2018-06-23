@@ -16,9 +16,6 @@ public class IndexController {
 	@Autowired
 	private IndexService service;
 	
-	@Autowired
-	private MemberService service2;
-	
 	@GetMapping("/index")
 	public void index(Model model) throws IOException {
 		model.addAttribute("week", service.weekList());
