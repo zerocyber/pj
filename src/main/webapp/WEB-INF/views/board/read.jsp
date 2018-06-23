@@ -408,10 +408,10 @@ $(document).ready(function() {
 	var file = '${fileList}';
 	var str;
 	console.log(file);
-/*      if(file.length ==0){
-   	 str += "<div class='row' style='font-size:15px; text-align:center'>첨부된 파일이 없습니다.</div>";
-   	$(".upload").html(str);
-    } */
+	if(file.length ==0){
+   	   str = "<div style='font-size:15px; text-align:center'>첨부된 파일이 없습니다.</div>";
+   	   $(".upload").append(str);
+    }
 	
   })();
   

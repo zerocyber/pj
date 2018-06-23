@@ -80,4 +80,16 @@ background-color:#eee;
 		</div>
 	</div>				
 </nav>
+<script>
+$(document).ready(function(){
+	
+	var Obj = $("#loginform");
+	
+	$("ul").on("click",".logout",function(e){
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href = "/logout";
+		}
+	});
+});
+</script>
 	<!-- Header 끝 -->

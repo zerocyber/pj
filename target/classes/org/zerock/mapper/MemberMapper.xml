@@ -27,8 +27,14 @@
 	 select count(*) from t_member where mid = #{id};
 	 </select>
 	 
-	 <select id="selectMovie" resultType="org.zerock.domain.RecommendVO">
-	 select * from t_movie where genre=#{favor} order by rand() limit 0,3
+	 <!-- if문안에서는 favor나 genre같이 특정 값을 넣으면 getter를 찾을수 없다고 나온다
+	 	  그래서 test문안에 파라미터를 넣을 때 _parameter라고 넣어야 함 -->
+	 <select id="selectMovie" resultType="org.zerock.domain.RecommendVO" parameterType="org.zerock.domain.MemberVO">
+	 select * from t_movie
+	 <if test="_parameter != '없음'.toString()">
+	 where genre = #{favor}
+	 </if>
+	 order by rand() limit 0,3
 	 </select>
 
  </mapper>   
