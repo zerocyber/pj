@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Leaf village</title>
+<title>Movie Village</title>
 <!-- CSS -->
 <link href="/resources/bootstrap-3.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/dashboard.css" rel="stylesheet">
@@ -32,11 +32,24 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </head>
 <style>
-ul li{
+/* ul li{
 list-style: none;
 }
+*/
 .navbar-nav>li:hover{
 background-color:#eee;
+}
+.navbar .navbar-collapse {
+  text-align: center;
+  background-color: white;
+}
+.navbar .navbar-nav {
+  margin: 0.5%;
+  display: inline-block;
+  float: none;
+  vertical-align: center;
+  font-weight: bold;
+  text-align: center;
 }
 </style>
 <body>

@@ -83,7 +83,7 @@
   
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog" style="margin:100px 230px;">    
+    <div class="modal-dialog" style="margin:200px 360px;">    
       <!-- Modal content-->
       <div class="modal-content" style="width:1000px;">
       
