@@ -177,6 +177,9 @@ $(document).ready(function(){
 	$('.info').on("click",function(e){
 		e.preventDefault();
 		var infosrc = $(e.target)[0].parentElement.href;
+		console.log(infosrc);
+		
+		
 	});	
 	
 	(function() {
