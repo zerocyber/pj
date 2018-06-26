@@ -58,13 +58,13 @@ background-color:#eee;
 		<ul class="nav text-right" style="list-style: none; background-color: white;">
 
 		<c:choose>
-		  <c:when test="${LOGIN.mname eq null}">
+		  <c:when test="${pageContext.request.userPrincipal.name eq null}">
 		  	<li style="float: right;"><a href="/login">Sign in</a></li>
 			<li style="float: right;"><a href="/signup">Sign up</a></li>	
 		  </c:when>
 		  <c:otherwise>
 		  	<li style="float: right;"><a class="logout">로그아웃</a></li>	
-		  	<li style="float: right;"><a href="#">${LOGIN.mname}님</a></li>
+		  	<li style="float: right;"><a href="#">${pageContext.request.userPrincipal.name}님</a></li>
 		  </c:otherwise>
 		</c:choose>				
 		</ul>

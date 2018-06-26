@@ -59,11 +59,31 @@ public class MemberServiceImpl implements MemberService {
 	public List<RecommendVO> recommendMovie(String favor) {
 		
 		return mapper.selectMovie(favor);
+	}	
+	
+	/* t_auth tables */
+	
+	@Override
+	public void insertAuth(String mid) {
+		mapper.insertAuth(mid);
+	}
+
+
+	@Override
+	public MemberVO getUserID(String mid) {
+	
+		return mapper.getUserID(mid);
+	}
+
+
+	@Override
+	public String getUserAuth(String mid) {
+	
+		return mapper.getUserAuth(mid);
 	}
 	
 	
 	
 	
-
 	
 }

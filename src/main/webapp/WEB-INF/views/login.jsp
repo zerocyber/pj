@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -40,12 +42,14 @@ margin-top: 5px;
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form"  action="" method="post">
+				<form id="frm" class="login100-form validate-form" action="/login" method="post">
+				
+				 	<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 				
 					<span class="login100-form-title p-b-33">
 						Account Login
 					</span>
-
 
 					<div class="wrap-input100 validate-input" data-validate = "ID를 입력해주세요">
 						<input class="input100" type="text" name="mid" placeholder="ID">
@@ -67,9 +71,9 @@ margin-top: 5px;
 
 					
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
-							Sign in
-						</button>
+						<input value="Sign in" type="submit" id="sub" class="login100-form-btn"/>
+							
+						
 					</div>
 					
 					<div class="text-center p-t-45 p-b-4">
@@ -85,11 +89,16 @@ margin-top: 5px;
 						<span class="txt1">
 							Create an account?
 						</span>
-						<a href="signup" class="txt2 hov1 signup">
+						<a href="/signup" class="txt2 hov1 signup">
 							Sign up
 						</a>
 					</div>
-					
+						<c:if test="${not empty error}">
+							<div class="error">${error}</div>
+						</c:if>
+						<c:if test="${not empty msg}">
+							<div class="msg">${msg}</div>
+						</c:if>
 				</form>
 			</div>
 		</div>
@@ -108,10 +117,10 @@ margin-top: 5px;
 	crossorigin="anonymous"></script>
 <script>
 $(document).ready(function(){
-	var msg = '${msg}';
-	if(msg == "fail" && !history.state){
-		alert("로그인 정보를 확인해주세요");
-	}history.replaceState({}, null, null);
+	var frm = $("#sub");
+	var mid = $("#mid");
+	var mpw = $("#mpw");
+
 });
 </script>
 </body>

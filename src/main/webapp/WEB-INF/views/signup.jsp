@@ -97,6 +97,9 @@
 						<span class="txt1">Do yo want Sign In?</span> <a href="login"
 							class="txt2 hov1">Sign In</a>
 					</div>
+					
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>
@@ -120,65 +123,61 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
-	<script>
-		var idCheck = false;
-		var inputId = "";
-		/* var pattern = /[{}~!@#$%^&*()_+<>=?-/\/]/; */
-		var pattern = /[{}~!@#$%^&*()_+=<>?/\/]/;
+<script>
+var idCheck = false;
+var inputId = "";
+var pattern = /[{}~!@#$%^&*()_+=<>?/\/]/;
+$(".signUP").on("click", function(e) {
+	var mpw = document.getElementById("mpw1").value; // 입력한 비밀번호
+	var confirmMpw = document.getElementById("mpw2").value; // 입력한 비밀번호 확인
+	if (mpw != confirmMpw) {
+		console.log("비밀번호 불일치")
+		alert("입력한 비밀번호가 서로 다릅니다.")
+		return false;
+	}
+	if (idCheck == false || $('.inputId').val() != inputId) {
+		console.log(inputId + "/" + $('.inputId').val())
+		alert("아이디 중복확인을 해주세요");
+		return false;
+	}
 
-		$(".signUP").on("click", function(e) {
+});
 
-			var mpw = document.getElementById("mpw1").value; // 입력한 비밀번호
-			var confirmMpw = document.getElementById("mpw2").value; // 입력한 비밀번호 확인
-			if (mpw != confirmMpw) {
-				console.log("비밀번호 불일치")
-				alert("입력한 비밀번호가 서로 다릅니다.")
-				return false;
+$(".idCheck").on("click", function(e) {
+	e.preventDefault();
+	var id = $('.inputId').val();
+	if (pattern.test(id) == true) {
+		console.log(pattern.test(id));
+		alert("아이디에 특수문자는 사용할 수 없습니다.");
+		return false;
+	}
+
+	$.ajax({
+		type : 'POST',
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader('x-CSRFToken','${_csrf.token}');
+		},
+		url : "/idCheck",
+		dataType : "json",
+		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+		headers : {
+			"content-type" : "application/json",
+			"x-http-method-override" : "POST"
+		},
+		
+		data : id,
+		success : function(data) {
+			if (data === 1) {
+				alert("이미 존재하는 아이디입니다");
 			}
-			if (idCheck == false || $('.inputId').val() != inputId) {
-				console.log(inputId + "/" + $('.inputId').val())
-				alert("아이디 중복확인을 해주세요");
-				return false;
+			if (data === 0) {
+				alert("사용 가능한 아이디입니다")
+				idCheck = true; //아이디 중복확인 한것 확인됬을 경우 true로 저장
+				inputId = id;
 			}
-
-		});
-
-		$(".idCheck")
-				.on(
-						"click",
-						function(e) {
-							e.preventDefault();
-							var id = $('.inputId').val();
-
-							if (pattern.test(id) == true) {
-								console.log(pattern.test(id));
-								alert("아이디에 특수문자는 사용할 수 없습니다.");
-								return false;
-							}
-
-							$
-									.ajax({
-										type : 'POST',
-										url : "/idCheck",
-										dataType : "json",
-										contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-										headers : {
-											"content-type" : "application/json",
-											"x-http-method-override" : "POST"
-										},
-										data : id,
-										success : function(data) {
-											if (data === 1) {
-												alert("이미 존재하는 아이디입니다");
-											}
-											if (data === 0) {
-												alert("사용 가능한 아이디입니다")
-												idCheck = true; //아이디 중복확인 한것 확인됬을 경우 true로 저장
-												inputId = id;
-											}
-										}
-									});
-						});
-	</script>
+		}
+	});
+});
+</script>
 </body>
 </html>

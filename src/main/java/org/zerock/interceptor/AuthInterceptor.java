@@ -16,34 +16,33 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
-	
 	@Autowired
 	private MemberService service;
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-	throws Exception{
-	
-	HttpSession session = request.getSession();
-	if(session.getAttribute("LOGIN") == null) {
+			throws Exception {
 
-		saveURI(request);
-		
-		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-		
-		if(loginCookie != null) {
-			MemberVO vo= service.checkLoginBefore(loginCookie.getValue());
-			log.info("MemberVO: " + vo);
-			if(vo !=null) {
-				session.setAttribute("LOGIN", vo);
-				return true;
+		HttpSession session = request.getSession();
+		if (session.getAttribute("LOGIN") == null) {
+
+			saveURI(request);
+
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+
+			if (loginCookie != null) {
+				MemberVO vo = service.checkLoginBefore(loginCookie.getValue());
+				log.info("MemberVO: " + vo);
+				if (vo != null) {
+					session.setAttribute("LOGIN", vo);
+					return true;
+				}
 			}
-		}
 
-		response.sendRedirect("/login");
-		
-		return false;
-	}
+			response.sendRedirect("/login");
+
+			return false;
+		}
 		return true;
 	}
 
@@ -52,17 +51,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		String query = req.getQueryString();
 		log.info("URI: " + uri);
 		log.info("QueryString: " + query);
-		if(query ==null || query.equals("null")) {
+		if (query == null || query.equals("null")) {
 			query = "";
-		}else {
-			query= "?"+query;
+		} else {
+			query = "?" + query;
 		}
-		
-		if(req.getMethod().equals("GET")) {
+
+		if (req.getMethod().equals("GET")) {
 			log.info("final URI: " + uri + query);
-			req.getSession().setAttribute("URI", uri+query);
+			req.getSession().setAttribute("URI", uri + query);
 		}
 	}
-
 
 }

@@ -26,8 +26,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-
-
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
@@ -35,26 +33,24 @@
 
 	<!-- fileUpload Pahth -->
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="c:\\zzz\\upload">
-<!-- 		<beans:constructor-arg value="/Users/whwp0913/Desktop/files"> -->
+		<!-- <beans:constructor-arg value="c:\\zzz\\upload"> -->
+		<beans:constructor-arg value="/Users/whwp0913/Desktop/files">
 		</beans:constructor-arg>
 	</beans:bean>
 
 	<beans:bean id="photoUploadPath" class="java.lang.String">
-		<beans:constructor-arg value="c:\\zzz\\photoUpload">
-<!-- 		<beans:constructor-arg value="/Users/whwp0913/Desktop/files/img"> -->
+		<!-- <beans:constructor-arg value="c:\\zzz\\photoUpload"> -->
+		<beans:constructor-arg value="/Users/whwp0913/Desktop/files/img">
 		</beans:constructor-arg>
 	</beans:bean>
-
-
+	<context:component-scan base-package="org.zerock.controller" />
 	
-	<!-- Interceptors beans -->	
-	<beans:bean id="LoginInterceptor" class="org.zerock.interceptor.LoginInterceptor"> </beans:bean>
+
+<!-- 	<beans:bean id="LoginInterceptor" class="org.zerock.interceptor.LoginInterceptor"> </beans:bean>
 	<beans:bean id="BoardInterceptor" class="org.zerock.interceptor.BoardInterceptor"></beans:bean>
 	<beans:bean id="AuthInterceptor" class="org.zerock.interceptor.AuthInterceptor"></beans:bean>
 	<beans:bean id="URIInterceptor" class="org.zerock.interceptor.URIInterceptor"></beans:bean>
-	<context:component-scan base-package="org.zerock.controller" />
-
+	
 	<interceptors>
 		<interceptor>
 		 <mapping path="/index"/>
@@ -83,7 +79,7 @@
 			<mapping path="/photo/modify"/>
 			<mapping path="/photo/delete"/>
 			<beans:ref bean="AuthInterceptor"/>
-		</interceptor> 
-	</interceptors>
-	<!-- Interceptors beans -->
+		</interceptor>
+</interceptors> -->
+	
 </beans:beans>

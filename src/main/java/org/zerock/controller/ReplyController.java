@@ -31,7 +31,6 @@ public class ReplyController {
 	@Setter(onMethod_= {@Autowired})
 	private ReplyService service;
 
-	//�뙎湲� �벑濡�
 	@RequestMapping(value="/new", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
@@ -44,7 +43,6 @@ public class ReplyController {
 		 return entity;
 	}
 
-	//�뙎湲� 由ъ뒪�듃
 	@RequestMapping(value="/{bno}/{page}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listReplies(
 			@PathVariable("bno") int bno,

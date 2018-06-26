@@ -1,7 +1,7 @@
 package org.zerock.controller;
 
 
-import java.util.Arrays;
+
 
 import javax.annotation.Resource;
 
@@ -12,18 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.domain.PhotoVO;
 import org.zerock.service.PhotoService;
 import org.zerock.utils.UploadFileUtils;
 
-import lombok.extern.log4j.Log4j;
-
 @Controller
 @RequestMapping("/photo/*")
-@Log4j
 public class PhotoController {
 
 	@Autowired

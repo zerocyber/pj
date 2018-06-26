@@ -78,6 +78,7 @@ public class BoardController {
 		vo.setFiles(service.searchFile(bno));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri", cri);
+		
 	}
 	
 	@PostMapping("/modify")

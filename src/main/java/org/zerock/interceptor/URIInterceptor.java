@@ -23,23 +23,19 @@ public class URIInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie"); //ÀÚµ¿·Î±×ÀÎ ÄíÅ° °¡Á®¿À±â
-		saveURI(request); //URI ÀúÀå
+		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie"); //ï¿½Úµï¿½ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		saveURI(request); //URI ï¿½ï¿½ï¿½ï¿½
 		log.info("Save URI...................");
 		if(loginCookie != null) {
 			MemberVO vo= service.checkLoginBefore(loginCookie.getValue());
 			log.info("MemberVO: " + vo);
 			if(vo !=null) {
-				session.setAttribute("LOGIN", vo); // ÀÚµ¿·Î±×ÀÎ½Ã ·Î±×ÀÎ Á¤º¸ ¼¼¼Ç¿¡ ¼¼ÆÃ
+				session.setAttribute("LOGIN", vo);
 			}
 		}
-		
 		return true;
-
 	}
 
-	
-	//URI ÀúÀå ¸Þ¼­µå
 	private void saveURI(HttpServletRequest req) {
 		String uri = req.getRequestURI();
 		String query = req.getQueryString();

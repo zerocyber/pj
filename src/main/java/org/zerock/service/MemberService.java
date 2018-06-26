@@ -21,4 +21,12 @@ public interface MemberService {
 	
 	public List<RecommendVO> recommendMovie(String favor);
 	
+	/* t_auth tables */
+	
+	public void insertAuth(String mid);
+	
+	public MemberVO getUserID(String mid);
+	
+	public String getUserAuth(String mid);
+	
 }

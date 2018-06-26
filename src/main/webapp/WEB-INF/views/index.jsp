@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <link href="/resources/carousel.css" rel="stylesheet">
 <!-- Placed at the end of the document so the pages load faster -->
@@ -89,15 +90,16 @@
       
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center"><c:if test="${LOGIN.mname ne null}">
+          <h4 class="modal-title text-center">
+          <c:if test="${favor ne null}">
 				오늘의 추천영화 
-				</c:if></h4>
+		  </c:if></h4>
         </div>
         
         <div class="modal-body">
           <div class="row">
 			<div class="col-sm-12 center-block">		
-				<c:forEach items="${RecommendVO}" var="Recommend">
+				<c:forEach items="${favor}" var="Recommend">
 				<div class="col-sm-4">
 					<div class="recommend"><img src="${Recommend.image}"></div>
 					<div>${Recommend.title}</div>
@@ -135,7 +137,8 @@
 		</c:forEach>		
 	</div> --%>
 				
-	<div class="col-sm-12">
+	<div class="col-sm-12">	
+	${favor}
 		<h1>주간 인기영화 </h1>
 		<c:forEach items="${week}" var="week" begin="0" end="5">
 			<div class="col-sm-2">
@@ -183,11 +186,10 @@ $(document).ready(function(){
 	});	
 	
 	(function() {
-		var name = '${LOGIN.mname}';
-		console.log(name != ' ');
-		if('${LOGIN.mname}') {
-			$("#myModal").modal();
-		};
+		var name = '${favor}';
+		if(name != null) {
+		$("#myModal").modal();
+		}
 	})();
     
 });
