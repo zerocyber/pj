@@ -18,6 +18,8 @@
 	</div>
 
 	<form id="modiForm" method="post">
+		<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 		<div class="form-group row">
 			<div class="col-sm-8 col-sm-offset-2">
 				<label for="title">Title</label>
@@ -95,6 +97,20 @@ $(document).ready(function() {
 		 $("#modiForm").append(delImg);
 	});
 	
+	$(".readimg").on("DOMNodeRemoved",function(e) {
+		console.log(e.target);
+		var imgBtn = $("#photoList").find('img');
+		console.log(imgBtn);
+		$. 
+		if( imgBtn.attr('src') == $(e.target).attr('src') ){
+			var arr = $(e.target).attr('src').split('=');
+			var src = "<input type='hidden' value='"+arr[1]+"' name='imgList'/>";
+			
+			$("#modiForm").append(src);
+			var foo = imgBtn.find('img').attr('src' == $(e.target).attr('src'));
+		}
+	});
+	
 	/* 파일업로드 */
 	$("#fakeContent").on("dragenter dragover",function(event) {
 		event.preventDefault();
@@ -109,6 +125,9 @@ $(document).ready(function() {
 		
 		$.ajax({
 			url : '/'+path+'/upload',
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('x-CSRFToken','${_csrf.token}');
+			},
 			data : formData,
 			dataType : 'text',
 			processData : false,

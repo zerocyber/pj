@@ -182,12 +182,11 @@ $(document).ready(function(){
 		var infosrc = $(e.target)[0].parentElement.href;
 		console.log(infosrc);
 		
-		
 	});	
 	
 	(function() {
-		var name = '${favor}';
-		if(name != null) {
+		var name = '${prin}';
+		if(name != "") {
 		$("#myModal").modal();
 		}
 	})();

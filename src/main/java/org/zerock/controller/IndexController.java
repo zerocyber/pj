@@ -22,9 +22,12 @@ public class IndexController {
 	@GetMapping("/index")
 	public void index(Model model, Principal prin) throws IOException {
 		
+		if(prin != null) {
 		model.addAttribute("favor", mservice
 							.recommendMovie(mservice.getUserID(prin.getName()).getFavor()));
 		model.addAttribute("prin",prin.getName());
+		}
+		
 		model.addAttribute("week", service.weekList());
 		model.addAttribute("month", service.monthList());
 		model.addAttribute("year", service.yearList());

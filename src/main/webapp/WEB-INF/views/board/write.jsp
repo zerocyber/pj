@@ -42,6 +42,8 @@
 
 		<div class="col-sm-8 col-sm-offset-2">
 			<form  id="post-form form1" name="post-form" method="post">
+				<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 
 				<div class="form-group">
 					<div class="row">
@@ -77,7 +79,7 @@
 				<label>Writer</label>
 				<p>
 					<input id="mid" name="mid" type="text" class="form-control-s mid"
-						placeholder="Text input" value="${LOGIN.mid}" readonly>
+						placeholder="Text input" value="${id}" readonly>
 				</p>
 				<div>
 					<div class="form-group">
@@ -113,21 +115,19 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
-
 <body onload="document.forms[0].reset()">
-
 <script>
-
-
 $(document).ready(function() {
-
-	$("#back").on("click", function(e) {
-		self.location = "/board/list";
-
+	
+	$("body").on("load", function(e) {
+		$("#form1")[0].reset();
 	});
 	
+	$("#back").on("click", function(e) {
+		self.location = "/board/list";
+	});
 	
-// 파일 업로드
+	// 파일 업로드
 	$(".fileDrop").on("dragenter dragover",function(event) {
 		event.preventDefault();
 	});
@@ -144,6 +144,9 @@ $(document).ready(function() {
 
 		$.ajax({
 			url : '/'+path+'/upload',
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('x-CSRFToken','${_csrf.token}');
+			},
 			data : formData,
 			dataType : 'text',
 			processData : false,
@@ -166,11 +169,6 @@ $(document).ready(function() {
 		var pattern = /jpg$|gif$|png$|jpeg$/i;
 		return fileName.match(pattern);
 	}	
-	
-	
 });
-
 </script>
-
-
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -53,7 +53,7 @@
 			<div class="row">
 				<div class="col-sm-12 text-center">
 					<button id="back" type="button" class="btn btn-xs btn-default">To List</button>
-					<c:if test="${LOGIN.mid == PhotoVO.mid}">
+					<c:if test="${prin == PhotoVO.mid}">
 						<button id="modify" type="button" class="btn btn-xs btn-default">Modify</button>
 						<button id="remove" type="button" class="btn btn-xs btn-default">Delete</button>
 					</c:if>
@@ -66,57 +66,46 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
-	$(document)
-			.ready(
-					function() {
-						var formObj = $("#inform");
-						var mid = '${PhotoVO.mid}';
-						var user = '${LOGIN.mid}';
-						var readForm = $("#readForm");
+$(document).ready(
+function() {
+	var formObj = $("#inform");
+	var mid = '${PhotoVO.mid}';
+	var user = '${prin}';
+	var readForm = $("#readForm");
 
-						/* 뒤로가기 */
-						$("#back")
-								.on(
-										"click",
-										function(e) {
-											self.location = "/photo/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-										});
-						/* 뒤로가기 */
+	/* 뒤로가기 */
+	$("#back").on("click", function(e) {
+		self.location = "/photo/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+	});
+	
+	/* 게시글 수정 */
+	$("#modify").on("click", function(e) {
+		if (user != "" && user != mid) {
+			alert("글 작성자만 수정 가능합니다");
+			e.preventDefault();
+			return false;
+		}
+		self.location = "/photo/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&pno=${PhotoVO.pno}";
+	});
 
-						/* 게시글 수정 */
-						$("#modify")
-								.on(
-										"click",
-										function(e) {
-
-											if (user != "" && user != mid) {
-												alert("글 작성자만 수정 가능합니다");
-												e.preventDefault();
-												return false;
-											}
-											self.location = "/photo/modify?page=${cri.page}&perPageNum=${cri.perPageNum}&pno=${PhotoVO.pno}";
-										});
-						/* 게시글 수정 */
-
-						/* 게시글 삭제 */
-						$("#remove").on("click", function(e) {
-							if (user != "" && user != mid) {
-								alert("글 작성자만 삭제 가능합니다");
-								e.preventDefault();
-								return false;
-							}
-							if (user === "") {
-								alert("로그인이 필요한 기능입니다")
-								location.href = "/login";
-								return false;
-							}
-							if (confirm("정말 삭제하시겠습니까?")) {
-								readForm.attr("method", "POST");
-								readForm.attr("action", "/photo/delete");
-								readForm.submit();
-							}
-						});
-						/* 게시글 삭제 */
-					});
+	/* 게시글 삭제 */
+	$("#remove").on("click", function(e) {
+		if (user != "" && user != mid) {
+			alert("글 작성자만 삭제 가능합니다");
+			e.preventDefault();
+			return false;
+		}
+		if (user === "") {
+			alert("로그인이 필요한 기능입니다")
+			location.href = "/login";
+			return false;
+		}
+		if (confirm("정말 삭제하시겠습니까?")) {
+			readForm.attr("method", "POST");
+			readForm.attr("action", "/photo/delete");
+			readForm.submit();
+		}
+	});
+});
 </script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -3,6 +3,8 @@ package org.zerock.controller;
 
 
 
+import java.security.Principal;
+
 import javax.annotation.Resource;
 
 import org.apache.ibatis.annotations.Param;
@@ -39,7 +41,8 @@ public class PhotoController {
 	}
 	
 	@GetMapping("/write")
-	public void photoWrite() {
+	public void photoWrite(Model model, Principal prin) {
+		model.addAttribute("prin", prin.getName());
 	}
 	
 	@PostMapping("/write")
@@ -50,13 +53,17 @@ public class PhotoController {
 	
 
 	@GetMapping("/read")
-	public void photoRead(@Param("pno") int pno, Criteria cri, Model model) {
+	public void photoRead(@Param("pno") int pno, Criteria cri, Model model,Principal prin) {
+		if(prin != null) {
+		model.addAttribute("prin", prin.getName());
+		}
 		model.addAttribute("PhotoVO", service.read(pno));
 		model.addAttribute("cri", cri);
 	}
 	
 	@GetMapping("/modify")
-	public void photoModify(@Param("pno") int pno,Criteria cri, Model model) {
+	public void photoModify(@Param("pno") int pno,Criteria cri, Model model,Principal prin) {
+		model.addAttribute("prin", prin);
 		model.addAttribute("images", service.searchImage(pno));
 		model.addAttribute("PhotoVO", service.read(pno));
 
@@ -73,7 +80,8 @@ public class PhotoController {
 	}
 	
 	@PostMapping("/delete")
-	public String photoRemove(@Param("pno")int pno, String[] images)throws Exception {
+	public String photoRemove(@Param("pno")int pno)throws Exception {
+		String[] images = service.searchImage(pno);
 		service.remove(pno);
 		if(images != null) {
 			UploadFileUtils.deleteFile(photoUploadPath, images);
