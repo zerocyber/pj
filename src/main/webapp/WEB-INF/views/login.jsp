@@ -51,7 +51,7 @@ margin-top: 5px;
 						Account Login
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "ID를 입력해주세요">
+					<div class="wrap-input100 validate-input" data-validate="ID를 입력해주세요">
 						<input class="input100" type="text" name="mid" placeholder="ID">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>

@@ -1,8 +1,5 @@
 package org.zerock.utils;
 
-import java.util.Arrays;
-import java.util.Random;
-
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.zerock.domain.Criteria;

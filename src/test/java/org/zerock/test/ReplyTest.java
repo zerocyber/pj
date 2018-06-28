@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.Criteria;
-import org.zerock.domain.MemberVO;
 import org.zerock.domain.ReplyVO;
-import org.zerock.mapper.MemberMapper;
 import org.zerock.mapper.ReplyMapper;
 
 import lombok.Setter;
@@ -55,11 +53,11 @@ public class ReplyTest {
 	}
 	
 	//해당글에대한 댓글 총 갯수 테스트 
-	@Test
-	public void countTest()	{
-		Criteria cri = new Criteria();
-		log.info(mapper.count(4));
-	}
+//	@Test
+//	public void countTest()	{
+//		Criteria cri = new Criteria();
+//		log.info(mapper.count(4));
+//	}
 	
 
 }

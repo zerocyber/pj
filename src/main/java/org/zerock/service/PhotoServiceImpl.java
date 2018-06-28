@@ -10,9 +10,7 @@ import org.zerock.domain.PhotoVO;
 import org.zerock.mapper.PhotoMapper;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
-@Log4j
 @Service
 public class PhotoServiceImpl implements PhotoService {
 

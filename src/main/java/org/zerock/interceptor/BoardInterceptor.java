@@ -14,33 +14,28 @@ import org.zerock.service.BoardService;
 import com.mysql.jdbc.StringUtils;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
 
-@Log4j
 public class BoardInterceptor extends HandlerInterceptorAdapter {
 	
 	@Setter(onMethod_= {@Autowired})
 	private BoardService service;
 	
-	//Read�럹�씠吏� 遺덈윭�삤湲� �쟾 荑좏궎 寃��궗
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		Cookie cookies[] = request.getCookies();
-		Map cookieMap = new HashMap();
+		Map<String,String> cookieMap = new HashMap<>();
+		
 		if(request.getCookies() != null ) {
-	
 			for(int i = 0; i < cookies.length; i++) {
 			Cookie cookieObj = cookies[i];
 			cookieMap.put(cookieObj.getName(), cookieObj.getValue());
-			
 			}	
 		}
 		
 		String cookieViews = (String)cookieMap.get("views");
-		
 		String cookie_viewCnt = "|" + bno;
 		if(cookieViews == null) {
 			cookieViews = "views";
@@ -54,12 +49,5 @@ public class BoardInterceptor extends HandlerInterceptorAdapter {
 	   }
 		return true;
 	}
-	
-	
+		
 }
-
-
-	
-	
-	
-
