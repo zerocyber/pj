@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.domain.MemberVO;
 import org.zerock.domain.RecommendVO;
 import org.zerock.mapper.MemberMapper;
 
@@ -38,16 +37,16 @@ public class MemberTests {
 		
 		int result = mapper.idCheck("hahaha");
 		if(result ==1) {
-			log.info("ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
+			log.info("ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.");
 		}else {
-			log.info("»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµðÀÔ´Ï´Ù");
+			log.info("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½");
 		}
 	}
 	
 	@Test
 	public void recommendTest() {
 		
-		List<RecommendVO> list = mapper.selectMovie("ÄÚ¹Ìµð");
+		List<RecommendVO> list = mapper.selectMovie("ï¿½Ú¹Ìµï¿½");
 		
 		log.info(list);
 	}

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.LoginDTO;
-import org.zerock.domain.MemberAuthVO;
 import org.zerock.domain.MemberVO;
 import org.zerock.domain.RecommendVO;
 

@@ -1,19 +1,5 @@
 package org.zerock.utils;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.zerock.domain.MovieVO;
-
-import lombok.Data;
-import lombok.extern.log4j.Log4j;
-
-
 public class JavaWebCrawler {
 	
 //	public static List<MovieVO> goCrawling(String address) throws IOException {
