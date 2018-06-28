@@ -137,10 +137,14 @@
 			</div>		
 		</c:forEach>		
 	</div> --%>
-					
+	
+	<div class="col-sm-12">
+		<div class="col-sm-2">
+			<h1>주간 인기영화 </h1>
+		</div>
+	</div>
+									
 	<div class="col-sm-12">	
-  	${favor} 
-		<h1>주간 인기영화 </h1>
 		<c:forEach items="${week}" var="week" begin="0" end="5">
 			<div class="col-sm-2">
 				<div class="info"><a href="https://${week.infoLink}"><img src="https://${week.img}"></a></div>
@@ -152,7 +156,12 @@
 	</div>
 		
 	<div class="col-sm-12">
-		<h1>월간 인기영화</h1>
+		<div class="col-sm-2">
+			<h1>월간 인기영화 </h1>
+		</div>
+	</div>	
+		
+	<div class="col-sm-12">
 		<c:forEach items="${month}" var="month" begin="0" end="5">
 				<div class="col-sm-2">
 					<div class="info"><a href="https://${month.infoLink}"><img src="https://${month.img}"></a></div>
@@ -162,9 +171,13 @@
 				</div>		
 		</c:forEach>
 	</div>
-		
+	
 	<div class="col-sm-12">
-		<h1>연간 인기영화</h1>
+		<div class="col-sm-2">
+			<h1>연간 인기영화 </h1>
+		</div>
+	</div>	
+	<div class="col-sm-12">
 		<c:forEach items="${year}" var="year" begin="0" end="5">
 				<div class="col-sm-2">
 					<div class="info"><a href="https://${year.infoLink}"><img src="https://${year.img}"></a></div>
