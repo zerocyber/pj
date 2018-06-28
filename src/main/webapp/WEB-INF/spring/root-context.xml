@@ -18,19 +18,20 @@
 		<!-- <property name="connectionTestQuery" value="SELECT 1" /> -->
 		<property name="maximumPoolSize" value="100" />
 		<property name="idleTimeout" value="30000" />
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		 
+		<property name="driverClassName"
+			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+
 		<!-- Main -->
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://10.10.10.33:3306/pj01"></property>
+		<property name="jdbcUrl"
+			value="jdbc:log4jdbc:mysql://10.10.10.33:3306/pj01"></property>
 		<property name="username" value="study"></property>
 		<property name="password" value="123456789"></property>
 		<property name="minimumIdle" value="3"></property>
-		
+
 		<!-- my localhost server -->
-		<!-- <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/pj"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="1q2w3e4r"></property>
-		<property name="minimumIdle" value="3"></property> -->
+		<!-- <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/pj"></property> 
+			<property name="username" value="root"></property> <property name="password" 
+			value="1q2w3e4r"></property> <property name="minimumIdle" value="3"></property> -->
 	</bean>
 
 	<!-- HikariCP configuration -->
@@ -48,15 +49,33 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	<tx:annotation-driven/>
+
+	   <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com" />
+      <property name="port" value="587" />
+      <property name="username" value="choi2012341050@gmail.com" />
+      <property name="password" value="qw123456789!@" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
+      </property>
+ 
+   </bean>
+
+	<tx:annotation-driven />
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 	<context:component-scan
 		base-package="org.zerock.service"></context:component-scan>
-	<context:component-scan 
+	<context:component-scan
 		base-package="org.zerock.security"></context:component-scan>
 	<mybatis-spring:scan
 		base-package="org.zerock.mapper" />
 		
+
+
 </beans>

@@ -2,6 +2,7 @@ package org.zerock.controller;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -30,10 +31,13 @@ public class MemberController {
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value="error", required=false)String error,
-					@RequestParam(value="logout", required = false)String logout) {
+					@RequestParam(value="logout", required = false)String logout, HttpServletRequest request) {
 		
 		ModelAndView model = new ModelAndView();
-
+		
+		String referrer = request.getHeader("Referer");
+	    request.getSession().setAttribute("prevPage", referrer);
+		
 		if (error != null) {
 			model.addObject("error", "Invalid username and password!");
 		}

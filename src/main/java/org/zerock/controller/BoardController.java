@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {		
+
 		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));
 		PageMaker pm = new PageMaker();
