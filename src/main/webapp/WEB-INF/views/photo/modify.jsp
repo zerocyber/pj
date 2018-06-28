@@ -96,20 +96,7 @@ $(document).ready(function() {
 		 $("img[src='"+str+"']").parent().remove();		
 		 $("#modiForm").append(delImg);
 	});
-	
-	$(".readimg").on("DOMNodeRemoved",function(e) {
-		console.log(e.target);
-		var imgBtn = $("#photoList").find('img');
-		console.log(imgBtn);
-		$. 
-		if( imgBtn.attr('src') == $(e.target).attr('src') ){
-			var arr = $(e.target).attr('src').split('=');
-			var src = "<input type='hidden' value='"+arr[1]+"' name='imgList'/>";
-			
-			$("#modiForm").append(src);
-			var foo = imgBtn.find('img').attr('src' == $(e.target).attr('src'));
-		}
-	});
+	/* 텍스트영역에서 백스페이스로 그림 삭제할 시에 ..... */
 	
 	/* 파일업로드 */
 	$("#fakeContent").on("dragenter dragover",function(event) {
