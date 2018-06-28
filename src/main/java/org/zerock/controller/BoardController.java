@@ -1,5 +1,7 @@
 package org.zerock.controller;
 
+import java.security.Principal;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +27,6 @@ import lombok.extern.log4j.Log4j;
 
 @RequestMapping("/board/*")
 @Controller
-@Log4j
 public class BoardController {
 
 	@Setter(onMethod_= {@Autowired})
@@ -38,15 +39,8 @@ public class BoardController {
 	private String uploadPath;
 	
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
-		
-		HttpSession session = request.getSession();
-		String url = request.getRequestURL().toString();
-		
-		log.info("URL......................................: " + url);
+	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {		
 
-		request.setAttribute("url", url);
-		
 		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));
 		PageMaker pm = new PageMaker();
@@ -56,17 +50,19 @@ public class BoardController {
 	}
 	
 	@GetMapping("/read")
-	public void read(Model model, @Param("bno") int bno, Criteria cri) {	
+	public void read(Model model, @Param("bno") int bno, Criteria cri,Principal prin) {	
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
+		
+		model.addAttribute("prin", prin.getName());
 		model.addAttribute("countList", replyService.count(bno));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
 	}
 	
 	@GetMapping("/write")
-	public void write() {
-
+	public void write(Model model, Principal prin) { 
+		model.addAttribute("id", prin.getName());
 	}
 	
 	@PostMapping("/write")
@@ -75,18 +71,15 @@ public class BoardController {
 		rttr.addFlashAttribute("msg", "regist");
 		return "redirect:/board/list";
 	}
-
 	
 	@GetMapping("/modify")
-	public void modify(@Param("bno")int bno, Model model, Criteria cri, HttpSession session) {
-		log.info("modify get.........");
-
-		BoardVO vo = service.read(bno);
-		
+	public void modify(@Param("bno")int bno, Model model, Criteria cri, Principal prin) {
+		BoardVO vo = service.read(bno);		
 		vo.setFiles(service.searchFile(bno));
+		
+		model.addAttribute("prin", prin.getName());
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri", cri);
-		
 	}
 	
 	@PostMapping("/modify")
@@ -108,5 +101,4 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
-
 }

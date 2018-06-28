@@ -18,6 +18,8 @@
 	</div>
 
 	<form id="modiForm" method="post">
+		<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 		<div class="form-group row">
 			<div class="col-sm-8 col-sm-offset-2">
 				<label for="title">Title</label>
@@ -94,6 +96,7 @@ $(document).ready(function() {
 		 $("img[src='"+str+"']").parent().remove();		
 		 $("#modiForm").append(delImg);
 	});
+	/* 텍스트영역에서 백스페이스로 그림 삭제할 시에 ..... */
 	
 	/* 파일업로드 */
 	$("#fakeContent").on("dragenter dragover",function(event) {
@@ -109,6 +112,9 @@ $(document).ready(function() {
 		
 		$.ajax({
 			url : '/'+path+'/upload',
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('x-CSRFToken','${_csrf.token}');
+			},
 			data : formData,
 			dataType : 'text',
 			processData : false,

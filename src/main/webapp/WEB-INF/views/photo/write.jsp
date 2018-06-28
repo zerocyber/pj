@@ -33,6 +33,9 @@
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
 			<form  id="post-form" name="post-form" method="post">
+			
+				<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 							
 				<div class="form-group">
 					<label for="title">Title</label> <input id="title" name="title"
@@ -50,7 +53,7 @@
 				<label>Writer</label>
 				<p>
 					<input id="mid" name="mid" type="text" class="form-control-s"
-						placeholder="Text input" required="required" value="${LOGIN.mid}" readonly>
+						placeholder="Text input" required="required" value="${prin}" readonly>
 				</p>
 				
 				<div class="row">
@@ -92,6 +95,9 @@ $(document).ready(function() {
 		
 		$.ajax({
 			url : '/'+path+'/upload',
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('x-CSRFToken','${_csrf.token}');
+			},
 			data : formData,
 			dataType : 'text',
 			processData : false,
@@ -102,7 +108,7 @@ $(document).ready(function() {
 			var foo = "";
 			console.log('success');
 			if (checkImageType(data)) {
-				str = "<div style='text-align:center;'>"+ "<img src ='/displayImage?fileName="+data+"'/></div>"
+				str = "<div style='text-align:center;'>"+ "<img class='readimg' src ='/displayImage?fileName="+data+"'/></div>"
 				}
 				foo = "<input type='hidden' name='images' value='"+data+"'/>";
 				$("#post-form").append(foo);

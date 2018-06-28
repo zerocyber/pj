@@ -13,6 +13,8 @@
 	</div>
 
  <form method="post" id="modiForm">
+  <input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
   <div class="form-group row">
     <div class="col-sm-8 col-sm-offset-2">
       <label for="title">Title</label>
@@ -90,13 +92,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	var sessionMid = '${LOGIN.mid}';
-	var mid = '${BoardVO.mid}';
-	if(sessionMid != mid){
-		alert("글 작성자만 수정 가능합니다")
-		window.history.go(-2);
-	}
-	
+	 var prinMid = '${prin}';
+	 var mid = '${BoardVO.mid}';
+	 if(prinMid != mid){
+	 	alert("글 작성자만 수정 가능합니다");
+	 	window.history.go(-2);
+	 }
 	
 	 var formObj = $("#modiForm");
 	 $("#modify").on("click", function(e){
@@ -134,6 +135,9 @@ $(document).ready(function(){
 	
 		$.ajax({
 			url : '/'+path+'/upload',
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('x-CSRFToken','${_csrf.token}');
+			},
 			data : formData,
 			dataType : 'text',
 			processData : false,
