@@ -88,7 +88,7 @@ background-color:#eee;
 				<li><a href="/board/list">Board</a></li>
 				<li><a href="/photo/list">Gallery</a></li>
 				<li><a href="#">About us</a></li>
-				<li><a href="#">Q&A</a></li>					
+				<li><a href="/mailForm">Q&A</a></li>					
 			</ul>
 		</div>
 	</div>				
