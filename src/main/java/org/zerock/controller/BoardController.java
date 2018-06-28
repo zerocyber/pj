@@ -2,6 +2,7 @@ package org.zerock.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -38,6 +39,13 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model,HttpServletRequest request)throws Exception {
+		
+		HttpSession session = request.getSession();
+		String url = request.getRequestURL().toString();
+		
+		log.info("URL......................................: " + url);
+
+		request.setAttribute("url", url);
 		
 		model.addAttribute("bestList", service.bestList());
 		model.addAttribute("BoardVO", service.searchList(cri));

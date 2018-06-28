@@ -82,7 +82,7 @@ background-color:#eee;
 			</button>
 		</div>
 				
-		<div id="navbar" class="navbar-collapse">
+		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="/index">Home</a></li>
 				<li><a href="/board/list">Board</a></li>

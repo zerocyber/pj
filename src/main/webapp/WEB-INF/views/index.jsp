@@ -80,8 +80,8 @@
 </div>
 	
 <!-- youtube media add -->
-<div class="container">
-  
+ <div class="container">
+ 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog" style="margin:200px 360px;">    
@@ -99,15 +99,15 @@
         <div class="modal-body">
           <div class="row">
 			<div class="col-sm-12 center-block">		
-				<c:forEach items="${favor}" var="Recommend">
+ 				<c:forEach items="${favor}" var="Recommend">
 				<div class="col-sm-4">
-					<div class="recommend"><img src="${Recommend.image}"></div>
+ 					<div class="recommend"><img src="${Recommend.image}"></div>
 					<div>${Recommend.title}</div>
 					<div>${Recommend.genre}</div>
 					<div>감독 : ${Recommend.director}</div>
 					<div>제작 국가 : ${Recommend.country}</div>
 				</div>		
-				</c:forEach>		
+				</c:forEach>	 	
 			</div>
           </div>
         </div>
@@ -119,6 +119,7 @@
       
     </div>
   </div>
+
 </div>
 
 <div class="row">
@@ -136,9 +137,9 @@
 			</div>		
 		</c:forEach>		
 	</div> --%>
-				
+					
 	<div class="col-sm-12">	
-	${favor}
+  	${favor} 
 		<h1>주간 인기영화 </h1>
 		<c:forEach items="${week}" var="week" begin="0" end="5">
 			<div class="col-sm-2">
@@ -185,12 +186,12 @@ $(document).ready(function(){
 		
 	});	
 	
-	(function() {
-		var name = '${favor}';
-		if(name != null) {
+ 	(function() {
+		var name = '${prin}';
+		if(name != "") {
 		$("#myModal").modal();
 		}
-	})();
+	})(); 
     
 });
 </script>	

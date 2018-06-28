@@ -66,7 +66,7 @@ margin-top: 5px;
 					
 					
 					<span class="login100-form-title p-b-33 rememberMe">
-						<input type="checkbox" name="rememberMe">&nbsp;Remember Me
+						<input type="checkbox" name="remember-me">&nbsp;Remember Me
 					</span>
 
 					
@@ -91,6 +91,14 @@ margin-top: 5px;
 						</span>
 						<a href="/signup" class="txt2 hov1 signup">
 							Sign up
+						</a>
+					</div>
+					<div class="text-center">
+						<span class="txt1">
+							이전 페이지로 가시려면?
+						</span>
+						<a href="/signup" class="txt2 hov1 signup">
+							여기를 클릭
 						</a>
 					</div>
 						<c:if test="${not empty error}">

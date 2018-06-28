@@ -3,6 +3,10 @@ package org.zerock.controller;
 import java.io.IOException;
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +26,12 @@ public class IndexController {
 	@GetMapping("/index")
 	public void index(Model model, Principal prin) throws IOException {
 		
+		if(prin != null) {
 		model.addAttribute("favor", mservice
 							.recommendMovie(mservice.getUserID(prin.getName()).getFavor()));
 		model.addAttribute("prin",prin.getName());
+		}
+		
 		model.addAttribute("week", service.weekList());
 		model.addAttribute("month", service.monthList());
 		model.addAttribute("year", service.yearList());

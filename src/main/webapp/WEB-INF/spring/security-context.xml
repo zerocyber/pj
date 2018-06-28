@@ -18,18 +18,18 @@
 		password-parameter="mpw" 
 		login-processing-url="/login" 
 		authentication-failure-url="/login?error"
-		default-target-url="/index"
-		always-use-default-target="false"
+		authentication-success-handler-ref="authenticationSuccessHandler"
 	/>
 	
 	<security:logout
 		invalidate-session="true"
 		logout-url="/logout"
-		logout-success-url="/login?logout"
+		success-handler-ref="myLogoutSuccessHandler"
 		delete-cookies="JSESSIONID"
 	/>
 	
 	<security:csrf disabled="true"/>
+	<security:remember-me key="pj01" token-validity-seconds="86400" data-source-ref="dataSource"/> 
 	</security:http>
 	
 	<security:authentication-manager>
@@ -41,4 +41,7 @@
 	
 	<bean id="userDetailsServiceImpl" class="org.zerock.security.UserDetailsServiceImpl"/>
 	<bean id="passEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="authenticationSuccessHandler" class="org.zerock.security.CustomLoginSuccessHandler"/>
+	<bean id="myLogoutSuccessHandler" class="org.zerock.security.MyLogoutSuccessHandler"/>
+	
 </beans>
