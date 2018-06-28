@@ -122,25 +122,18 @@
 
 </div>
 
+
 <div class="row">
-	<%-- <div class="col-sm-12">		
-		<c:if test="${LOGIN.mname ne null}">
-		<p style="font-size:35px ">Have you seen this movie?</p>
-		</c:if>
-		<c:forEach items="${RecommendVO}" var="Recommend">
-			<div class="col-sm-4">
-				<div class="recommend"><img src="${Recommend.image}"></div>
-				<div>${Recommend.title}</div>
-				<div>${Recommend.genre}</div>
-				<div>감독 : ${Recommend.director}</div>
-				<div>제작 국가 : ${Recommend.country}</div>
-			</div>		
-		</c:forEach>		
-	</div> --%>
-					
+
+	
+	<div class="col-sm-12">
+		<div class="col-sm-2">
+			<h1>주간 인기영화 </h1>
+		</div>
+	</div>
+									
 	<div class="col-sm-12">	
-  	${favor} 
-		<h1>주간 인기영화 </h1>
+
 		<c:forEach items="${week}" var="week" begin="0" end="5">
 			<div class="col-sm-2">
 				<div class="info"><a href="https://${week.infoLink}"><img src="https://${week.img}"></a></div>
@@ -152,7 +145,12 @@
 	</div>
 		
 	<div class="col-sm-12">
-		<h1>월간 인기영화</h1>
+		<div class="col-sm-2">
+			<h1>월간 인기영화 </h1>
+		</div>
+	</div>	
+		
+	<div class="col-sm-12">
 		<c:forEach items="${month}" var="month" begin="0" end="5">
 				<div class="col-sm-2">
 					<div class="info"><a href="https://${month.infoLink}"><img src="https://${month.img}"></a></div>
@@ -162,9 +160,13 @@
 				</div>		
 		</c:forEach>
 	</div>
-		
+	
 	<div class="col-sm-12">
-		<h1>연간 인기영화</h1>
+		<div class="col-sm-2">
+			<h1>연간 인기영화 </h1>
+		</div>
+	</div>	
+	<div class="col-sm-12">
 		<c:forEach items="${year}" var="year" begin="0" end="5">
 				<div class="col-sm-2">
 					<div class="info"><a href="https://${year.infoLink}"><img src="https://${year.img}"></a></div>
@@ -181,18 +183,15 @@ $(document).ready(function(){
 	$('.info').on("click",function(e){
 		e.preventDefault();
 		var infosrc = $(e.target)[0].parentElement.href;
-		console.log(infosrc);
-		
+		console.log(infosrc);		
 	});	
 	
-
 	(function() {
 		var name = '${prin}';
 		if(name != "") {
 		$("#myModal").modal();
 		}
-	})(); 
-    
+	})();    
 });
 </script>	
     <!-- Wrap the rest of the page in another container to center all the content. -->

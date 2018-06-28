@@ -51,6 +51,15 @@ background-color:#eee;
   font-weight: bold;
   text-align: center;
 }
+@font-face {
+	font-family: 'NanumGothic';
+	src: url("/resources/InterparkGothicBold.ttf") format('truetype');
+
+}
+body{
+	font-family: NanumGothic;
+}
+
 </style>
 <body>
 	<!-- Body 시작 -->
@@ -83,7 +92,7 @@ background-color:#eee;
 		</div>
 				
 		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" style="font-size: 18px;">
 				<li><a href="/index">Home</a></li>
 				<li><a href="/board/list">Board</a></li>
 				<li><a href="/photo/list">Gallery</a></li>

@@ -1,11 +1,8 @@
 package org.zerock.controller;
 
-
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +17,11 @@ import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
+
 
 @RestController
 @RequestMapping("/replies")
-@Log4j
+
 public class ReplyController {
 
 	

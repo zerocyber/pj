@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.zerock.domain.RecommendVO;
+
 
 import lombok.extern.log4j.Log4j;
 
@@ -40,7 +40,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			}
 			
 			Object uri = session.getAttribute("URI");
-			log.info("URIÁÖ¼Ò: " + uri);
+			log.info("URIï¿½Ö¼ï¿½: " + uri);
 
 			response.sendRedirect(uri != null? (String)uri : "/index");		
 		}
