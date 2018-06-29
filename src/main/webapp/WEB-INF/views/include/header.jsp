@@ -51,6 +51,19 @@ background-color:#eee;
   font-weight: bold;
   text-align: center;
 }
+.navbar-inverse .navbar-nav>li>a{
+	color: lightskyblue;
+}
+
+@font-face {
+	font-family: 'NanumGothic';
+	src: url("/resources/InterparkGothicBold.ttf") format('truetype');
+
+}
+body{
+	font-family: NanumGothic;
+}
+
 </style>
 <body>
 	<!-- Body 시작 -->
@@ -74,7 +87,7 @@ background-color:#eee;
 		<div class="navbar-header">	
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
+				aria-controls="navbar" style="background-color: black;">
 				<span class="sr-only">Toggle navigation</span> 
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
@@ -83,12 +96,12 @@ background-color:#eee;
 		</div>
 				
 		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" style="font-size: 18px;">
 				<li><a href="/index">Home</a></li>
 				<li><a href="/board/list">Board</a></li>
 				<li><a href="/photo/list">Gallery</a></li>
 				<li><a href="#">About us</a></li>
-				<li><a href="#">Q&A</a></li>					
+				<li><a href="/mailForm">Q&A</a></li>					
 			</ul>
 		</div>
 	</div>				

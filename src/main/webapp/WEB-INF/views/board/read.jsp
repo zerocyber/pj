@@ -97,7 +97,7 @@
 		  <div class="row">
 	        <div class="col-sm-8 col-sm-offset-2">   
 	          <div class="row">
-	            <label>NAME <input type="text" class="replyWriter" value="" readonly/></label>	            	        
+	            <label>NAME <input type="text" class="replyWriter" value="${prin}" readonly/></label>	            	        
 	            <label>PASSWORD <input type="text" class="replyPass" value="" readonly/></label>	            	            
 	            <label>HOMEPAGE <input style="width: 410px;"type="text" class="replyHome" value="" readonly/></label>
 	          </div>
