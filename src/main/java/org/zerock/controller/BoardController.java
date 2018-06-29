@@ -51,7 +51,9 @@ public class BoardController {
 		BoardVO vo = service.read(bno);
 		vo.setFiles(service.searchFile(bno));
 		
-		model.addAttribute("prin", prin.getName());
+		if(prin != null) {
+			model.addAttribute("prin", prin.getName());
+		}
 		model.addAttribute("countList", replyService.count(bno));
 		model.addAttribute("BoardVO", vo);
 		model.addAttribute("cri",cri);	
