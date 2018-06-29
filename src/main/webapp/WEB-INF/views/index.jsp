@@ -127,7 +127,7 @@
 
 	
 	<div class="col-sm-12">
-		<div class="col-sm-2">
+		<div class="col-sm-12">
 			<h1 style="color: black;">주간 인기영화 </h1>
 		</div>
 	</div>
@@ -145,7 +145,7 @@
 	</div>
 		
 	<div class="col-sm-12">
-		<div class="col-sm-2">
+		<div class="col-sm-12">
 			<h1 style="color: black;">월간 인기영화 </h1>
 		</div>
 	</div>	
@@ -162,7 +162,7 @@
 	</div>
 	
 	<div class="col-sm-12">
-		<div class="col-sm-2">
+		<div class="col-sm-12">
 			<h1 style="color: black;">연간 인기영화 </h1>
 		</div>
 	</div>	
