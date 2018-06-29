@@ -73,7 +73,7 @@ public class MemberController {
 		PrintWriter out = res.getWriter();
 
 		out.println(uri != null ? "<script>alert('회원가입되었습니다'); location.href='" + (String) uri + "' </script>"
-				: "<script>alert('회원가입되었습니다'); location.href='/login' </script>");
+				: "<script>alert('회원가입되었습니다'); location.href='/index' </script>");
 		
 	}
 

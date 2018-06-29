@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.BoardVO;
 import org.zerock.mapper.BoardMapper;
 import lombok.Setter;
 
@@ -21,7 +22,17 @@ public class BoardTests {
 	@Test
 	public void testList() {
 		
-
+		for(int i = 0; i < 20; i++) {
+			BoardVO vo = new BoardVO();
+			vo.setTitle("Test Title....."+i);
+			vo.setContent("Test Content....."+i);
+			vo.setMid("nara");
+			vo.setGno("100");
+			vo.setKno("30");
+			mapper.insert(vo);
+		}
+		
+		
 	}
 	
 	@Test
