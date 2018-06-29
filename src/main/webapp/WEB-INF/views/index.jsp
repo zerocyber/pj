@@ -136,8 +136,15 @@
 </div>
 
 
+<<<<<<< HEAD
 <div class="row imgbox">
 	<div style="margin-bottom: 10px;"class="col-sm-12">
+=======
+<div class="row">
+
+	
+	<div class="col-sm-12">
+>>>>>>> af256030e926dd969608d5d02405b0a4a3feb69c
 		<div class="col-sm-12">
 			<h1 style="color: black;">주간 인기영화 </h1>
 		</div>
@@ -156,7 +163,11 @@
 	</div>
 		
 	<div class="col-sm-12">
+<<<<<<< HEAD
 		<div style="margin-bottom: 10px;" class="col-sm-12">
+=======
+		<div class="col-sm-12">
+>>>>>>> af256030e926dd969608d5d02405b0a4a3feb69c
 			<h1 style="color: black;">월간 인기영화 </h1>
 		</div>
 	</div>	
@@ -173,7 +184,11 @@
 	</div>
 	
 	<div class="col-sm-12">
+<<<<<<< HEAD
 		<div style="margin-bottom: 10px;" class="col-sm-12">
+=======
+		<div class="col-sm-12">
+>>>>>>> af256030e926dd969608d5d02405b0a4a3feb69c
 			<h1 style="color: black;">연간 인기영화 </h1>
 		</div>
 	</div>
@@ -192,17 +207,18 @@
 <script>	
 $(document).ready(function(){
 
+
 	/* $('.info').on("click",function(e){
+
+	var info = $('info');
+	$('.info').on("click",function(e){
 		e.preventDefault();
 		var infosrc = $(e.target)[0].parentElement.href;
 		console.log(infosrc);		
 	}); */
 	
 	/* $(".movimg").mouseenter(function(e){
-		
 		e.stopPropagation();
-		
-		
 		var img = $(e.target);
 		
 		if(img.attr('class') == 'movimg') {
@@ -214,10 +230,6 @@ $(document).ready(function(){
 	$(".movimg").mouseleave(function(e){
 		e.stopPropagation();
 		var target = $(e.target);
-		
-		
-		
-		
 		if(target.closest('span').attr('class') == 'wrap_desc') {
 			
 			var img = target.closest('div').find('img');
@@ -232,7 +244,7 @@ $(document).ready(function(){
 		if(name != "") {
 			$("#myModal").modal();
 		}
-	})();    
+	})();
 });
 </script>	
     <!-- Wrap the rest of the page in another container to center all the content. -->
