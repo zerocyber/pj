@@ -179,7 +179,7 @@
 </div>
 <script>	
 $(document).ready(function(){
-
+	var info = $('info');
 	$('.info').on("click",function(e){
 		e.preventDefault();
 		var infosrc = $(e.target)[0].parentElement.href;
@@ -191,7 +191,7 @@ $(document).ready(function(){
 		if(name != "") {
 		$("#myModal").modal();
 		}
-	})();    
+	})();
 });
 </script>	
     <!-- Wrap the rest of the page in another container to center all the content. -->
