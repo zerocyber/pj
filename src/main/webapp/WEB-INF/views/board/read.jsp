@@ -97,7 +97,7 @@
 		  <div class="row">
 	        <div class="col-sm-8 col-sm-offset-2">   
 	          <div class="row">
-	            <label>NAME <input type="text" class="replyWriter" value="" readonly/></label>	            	        
+	            <label>NAME <input type="text" class="replyWriter" value="${prin}" readonly/></label>	            	        
 	            <label>PASSWORD <input type="text" class="replyPass" value="" readonly/></label>	            	            
 	            <label>HOMEPAGE <input style="width: 410px;"type="text" class="replyHome" value="" readonly/></label>
 	          </div>
@@ -230,7 +230,7 @@ $(".upload").on("click","div span img",function(e) {
 	    var calendar = new Date(this.regdate);
 	    var cal = calendar.getFullYear() +"/"+ (calendar.getMonth()+1) +"/" + calendar.getDate() + "/" + calendar.getHours() + ":" + calendar.getMinutes();
 	    
-	 str += "<div style='margin: 10px 0px 10px 0px;' class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
+	 	str += "<div style='margin: 10px 0px 10px 0px;' class='row' data-rno='"+this.rno+"' data-content='"+this.content+"' data-mid='"+this.mid+"' data-event='regist'>"
 			      +"<div class='col-sm-10' style='font-size:15px;'><strong>"+this.mid+"</strong>"
 			      +"<button class='btn-xs btn-link active' id='reModiBtn'>수정</button>"
 			      +"<button class='btn-xs btn-link active' id='redeleteBtn'>삭제</button></div>"			   
@@ -239,6 +239,7 @@ $(".upload").on("click","div span img",function(e) {
 	   	   +"</div>";
 	     });
 	    if($(data.list).length ==0){
+	    
 	   	 str += "<div class='row' style='font-size:15px; text-align:center'>등록된 댓글이 없습니다.</div>";
 	    }
 	     $(".replyBox").html(str);
@@ -416,14 +417,13 @@ $(".upload").on("click","div span img",function(e) {
 	
 	 /* 파일 리스트 로딩 */
 	 (function fileList() {
-	var fileList = $('.upload').children()[1].childElementCount;
+	var fileList = $(".upload").children()[1].childElementCount;
 	var str;
-	console.log(file);
+
 	if(fileList == 0){
 	  	   str = "<div style='font-size:15px; text-align:center'>첨부된 파일이 없습니다.</div>";
 	  	   $(".upload").append(str);
 	   }
-	
 	 })();
 	 
 	 /* file download */

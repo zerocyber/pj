@@ -6,7 +6,7 @@
 <link href="/resources/carousel.css" rel="stylesheet">
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="/resources/bootstrap-3.3.2/dist/js/bootstrap.min.js"></script>
+<!-- <script src="/resources/bootstrap-3.3.2/dist/js/bootstrap.min.js"></script> -->
 
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
 <script src="/resources/bootstrap-3.3.2/docs/assets/js/vendor/holder.js"></script>
@@ -127,8 +127,8 @@
 
 	
 	<div class="col-sm-12">
-		<div class="col-sm-2">
-			<h1>주간 인기영화 </h1>
+		<div class="col-sm-12">
+			<h1 style="color: black;">주간 인기영화 </h1>
 		</div>
 	</div>
 									
@@ -145,8 +145,8 @@
 	</div>
 		
 	<div class="col-sm-12">
-		<div class="col-sm-2">
-			<h1>월간 인기영화 </h1>
+		<div class="col-sm-12">
+			<h1 style="color: black;">월간 인기영화 </h1>
 		</div>
 	</div>	
 		
@@ -162,8 +162,8 @@
 	</div>
 	
 	<div class="col-sm-12">
-		<div class="col-sm-2">
-			<h1>연간 인기영화 </h1>
+		<div class="col-sm-12">
+			<h1 style="color: black;">연간 인기영화 </h1>
 		</div>
 	</div>	
 	<div class="col-sm-12">

@@ -51,6 +51,10 @@ background-color:#eee;
   font-weight: bold;
   text-align: center;
 }
+.navbar-inverse .navbar-nav>li>a{
+	color: lightskyblue;
+}
+
 @font-face {
 	font-family: 'NanumGothic';
 	src: url("/resources/InterparkGothicBold.ttf") format('truetype');
@@ -83,7 +87,7 @@ body{
 		<div class="navbar-header">	
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
+				aria-controls="navbar" style="background-color: black;">
 				<span class="sr-only">Toggle navigation</span> 
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>

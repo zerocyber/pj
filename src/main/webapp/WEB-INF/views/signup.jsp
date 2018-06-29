@@ -146,6 +146,12 @@ $(".signUP").on("click", function(e) {
 $(".idCheck").on("click", function(e) {
 	e.preventDefault();
 	var id = $('.inputId').val();
+	
+	if(id == ""){
+		alert("아이디를 입력해주세요");
+		return false;
+	}
+	
 	if (pattern.test(id) == true) {
 		console.log(pattern.test(id));
 		alert("아이디에 특수문자는 사용할 수 없습니다.");
