@@ -6,7 +6,7 @@
 <mapper namespace="org.zerock.mapper.IndexMapper">
 
 <select id="weekList" resultType="org.zerock.domain.MovieVO">
-select * from(select * from t_weekly order by regdate desc limit 0,50) as a order by wno asc
+select * from(select * from t_weekly order by regdate desc limit 0,10) as a order by wno asc
 </select>
 
 <select id="monthList" resultType="org.zerock.domain.MovieVO">
