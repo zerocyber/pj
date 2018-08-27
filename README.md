@@ -1,1 +1,2 @@
-#### Apache Mahout을 사용하여 사용자에게 맞춤 영화를 추천해 줄 수 있는 Spring Framework 기반 
+#### Apache Mahout을 사용하여 사용자에게 맞춤 영화를 추천
+#### Spring Framework 기반 홈페이지
